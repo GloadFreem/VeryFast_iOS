@@ -21,6 +21,9 @@
     // Do any additional setup after loading the view.
     [self createUI];
     
+    //这是一个测试 代码
+//    、、阿森纳达那看来
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
