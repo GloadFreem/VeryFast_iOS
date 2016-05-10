@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="31" id="KGk-i7-Jjw" customClass="InvistTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5s-zS-unV">
+                        <rect key="frame" x="22" y="14.5" width="42" height="21"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="O1P-26-3MT"/>
+                            <constraint firstAttribute="height" constant="21" id="lby-4r-qna"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSx-uX-Tb3">
+                        <rect key="frame" x="288" y="17.5" width="15" height="15"/>
+                        <color key="backgroundColor" red="1" green="0.4432308506" blue="0.22156729850000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="9sS-e3-t4Q"/>
+                            <constraint firstAttribute="height" constant="15" id="zKT-Iu-MFw"/>
+                        </constraints>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="B5s-zS-unV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="J11-7D-TNs"/>
+                    <constraint firstItem="B5s-zS-unV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="KjC-CH-Rmr"/>
+                    <constraint firstAttribute="trailing" secondItem="WSx-uX-Tb3" secondAttribute="trailing" constant="17" id="VgG-s1-ba1"/>
+                    <constraint firstItem="WSx-uX-Tb3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aHM-ue-jDt"/>
+                    <constraint firstItem="WSx-uX-Tb3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="f9E-lX-h2l"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="f9E-lX-h2l"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftLabel" destination="B5s-zS-unV" id="RJ4-fv-iyU"/>
+                <outlet property="leftLabelWidth" destination="O1P-26-3MT" id="Rye-9Z-4qe"/>
+            </connections>
+            <point key="canvasLocation" x="201" y="180"/>
+        </tableViewCell>
+    </objects>
+</document>

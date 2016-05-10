@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectDetailController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-Ku-icc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dkb-b0-dfR">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bru-kl-wFN">
+                            <rect key="frame" x="8" y="5" width="22" height="40"/>
+                            <state key="normal" backgroundImage="iconfont-kefu.png"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="bru-kl-wFN" firstAttribute="leading" secondItem="dkb-b0-dfR" secondAttribute="leading" constant="8" id="D8g-AO-pYL"/>
+                        <constraint firstAttribute="height" constant="50" id="Ind-Y5-kdh"/>
+                        <constraint firstAttribute="bottom" secondItem="bru-kl-wFN" secondAttribute="bottom" constant="5" id="cFl-w6-M4x"/>
+                        <constraint firstItem="bru-kl-wFN" firstAttribute="top" secondItem="dkb-b0-dfR" secondAttribute="top" constant="5" id="iDp-mg-lFm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="YO7-Ku-icc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1fG-7e-cDb"/>
+                <constraint firstAttribute="trailing" secondItem="dkb-b0-dfR" secondAttribute="trailing" id="Cpf-IZ-a7l"/>
+                <constraint firstItem="dkb-b0-dfR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ExL-Oe-bcx"/>
+                <constraint firstAttribute="bottom" secondItem="YO7-Ku-icc" secondAttribute="bottom" id="MMG-Qa-9lr"/>
+                <constraint firstAttribute="bottom" secondItem="dkb-b0-dfR" secondAttribute="bottom" id="hIv-QW-C6a"/>
+                <constraint firstAttribute="trailing" secondItem="YO7-Ku-icc" secondAttribute="trailing" id="hnl-WK-lN9"/>
+                <constraint firstItem="YO7-Ku-icc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j7M-4j-WKB"/>
+                <constraint firstAttribute="bottom" secondItem="dkb-b0-dfR" secondAttribute="bottom" id="rgE-27-clg"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="rgE-27-clg"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="372.5" y="191.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconfont-kefu.png" width="22" height="24"/>
+    </resources>
+</document>
