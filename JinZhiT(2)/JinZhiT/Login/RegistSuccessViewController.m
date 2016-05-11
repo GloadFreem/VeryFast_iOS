@@ -9,7 +9,10 @@
 #import "RegistSuccessViewController.h"
 #import "RenzhengViewController.h"
 @interface RegistSuccessViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *shiyongBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shiyongBtn;//完成注册，试用Btn
+@property (weak, nonatomic) IBOutlet UILabel *ringLabel;//指环码label
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 
 @end
 
@@ -23,8 +26,13 @@
 
 
 -(void)createUI{
-    _shiyongBtn.layer.cornerRadius = 20;
-    _shiyongBtn.layer.masksToBounds = YES;
+    
+    for (UIButton * btn in _btnArray) {
+        btn.layer.cornerRadius = 20;
+        btn.layer.masksToBounds = YES;
+    }
+//    _shiyongBtn.layer.cornerRadius = 20;
+//    _shiyongBtn.layer.masksToBounds = YES;
     _shiyongBtn.layer.borderColor = [[UIColor whiteColor] CGColor];
     _shiyongBtn.layer.borderWidth = 1;
 }

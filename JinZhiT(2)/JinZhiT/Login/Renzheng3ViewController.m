@@ -33,8 +33,7 @@
     
 }
 - (IBAction)backBtnClick:(UIButton *)sender {
-    Renzheng2ViewController * regist =[Renzheng2ViewController new];
-    [self.navigationController popToViewController:regist animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)nextStupClick:(UIButton *)sender {

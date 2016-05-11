@@ -35,24 +35,29 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司所在地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-66-HTz">
-                    <rect key="frame" x="137.5" y="28" width="100" height="24"/>
+                    <rect key="frame" x="137" y="28" width="100" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B3B-Ik-zYc">
-                    <rect key="frame" x="0.0" y="64" width="375" height="400"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="huc-I1-vmP"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="huc-I1-vmP"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ca8-Dz-8mz"/>
                         <outlet property="delegate" destination="-1" id="2wE-40-UDg"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="B3B-Ik-zYc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Il-L1-rEN"/>
                 <constraint firstItem="wNH-66-HTz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5tg-4j-kWw"/>
@@ -60,11 +65,13 @@
                 <constraint firstAttribute="trailing" secondItem="B3B-Ik-zYc" secondAttribute="trailing" id="EwW-kN-04v"/>
                 <constraint firstItem="i8I-hU-fFO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LIR-1e-c1F"/>
                 <constraint firstItem="o7c-C4-4pE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="O5b-H2-gAY"/>
+                <constraint firstAttribute="bottom" secondItem="B3B-Ik-zYc" secondAttribute="bottom" id="mYg-kZ-A1K"/>
                 <constraint firstItem="B3B-Ik-zYc" firstAttribute="top" secondItem="i8I-hU-fFO" secondAttribute="bottom" id="pfK-rw-hsx"/>
                 <constraint firstItem="o7c-C4-4pE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="qjG-pk-axr"/>
                 <constraint firstItem="wNH-66-HTz" firstAttribute="centerY" secondItem="o7c-C4-4pE" secondAttribute="centerY" id="xee-Ha-Wur"/>
                 <constraint firstAttribute="trailing" secondItem="i8I-hU-fFO" secondAttribute="trailing" id="yYY-gY-MpK"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="113.5" y="91.5"/>
         </view>

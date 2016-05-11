@@ -84,9 +84,10 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:nil options:nil] lastObject];
         
     }
-        
+        //第四个cell的特殊属性
         if (indexPath.row == 3) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.inputTextField.userInteractionEnabled = NO;
         }
      //设置左边label的值
     cell.leftLabel.text = _leftLableArr[indexPath.row];

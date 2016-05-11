@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PerfectViewController">
             <connections>
                 <outlet property="haveRegist" destination="hSr-ye-BoI" id="DbO-BQ-nnk"/>
+                <outlet property="iconBtn" destination="uK7-x4-T6s" id="o8M-ya-xNy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="btn_Array" destination="98b-TN-q5F" id="CwE-jj-jvZ"/>
                 <outletCollection property="btn_Array" destination="ds0-S0-wDd" id="l4u-bg-56N"/>

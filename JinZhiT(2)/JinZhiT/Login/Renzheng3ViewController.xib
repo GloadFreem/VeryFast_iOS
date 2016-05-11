@@ -110,6 +110,7 @@
                     </connections>
                 </textView>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="35l-jz-Q3Z" secondAttribute="trailing" id="2tQ-jG-zl3"/>
                 <constraint firstAttribute="trailing" secondItem="8gZ-OS-Zxe" secondAttribute="trailing" constant="10" id="58L-Ay-SUv"/>
@@ -136,6 +137,7 @@
                 <constraint firstItem="PVs-Bl-VOb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="tsK-si-MRH"/>
                 <constraint firstAttribute="trailing" secondItem="SLd-aw-paW" secondAttribute="trailing" id="tyL-cY-Qnb"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="188.5" y="165.5"/>
         </view>

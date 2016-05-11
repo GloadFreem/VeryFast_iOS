@@ -62,7 +62,7 @@
     self.tabBar.showCenterItem = YES;
     self.tabBar.centerItemImage = [UIImage imageNamed:@"mine.png"];
     self.tabBar.viewControllers = @[navProject,navInvest,navCircle,navActivity];
-    self.tabBar.textColor = [UIColor redColor];
+    self.tabBar.textColor = [UIColor orangeColor];
     
     self.tabBar.centerViewController = [[MineViewController alloc]init];
     

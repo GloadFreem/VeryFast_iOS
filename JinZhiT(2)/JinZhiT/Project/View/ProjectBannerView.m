@@ -1,12 +1,13 @@
 //
-//  ProjectBannerTableViewCell.m
+//  ProjectBannerView.m
 //  JinZhiT
 //
-//  Created by Eugene on 16/5/8.
+//  Created by Eugene on 16/5/11.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
-#import "ProjectBannerTableViewCell.h"
+#import "ProjectBannerView.h"
+
 #import "MeasureTool.h"
 #import "ProjectBannerModel.h"
 #define kADcount 4
@@ -20,20 +21,19 @@
 #define kCOVERHEIGHT 50
 #define kLeftSpace 10
 
-@implementation ProjectBannerTableViewCell
+@implementation ProjectBannerView
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if ([super initWithFrame:frame]) {
         [self createUI];
     }
     return self;
 }
 
+#pragma mark - 自定义布局
 -(void)createUI
 {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self setBackgroundColor:[UIColor whiteColor]];
     //广告栏
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,SCREENWIDTH ,SCROLLVIEWHEIGHT)];
@@ -41,13 +41,13 @@
     _scrollView.pagingEnabled = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.delegate = self;
-    [self.contentView addSubview:_scrollView];
+    [self addSubview:_scrollView];
     
     //遮盖
     _coverView = [[UIView alloc]initWithFrame:CGRectMake(0, kCOVERY, SCREENWIDTH, kCOVERHEIGHT)];
     _coverView.backgroundColor = [UIColor blackColor];
     _coverView.alpha = 0.5;
-    [self.contentView addSubview:_coverView];
+    [self addSubview:_coverView];
     //圆圈
     UIImage * bottom = [UIImage imageNamed:@"椭圆-4-拷贝-2"];
     _firstBottomImage = [[UIImageView alloc]initWithImage:bottom];
@@ -57,7 +57,7 @@
     _firstBottomImage.layer.masksToBounds = YES;
     //自适应图片宽高比例
     _firstBottomImage.contentMode = UIViewContentModeScaleAspectFit;
-    [self.contentView addSubview:_firstBottomImage];
+    [self addSubview:_firstBottomImage];
     
     UIImage * second = [UIImage imageNamed:@"椭圆-4-拷贝"];
     _secondBottomImage = [[UIImageView alloc]initWithImage:second];
@@ -65,7 +65,7 @@
     _secondBottomImage.layer.cornerRadius = second.size.width/2;
     _secondBottomImage.layer.masksToBounds = YES;
     _secondBottomImage.contentMode = UIViewContentModeScaleAspectFit;
-    [self.contentView addSubview:_secondBottomImage];
+    [self addSubview:_secondBottomImage];
     
     //firstLabel
     _firstLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_secondBottomImage.frame)+15, _coverView.frame.origin.y+8, 100, 17)];
@@ -73,17 +73,17 @@
     _firstLabel.text = @"逸景营地";
     _firstLabel.textColor = [UIColor whiteColor];
     _firstLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:_firstLabel];
+    [self addSubview:_firstLabel];
     //第二个label
     _secondLabel = [[UILabel alloc]initWithFrame:CGRectMake(_firstLabel.frame.origin.x, CGRectGetMaxY(_firstLabel.frame)+9 , 200, 12)];
     _secondLabel.font =[UIFont systemFontOfSize:12];
     _secondLabel.text = @"新三板VR企业在2015年下半年";
     _secondLabel.textColor = [UIColor whiteColor];
     _secondLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:_secondLabel];
+    [self addSubview:_secondLabel];
     //第一个button
     _leftBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverView.frame), SCREENWIDTH/2, 47)];
-//    [_leftBtn setBackgroundColor:[UIColor blackColor]];
+    //    [_leftBtn setBackgroundColor:[UIColor blackColor]];
     [_leftBtn setTag:20];
     [_leftBtn setTitle:@"路演项目" forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -91,61 +91,79 @@
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     [_leftBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     ;
-    [self.contentView addSubview:_leftBtn];
+
+    [self addSubview:_leftBtn];
     //左边的下划线
     //下划线的宽
     CGFloat sliderWidth = [_leftBtn.titleLabel.text commonStringWidthForFont:19];
     _leftSliderBottomView = [[UIView alloc]initWithFrame:CGRectMake(SCREENWIDTH/4-sliderWidth/2, CGRectGetMaxY(_leftBtn.frame)-3,sliderWidth, 3)];
-//    [_leftSliderBottomView setBackgroundColor:[UIColor orangeColor]];
+    //    [_leftSliderBottomView setBackgroundColor:[UIColor orangeColor]];
     _leftSliderBottomView.alpha = 0.8;
-    [self.contentView addSubview:_leftSliderBottomView];
-
+    [self addSubview:_leftSliderBottomView];
     
-
+    
+    
     //第二个button
     _rightBtn =[[UIButton alloc]initWithFrame:CGRectMake(SCREENWIDTH/2,_leftBtn.frame.origin.y, SCREENWIDTH/2, 47)];
     [_rightBtn setTitle:@"预选项目" forState:UIControlStateNormal];
     [_rightBtn setTag:21];
     [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_rightBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-//    [_rightBtn setBackgroundColor:[UIColor blackColor]];
+    //    [_rightBtn setBackgroundColor:[UIColor blackColor]];
     _rightBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     [_rightBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:_rightBtn];
+    [self addSubview:_rightBtn];
     
     //右边下划线
     _rightSliderBottomView = [[UIView alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.75-sliderWidth/2, CGRectGetMaxY(_rightBtn.frame)-3, sliderWidth, 3)];
     NSLog(@"%f",_rightSliderBottomView.frame.size.width);
-//    [_rightSliderBottomView setBackgroundColor:[UIColor orangeColor]];;
+    //    [_rightSliderBottomView setBackgroundColor:[UIColor orangeColor]];;
     _rightSliderBottomView.alpha = 0.8;
-    [self.contentView addSubview:_rightSliderBottomView];
+    [self addSubview:_rightSliderBottomView];
     
     
     //页面控制器
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(kPAGEX, kPAGEY, kPAGEWIDTH, kPAGEHEIGHT)];
     _pageControl.numberOfPages =kImageCount;
-//    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    //    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     _pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-    [self.contentView addSubview:_pageControl];
+    [self addSubview:_pageControl];
+    
+    //设置默认显示btn
+    _selectedBtn.tag = 20;
+}
+
+#pragma mark -重写setter方法
+-(void)setSelectedNum:(NSInteger)selectedNum
+{
+    _selectedNum = selectedNum;
+    [self setColorWithNum:_selectedNum];
     
 }
-#pragma mark- button点击事件
--(void)buttonClick:(UIButton*)button
+
+#pragma mark -设置下划线的颜色
+-(void)setColorWithNum:(NSInteger)num
 {
-    
-//    NSLog(@"点击btn");
-    if (button.tag == 20) {
+    if (num == 20) {
         [_leftSliderBottomView setBackgroundColor:[UIColor orangeColor]];
         [_rightSliderBottomView setBackgroundColor:[UIColor whiteColor]];
     }else{
         [_leftSliderBottomView setBackgroundColor:[UIColor whiteColor]];
         [_rightSliderBottomView setBackgroundColor:[UIColor orangeColor]];
     }
-    button.selected = YES;
-    _selectedBtn.selected = NO;
+}
+#pragma mark- button点击事件
+-(void)buttonClick:(UIButton*)button
+{
+    _selectedBtn.selected = !_selectedBtn.selected;
+    [self setColorWithNum:button.tag];
+    button.selected = !button.selected;
+
     _selectedBtn = button;
-    if ([self.delegate respondsToSelector:@selector(transportProjectBannerTableViewCell:andTagValue:)]) {
-        [self.delegate transportProjectBannerTableViewCell:self andTagValue:button.tag];
+    
+    
+    if ([self.delegate respondsToSelector:@selector(transportProjectBannerView:andTagValue:)]) {
+        [self.delegate transportProjectBannerView:self andTagValue:button.tag];
     }
 }
 
@@ -154,7 +172,7 @@
 {
     NSInteger i =0;
     for (; i<4; i++) {
-//        ProjectBannerModel * model =(ProjectBannerModel*)array[i];
+        //        ProjectBannerModel * model =(ProjectBannerModel*)array[i];
         UIButton * btn = [[UIButton alloc]init];
         
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -218,11 +236,6 @@
 -(CGFloat)getCellHeight
 {
     return 0;
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

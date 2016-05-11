@@ -87,7 +87,7 @@
                     <state key="normal" backgroundImage="组-27"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gbU-lS-vbZ" secondAttribute="bottom" constant="50" id="22A-WB-XYh"/>
                 <constraint firstItem="oAq-wU-B6U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="2hI-pM-Bsj"/>
@@ -113,6 +113,7 @@
                 <constraint firstItem="h73-bp-EOe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yc1-LT-90U"/>
                 <constraint firstItem="gbU-lS-vbZ" firstAttribute="top" secondItem="ntX-bH-4E0" secondAttribute="bottom" constant="30" id="zzL-ZH-i76"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <variation key="default">
                 <mask key="constraints">
@@ -126,7 +127,7 @@
                     <exclude reference="pQs-8r-IOe"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="354.5" y="-626.5"/>
+            <point key="canvasLocation" x="352.5" y="-814.5"/>
         </view>
     </objects>
     <resources>

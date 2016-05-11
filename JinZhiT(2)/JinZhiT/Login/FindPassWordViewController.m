@@ -8,8 +8,11 @@
 
 #import "FindPassWordViewController.h"
 #import "ResetPassWordViewController.h"
-@interface FindPassWordViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *nextStup;
+@interface FindPassWordViewController ()<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *nextStup;//下一步btn
+@property (weak, nonatomic) IBOutlet UIButton *getVerifyBtn;//获取验证码btn
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;//手机号textField
+@property (weak, nonatomic) IBOutlet UITextField *verifyTextField;//验证码textField
 
 @end
 
@@ -27,6 +30,12 @@
     _nextStup.layer.borderColor = [[UIColor whiteColor] CGColor];
     _nextStup.layer.borderWidth = 1;
 }
+//获取验证码
+- (IBAction)getVerify:(UIButton *)sender {
+    
+}
+
+//返回上一页
 - (IBAction)leftBackBtn:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

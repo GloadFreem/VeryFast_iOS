@@ -7,8 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistSuccessViewController">
             <connections>
+                <outlet property="ringLabel" destination="paJ-Eo-goI" id="WhX-MU-OUh"/>
                 <outlet property="shiyongBtn" destination="dbU-dM-6Gq" id="hhA-oM-zqa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="btnArray" destination="k5W-EF-W8a" id="DIr-rm-ekj"/>
+                <outletCollection property="btnArray" destination="dbU-dM-6Gq" id="yHv-4v-HqK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,7 +36,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得指环码一枚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzq-9U-gZc">
-                    <rect key="frame" x="124" y="97.5" width="126" height="21.5"/>
+                    <rect key="frame" x="124" y="97" width="126" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -95,7 +98,7 @@
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="的指环码，您将得到金指投平台“金条”10根。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8A-1G-keI">
-                    <rect key="frame" x="72" y="482.5" width="283" height="13.5"/>
+                    <rect key="frame" x="72" y="482" width="283" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -137,6 +140,7 @@
                 <constraint firstItem="paJ-Eo-goI" firstAttribute="top" secondItem="Hrd-EK-07t" secondAttribute="bottom" constant="20" id="vfI-zi-Gqb"/>
                 <constraint firstItem="dbU-dM-6Gq" firstAttribute="top" secondItem="k5W-EF-W8a" secondAttribute="bottom" constant="25" id="zXm-fr-19b"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="422.5" y="275.5"/>
         </view>

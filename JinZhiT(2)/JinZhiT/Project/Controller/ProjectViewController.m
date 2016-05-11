@@ -7,10 +7,15 @@
 //
 
 #import "ProjectViewController.h"
+#import "MeasureTool.h"
 #import "ProjectBannerTableViewCell.h"
 #import "ProjectListCell.h"
 #import "ProjectNoRoadCell.h"
-@interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerCellDelegate>
+#import "ProjectBannerView.h"
+
+@interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) NSInteger selectedCellNum;
 
 @end
 
@@ -19,10 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _selectedCellNum = 20;
+    
+    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 237)];
+    _tableView.tableHeaderView = bannerView;
+     NSArray * arr = [NSArray array];
+    [bannerView relayoutWithModelArray:arr];
+    [bannerView setSelectedNum:20];
     [self createUI];
     
-    //这是一个测试 代码
-//    、、阿森纳达那看来
     
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -33,12 +43,12 @@
 }
 -(void)createUI
 {
-    UILabel * titleLabel =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    titleLabel.text = @"项目";
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    self.navigationItem.titleView=titleLabel;
-    
-    [self.navigationItem setRightBarButtonItem:[UIBarButtonItem barButtonItemWithIcon:@"组-42" andHeightIcon:@"组-42" Target:self action:@selector(buttonCilck:) andTag:1]];
+//    UILabel * titleLabel =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
+//    titleLabel.text = @"项目";
+//    [titleLabel setTextColor:[UIColor whiteColor]];
+//    self.navigationItem.titleView=titleLabel;
+    self.navigationItem.title = @"项目";
+    [self.navigationItem setLeftBarButtonItem:[UIBarButtonItem barButtonItemWithIcon:@"message" andHeightIcon:@"message" Target:self action:@selector(buttonCilck:) andTag:1]];
 }
 
 #pragma mark- navigationBar  button的点击事件
@@ -49,54 +59,64 @@
 
 #pragma mark - tableView datasource
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 5;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        return 237;
-    }
     return 172;
 }
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 237;
+//}
 
+
+#pragma mark -设置区头
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 237)];
+//    NSArray * arr = [NSArray array];
+//    [bannerView relayoutWithModelArray:arr];
+//    [bannerView setSelectedNum:20];
+//    return bannerView;
+//}
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        static NSString * cellId = @"ProjectBannerTableViewCell";
-        ProjectBannerTableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (_selectedCellNum == 20) {
+        
+        static NSString * cellId = @"ProjectListCell";
+        ProjectListCell * cell =[tableView dequeueReusableCellWithIdentifier:cellId];
         if (cell == nil) {
-            cell = [[ProjectBannerTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"ProjectListCell" owner:nil options:nil] lastObject];
         }
-        NSArray * arr =[NSArray array];
-        [cell relayoutWithModelArray:arr];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
-    if (indexPath.row ==2 ) {
         static NSString * cellId =@"ProjectNoRoadCell";
         ProjectNoRoadCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
             
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    static NSString * cellId = @"ProjectListCell";
-    ProjectListCell * cell =[tableView dequeueReusableCellWithIdentifier:cellId];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"ProjectListCell" owner:nil options:nil] lastObject];
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+       cell.selectionStyle = UITableViewCellSelectionStyleNone;
+       return cell;
 }
 #pragma mark- ProjectBannerCellDelegate 代理方法
--(void)transportProjectBannerTableViewCell:(ProjectBannerTableViewCell *)cell andTagValue:(NSInteger)tagValue
+-(void)transportProjectBannerView:(ProjectBannerView *)view andTagValue:(NSInteger)tagValue
 {
-    
+    _selectedCellNum  = tagValue;
+    [_tableView beginUpdates];
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"刷新cell");
+    [_tableView endUpdates];
 }
 
 //让当前控制器对应的状态栏是白色

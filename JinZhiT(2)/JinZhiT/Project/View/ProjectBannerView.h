@@ -1,26 +1,28 @@
 //
-//  ProjectBannerTableViewCell.h
+//  ProjectBannerView.h
 //  JinZhiT
 //
-//  Created by Eugene on 16/5/8.
+//  Created by Eugene on 16/5/11.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@class ProjectBannerTableViewCell;
-@protocol ProjectBannerCellDelegate <NSObject>
+@class ProjectBannerView;
+@protocol ProjectBannerViewDelegate <NSObject>
 
 @optional
 //代理方法
--(void)transportProjectBannerTableViewCell:(ProjectBannerTableViewCell*)cell andTagValue:(NSInteger)tagValue;
+
+-(void)transportProjectBannerView:(ProjectBannerView*)view andTagValue:(NSInteger)tagValue;
 
 @end
 
 
-@interface ProjectBannerTableViewCell : UITableViewCell<UIScrollViewDelegate>
+@interface ProjectBannerView : UIView<UIScrollViewDelegate>
 
-@property (assign, nonatomic) id<ProjectBannerCellDelegate> delegate;
+
+@property (assign, nonatomic) id<ProjectBannerViewDelegate> delegate;
 
 @property (strong, nonatomic) UIScrollView * scrollView;
 @property (strong, nonatomic) NSTimer * timer;
@@ -35,11 +37,11 @@
 
 @property (strong, nonatomic) UIView * leftSliderBottomView;//左边下划线
 @property (strong, nonatomic) UIView * rightSliderBottomView;//右边下划线
+
 @property (strong, nonatomic) UIButton * selectedBtn;//当前选中btn
-@property (strong, nonatomic) UIView * selectedSlider;//当前选中下划线
+@property (assign, nonatomic) NSInteger selectedNum;//选中标识
 
 -(void)relayoutWithModelArray:(NSArray*)array;
 -(CGFloat)getCellHeight;
-
 
 @end
