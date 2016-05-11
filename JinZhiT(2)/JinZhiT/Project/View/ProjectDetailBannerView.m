@@ -47,6 +47,9 @@
     [_detailBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_detailBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
     _detailBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    _detailBtn.selected = YES;//初始化详情按钮 被点击
+    _selectedBtn = _detailBtn;
+    
     [self addSubview:_detailBtn];
     
     //成员button
@@ -75,6 +78,17 @@
     
 }
 
+#pragma mark -重写selectedBtn的 setter方法
+-(void)setBtnSelected:(NSInteger)btnSelected
+{
+    
+}
+
+#pragma mark -下划线位置重置
+-(void)setSliderFrame:(NSInteger)offX
+{
+    
+}
 #pragma mark -计算View的高度
 -(CGFloat)getViewHeight
 {
@@ -84,7 +98,9 @@
 #pragma mark -btn点击事件
 -(void)btnClick:(UIButton*)btn
 {
-    _selectedBtn.selected = NO;
+    _selectedBtn.selected =!_selectedBtn.selected;
+    btn.selected = YES;
+    [self setSliderFrame:btn.tag];
     _selectedBtn = btn;
     
     //根据btn的tag值 判断是调用代理 还是调整sliderLine的位置

@@ -91,7 +91,10 @@
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     [_leftBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     ;
-
+    [_leftBtn setSelected:YES];
+    
+    _selectedBtn = _leftBtn;
+    
     [self addSubview:_leftBtn];
     //左边的下划线
     //下划线的宽
@@ -155,14 +158,14 @@
 #pragma mark- button点击事件
 -(void)buttonClick:(UIButton*)button
 {
-    _selectedBtn.selected = !_selectedBtn.selected;
+    _selectedBtn.selected =!_selectedBtn.selected;
+    button.selected = YES;
     [self setColorWithNum:button.tag];
-    button.selected = !button.selected;
-
     _selectedBtn = button;
     
     
     if ([self.delegate respondsToSelector:@selector(transportProjectBannerView:andTagValue:)]) {
+//        NSLog(@"代理方法");
         [self.delegate transportProjectBannerView:self andTagValue:button.tag];
     }
 }

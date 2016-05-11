@@ -12,10 +12,11 @@
 #import "ProjectListCell.h"
 #import "ProjectNoRoadCell.h"
 #import "ProjectBannerView.h"
-
+#import "ProjectDetailController.h"
 @interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) NSInteger selectedCellNum;
+
+@property (nonatomic, assign) NSInteger selectedCellNum;//选择显示cell的类型
 
 @end
 
@@ -27,10 +28,12 @@
     _selectedCellNum = 20;
     
     ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 237)];
+    [bannerView setSelectedNum:20];
     _tableView.tableHeaderView = bannerView;
      NSArray * arr = [NSArray array];
     [bannerView relayoutWithModelArray:arr];
-    [bannerView setSelectedNum:20];
+    
+    bannerView.delegate = self;
     [self createUI];
     
     
@@ -71,10 +74,7 @@
 {
     return 172;
 }
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 237;
-//}
+
 
 
 #pragma mark -设置区头
@@ -109,19 +109,26 @@
        cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
 }
+
+#pragma mark -tableView的点击事件
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //反选
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProjectDetailController * detail = [[ProjectDetailController alloc]init];
+    [self.navigationController pushViewController:detail animated:YES];
+}
 #pragma mark- ProjectBannerCellDelegate 代理方法
 -(void)transportProjectBannerView:(ProjectBannerView *)view andTagValue:(NSInteger)tagValue
 {
-    _selectedCellNum  = tagValue;
+    _selectedCellNum  = tagValue;//将传过来的tag赋值给_selectedCellNum来决定显示cell的类型
+    
+    //tableView开始更新
     [_tableView beginUpdates];
     [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"刷新cell");
     [_tableView endUpdates];
 }
 
-//让当前控制器对应的状态栏是白色
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
+
 
 @end

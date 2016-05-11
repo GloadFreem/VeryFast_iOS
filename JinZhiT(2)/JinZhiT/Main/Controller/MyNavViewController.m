@@ -25,12 +25,13 @@
 }
 #pragma mark -使用时只调用一次 设置一些全局变量
 +(void)initialize{
+    
     //设置局部状态栏布局样式
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     //设置全局导航栏背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBJ"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-  
+    
 }
 /*
 -(void)makeDrawerView

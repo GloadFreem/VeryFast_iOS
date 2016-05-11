@@ -99,8 +99,6 @@
 		44AC0BE11CE1ACD80097668B /* friends@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B7D1CE1ACD70097668B /* friends@3x.png */; };
 		44AC0BE21CE1ACD80097668B /* iconfont-jine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B7E1CE1ACD70097668B /* iconfont-jine@2x.png */; };
 		44AC0BE31CE1ACD80097668B /* iconfont-jine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */; };
-		44AC0BE41CE1ACD80097668B /* iconfont-kefu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */; };
-		44AC0BE51CE1ACD80097668B /* iconfont-kefu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */; };
 		44AC0BE61CE1ACD80097668B /* iconfont-rocket-(1)@2x_26.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */; };
 		44AC0BE71CE1ACD80097668B /* iconfont-rocket-(1)@3x_61.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */; };
 		44AC0BE81CE1ACD80097668B /* iconfont-rong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */; };
@@ -204,6 +202,16 @@
 		44D25A601CD99820004A509B /* 矩形-2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D25A501CD99820004A509B /* 矩形-2@3x.png */; };
 		44D25A681CD9A2E1004A509B /* 金指投logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D25A661CD9A2E1004A509B /* 金指投logo@2x.png */; };
 		44D25A691CD9A2E1004A509B /* 金指投logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44D25A671CD9A2E1004A509B /* 金指投logo@3x.png */; };
+		44EF74AF1CE3289300B2E9BF /* iconfont-kefu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74AD1CE3289300B2E9BF /* iconfont-kefu@2x.png */; };
+		44EF74B01CE3289300B2E9BF /* iconfont-kefu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74AE1CE3289300B2E9BF /* iconfont-kefu@3x.png */; };
+		44EF74B41CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF74B21CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.m */; };
+		44EF74B51CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74B31CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.xib */; };
+		44EF74B91CE34F9D00B2E9BF /* ProjectDetailMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF74B71CE34F9D00B2E9BF /* ProjectDetailMemberCell.m */; };
+		44EF74BA1CE34F9D00B2E9BF /* ProjectDetailMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74B81CE34F9D00B2E9BF /* ProjectDetailMemberCell.xib */; };
+		44EF74BE1CE34FD800B2E9BF /* ProjectDetailSceneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF74BC1CE34FD800B2E9BF /* ProjectDetailSceneCell.m */; };
+		44EF74BF1CE34FD800B2E9BF /* ProjectDetailSceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74BD1CE34FD800B2E9BF /* ProjectDetailSceneCell.xib */; };
+		44EF74C31CE351A600B2E9BF /* ProjectDetailSceneMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EF74C11CE351A600B2E9BF /* ProjectDetailSceneMessageCell.m */; };
+		44EF74C41CE351A600B2E9BF /* ProjectDetailSceneMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44EF74C21CE351A600B2E9BF /* ProjectDetailSceneMessageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -363,8 +371,6 @@
 		44AC0B7D1CE1ACD70097668B /* friends@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@3x.png"; sourceTree = "<group>"; };
 		44AC0B7E1CE1ACD70097668B /* iconfont-jine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-jine@2x.png"; sourceTree = "<group>"; };
 		44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-jine@3x.png"; sourceTree = "<group>"; };
-		44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@2x.png"; sourceTree = "<group>"; };
-		44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@3x.png"; sourceTree = "<group>"; };
 		44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket-(1)@2x_26.png"; sourceTree = "<group>"; };
 		44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket-(1)@3x_61.png"; sourceTree = "<group>"; };
 		44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rong@2x.png"; sourceTree = "<group>"; };
@@ -472,6 +478,20 @@
 		44D25A501CD99820004A509B /* 矩形-2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "矩形-2@3x.png"; sourceTree = "<group>"; };
 		44D25A661CD9A2E1004A509B /* 金指投logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "金指投logo@2x.png"; sourceTree = "<group>"; };
 		44D25A671CD9A2E1004A509B /* 金指投logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "金指投logo@3x.png"; sourceTree = "<group>"; };
+		44EF74AD1CE3289300B2E9BF /* iconfont-kefu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@2x.png"; sourceTree = "<group>"; };
+		44EF74AE1CE3289300B2E9BF /* iconfont-kefu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@3x.png"; sourceTree = "<group>"; };
+		44EF74B11CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailFirstMiddleCell.h; sourceTree = "<group>"; };
+		44EF74B21CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailFirstMiddleCell.m; sourceTree = "<group>"; };
+		44EF74B31CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailFirstMiddleCell.xib; sourceTree = "<group>"; };
+		44EF74B61CE34F9D00B2E9BF /* ProjectDetailMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailMemberCell.h; sourceTree = "<group>"; };
+		44EF74B71CE34F9D00B2E9BF /* ProjectDetailMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailMemberCell.m; sourceTree = "<group>"; };
+		44EF74B81CE34F9D00B2E9BF /* ProjectDetailMemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailMemberCell.xib; sourceTree = "<group>"; };
+		44EF74BB1CE34FD800B2E9BF /* ProjectDetailSceneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailSceneCell.h; sourceTree = "<group>"; };
+		44EF74BC1CE34FD800B2E9BF /* ProjectDetailSceneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailSceneCell.m; sourceTree = "<group>"; };
+		44EF74BD1CE34FD800B2E9BF /* ProjectDetailSceneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailSceneCell.xib; sourceTree = "<group>"; };
+		44EF74C01CE351A600B2E9BF /* ProjectDetailSceneMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailSceneMessageCell.h; sourceTree = "<group>"; };
+		44EF74C11CE351A600B2E9BF /* ProjectDetailSceneMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailSceneMessageCell.m; sourceTree = "<group>"; };
+		44EF74C21CE351A600B2E9BF /* ProjectDetailSceneMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailSceneMessageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -989,12 +1009,24 @@
 				44AC0B641CE1AB0B0097668B /* ProjectDetailFirstHeaderView.h */,
 				44AC0B651CE1AB0B0097668B /* ProjectDetailFirstHeaderView.m */,
 				44AC0B671CE1AB240097668B /* ProjectDetailFirstHeaderView.xib */,
+				44EF74B11CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.h */,
+				44EF74B21CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.m */,
+				44EF74B31CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.xib */,
 				44AC0C2E1CE1C0920097668B /* ProjectDetailScrollCell.h */,
 				44AC0C2F1CE1C0920097668B /* ProjectDetailScrollCell.m */,
 				44AC0C301CE1C0920097668B /* ProjectDetailScrollCell.xib */,
 				44AC0C331CE2049D0097668B /* ProjectDetailBottomCell.h */,
 				44AC0C341CE2049D0097668B /* ProjectDetailBottomCell.m */,
 				44AC0C351CE2049D0097668B /* ProjectDetailBottomCell.xib */,
+				44EF74B61CE34F9D00B2E9BF /* ProjectDetailMemberCell.h */,
+				44EF74B71CE34F9D00B2E9BF /* ProjectDetailMemberCell.m */,
+				44EF74B81CE34F9D00B2E9BF /* ProjectDetailMemberCell.xib */,
+				44EF74BB1CE34FD800B2E9BF /* ProjectDetailSceneCell.h */,
+				44EF74BC1CE34FD800B2E9BF /* ProjectDetailSceneCell.m */,
+				44EF74BD1CE34FD800B2E9BF /* ProjectDetailSceneCell.xib */,
+				44EF74C01CE351A600B2E9BF /* ProjectDetailSceneMessageCell.h */,
+				44EF74C11CE351A600B2E9BF /* ProjectDetailSceneMessageCell.m */,
+				44EF74C21CE351A600B2E9BF /* ProjectDetailSceneMessageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1052,10 +1084,10 @@
 				44AC0B7B1CE1ACD70097668B /* drafts@3x.png */,
 				44AC0B7C1CE1ACD70097668B /* friends@2x.png */,
 				44AC0B7D1CE1ACD70097668B /* friends@3x.png */,
+				44EF74AD1CE3289300B2E9BF /* iconfont-kefu@2x.png */,
+				44EF74AE1CE3289300B2E9BF /* iconfont-kefu@3x.png */,
 				44AC0B7E1CE1ACD70097668B /* iconfont-jine@2x.png */,
 				44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */,
-				44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */,
-				44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */,
 				44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */,
 				44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */,
 				44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */,
@@ -1323,6 +1355,7 @@
 				44AC0BDB1CE1ACD70097668B /* c9d8be32534701.568974395e076@3x.png in Resources */,
 				44AC0BE01CE1ACD80097668B /* friends@2x.png in Resources */,
 				44D25A571CD99820004A509B /* iconfont-kefu@2x.png in Resources */,
+				44EF74AF1CE3289300B2E9BF /* iconfont-kefu@2x.png in Resources */,
 				44AC0BFD1CE1ACD80097668B /* 多边形-2@2x_72.png in Resources */,
 				44AC0C061CE1ACD80097668B /* 多边形-2@3x.png in Resources */,
 				44AC0C201CE1ACD80097668B /* 组-411@3x (2).png in Resources */,
@@ -1381,7 +1414,6 @@
 				44AC0BE21CE1ACD80097668B /* iconfont-jine@2x.png in Resources */,
 				44AC0C081CE1ACD80097668B /* 更多@3x.png in Resources */,
 				44AC0C221CE1ACD80097668B /* 组-411@3x (4).png in Resources */,
-				44AC0BE51CE1ACD80097668B /* iconfont-kefu@3x.png in Resources */,
 				44B833341CE2D2660001807A /* message_new@3x.png in Resources */,
 				44AC0C131CE1ACD80097668B /* iconfont-bofang@3x.png in Resources */,
 				44D25A5A1CD99820004A509B /* Left-arrow-button@3x.png in Resources */,
@@ -1416,20 +1448,24 @@
 				44B833221CE2C81B0001807A /* navBJ@2x.png in Resources */,
 				44AC0BE11CE1ACD80097668B /* friends@3x.png in Resources */,
 				447A2C831CDAE22C00686DA7 /* SetPassWordViewController.xib in Resources */,
+				44EF74BA1CE34F9D00B2E9BF /* ProjectDetailMemberCell.xib in Resources */,
 				44AC0BD31CE1ACD70097668B /* 2011年5月13日-Intersection,-Seoul@3x_11.png in Resources */,
 				449D957C1CD8448D00D72769 /* Main.storyboard in Resources */,
 				44AC0C0A1CE1ACD80097668B /* 椭圆-4-拷贝-2@2x.png in Resources */,
 				44AC0C151CE1ACD80097668B /* iconfont-zengdayinliang@3x.png in Resources */,
 				44D25A5C1CD99820004A509B /* 图层-1@3x.png in Resources */,
 				44AC0BE31CE1ACD80097668B /* iconfont-jine@3x.png in Resources */,
+				44EF74BF1CE34FD800B2E9BF /* ProjectDetailSceneCell.xib in Resources */,
+				44EF74C41CE351A600B2E9BF /* ProjectDetailSceneMessageCell.xib in Resources */,
 				44AC0C261CE1ACD80097668B /* comments@2x.png in Resources */,
 				44AC0C021CE1ACD80097668B /* iconfont-dianhua@3x.png in Resources */,
 				44B833311CE2D2660001807A /* message@2x.png in Resources */,
 				44AC0C111CE1ACD80097668B /* 椭圆-8@3x.png in Resources */,
 				44AC0BF11CE1ACD80097668B /* Pie-chart@3x.png in Resources */,
 				44AC0BDD1CE1ACD70097668B /* Documents@3x.png in Resources */,
-				44AC0BE41CE1ACD80097668B /* iconfont-kefu@2x.png in Resources */,
 				44AC0BDA1CE1ACD70097668B /* c9d8be32534701.568974395e076@2x.png in Resources */,
+				44EF74B01CE3289300B2E9BF /* iconfont-kefu@3x.png in Resources */,
+				44EF74B51CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.xib in Resources */,
 				44AC0C251CE1ACD80097668B /* 组-42@3x.png in Resources */,
 				44AC0C271CE1ACD80097668B /* comments@3x.png in Resources */,
 				44AC0BF41CE1ACD80097668B /* iconfont-dianhua@2x.png in Resources */,
@@ -1497,12 +1533,14 @@
 				449D96111CD856D100D72769 /* JTabBarController.m in Sources */,
 				44C257511CDA30D200DD432C /* LoginRegistViewController.m in Sources */,
 				44677C3A1CE0953C00399552 /* ProjectDetailController.m in Sources */,
+				44EF74B41CE34B6500B2E9BF /* ProjectDetailFirstMiddleCell.m in Sources */,
 				4474B95E1CDC28BD00142EB4 /* RenzhengViewController.m in Sources */,
 				449D96141CD8590D00D72769 /* ProjectViewController.m in Sources */,
 				4465EF611CDBA87700180529 /* VerticalButton.m in Sources */,
 				448B102E1CDEF1F100F0F22A /* MyNavViewController.m in Sources */,
 				440B969C1CDDD8FB004F76B1 /* UpProjectViewController.m in Sources */,
 				4474B9931CDCFBA800142EB4 /* PhoneCerityViewController.m in Sources */,
+				44EF74C31CE351A600B2E9BF /* ProjectDetailSceneMessageCell.m in Sources */,
 				449D96171CD8592500D72769 /* InvestViewController.m in Sources */,
 				447589E31CDD830400AF366E /* InvistTableViewCell.m in Sources */,
 				448B103C1CDF39D100F0F22A /* ProjectListCell.m in Sources */,
@@ -1514,8 +1552,10 @@
 				44B833371CE2D7570001807A /* ProjectBannerView.m in Sources */,
 				4474B9681CDC50E400142EB4 /* EditTableViewCell.m in Sources */,
 				449D961D1CD8595100D72769 /* CircleViewController.m in Sources */,
+				44EF74B91CE34F9D00B2E9BF /* ProjectDetailMemberCell.m in Sources */,
 				44677C3E1CE0B4E300399552 /* ProjectDetailBannerView.m in Sources */,
 				4474B98D1CDCF27800142EB4 /* RegistNameTableViewCell.m in Sources */,
+				44EF74BE1CE34FD800B2E9BF /* ProjectDetailSceneCell.m in Sources */,
 				448B10381CDF34C100F0F22A /* ProjectBannerModel.m in Sources */,
 				449D961A1CD8593900D72769 /* MineViewController.m in Sources */,
 				44AC0B661CE1AB0B0097668B /* ProjectDetailFirstHeaderView.m in Sources */,

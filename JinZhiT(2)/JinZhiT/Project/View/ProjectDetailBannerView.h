@@ -27,13 +27,14 @@
 @property (nonatomic, strong) UIScrollView * scrollView;
 @property (nonatomic, strong) NSTimer * timer;
 //下边三个btn
-@property (nonatomic, strong) UIButton * detailBtn;
-@property (nonatomic, strong) UIButton * memberBtn;
-@property (nonatomic, strong) UIButton * sceneBtn;
+@property (nonatomic, strong) UIButton * detailBtn;//详情btn
+@property (nonatomic, strong) UIButton * memberBtn;//成员btn
+@property (nonatomic, strong) UIButton * sceneBtn;//现场btn
 
 @property (nonatomic, strong) UIView * sliderLine; //btn下边下划线
 
-@property (assign, nonatomic) NSInteger * btnSelected;
+@property (assign, nonatomic) NSInteger  btnSelected; //选中标识（btn）
+
 @property (nonatomic, strong) UIButton * selectedBtn; //当前选中btn
 
 @property (nonatomic, assign) NSInteger  imageNumber; // 图片的个数
