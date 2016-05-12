@@ -31,6 +31,7 @@
     return self;
 }
 
+#pragma mark - 创建内部布局
 -(void)createUI
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;

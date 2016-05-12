@@ -12,12 +12,12 @@
 #import "ProjectBannerModel.h"
 #define kADcount 4
 #define kImageCount 4
-#define SCROLLVIEWHEIGHT 190
+#define SCROLLVIEWHEIGHT SCREENWIDTH*0.75
 #define kPAGEX SCREENWIDTH*0.9
 #define kPAGEY SCROLLVIEWHEIGHT*0.9
 #define kPAGEWIDTH 0
 #define kPAGEHEIGHT 0
-#define kCOVERY 140
+#define kCOVERY 180
 #define kCOVERHEIGHT 50
 #define kLeftSpace 10
 
@@ -178,7 +178,7 @@
         //        ProjectBannerModel * model =(ProjectBannerModel*)array[i];
         UIButton * btn = [[UIButton alloc]init];
         
-        [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
         [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
         [_scrollView addSubview:btn];

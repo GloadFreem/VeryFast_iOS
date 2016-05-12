@@ -7,6 +7,7 @@
 //
 
 #import "ProjectViewController.h"
+#import "UIViewController+NavBarHidden.h"
 #import "MeasureTool.h"
 #import "ProjectBannerTableViewCell.h"
 #import "ProjectListCell.h"
@@ -25,9 +26,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    //1.设置当有导航栏自动添加64的高度的属性为NO
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+//
+//    [self setKeyScrollView:self.tableView scrolOffsetY:600 options:HYHidenControlOptionTitle];
+    
     _selectedCellNum = 20;
     
-    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 237)];
+    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.75+40)];
     [bannerView setSelectedNum:20];
     _tableView.tableHeaderView = bannerView;
      NSArray * arr = [NSArray array];
@@ -46,11 +54,12 @@
 }
 -(void)createUI
 {
-//    UILabel * titleLabel =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-//    titleLabel.text = @"项目";
-//    [titleLabel setTextColor:[UIColor whiteColor]];
-//    self.navigationItem.titleView=titleLabel;
-    self.navigationItem.title = @"项目";
+    UILabel * titleLabel =[[UILabel alloc]init];
+    titleLabel.text = @"项目";
+    [titleLabel sizeToFit];
+    [titleLabel setTextColor:[UIColor whiteColor]];
+    self.navigationItem.titleView=titleLabel;
+   
     [self.navigationItem setLeftBarButtonItem:[UIBarButtonItem barButtonItemWithIcon:@"message" andHeightIcon:@"message" Target:self action:@selector(buttonCilck:) andTag:1]];
 }
 

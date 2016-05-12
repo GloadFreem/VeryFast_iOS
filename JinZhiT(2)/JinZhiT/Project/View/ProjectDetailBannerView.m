@@ -36,6 +36,7 @@
     _scrollView.delegate = self;
     [self addSubview:_scrollView];
     
+    /*
     //button的Y值
     CGFloat buttonY = CGRectGetMaxY(_scrollView.frame);
     //详情button
@@ -75,7 +76,7 @@
     [_sliderLine setBackgroundColor:[UIColor orangeColor]];
     
     [self addSubview:_sliderLine];
-    
+    */
 }
 
 #pragma mark -重写selectedBtn的 setter方法
@@ -92,7 +93,7 @@
 #pragma mark -计算View的高度
 -(CGFloat)getViewHeight
 {
-    return CGRectGetMaxY(_detailBtn.frame);
+    return 0;
 }
 
 #pragma mark -btn点击事件
@@ -117,17 +118,18 @@
 #pragma mark -传输数据
 -(void)relayoutWithModelArr:(NSArray *)arr
 {
-    if (arr.count >0) {
+//    if (arr.count >0) {
         _imageNumber = arr.count;
         NSInteger i =0;
-        for (; i<arr.count;i++ ) {
+        for (; i<4;i++ ) {
             
             UIButton * imageBtn = [[UIButton alloc]init];
             [imageBtn setTag:100+i];
-            [imageBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+//            [imageBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             //btn加载数据
             
             imageBtn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
+            [imageBtn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
             [_scrollView addSubview:imageBtn];
             
             if (i==0) {
@@ -136,13 +138,14 @@
                 
                 [btn setTag:100+i];
                 btn.frame = CGRectMake(arr.count*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
+                [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
                 [_scrollView addSubview:btn];
             }
         }
         _scrollView.contentSize = CGSizeMake(SCREENWIDTH*i, 0);
         [self createTimer];
         [_timer setFireDate:[NSDate distantPast]];
-    }
+//    }
 }
 
 #pragma mark -创建定时器
@@ -169,7 +172,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int page =scrollView.contentOffset.x/SCREENWIDTH;
-    if (page ==_imageNumber) {
+    if (page == 4) {
         scrollView.contentOffset = CGPointZero;
         
     }
@@ -178,7 +181,7 @@
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     int page =scrollView.contentOffset.x/SCREENWIDTH;
-    if (page ==_imageNumber) {
+    if (page == 4) {
         scrollView.contentOffset = CGPointZero;
         
     }
