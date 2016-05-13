@@ -37,6 +37,7 @@
     return YES;
 }
 
+#pragma mark - 创建主界面框架
 -(void)createViewControllers{
     NSMutableArray * unSelectedArray = [[NSMutableArray alloc]initWithObjects:[UIImage imageNamed:@"project.png"],[UIImage imageNamed:@"invest.png"],[UIImage imageNamed:@"Circle.png"],[UIImage imageNamed:@"activity.png"],nil];
     
@@ -55,8 +56,6 @@
     
     ActivityViewController * activity = [[ActivityViewController alloc]init];
     MyNavViewController * navActivity = [[MyNavViewController alloc]initWithRootViewController:activity];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
     self.tabBar = [[JTabBarController alloc]initWithTabBarSelectedImages:selectedArray normalImages:unSelectedArray titles:titles];
     self.tabBar.showCenterItem = YES;

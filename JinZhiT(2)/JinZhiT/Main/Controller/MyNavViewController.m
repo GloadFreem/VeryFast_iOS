@@ -26,7 +26,7 @@
     //设置全局导航栏背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbj"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
-    
+     
 }
 
 @end

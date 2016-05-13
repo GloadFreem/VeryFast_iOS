@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectDetailController">
             <connections>
-                <outlet property="tableView" destination="YO7-Ku-icc" id="wMj-nI-aCy"/>
+                <outlet property="scrollView" destination="1i9-vl-qEA" id="FC5-SX-1cj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,25 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YO7-Ku-icc">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1i9-vl-qEA">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="wQA-M8-8Sw"/>
-                        <outlet property="delegate" destination="-1" id="Ac5-XB-0U7"/>
+                        <outlet property="delegate" destination="-1" id="vtV-ZM-9B6"/>
                     </connections>
-                </tableView>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="YO7-Ku-icc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1fG-7e-cDb"/>
-                <constraint firstAttribute="bottom" secondItem="YO7-Ku-icc" secondAttribute="bottom" id="MMG-Qa-9lr"/>
-                <constraint firstAttribute="trailing" secondItem="YO7-Ku-icc" secondAttribute="trailing" id="hnl-WK-lN9"/>
-                <constraint firstItem="YO7-Ku-icc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j7M-4j-WKB"/>
+                <constraint firstAttribute="trailing" secondItem="1i9-vl-qEA" secondAttribute="trailing" id="7eH-Yn-TR6"/>
+                <constraint firstItem="1i9-vl-qEA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="U5y-2Y-dXU"/>
+                <constraint firstItem="1i9-vl-qEA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UoJ-ed-UMe"/>
+                <constraint firstAttribute="bottom" secondItem="1i9-vl-qEA" secondAttribute="bottom" id="kMu-Eq-loh"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="372.5" y="191.5"/>
+            <point key="canvasLocation" x="279.5" y="189.5"/>
         </view>
     </objects>
 </document>

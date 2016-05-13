@@ -7,9 +7,10 @@
 //
 
 #import "ProjectViewController.h"
+#import "AppDelegate.h"
 #import "UIViewController+NavBarHidden.h"
 #import "MeasureTool.h"
-#import "ProjectBannerTableViewCell.h"
+
 #import "ProjectListCell.h"
 #import "ProjectNoRoadCell.h"
 #import "ProjectBannerView.h"
@@ -46,11 +47,22 @@
     
     
 }
+#pragma mark -视图即将显示
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     self.navigationController.navigationBar.translucent=NO;
+}
+#pragma mark -视图即将消失
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar setHidesBottomBarWhenPushed:YES];
 }
 -(void)createUI
 {
@@ -120,7 +132,7 @@
 }
 
 #pragma mark -tableView的点击事件
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //反选
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

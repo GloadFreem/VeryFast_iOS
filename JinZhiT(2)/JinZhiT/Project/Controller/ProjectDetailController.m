@@ -7,22 +7,28 @@
 //
 
 #import "ProjectDetailController.h"
+#import "AppDelegate.h"
 #import "MeasureTool.h"
-#import "ProjectDetailFirstHeaderView.h"   //详情第一段段头View
-#import "ProjectDetailBannerView.h"        //详情滚动广告
-#import "ProjectDetailScrollCell.h"        //详情团队滚动cell
-#import "ProjectDetailBottomCell.h"        //最下边财务报表cell
-#import "ProjectDetailFirstMiddleCell.h"   //详情第一段中间隐藏的cell
-#import "ProjectDetailMemberCell.h"        //成员cell
-#import "ProjectDetailSceneCell.h"         //现场音频cell
-#import "ProjectDetailSceneMessageCell.h"  //现场留言cell
 
-#import "ProjectDetailBottomContainerCell.h" //容器 cell
-@interface ProjectDetailController ()<UITableViewDataSource,UITableViewDelegate,ProjectDetailBannerViewDelegate>
+#import "ProjectDetailBannerView.h"
+#import "ProjectDetailFirstHeaderView.h"
+#import "ProjectDetailMemberView.h"
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+#define defaultLineColor [UIColor blueColor]
+#define selectTitleColor [UIColor orangeColor]
+#define unselectTitleColor [UIColor blackColor]
+#define titleFont [UIFont systemFontOfSize:16]
 
-@property (assign, nonatomic) CGFloat cellHeight;
+
+@interface ProjectDetailController ()<ProjectDetailBannerViewDelegate,UIScrollViewDelegate>
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic,strong) UIScrollView *titleScrollView; //切换按钮
+@property (nonatomic,strong) NSArray *titleArray;   // 切换按钮数组
+@property (nonatomic,strong) UIView *lineView;      // 下划线视图
+@property (nonatomic,strong) UIScrollView *subViewScrollView;   // 下边子滚动视图
+@property (nonatomic,strong) NSMutableArray *heightArray;      // subviewScrollView子视图高度数组
+@property (nonatomic,strong) NSMutableArray *btArray;   //点击切换按钮数组
 
 @end
 
@@ -32,19 +38,241 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //广告栏视图
-    ProjectDetailBannerView * bannerView= [[ProjectDetailBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.75)];
-    //计算cell的高度
-    _cellHeight = SCREENHEIGHT - 0.75*SCREENWIDTH;
+    _heightArray = [NSMutableArray array];                  //子视图高度数组
     
-    _tableView.tableHeaderView = bannerView;
-    _tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    NSArray * arr =[NSArray array];
-    [bannerView relayoutWithModelArr:arr];
-    bannerView.delegate = self;
+    _scrollView.bounces = NO;                               //关闭弹性
+    
+    //广告栏视图
+    ProjectDetailBannerView * bannerView= [[ProjectDetailBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.6)];
+    NSArray * array = [NSArray array];
+    [bannerView relayoutWithModelArr:array];
+    
+    [_scrollView addSubview:bannerView];                     //添加广告栏
+    
+    _titleArray = @[@"详情",@"成员",@"现场"];
+    _lineColor = [UIColor orangeColor];
+    _type = 0;
+    [_scrollView addSubview:self.titleScrollView];          //添加点击按钮
+    [_scrollView addSubview:self.subViewScrollView];        //添加最下边scrollview
+
+
     
 }
+#pragma mark - 设置下滑条
+- (void)setLineColor:(UIColor *)lineColor{
+    
+    _lineColor = lineColor;
+    [_lineView setBackgroundColor:self.lineColor ? _lineColor : defaultLineColor];
+}
 
+#pragma mark - 初始化切换按钮
+- (UIScrollView *)titleScrollView{
+    
+    if (!_titleScrollView) {
+        
+        _titleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,SCREENWIDTH*0.6, SCREENWIDTH, 40)];
+        _titleScrollView.contentSize = CGSizeMake(SCREENWIDTH*_titleArray.count/3, 0);
+        _titleScrollView.scrollEnabled = YES;
+        _titleScrollView.showsHorizontalScrollIndicator = YES;
+    }
+    
+    for (int i = 0; i<_titleArray.count; i++) {
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        [button setFrame:CGRectMake(SCREENWIDTH/3*i, 0, SCREENWIDTH/3, 40)];
+        [button setTitle:_titleArray[i] forState:UIControlStateNormal];
+        [button.titleLabel setFont:titleFont];
+        button.tag = i+10;
+        
+        i==0 ? [button setTitleColor:selectTitleColor forState:UIControlStateNormal] : [button setTitleColor: unselectTitleColor forState:UIControlStateNormal];
+        
+        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_titleScrollView addSubview:button];
+        [_btArray addObject:button];
+    }
+    
+    _lineView = [[UIView alloc] initWithFrame:CGRectZero];
+    [_lineView setBackgroundColor:self.lineColor ? _lineColor : defaultLineColor];
+    
+    if (self.type == 0) {
+        
+        _lineView.frame = CGRectMake(0, CGRectGetHeight(_titleScrollView.frame)-2, SCREENWIDTH/3, 2);
+        [_titleScrollView addSubview:_lineView];
+        
+    }else{
+        
+        _lineView.frame = CGRectMake(0, 0, 80, CGRectGetMaxX(_titleScrollView.frame));
+        [_titleScrollView insertSubview:_lineView atIndex:0];
+    }
+    
+    
+    return _titleScrollView;
+}
+
+#pragma mark -  初始化内部scrollView布局
+- (UIScrollView *)subViewScrollView{
+    
+    if (!_subViewScrollView) {
+        
+        //        _subViewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-0.75*kScreenWidth-40)];
+        //        _subViewScrollView.backgroundColor = [UIColor greenColor];
+        _subViewScrollView = [[UIScrollView alloc]init];
+        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
+
+        _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+        
+        _subViewScrollView.showsHorizontalScrollIndicator = NO;
+        _subViewScrollView.showsVerticalScrollIndicator = NO;
+        _subViewScrollView.contentSize = CGSizeMake(SCREENWIDTH*_titleArray.count, 0);
+        _subViewScrollView.delegate = self;
+        _subViewScrollView.alwaysBounceVertical = NO;
+        _subViewScrollView.pagingEnabled = YES;
+        //方向锁
+        _subViewScrollView.directionalLockEnabled = YES;
+        //加进去的测试高度数据
+        NSNumber *aNumber = [NSNumber numberWithFloat:800];
+        [_heightArray addObject:aNumber];
+        NSNumber *bNumber = [NSNumber numberWithFloat:400];
+        [_heightArray addObject:bNumber];
+        NSNumber *cNumber = [NSNumber numberWithFloat:SCREENHEIGHT - CGRectGetMaxY(_titleScrollView.frame)];
+        [_heightArray addObject:cNumber];
+        
+                NSArray *colorArr = @[[UIColor lightGrayColor],[UIColor cyanColor],[UIColor greenColor]];
+                for (int i = 0; i<_titleArray.count; i++) {
+        
+                    UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(i*SCREENWIDTH, 0, SCREENWIDTH, [_heightArray[i] floatValue])];
+                    subview.backgroundColor = colorArr[i%colorArr.count];
+                    [_subViewScrollView addSubview:subview];
+                }
+       
+        
+        //加载自定义视图
+        //详情视图
+//        ProjectDetailFirstHeaderView * detailView = [ProjectDetailFirstHeaderView instancetypeProjectDetailFirstHeaderView];
+//        _detailHeight = detailView.viewHeight;//当前视图的高度等于内部视图的高度
+//        _viewHeight = _detailHeight;
+//        detailView.frame = CGRectMake(0, 0, SCREENWIDTH, detailView.viewHeight);
+//        //_subViewScrollView的尺寸
+//        _subViewScrollView.frame = CGRectMake(0, 0.6*SCREENWIDTH+64, SCREENWIDTH, 600);
+//        [_subViewScrollView addSubview:detailView];
+//        //成员视图
+//        ProjectDetailMemberView * memberView =[ProjectDetailMemberView instancetationProjectDetailMemberView];
+//        _memberHeight = memberView.viewHeight;
+//        memberView.frame = CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, memberView.viewHeight);
+//        [_subViewScrollView addSubview:memberView];
+//        
+//        UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-0.6*SCREENWIDTH-40)];
+//        subview.backgroundColor  = [UIColor greenColor];
+//        [_subViewScrollView addSubview:subview];
+    }
+    
+    return _subViewScrollView;
+}
+
+#pragma mark - 按钮数组
+- (NSMutableArray *)btArray{
+    
+    if (!_btArray) {
+        
+        _btArray = [NSMutableArray array];
+    }
+    return _btArray;
+}
+
+#pragma mark- 切换按钮的点击事件
+- (void)buttonAction:(UIButton *)sender{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _lineView.frame = CGRectMake(sender.frame.origin.x, _lineView.frame.origin.y, _lineView.frame.size.width, _lineView.frame.size.height);
+    }];
+    for (int i = 0; i<_titleArray.count; i++) {
+        UIButton *bt = (UIButton *)[_titleScrollView viewWithTag:10+i];
+        sender.tag == (10+i) ? [bt setTitleColor:selectTitleColor forState:UIControlStateNormal] : [bt setTitleColor:unselectTitleColor forState:UIControlStateNormal];
+        
+    }
+    //子scrollView的偏移量
+    _subViewScrollView.contentOffset=CGPointMake(SCREENWIDTH*(sender.tag-10), 0);
+    //重置子scrollView的大小  以及父scrollView的contentSize
+    CGFloat valueY = CGRectGetMaxY(_titleScrollView.frame);
+    switch (sender.tag) {
+        case 10:
+        {
+            
+            _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[0] floatValue]);
+            _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+            NSLog(@"点击了第%ld个",sender.tag-10);
+        }
+            break;
+        case 11:
+        {
+            _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[1] floatValue]);
+            _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+            NSLog(@"点击了第%ld个",sender.tag-10);
+        }
+            break;
+        case 12:
+        {
+            _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[2] floatValue]);
+            _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+            NSLog(@"点击了第%ld个",sender.tag-10);
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    if (scrollView == _subViewScrollView) {
+        
+        CGFloat offSetX = scrollView.contentOffset.x;
+        NSInteger index = offSetX/SCREENWIDTH;
+        UIButton *bt = (UIButton *)[_scrollView viewWithTag:(index+10)];
+        _lineView.frame = CGRectMake(bt.frame.origin.x, _lineView.frame.origin.y, _lineView.frame.size.width, _lineView.frame.size.height);
+        [bt setTitleColor:selectTitleColor forState:UIControlStateNormal];
+        
+        _titleScrollView.contentOffset = CGPointMake(index/4*SCREENWIDTH, 0);
+        
+        for (int i = 0; i<_titleArray.count; i++) {
+            UIButton *bt = (UIButton *)[_titleScrollView viewWithTag:10+i];
+            10+index == (10+i) ? [bt setTitleColor:selectTitleColor forState:UIControlStateNormal] : [bt setTitleColor:unselectTitleColor forState:UIControlStateNormal];
+            
+        }
+        
+         //重置子scrollView的大小  以及父scrollView的contentSize
+        CGFloat valueY = CGRectGetMaxY(_titleScrollView.frame);
+        switch (index) {
+            case 0:
+            {
+                
+                _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[0] floatValue]);
+                _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+                
+            }
+                break;
+            case 1:
+            {
+                _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[1] floatValue]);
+                _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+               
+            }
+                break;
+            case 2:
+            {
+                _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[2] floatValue]);
+                _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+               
+            }
+                break;
+            default:
+                break;
+        }
+    }
+   
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -53,137 +281,7 @@
     
 }
 
-#pragma maek -tableView dataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return _cellHeight;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * cellId = @"ProjectDetailBottomContainerCell";
-    ProjectDetailBottomContainerCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[ProjectDetailBottomContainerCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
-//#pragma mark- 当显示为  详情分页时 第一段要显示footorView
-//-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    if (_selectedCellNum == 1000) {
-//        if (section == 0) {
-//            NSString * imagePath = [[NSBundle mainBundle] pathForResource:@"更多" ofType:@"png"];
-//            CGSize imageSize = [UIImage imageWithContentsOfFile:imagePath].size;
-////            NSLog(@"%@",imageSize);
-//            UIImage * image = [UIImage imageNamed:@"更多"];
-//            UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imageSize.width, imageSize.height)];
-//            imageView.image = image;
-//            UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, imageSize.height+10)];
-//            [btn addSubview:imageView];
-//            imageView.center = btn.center;
-//            [btn setBackgroundColor:[UIColor redColor]];
-//            return btn;
-//        }
-//    }
-//    
-//    UIView* view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-//    return view;
-//    
-//}
-//
-//#pragma mark -footor的高度
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    if (_selectedCellNum == 1000) {
-//        if (section == 0) {
-//            return 45;
-//        }
-//        return 0;
-//    }
-//    return 0;
-//}
-//-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (_selectedCellNum == 1000) {           //显示 详情分页
-//        if (indexPath.section == 0) {         // 第一段 中间默认隐藏的cell
-//            static NSString * cellId = @"ProjectDetailFirstMiddleCell";
-//            ProjectDetailFirstMiddleCell * cell  = [tableView dequeueReusableCellWithIdentifier:cellId];
-//            if (cell == nil) {
-//                cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//            }
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            return cell;
-//        }else{
-//            if (indexPath.row == 0) {          //第二段 第一个 团队cell
-//                static NSString * cellId =@"ProjectDetailScrollCell";
-//                ProjectDetailScrollCell * cell =[tableView dequeueReusableCellWithIdentifier:cellId];
-//                if (cell == nil) {
-//                    cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//                }
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                return cell;
-//            }
-//            //第二段  第二个 财务报表cell
-//            static NSString * cellId = @"ProjectDetailBottomCell";
-//            ProjectDetailBottomCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//            if (cell == nil) {
-//                cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//            }
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            return cell;
-//        }
-//    }else if (_selectedCellNum == 1001){            //显示成员分页
-//            static NSString * cellId = @"ProjectDetailMemberCell";
-//        ProjectDetailMemberCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        if (cell == nil) {
-//            cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }
-//    
-//     //显示现场分页
-//    if (indexPath.section == 0) {               //音频播放cell
-//        static NSString * cellId = @"ProjectDetailSceneCell";
-//        ProjectDetailSceneCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        if (cell == nil) {
-//            cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//        }
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-//    }
-//    
-//   //评论留言cell
-//    static NSString * cellId = @"ProjectDetailSceneMessageCell";
-//    ProjectDetailSceneMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//    if (cell == nil) {
-//        cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
-//    }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    return cell;
-//}
-
-//#pragma mark - bannerView 的代理方法
-//-(void)transportProjectDetailBannerView:(ProjectDetailBannerView *)view andTagValue:(NSInteger)tagValue
-//{
-//    _selectedCellNum  = tagValue;//将传过来的tag赋值给_selectedCellNum来决定显示cell的类型
-//    
-//    //tableView开始更新
-//    [_tableView beginUpdates];
-////    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-//    [_tableView reloadData];
-//    [_tableView endUpdates];
-//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

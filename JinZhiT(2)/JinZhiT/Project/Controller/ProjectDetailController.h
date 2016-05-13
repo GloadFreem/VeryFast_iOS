@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum{
+    
+    SegmentSelectLine = 0,//选中时为横线的样式
+    SegmentCaver = 1,//选中时view的状态
+    
+}SelectType;
+
 @interface ProjectDetailController : UIViewController
+
+
+@property (nonatomic,strong) UIColor *lineColor;
+@property (nonatomic,assign) SelectType type;
+
+@property (assign, nonatomic) CGFloat viewHeight;
+
+@property (assign, nonatomic) CGFloat detailHeight;
+@property (assign, nonatomic) CGFloat memberHeight;
+@property (assign, nonatomic) CGFloat sceneHeight;
+
+
 
 @end

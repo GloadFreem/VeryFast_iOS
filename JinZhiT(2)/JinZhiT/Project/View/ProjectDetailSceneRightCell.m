@@ -1,14 +1,14 @@
 //
-//  ProjectDetailBottomCell.m
+//  ProjectDetailSceneRightCell.m
 //  JinZhiT
 //
-//  Created by Eugene on 16/5/10.
+//  Created by Eugene on 16/5/13.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
-#import "ProjectDetailBottomCell.h"
+#import "ProjectDetailSceneRightCell.h"
 
-@implementation ProjectDetailBottomCell
+@implementation ProjectDetailSceneRightCell
 
 - (void)awakeFromNib {
     // Initialization code

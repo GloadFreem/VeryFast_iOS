@@ -8,7 +8,7 @@
 
 #import "ProjectDetailBannerView.h"
 #import "MeasureTool.h"
-#define SCROLLVIEWHEIGHT 0.75*SCREENWIDTH
+#define SCROLLVIEWHEIGHT 0.6*SCREENWIDTH
 #define btnWidth SCREENWIDTH/3
 #define btnHeight  0.1*SCREENWIDTH
 #define slederWidth 0.26*SCREENWIDTH
@@ -79,6 +79,7 @@
     */
 }
 
+/*
 #pragma mark -重写selectedBtn的 setter方法
 -(void)setBtnSelected:(NSInteger)btnSelected
 {
@@ -114,6 +115,7 @@
     
 }
 
+*/
 
 #pragma mark -传输数据
 -(void)relayoutWithModelArr:(NSArray *)arr
@@ -137,7 +139,7 @@
                 //btn加载图片
                 
                 [btn setTag:100+i];
-                btn.frame = CGRectMake(arr.count*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
+                btn.frame = CGRectMake(4*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
                 [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
                 [_scrollView addSubview:btn];
             }

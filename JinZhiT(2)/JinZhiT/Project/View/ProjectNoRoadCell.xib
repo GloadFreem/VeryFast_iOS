@@ -128,7 +128,7 @@
                             <constraint firstAttribute="height" constant="5" id="tGF-pH-YWE"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="图层-4.png" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-Hr-hY8">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-4.png" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-Hr-hY8">
                         <rect key="frame" x="0.0" y="99" width="375" height="3"/>
                     </imageView>
                 </subviews>
