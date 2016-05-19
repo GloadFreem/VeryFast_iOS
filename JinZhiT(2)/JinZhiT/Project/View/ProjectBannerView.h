@@ -27,24 +27,24 @@
 
 @property (assign, nonatomic) id<ProjectBannerViewDelegate> delegate;
 
-@property (strong, nonatomic) UIScrollView * scrollView;
-@property (strong, nonatomic) NSTimer * timer;
-@property (strong, nonatomic) UIPageControl * pageControl;
-@property (strong, nonatomic) UIView * coverView;//遮盖view
-@property (strong, nonatomic) UIImageView * firstBottomImage;
-@property (strong, nonatomic) UIImageView * secondBottomImage;
-@property (strong, nonatomic) UILabel * firstLabel;
-@property (strong, nonatomic) UILabel * secondLabel;
-@property (strong, nonatomic) UIButton * leftBtn;
-@property (strong, nonatomic) UIButton * rightBtn;
+@property (strong, nonatomic) UIScrollView * scrollView;       //滚动视图控制器
+@property (strong, nonatomic) NSTimer * timer;                 //定时器
+@property (strong, nonatomic) UIPageControl * pageControl;     //页面控制器
+@property (strong, nonatomic) UIView * coverView;              //遮盖view
+@property (strong, nonatomic) UIImageView * firstBottomImage;  //底层白圈图片
+@property (strong, nonatomic) UIImageView * secondBottomImage; //上层橘色圆圈
+@property (strong, nonatomic) UILabel * firstLabel;            //项目名字label
+@property (strong, nonatomic) UILabel * secondLabel;           //项目简介label
+@property (strong, nonatomic) UIButton * leftBtn;              //左边btn
+@property (strong, nonatomic) UIButton * rightBtn;             //右边btn
 
-@property (strong, nonatomic) UIView * leftSliderBottomView;//左边下划线
-@property (strong, nonatomic) UIView * rightSliderBottomView;//右边下划线
+@property (strong, nonatomic) UIView * leftSliderBottomView;   //左边下划线
+@property (strong, nonatomic) UIView * rightSliderBottomView;  //右边下划线
 
-@property (strong, nonatomic) UIButton * selectedBtn;//当前选中btn
-@property (assign, nonatomic) NSInteger selectedNum;//选中标识
+@property (strong, nonatomic) UIButton * selectedBtn;          //当前选中btn
+@property (assign, nonatomic) NSInteger selectedNum;           //选中标识
 
--(void)relayoutWithModelArray:(NSArray*)array;
--(CGFloat)getCellHeight;
+-(void)relayoutWithModelArray:(NSArray*)array;                 // 加载数据
+              
 
 @end

@@ -161,13 +161,15 @@
     
     NSTimeInterval duration;
     
-    animated == YES?duration = 0.24:0;
+    animated == YES?duration = 0:0;
     
     [UIView animateWithDuration:duration animations:^{
         if (hidden) {
-            self.tabBarView.frame = CGRectMake(0, SCREENHEIGHT + 49, SCREENWIDTH, 49);
+//            self.tabBarView.frame = CGRectMake(0, SCREENHEIGHT + 49, SCREENWIDTH, 49);
+            self.tabBarView.hidden = YES;
         }else{
-            self.tabBarView.frame = CGRectMake(0, SCREENHEIGHT-49, SCREENWIDTH, 49);
+//            self.tabBarView.frame = CGRectMake(0, SCREENHEIGHT-49, SCREENWIDTH, 49);
+            self.tabBarView.hidden = NO;
         }
     } completion:^(BOOL finished) {
         

@@ -12,6 +12,7 @@
 
 
 #import "EditTableViewCell.h"
+
 #import "IdentityTableViewCell.h"
 
 @interface RenzhengViewController ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -32,6 +33,8 @@
     _tableView.scrollEnabled = NO;
     _tableView.delegate =self;
     _tableView.dataSource = self;
+    [_tableView registerNib:[UINib nibWithNibName:@"IdentityTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellID"];
+    
     [self createData];
 }
 //创建数据
@@ -69,12 +72,12 @@
 #pragma mark- tableView  delegate
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        static NSString * cellID = @"cellID";
-        IdentityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"IdentityTableViewCell" owner:nil options:nil] lastObject];
-            
-        }
+        
+        
+        
+        IdentityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+        
+        
         return cell;
     }else{
     

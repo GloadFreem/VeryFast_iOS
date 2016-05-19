@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -99,18 +99,8 @@
                             </mask>
                         </variation>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2S-gk-00Y">
-                        <rect key="frame" x="179" y="119" width="39.5" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="17" id="ewF-mJ-g0I"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="pKp-bm-Mgb"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融资总额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXI-C8-HHJ">
-                        <rect key="frame" x="175" y="141" width="48" height="13"/>
+                        <rect key="frame" x="174" y="141" width="48" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="oHw-eh-6aY"/>
                         </constraints>
@@ -179,7 +169,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Yj-Wm-Auz">
-                        <rect key="frame" x="243" y="111" width="53" height="53"/>
+                        <rect key="frame" x="242" y="111" width="53" height="53"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="53" id="AIa-LC-vfr"/>
@@ -196,6 +186,16 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="图层-4.png" translatesAutoresizingMaskIntoConstraints="NO" id="WCT-XB-E8W">
                         <rect key="frame" x="0.0" y="98" width="375" height="3"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2S-gk-00Y">
+                        <rect key="frame" x="179" y="119" width="39.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="ewF-mJ-g0I"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="pKp-bm-Mgb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="6en-3t-qvL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1sQ-do-InA"/>

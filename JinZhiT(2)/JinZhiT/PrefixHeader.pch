@@ -15,9 +15,18 @@
 #pragma mark- 第三方扩展
 #import "NSString+Addition.h"
 
+#import "Masonry.h"
+
+#import "MeasureTool.h"
+
+#import "AppDelegate.h"
 
 #pragma mark- 自定义类别
 #import "UIBarButtonItem+LYJ.h"
+#import "UIViewController+NavBarHidden.h"
+#import "UIView+Extension.h"
+
+#pragma mark -searchbar
 
 
 #endif /* PrefixHeader_pch */

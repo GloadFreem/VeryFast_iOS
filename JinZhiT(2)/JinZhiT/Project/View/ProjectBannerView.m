@@ -119,7 +119,7 @@
     
     //右边下划线
     _rightSliderBottomView = [[UIView alloc]initWithFrame:CGRectMake(SCREENWIDTH*0.75-sliderWidth/2, CGRectGetMaxY(_rightBtn.frame)-3, sliderWidth, 3)];
-    NSLog(@"%f",_rightSliderBottomView.frame.size.width);
+//    NSLog(@"%f",_rightSliderBottomView.frame.size.width);
     //    [_rightSliderBottomView setBackgroundColor:[UIColor orangeColor]];;
     _rightSliderBottomView.alpha = 0.8;
     [self addSubview:_rightSliderBottomView];
@@ -235,10 +235,6 @@
         _scrollView.contentOffset=CGPointZero;
     }
 }
-#pragma mark- 计算cell的高度
--(CGFloat)getCellHeight
-{
-    return 0;
-}
+
 
 @end

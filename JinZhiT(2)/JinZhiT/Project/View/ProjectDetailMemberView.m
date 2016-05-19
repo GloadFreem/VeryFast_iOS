@@ -23,12 +23,23 @@
 +(ProjectDetailMemberView*)instancetationProjectDetailMemberView
 {
     ProjectDetailMemberView *view =[[[NSBundle mainBundle] loadNibNamed:@"ProjectDetailMemberView" owner:nil options:nil] lastObject];
-    //加载数据
-    [view refreshData];
-    //计算View的高度
-    view.viewHeight = [view calculateViewHeight];
-    
+   
     return view;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ([super initWithCoder:aDecoder]) {
+        
+        //加载数据
+        //    [view refreshData];
+        //计算View的高度
+        
+        self.viewHeight = 320;
+        
+        NSLog(@"实例化成员界面");
+    }
+    return self;
 }
 
 #pragma mark -加载数据

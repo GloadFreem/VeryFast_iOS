@@ -13,26 +13,34 @@
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if ([super initWithFrame:frame]) {
-        [self createUI];
+        
     }
     return self;
 }
 
 #pragma mark -实例化视图
-+(ProjectDetailFirstHeaderView*)instancetypeProjectDetailFirstHeaderView{
-    //实例化视图
-    ProjectDetailFirstHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"ProjectDetailFirstHeaderView" owner:nil options:nil] lastObject];
-    //创建scrollView
-    [view createUI];
-    //加载 数据
-    [view refreshData];
++(instancetype)instancetypeProjectDetailFirstHeaderView{
     
-    //计算视图高度，并赋给高度属性
-    view.viewHeight = [view calculateViewHeight];
+    ProjectDetailFirstHeaderView *detail = [[[NSBundle mainBundle] loadNibNamed:@"ProjectDetailFirstHeaderView" owner:nil options:nil] lastObject];
     
-    return view;
+    return detail;
 }
 
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ([super initWithCoder:aDecoder]) {
+        
+        //创建scrollView
+        [self createUI];
+        //加载 数据
+        [self refreshData];
+        
+        //计算视图高度，并赋给高度属性
+        _viewHeight = 600;
+    }
+    return self;
+}
 
 #pragma mark- 创建布局
 -(void)createUI
@@ -49,7 +57,7 @@
         UIButton * iconBtn =[[UIButton alloc]initWithFrame:CGRectMake(30+76*i, 22, 50, 50)];
         [iconBtn setTag:i+10];
         //btn加载图片
-        
+        [iconBtn setBackgroundColor:[UIColor greenColor]];
         
         
         //加到scrollView上边
@@ -59,12 +67,14 @@
         nameLabel.textColor = [UIColor darkGrayColor];
         nameLabel.font = [UIFont systemFontOfSize:13];
         nameLabel.textAlignment = NSTextAlignmentCenter;
+        nameLabel.text = @"张三";
         [_scrollView addSubview:nameLabel];
         //职位label
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(30+76*i, 22+50+12+6, 50, 12)];
         label.textColor = [UIColor lightGrayColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:11];
+        label.text = @"总经理";
         [_scrollView addSubview:label];
     }
 
@@ -75,8 +85,5 @@
     
 }
 
-//计算View的高度
--(CGFloat)calculateViewHeight{
-    return CGRectGetMaxY(_bottomView.frame);
-}
+
 @end

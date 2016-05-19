@@ -14,6 +14,8 @@
 #import "ProjectDetailFirstHeaderView.h"
 #import "ProjectDetailMemberView.h"
 
+#import "ProjectDetailLeftView.h"
+#import "ProjectDetailSceneView.h"
 #define defaultLineColor [UIColor blueColor]
 #define selectTitleColor [UIColor orangeColor]
 #define unselectTitleColor [UIColor blackColor]
@@ -23,12 +25,12 @@
 @interface ProjectDetailController ()<ProjectDetailBannerViewDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (nonatomic,strong) UIScrollView *titleScrollView; //切换按钮
-@property (nonatomic,strong) NSArray *titleArray;   // 切换按钮数组
-@property (nonatomic,strong) UIView *lineView;      // 下划线视图
+@property (nonatomic,strong) UIScrollView *titleScrollView;     //切换按钮
+@property (nonatomic,strong) NSArray *titleArray;               // 切换按钮数组
+@property (nonatomic,strong) UIView *lineView;                  // 下划线视图
 @property (nonatomic,strong) UIScrollView *subViewScrollView;   // 下边子滚动视图
-@property (nonatomic,strong) NSMutableArray *heightArray;      // subviewScrollView子视图高度数组
-@property (nonatomic,strong) NSMutableArray *btArray;   //点击切换按钮数组
+@property (nonatomic,strong) NSMutableArray *heightArray;       // subviewScrollView子视图高度数组
+@property (nonatomic,strong) NSMutableArray *btArray;           //点击切换按钮数组
 
 @end
 
@@ -117,9 +119,9 @@
         //        _subViewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-0.75*kScreenWidth-40)];
         //        _subViewScrollView.backgroundColor = [UIColor greenColor];
         _subViewScrollView = [[UIScrollView alloc]init];
-        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
+//        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
 
-        _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+       
         
         _subViewScrollView.showsHorizontalScrollIndicator = NO;
         _subViewScrollView.showsVerticalScrollIndicator = NO;
@@ -129,7 +131,44 @@
         _subViewScrollView.pagingEnabled = YES;
         //方向锁
         _subViewScrollView.directionalLockEnabled = YES;
-        //加进去的测试高度数据
+        
+        //实例化详情分页面
+        
+//        ProjectDetailFirstHeaderView *detail = [ProjectDetailFirstHeaderView instancetypeProjectDetailFirstHeaderView];
+//        detail.frame = CGRectMake(0, 0, SCREENWIDTH, detail.viewHeight);
+//        [_heightArray addObject:[NSNumber numberWithFloat:detail.viewHeight]];
+//        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, detail.viewHeight);
+//         _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+//        
+//        [_subViewScrollView addSubview:detail];
+        ProjectDetailLeftView *left =[[ProjectDetailLeftView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 800)];
+        
+//        CGFloat height = [left calculateheight];
+        [_heightArray addObject:[NSNumber numberWithFloat:800]];
+        left.frame = CGRectMake(0, 0, SCREENWIDTH, 800);
+        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
+        _scrollView.contentSize = CGSizeMake(0,CGRectGetMaxY(_subViewScrollView.frame));
+        [_subViewScrollView addSubview:left];
+        
+        //实例化成员分页面
+        ProjectDetailMemberView * member = [ProjectDetailMemberView instancetationProjectDetailMemberView];
+        member.frame = CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, member.viewHeight);
+        [_heightArray addObject:[NSNumber numberWithFloat:member.viewHeight]];
+        [_subViewScrollView addSubview:member];
+        
+        //实例化现场界面
+//        UIView * scene  = [[UIView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame))];
+//        scene.backgroundColor  = [UIColor greenColor];
+//        [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame) ]];
+//        [_subViewScrollView addSubview:scene];
+        
+        ProjectDetailSceneView *scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64)];
+        [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 ]];
+        [_subViewScrollView addSubview:scene];
+
+        
+        /*
+        加进去的测试高度数据
         NSNumber *aNumber = [NSNumber numberWithFloat:800];
         [_heightArray addObject:aNumber];
         NSNumber *bNumber = [NSNumber numberWithFloat:400];
@@ -144,26 +183,10 @@
                     subview.backgroundColor = colorArr[i%colorArr.count];
                     [_subViewScrollView addSubview:subview];
                 }
-       
+        */
         
-        //加载自定义视图
-        //详情视图
-//        ProjectDetailFirstHeaderView * detailView = [ProjectDetailFirstHeaderView instancetypeProjectDetailFirstHeaderView];
-//        _detailHeight = detailView.viewHeight;//当前视图的高度等于内部视图的高度
-//        _viewHeight = _detailHeight;
-//        detailView.frame = CGRectMake(0, 0, SCREENWIDTH, detailView.viewHeight);
-//        //_subViewScrollView的尺寸
-//        _subViewScrollView.frame = CGRectMake(0, 0.6*SCREENWIDTH+64, SCREENWIDTH, 600);
-//        [_subViewScrollView addSubview:detailView];
-//        //成员视图
-//        ProjectDetailMemberView * memberView =[ProjectDetailMemberView instancetationProjectDetailMemberView];
-//        _memberHeight = memberView.viewHeight;
-//        memberView.frame = CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, memberView.viewHeight);
-//        [_subViewScrollView addSubview:memberView];
-//        
-//        UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-0.6*SCREENWIDTH-40)];
-//        subview.backgroundColor  = [UIColor greenColor];
-//        [_subViewScrollView addSubview:subview];
+        
+ 
     }
     
     return _subViewScrollView;
@@ -193,6 +216,7 @@
     }
     //子scrollView的偏移量
     _subViewScrollView.contentOffset=CGPointMake(SCREENWIDTH*(sender.tag-10), 0);
+    
     //重置子scrollView的大小  以及父scrollView的contentSize
     CGFloat valueY = CGRectGetMaxY(_titleScrollView.frame);
     switch (sender.tag) {
@@ -278,9 +302,17 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.translucent=NO;
-    
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:NO animated:NO];
+   
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

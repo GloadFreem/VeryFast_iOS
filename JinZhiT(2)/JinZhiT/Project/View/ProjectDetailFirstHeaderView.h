@@ -19,7 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *getMoneyLabel;//已融金额
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;//起止时间
 
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;//所在地
+
+
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;//介绍内容
 
 
@@ -49,5 +50,8 @@
 
 
 #pragma mark- 实例化视图
-+(ProjectDetailFirstHeaderView*)instancetypeProjectDetailFirstHeaderView;
++(instancetype)instancetypeProjectDetailFirstHeaderView;
+
+-(CGFloat)calculateViewHeight;
+
 @end

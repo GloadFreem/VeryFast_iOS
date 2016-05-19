@@ -19,6 +19,26 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark -视图即将显示
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    self.navigationController.navigationBar.translucent=NO;
+    
+//    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+//    
+//    [delegate.tabBar tabBarHidden:NO animated:NO];
+}
+#pragma mark -视图即将消失
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
