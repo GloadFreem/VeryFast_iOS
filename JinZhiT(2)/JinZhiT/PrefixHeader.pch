@@ -17,6 +17,10 @@
 
 #import "Masonry.h"
 
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+SDAutoLayout.h"
+#import "SDPhotoBrowser.h"
+
 #import "MeasureTool.h"
 
 #import "AppDelegate.h"

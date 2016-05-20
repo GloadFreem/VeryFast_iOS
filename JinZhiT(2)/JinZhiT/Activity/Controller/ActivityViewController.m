@@ -102,6 +102,7 @@
     AppDelegate * delegate =[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
