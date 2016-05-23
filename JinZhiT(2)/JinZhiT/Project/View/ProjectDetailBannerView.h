@@ -43,6 +43,6 @@
 -(void)relayoutWithModelArr:(NSArray *)arr;
 
 #pragma mark -计算View的高度
--(CGFloat)getViewHeight;
+//-(CGFloat)getViewHeight;
 
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -65,7 +65,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhm-PI-9nd">
-                        <rect key="frame" x="72" y="120" width="36.5" height="17"/>
+                        <rect key="frame" x="72" y="120" width="37" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="uKu-k5-Zrm"/>
                         </constraints>
@@ -74,7 +74,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12782" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9j-XH-tQv">
-                        <rect key="frame" x="258" y="120" width="44.5" height="17"/>
+                        <rect key="frame" x="258" y="120" width="45" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="t7A-mU-HJW"/>
                         </constraints>
@@ -145,11 +145,11 @@
                     <constraint firstItem="wkS-8C-nMY" firstAttribute="top" secondItem="jhG-rs-clc" secondAttribute="bottom" constant="5" id="EJw-rV-guB"/>
                     <constraint firstItem="wkS-8C-nMY" firstAttribute="leading" secondItem="UtG-rY-uK5" secondAttribute="leading" id="EeX-do-JWR"/>
                     <constraint firstItem="z7y-Kx-SUy" firstAttribute="leading" secondItem="kpO-9B-4Kv" secondAttribute="trailing" constant="12" id="Hhu-s3-cYz"/>
-                    <constraint firstAttribute="trailing" secondItem="7fe-Hr-hY8" secondAttribute="trailing" id="JCc-dP-myL"/>
                     <constraint firstItem="ruT-Zb-gth" firstAttribute="centerX" secondItem="xhm-PI-9nd" secondAttribute="centerX" id="Jvt-Am-HvU"/>
                     <constraint firstItem="xhm-PI-9nd" firstAttribute="top" secondItem="fYd-9p-bZf" secondAttribute="bottom" constant="20" id="LEk-iz-5HR"/>
                     <constraint firstItem="NSB-Bg-5LG" firstAttribute="leading" secondItem="wkS-8C-nMY" secondAttribute="trailing" constant="5" id="Q8f-Zd-Ula"/>
                     <constraint firstItem="ycW-ul-TIj" firstAttribute="width" secondItem="wkS-8C-nMY" secondAttribute="width" id="QHV-bA-vJj"/>
+                    <constraint firstItem="7fe-Hr-hY8" firstAttribute="top" secondItem="fYd-9p-bZf" secondAttribute="top" id="RIS-RI-kWe"/>
                     <constraint firstItem="kpO-9B-4Kv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="RSn-ZU-aCx"/>
                     <constraint firstItem="fYd-9p-bZf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SEi-QX-UOE"/>
                     <constraint firstItem="NSB-Bg-5LG" firstAttribute="top" secondItem="jhG-rs-clc" secondAttribute="bottom" constant="5" id="SUO-q4-Aut"/>
@@ -158,20 +158,19 @@
                     <constraint firstItem="dhr-Sc-t5F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="V4m-E4-JbR"/>
                     <constraint firstItem="CgH-cb-FO0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="VBA-E1-bE8"/>
                     <constraint firstItem="W0F-kY-iQu" firstAttribute="top" secondItem="h9j-XH-tQv" secondAttribute="bottom" constant="5" id="VaU-Ad-B2P"/>
-                    <constraint firstItem="7fe-Hr-hY8" firstAttribute="top" secondItem="ycW-ul-TIj" secondAttribute="bottom" constant="12" id="WYX-yy-Dcy"/>
                     <constraint firstAttribute="trailing" secondItem="fYd-9p-bZf" secondAttribute="trailing" id="XXJ-bz-ZxJ"/>
                     <constraint firstItem="NSB-Bg-5LG" firstAttribute="width" secondItem="wkS-8C-nMY" secondAttribute="width" id="YqJ-Vh-BZA"/>
                     <constraint firstItem="ycW-ul-TIj" firstAttribute="leading" secondItem="NSB-Bg-5LG" secondAttribute="trailing" constant="5" id="YyO-kK-jfu"/>
                     <constraint firstAttribute="trailing" secondItem="CgH-cb-FO0" secondAttribute="trailing" constant="15" id="ag5-Mz-hhz"/>
                     <constraint firstItem="CgH-cb-FO0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cKu-vh-E00"/>
                     <constraint firstItem="NSB-Bg-5LG" firstAttribute="height" secondItem="wkS-8C-nMY" secondAttribute="height" id="cRS-97-ATt"/>
-                    <constraint firstItem="7fe-Hr-hY8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="car-T1-UMP"/>
                     <constraint firstAttribute="trailing" secondItem="h9j-XH-tQv" secondAttribute="trailing" constant="72" id="ffl-fb-0X1"/>
                     <constraint firstItem="jhG-rs-clc" firstAttribute="top" secondItem="UtG-rY-uK5" secondAttribute="bottom" constant="18" id="hht-2F-lqx"/>
                     <constraint firstItem="h9j-XH-tQv" firstAttribute="top" secondItem="fYd-9p-bZf" secondAttribute="bottom" constant="20" id="n2X-g5-1XQ"/>
                     <constraint firstItem="UtG-rY-uK5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="qSO-9h-ylZ"/>
                     <constraint firstItem="xhm-PI-9nd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="72" id="qYq-c5-BN5"/>
                     <constraint firstItem="z7y-Kx-SUy" firstAttribute="top" secondItem="UtG-rY-uK5" secondAttribute="bottom" constant="3" id="sSs-7W-xHF"/>
+                    <constraint firstItem="7fe-Hr-hY8" firstAttribute="leading" secondItem="fYd-9p-bZf" secondAttribute="leading" id="vfd-X6-Fa9"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

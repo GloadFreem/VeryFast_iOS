@@ -115,7 +115,7 @@ static const char * hy_hidenControlOptionsKey = "hy_hidenControlOptions";
 #pragma mark - *********************** 内部方法 **********************
 
 static CGFloat alpha = 0;
-static CGFloat offsetY = 0;
+//static CGFloat offsetY = 0;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     

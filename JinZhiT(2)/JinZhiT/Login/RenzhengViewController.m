@@ -73,15 +73,16 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         
-        
-        
-        IdentityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
-        
+        static NSString *cellId = @"IdentityTableViewCell";
+        IdentityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId"];
+        if (!cell) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
+        }
         
         return cell;
     }else{
     
-    static NSString * cellId = @"cellId";
+    static NSString * cellId = @"EditTableViewCell";
     EditTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"EditTableViewCell" owner:nil options:nil] lastObject];

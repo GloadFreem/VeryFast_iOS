@@ -2,12 +2,13 @@
 //  MineViewController.m
 //  JinZhiT
 //
-//  Created by Eugene on 16/5/3.
+//  Created by Eugene on 16/5/21.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
 #import "MineViewController.h"
-
+#import "MoneyAccountVC.h"
+#import "MineAttentionVC.h"
 @interface MineViewController ()
 
 @end
@@ -16,42 +17,80 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
-#pragma mark -视图即将显示
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
-    self.navigationController.navigationBar.translucent=NO;
-    
-//    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
-//    
-//    [delegate.tabBar tabBarHidden:NO animated:NO];
+    [self.navigationController.navigationBar setHidden:YES];
 }
-#pragma mark -视图即将消失
+
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewWillDisappear: animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+#pragma mark -进入头像详情页面
+- (IBAction)iconDetail:(UIButton *)sender {
+}
+
+#pragma mark -进入各个小界面
+- (IBAction)btnClick:(UIButton *)sender {
     
+    switch (sender.tag) {
+        case 0:
+        {
+            MoneyAccountVC *vc = [MoneyAccountVC new];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:
+        {
+            MineAttentionVC *vc = [MineAttentionVC new];
+            [self.navigationController  pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            NSLog(@"点击了第%ld个",sender.tag);
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+        case 4:
+        {
+            
+        }
+            break;
+        case 5:
+        {
+            
+        }
+            break;
+        case 6:
+        {
+            
+        }
+            break;
+        case 7:
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark -退出logo界面
+- (IBAction)closeView:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

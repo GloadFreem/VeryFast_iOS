@@ -7,9 +7,9 @@
 //
 
 #import "ProjectViewController.h"
-#import "AppDelegate.h"
-#import "UIViewController+NavBarHidden.h"
-#import "MeasureTool.h"
+
+#import "UpProjectViewController.h"
+#import "ProjectLetterViewController.h"
 
 #import "ProjectListCell.h"
 #import "ProjectNoRoadCell.h"
@@ -65,19 +65,56 @@
 }
 -(void)createUI
 {
+
     UILabel * titleLabel =[[UILabel alloc]init];
     titleLabel.text = @"项目";
     [titleLabel sizeToFit];
+    titleLabel.font = BGFont(18);
     [titleLabel setTextColor:[UIColor whiteColor]];
     self.navigationItem.titleView=titleLabel;
    
-    [self.navigationItem setLeftBarButtonItem:[UIBarButtonItem barButtonItemWithIcon:@"message" andHeightIcon:@"message" Target:self action:@selector(buttonCilck:) andTag:1]];
+    UIButton * letterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    letterBtn.tag = 0;
+    //通过判断返回数据状态来决定背景图片
+//    [letterBtn setBackgroundImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+    [letterBtn setBackgroundImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+    letterBtn.size = letterBtn.currentBackgroundImage.size;
+    [letterBtn addTarget:self action:@selector(buttonCilck:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:letterBtn];
+    
+    UIButton *upLoadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    upLoadBtn.tag = 1;
+    [upLoadBtn setBackgroundImage:[UIImage imageNamed:@"upLoad"] forState:UIControlStateNormal];
+    upLoadBtn.size = upLoadBtn.currentBackgroundImage.size;
+    [upLoadBtn addTarget:self action:@selector(buttonCilck:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:upLoadBtn];
+    
 }
 
 #pragma mark- navigationBar  button的点击事件
 -(void)buttonCilck:(UIButton*)button
 {
-    
+    if (button.tag == 0) {
+        
+        ProjectLetterViewController *letter = [ProjectLetterViewController new];
+        //隐藏tabbar
+        AppDelegate *delegate = [[UIApplication  sharedApplication] delegate];
+        [delegate.tabBar tabBarHidden:YES animated:NO];
+        
+        [self.navigationController pushViewController:letter animated:YES];
+        
+    }
+    if (button.tag == 1) {
+        
+        UpProjectViewController *up = [UpProjectViewController new];
+        
+        //隐藏tabbar
+        AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+        
+        [delegate.tabBar tabBarHidden:YES animated:NO];
+        
+        [self.navigationController pushViewController:up animated:YES];
+    }
 }
 
 #pragma mark - tableView datasource

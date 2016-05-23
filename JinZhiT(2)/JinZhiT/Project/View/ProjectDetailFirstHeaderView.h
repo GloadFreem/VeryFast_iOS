@@ -52,6 +52,6 @@
 #pragma mark- 实例化视图
 +(instancetype)instancetypeProjectDetailFirstHeaderView;
 
--(CGFloat)calculateViewHeight;
+
 
 @end

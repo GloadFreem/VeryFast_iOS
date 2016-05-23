@@ -39,6 +39,14 @@
     _iconBtn.layer.borderWidth = 4;
     _iconBtn.layer.borderColor = [[UIColor colorWithRed:198 green:198 blue:198 alpha:1] CGColor];
 }
+//登录
+- (IBAction)loginClick:(UIButton *)sender {
+    
+    AppDelegate * app =(AppDelegate* )[[UIApplication sharedApplication] delegate];
+    app.window.rootViewController = app.tabBar;
+    
+}
+
 //没有账号
 - (IBAction)noBtn:(id)sender {
     
