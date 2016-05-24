@@ -62,7 +62,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1p-jD-w83">
-                        <rect key="frame" x="107" y="77" width="45" height="15"/>
+                        <rect key="frame" x="109" y="77" width="45" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="vgl-Ra-Z1e"/>
                         </constraints>
@@ -71,7 +71,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpC-HQ-QGa">
-                        <rect key="frame" x="155" y="77" width="30" height="15"/>
+                        <rect key="frame" x="159" y="77" width="30" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="4cw-d4-5Gq"/>
                         </constraints>
@@ -94,8 +94,8 @@
                     <constraint firstItem="f5A-at-HQJ" firstAttribute="top" secondItem="4rY-b3-Dt1" secondAttribute="bottom" constant="5" id="P5e-WE-pdl"/>
                     <constraint firstAttribute="trailing" secondItem="4rY-b3-Dt1" secondAttribute="trailing" id="TkJ-VP-Z1M"/>
                     <constraint firstAttribute="trailing" secondItem="f5A-at-HQJ" secondAttribute="trailing" id="VrX-l6-F8j"/>
-                    <constraint firstItem="TpC-HQ-QGa" firstAttribute="leading" secondItem="Q1p-jD-w83" secondAttribute="trailing" constant="3" id="XrO-B9-gP1"/>
-                    <constraint firstItem="Q1p-jD-w83" firstAttribute="leading" secondItem="gci-20-dPE" secondAttribute="trailing" constant="3" id="hJk-Gh-0yJ"/>
+                    <constraint firstItem="TpC-HQ-QGa" firstAttribute="leading" secondItem="Q1p-jD-w83" secondAttribute="trailing" constant="5" id="XrO-B9-gP1"/>
+                    <constraint firstItem="Q1p-jD-w83" firstAttribute="leading" secondItem="gci-20-dPE" secondAttribute="trailing" constant="5" id="hJk-Gh-0yJ"/>
                     <constraint firstItem="4rY-b3-Dt1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="l9n-84-kTM"/>
                     <constraint firstAttribute="trailing" secondItem="kql-n4-de3" secondAttribute="trailing" constant="20" id="p0J-x5-u1I"/>
                     <constraint firstItem="qNY-oj-QMg" firstAttribute="leading" secondItem="e92-UV-KqR" secondAttribute="trailing" constant="11" id="uaE-Yl-Aj3"/>

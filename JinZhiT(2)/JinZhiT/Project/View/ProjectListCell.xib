@@ -183,7 +183,7 @@
                             <constraint firstAttribute="height" constant="5" id="m54-mo-Dfp"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="图层-4.png" translatesAutoresizingMaskIntoConstraints="NO" id="WCT-XB-E8W">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="part_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="WCT-XB-E8W">
                         <rect key="frame" x="0.0" y="98" width="375" height="3"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2S-gk-00Y">
@@ -270,10 +270,10 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="312.5" y="107.5"/>
+            <point key="canvasLocation" x="288.5" y="106.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="图层-4.png" width="375" height="3"/>
+        <image name="part_image.png" width="375" height="3"/>
     </resources>
 </document>

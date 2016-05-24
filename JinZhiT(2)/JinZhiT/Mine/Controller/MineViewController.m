@@ -9,6 +9,9 @@
 #import "MineViewController.h"
 #import "MoneyAccountVC.h"
 #import "MineAttentionVC.h"
+#import "MineActivityVC.h"
+#import "MineGoldVC.h"
+#import "MineProjectCenterVC.h"
 @interface MineViewController ()
 
 @end
@@ -54,17 +57,20 @@
             break;
         case 2:
         {
-            NSLog(@"点击了第%ld个",sender.tag);
+            MineActivityVC *vc =[MineActivityVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 3:
         {
-            
+            MineGoldVC *vc = [MineGoldVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 4:
         {
-            
+            MineProjectCenterVC *vc = [MineProjectCenterVC new];
+            [self.navigationController  pushViewController:vc animated:YES];
         }
             break;
         case 5:

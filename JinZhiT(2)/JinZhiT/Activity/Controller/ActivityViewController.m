@@ -89,6 +89,7 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellID owner:nil options:nil] lastObject];
     }
+    [cell.expiredImage setHidden:YES];
     return cell;
 }
 

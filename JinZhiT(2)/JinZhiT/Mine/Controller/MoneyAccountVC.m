@@ -43,13 +43,13 @@
             break;
         case 2:
         {
-            
+//            DealBillVC *vc = [DealBillVC new];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 3:
         {
-            DealBillVC *vc = [DealBillVC new];
-            [self.navigationController pushViewController:vc animated:YES];
+            
         }
             break;
             

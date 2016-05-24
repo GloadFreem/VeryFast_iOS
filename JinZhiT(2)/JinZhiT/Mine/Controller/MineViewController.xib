@@ -79,8 +79,8 @@
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="ld4-4I-15Y"/>
                             <exclude reference="Gqc-ii-GzY"/>
+                            <exclude reference="ld4-4I-15Y"/>
                         </mask>
                     </variation>
                     <connections>
@@ -125,13 +125,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <inset key="titleEdgeInsets" minX="-30" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="20"/>
-                    <state key="normal" title="我的金条" image="logo-guanzhu.png">
+                    <state key="normal" title="我的金条" image="logo_qian.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="ngG-HB-WNZ"/>
                             <exclude reference="NHv-aY-Rg3"/>
+                            <exclude reference="ngG-HB-WNZ"/>
                         </mask>
                     </variation>
                     <connections>
@@ -197,8 +197,8 @@
                     </state>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="wHT-59-cdv"/>
                             <exclude reference="MBy-6a-UpR"/>
+                            <exclude reference="wHT-59-cdv"/>
                         </mask>
                     </variation>
                     <connections>
@@ -214,7 +214,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <inset key="titleEdgeInsets" minX="-30" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="20"/>
-                    <state key="normal" title="推荐好友" image="logo-guanzhu.png">
+                    <state key="normal" title="推荐好友" image="logo_tuijian.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <variation key="default">
@@ -296,6 +296,8 @@
         <image name="logo_iconvip.png" width="20" height="20"/>
         <image name="logo_pingtai.png" width="24" height="33"/>
         <image name="logo_project.png" width="33" height="32"/>
+        <image name="logo_qian.png" width="29" height="33"/>
+        <image name="logo_tuijian.png" width="35" height="26"/>
         <image name="logo_wallet.png" width="33" height="33"/>
     </resources>
 </document>

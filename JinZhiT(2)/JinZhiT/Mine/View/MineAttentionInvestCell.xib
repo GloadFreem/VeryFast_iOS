@@ -80,7 +80,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqM-FF-YLU">
-                        <rect key="frame" x="107" y="79" width="45" height="15"/>
+                        <rect key="frame" x="109" y="79" width="45" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="hCW-VK-rjV"/>
                         </constraints>
@@ -89,7 +89,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6V-HP-uBc">
-                        <rect key="frame" x="155" y="79" width="30" height="15"/>
+                        <rect key="frame" x="159" y="79" width="30" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="jxd-Zu-1F2"/>
                         </constraints>
@@ -108,7 +108,7 @@
                     <constraint firstItem="Cm7-BT-oWf" firstAttribute="top" secondItem="GHa-yz-Bot" secondAttribute="bottom" constant="15" id="LGN-hR-QOr"/>
                     <constraint firstItem="P1O-xf-qN3" firstAttribute="leading" secondItem="ZES-j9-t8i" secondAttribute="trailing" constant="12" id="PKL-rK-Kw6"/>
                     <constraint firstAttribute="trailing" secondItem="GHa-yz-Bot" secondAttribute="trailing" id="S36-m8-61e"/>
-                    <constraint firstItem="IqM-FF-YLU" firstAttribute="leading" secondItem="GlE-aw-Wur" secondAttribute="trailing" constant="3" id="UZQ-ax-r6j"/>
+                    <constraint firstItem="IqM-FF-YLU" firstAttribute="leading" secondItem="GlE-aw-Wur" secondAttribute="trailing" constant="5" id="UZQ-ax-r6j"/>
                     <constraint firstAttribute="trailing" secondItem="Wsm-2d-GIl" secondAttribute="trailing" constant="8" id="Vtc-cj-bGT"/>
                     <constraint firstItem="GlE-aw-Wur" firstAttribute="top" secondItem="Xl1-1C-qAf" secondAttribute="bottom" constant="9" id="Yrl-fQ-2dV"/>
                     <constraint firstItem="ZES-j9-t8i" firstAttribute="top" secondItem="GHa-yz-Bot" secondAttribute="bottom" constant="12" id="bMi-Te-5EU"/>
@@ -119,7 +119,7 @@
                     <constraint firstItem="Cm7-BT-oWf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="o2j-VW-xlg"/>
                     <constraint firstItem="Wsm-2d-GIl" firstAttribute="bottom" secondItem="yFX-9y-azQ" secondAttribute="bottom" id="pRB-Vv-iUf"/>
                     <constraint firstItem="P1O-xf-qN3" firstAttribute="bottom" secondItem="ZES-j9-t8i" secondAttribute="bottom" id="pTk-N1-9Wi"/>
-                    <constraint firstItem="m6V-HP-uBc" firstAttribute="leading" secondItem="IqM-FF-YLU" secondAttribute="trailing" constant="3" id="qmt-bz-8gr"/>
+                    <constraint firstItem="m6V-HP-uBc" firstAttribute="leading" secondItem="IqM-FF-YLU" secondAttribute="trailing" constant="5" id="qmt-bz-8gr"/>
                     <constraint firstItem="m6V-HP-uBc" firstAttribute="leading" secondItem="GlE-aw-Wur" secondAttribute="trailing" constant="3" id="tEp-mr-Uxa"/>
                     <constraint firstItem="IqM-FF-YLU" firstAttribute="centerY" secondItem="GlE-aw-Wur" secondAttribute="centerY" id="vwz-py-TWT"/>
                     <constraint firstAttribute="trailing" secondItem="Xl1-1C-qAf" secondAttribute="trailing" constant="20" id="y9o-uL-LjB"/>

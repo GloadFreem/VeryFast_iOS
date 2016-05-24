@@ -89,19 +89,24 @@
                         </state>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5A-9Z-1CV">
-                        <rect key="frame" x="0.0" y="159.5" width="375" height="15"/>
+                        <rect key="frame" x="0.0" y="159" width="375" height="15"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="dnD-ik-viz"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_guoqi.png" translatesAutoresizingMaskIntoConstraints="NO" id="xds-5g-iWI">
+                        <rect key="frame" x="249" y="75" width="104" height="67"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="UQJ-5G-dt5" firstAttribute="centerY" secondItem="jSz-Jh-ZJz" secondAttribute="centerY" id="3SO-RI-hfx"/>
                     <constraint firstAttribute="bottom" secondItem="Y5A-9Z-1CV" secondAttribute="bottom" id="60r-ef-nuf"/>
                     <constraint firstItem="5NM-mJ-vnp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="JLe-gb-aim"/>
+                    <constraint firstAttribute="trailing" secondItem="xds-5g-iWI" secondAttribute="trailing" constant="22" id="K7n-gf-57N"/>
                     <constraint firstItem="rFE-YS-jOZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NdP-4W-8gr"/>
+                    <constraint firstItem="xds-5g-iWI" firstAttribute="top" secondItem="rFE-YS-jOZ" secondAttribute="bottom" constant="15" id="OlH-WS-rSm"/>
                     <constraint firstItem="vdU-TW-3oj" firstAttribute="bottom" secondItem="UQJ-5G-dt5" secondAttribute="bottom" id="Oz5-TL-V8s"/>
                     <constraint firstItem="Y5A-9Z-1CV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Si2-fH-vpZ"/>
                     <constraint firstItem="tzh-wf-ngu" firstAttribute="leading" secondItem="2vw-9y-rZR" secondAttribute="trailing" constant="5" id="Sub-XA-Awb"/>
@@ -125,10 +130,20 @@
                     <constraint firstAttribute="trailing" secondItem="vdU-TW-3oj" secondAttribute="trailing" constant="10" id="zXK-Re-6g6"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="UQJ-5G-dt5" id="Yst-Kx-qjs"/>
+                <outlet property="countlabel" destination="tzh-wf-ngu" id="g2v-sg-HOT"/>
+                <outlet property="distanceLabel" destination="vdU-TW-3oj" id="oAb-2H-t94"/>
+                <outlet property="expiredImage" destination="xds-5g-iWI" id="gIa-44-Mbg"/>
+                <outlet property="signUpBtn" destination="9Fr-dW-CYB" id="Aqe-oS-aAv"/>
+                <outlet property="timeLabel" destination="2ZL-fa-dI1" id="xfY-8C-Z2L"/>
+                <outlet property="titleLabel" destination="uUc-2V-TyH" id="Kps-jo-Py1"/>
+            </connections>
             <point key="canvasLocation" x="208.5" y="156.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="activity_guoqi.png" width="104" height="67"/>
         <image name="iconfont-dingwei.png" width="16" height="16"/>
         <image name="iconfont-jiangshijianjie01.png" width="16" height="16"/>
         <image name="剩余时间.png" width="16" height="16"/>

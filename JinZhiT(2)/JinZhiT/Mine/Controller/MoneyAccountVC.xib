@@ -189,15 +189,6 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1AB29E" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVO-RC-gpQ">
-                            <rect key="frame" x="292" y="64" width="63" height="18"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="18" id="fnP-Qp-QVd"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资金账户" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7d-Z8-h62">
                             <rect key="frame" x="151" y="28" width="72" height="18"/>
                             <constraints>
@@ -227,7 +218,6 @@
                         <constraint firstAttribute="height" constant="320" id="J06-0Q-M4d"/>
                         <constraint firstItem="y7d-Z8-h62" firstAttribute="top" secondItem="0aB-0b-jVv" secondAttribute="top" constant="28" id="Jyo-HD-dbq"/>
                         <constraint firstItem="6BB-AU-Asx" firstAttribute="bottom" secondItem="QEF-36-RLH" secondAttribute="bottom" constant="-3" id="KvI-Jz-cv6"/>
-                        <constraint firstItem="QVO-RC-gpQ" firstAttribute="top" secondItem="0aB-0b-jVv" secondAttribute="top" constant="64" id="LnG-qJ-Exn"/>
                         <constraint firstItem="z0h-bD-xdv" firstAttribute="bottom" secondItem="8JN-ZA-q9h" secondAttribute="bottom" constant="-3" id="OPp-hU-IDk"/>
                         <constraint firstItem="v7j-5I-zf8" firstAttribute="top" secondItem="8JN-ZA-q9h" secondAttribute="bottom" constant="8" id="Ohe-o0-Px6"/>
                         <constraint firstItem="lzH-Aw-L7Y" firstAttribute="top" secondItem="v7j-5I-zf8" secondAttribute="bottom" constant="53" id="Omz-I4-Rks"/>
@@ -241,7 +231,6 @@
                         <constraint firstItem="8JN-ZA-q9h" firstAttribute="top" secondItem="0aB-0b-jVv" secondAttribute="top" constant="118" id="fZk-hO-qvC"/>
                         <constraint firstItem="z0h-bD-xdv" firstAttribute="leading" secondItem="8JN-ZA-q9h" secondAttribute="trailing" constant="5" id="fcs-w3-8TQ"/>
                         <constraint firstItem="eV1-dO-zg4" firstAttribute="top" secondItem="lzH-Aw-L7Y" secondAttribute="bottom" constant="10" id="gp2-Hc-JOt"/>
-                        <constraint firstAttribute="trailing" secondItem="QVO-RC-gpQ" secondAttribute="trailing" constant="20" id="qOZ-Xu-151"/>
                         <constraint firstItem="y7d-Z8-h62" firstAttribute="centerX" secondItem="0aB-0b-jVv" secondAttribute="centerX" id="rfr-MK-nW4"/>
                         <constraint firstItem="eV1-dO-zg4" firstAttribute="centerX" secondItem="lzH-Aw-L7Y" secondAttribute="centerX" id="uMU-xF-cxE"/>
                         <constraint firstItem="6BB-AU-Asx" firstAttribute="leading" secondItem="QEF-36-RLH" secondAttribute="trailing" constant="1" id="w8n-sZ-hwg"/>

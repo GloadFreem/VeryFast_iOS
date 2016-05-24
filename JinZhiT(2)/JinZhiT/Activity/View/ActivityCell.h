@@ -10,4 +10,16 @@
 
 @interface ActivityCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countlabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *signUpBtn;
+
+@property (weak, nonatomic) IBOutlet UIImageView *expiredImage;
+
 @end
