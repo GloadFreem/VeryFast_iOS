@@ -12,6 +12,9 @@
 #import "MineActivityVC.h"
 #import "MineGoldVC.h"
 #import "MineProjectCenterVC.h"
+#import "AppSetVC.h"
+#import "PingTaiVC.h"
+#import "MineDataVC.h"
 @interface MineViewController ()
 
 @end
@@ -36,6 +39,8 @@
 }
 #pragma mark -进入头像详情页面
 - (IBAction)iconDetail:(UIButton *)sender {
+    MineDataVC *vc = [MineDataVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -进入各个小界面
@@ -75,12 +80,14 @@
             break;
         case 5:
         {
-            
+            AppSetVC *vc =[AppSetVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 6:
         {
-            
+            PingTaiVC *vc = [PingTaiVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 7:

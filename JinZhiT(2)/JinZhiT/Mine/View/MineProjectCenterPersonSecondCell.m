@@ -81,7 +81,7 @@
     [self.contentView addSubview:_pointImage];
     
     _firstLabel = [UILabel new];
-    _firstLabel.font = BGFont(16);
+    _firstLabel.font = BGFont(15);
     _firstLabel.textColor = [UIColor blueColor];
     _firstLabel.layer.cornerRadius = 3;
     _firstLabel.layer.masksToBounds = YES;
@@ -91,7 +91,7 @@
     [self.contentView addSubview:_firstLabel];
     
     _secondLabel = [UILabel new];
-    _secondLabel.font = BGFont(16);
+    _secondLabel.font = BGFont(15);
     _secondLabel.textColor = [UIColor blueColor];
     _secondLabel.layer.cornerRadius = 3;
     _secondLabel.layer.masksToBounds = YES;
@@ -101,7 +101,7 @@
     [self.contentView addSubview:_secondLabel];
     
     _thirdLabel = [UILabel new];
-    _thirdLabel.font = BGFont(16);
+    _thirdLabel.font = BGFont(15);
     _thirdLabel.textColor = [UIColor blueColor];
     _thirdLabel.layer.cornerRadius = 3;
     _thirdLabel.layer.masksToBounds = YES;
@@ -117,21 +117,25 @@
     _personBtn = [UIButton new];
     [_personBtn setTitle:@"1204\n人气指数" forState:UIControlStateNormal];
     [_personBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_personBtn.titleLabel setFont:BGFont(15)];
+    [_personBtn.titleLabel setFont:BGFont(13)];
     _personBtn.titleLabel.numberOfLines = 2;
     _personBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_personBtn];
     //剩余时间
     _timeBtn = [UIButton new];
     [_timeBtn setTitle:@"16\n剩余时间" forState:UIControlStateNormal];
-    [_timeBtn.titleLabel setFont:BGFont(15)];
+    [_timeBtn.titleLabel setFont:BGFont(13)];
     [_timeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _timeBtn.titleLabel.numberOfLines = 2;
+    _timeBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_timeBtn];
     //融资金额
     _moneyBtn = [UIButton new];
     [_moneyBtn setTitle:@"1000万\n融资总额" forState:UIControlStateNormal];
-    [_moneyBtn.titleLabel setFont:BGFont(15)];
+    [_moneyBtn.titleLabel setFont:BGFont(13)];
     [_moneyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _moneyBtn.titleLabel.numberOfLines = 2;
+    _moneyBtn.titleLabel.textAlignment  = NSTextAlignmentCenter;
     [self.contentView addSubview:_moneyBtn];
     //竖分隔线
     _firstShuView = [UIView new];
@@ -236,10 +240,10 @@
         make.top.mas_equalTo(_firstLabel.mas_bottom).offset(12*HEIGHTCONFIG);
     }];
     
-    CGFloat width = (SCREENWIDTH -4)/4;
+    CGFloat width = (SCREENWIDTH -24)/4;
     //人气指数btn
     [_personBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(20);
         make.top.mas_equalTo(_firstPartImage.mas_bottom).offset(1*HEIGHTCONFIG);
         make.height.mas_equalTo(73*HEIGHTCONFIG);
         make.width.mas_equalTo(width);
@@ -247,7 +251,7 @@
     //第一条竖线
     [_firstShuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(1);
-        make.height.mas_equalTo(18*HEIGHTCONFIG);
+        make.height.mas_equalTo(20*HEIGHTCONFIG);
         make.left.mas_equalTo(_personBtn.mas_right);
         make.centerY.mas_equalTo(_personBtn.mas_centerY);
     }];
@@ -281,18 +285,17 @@
     //忽略btn
     [_ignoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_secondPartImage.mas_bottom).offset(14*HEIGHTCONFIG);
-        make.right.mas_equalTo(self.contentView.mas_centerX).offset(-28*WIDTHCONFIG);
+        make.right.mas_equalTo(self.contentView.mas_centerX).offset(-14*WIDTHCONFIG);
         make.width.mas_equalTo(135*WIDTHCONFIG);
         make.height.mas_equalTo(39*HEIGHTCONFIG);
     }];
     //查看btn
     [_inspectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_centerX).offset(28*WIDTHCONFIG);
+        make.left.mas_equalTo(self.contentView.mas_centerX).offset(14*WIDTHCONFIG);
         make.top.mas_equalTo(_ignoreBtn.mas_top);
         make.width.mas_equalTo(_ignoreBtn);
         make.height.mas_equalTo(_ignoreBtn);
     }];
-    
 }
 
 

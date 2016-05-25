@@ -317,7 +317,7 @@
     //融资
     [_raisefundsBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_quitBtn);
-        make.right.mas_equalTo(_quitBtn.mas_left).offset(-20);
+        make.right.mas_equalTo(_quitBtn.mas_left).offset(-15);
 //        make.size.mas_equalTo(CGSizeMake(50, 50));
         
         
@@ -325,21 +325,21 @@
     //财务
     [_financialBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_quitBtn);
-        make.right.mas_equalTo(_raisefundsBtn.mas_left).offset(-20);
+        make.right.mas_equalTo(_raisefundsBtn.mas_left).offset(-15);
 //        make.size.mas_equalTo(CGSizeMake(50, 50));
         
     }];
     //商业
     [_commerceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_quitBtn);
-        make.left.mas_equalTo(_quitBtn.mas_right).offset(20);
+        make.left.mas_equalTo(_quitBtn.mas_right).offset(15);
 //        make.size.mas_equalTo(CGSizeMake(50, 50));
         
     }];
     //风险
     [_riskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(_commerceBtn);
-        make.left.mas_equalTo(_commerceBtn.mas_right).offset(20);
+        make.left.mas_equalTo(_commerceBtn.mas_right).offset(15);
 //        make.size.mas_equalTo(CGSizeMake(50, 50));
         
     }];

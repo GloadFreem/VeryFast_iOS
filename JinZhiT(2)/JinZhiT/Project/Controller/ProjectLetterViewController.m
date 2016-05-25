@@ -44,8 +44,8 @@
 #pragma mark -loadData 
 -(void)loadData
 {
-    NSArray *array = @[@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指"];
-    for (int i =0; i<5; i++) {
+    NSArray *array = @[@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指",@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指",@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指",@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指",@"金指投",@"银指投",@"铁指投",@"铜指头",@"大拇指"];
+    for (int i =0; i<20; i++) {
         ProjectLetterModel *model= [ProjectLetterModel new];
         model.titleLabel = array[i];
         [_dataArray addObject:model];
