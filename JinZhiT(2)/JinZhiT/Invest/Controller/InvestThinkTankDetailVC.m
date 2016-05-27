@@ -54,7 +54,7 @@
     //2.设置导航栏内容
     [self setUpNavBar];
     [self createUI];
-    [self setKeyScrollView:_scrollView scrolOffsetY:300 options:nil];
+//    [self setKeyScrollView:_scrollView scrolOffsetY:300 options:nil];
     
 }
 #pragma mark- 设置导航栏
@@ -150,7 +150,7 @@
     [_scrollView addSubview:_firstView];
     //左分隔线
     _firstLeftView = [[UIView alloc]init];
-    _firstLeftView.backgroundColor = [UIColor orangeColor];
+    _firstLeftView.backgroundColor = orangeColor;
     [_scrollView addSubview:_firstLeftView];
     //服务领域
     _fieldLabel = [[UILabel alloc]init];
@@ -161,7 +161,7 @@
     _fieldLabel.text = @"服务·领域";
     //又分隔线
     _firstRightView = [[UIView alloc]init];
-    _firstRightView.backgroundColor = [UIColor orangeColor];
+    _firstRightView.backgroundColor = orangeColor;
     [_scrollView addSubview:_firstRightView];
     //领域内容
 //    CGFloat maxWidth = [UIScreen mainScreen].bounds.size.width - 35 * 2;
@@ -179,7 +179,7 @@
     [_scrollView addSubview:_secondView];
     //分隔线
     _secondLeftView = [[UIView alloc]init];
-    _secondLeftView.backgroundColor = [UIColor orangeColor];
+    _secondLeftView.backgroundColor = orangeColor;
     [_scrollView  addSubview:_secondLeftView];
     //个人简介
     _personLabel = [[UILabel alloc]init];
@@ -190,7 +190,7 @@
     _personLabel.text = @"个人·简介";
     //右分隔线
     _secondRightView = [[UIView alloc]init];
-    _secondRightView.backgroundColor = [UIColor orangeColor];
+    _secondRightView.backgroundColor = orangeColor;
     [_scrollView addSubview:_secondRightView];
     //个人内容
     _personContent = [[UILabel alloc]init];
@@ -388,12 +388,12 @@
     [delegate.tabBar tabBarHidden:NO animated:NO];
     
 }
--(void)dealloc
-{
-    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
-    [_scrollView removeFromSuperview];
-    _scrollView = nil;
-}
+//-(void)dealloc
+//{
+//    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
+//    [_scrollView removeFromSuperview];
+//    _scrollView = nil;
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

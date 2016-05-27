@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  CircleReleaseVC.h
 //  JinZhiT
 //
-//  Created by Eugene on 16/5/3.
+//  Created by Eugene on 16/5/26.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CircleReleaseVC : UIViewController
 
 @end
-

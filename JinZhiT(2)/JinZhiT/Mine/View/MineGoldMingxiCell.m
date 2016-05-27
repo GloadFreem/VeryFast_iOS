@@ -119,12 +119,12 @@
 //    _titleLabel.backgroundColor = [UIColor redColor];
     _titleLabel.font = BGFont(19);
     _titleLabel.textAlignment = NSTextAlignmentLeft;
-    _titleLabel.textColor = [UIColor orangeColor];
+    _titleLabel.textColor = orangeColor;
     
     _numLabel = [UILabel new];
     _numLabel.font = BGFont(19);
     _numLabel.textAlignment = NSTextAlignmentRight;
-    _numLabel.textColor = [UIColor orangeColor];
+    _numLabel.textColor = orangeColor;
     
     _contentLabel = [UILabel new];
 //    _contentLabel.backgroundColor = [UIColor greenColor];

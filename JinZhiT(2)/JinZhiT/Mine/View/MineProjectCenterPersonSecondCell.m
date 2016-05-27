@@ -57,7 +57,7 @@
     [self.contentView addSubview:_iconImage];
     //状态
     _statusImage = [UIImageView new];
-    _statusImage.backgroundColor = [UIColor orangeColor];
+    _statusImage.backgroundColor = orangeColor;
     [self.contentView addSubview:_statusImage];
     //项目名字
     _projectLabel = [UILabel new];
@@ -152,24 +152,24 @@
     //忽略btn
     _ignoreBtn = [UIButton new];
     [_ignoreBtn setTitle:@"忽略" forState:UIControlStateNormal];
-    [_ignoreBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [_ignoreBtn setTitleColor:orangeColor forState:UIControlStateNormal];
     [_ignoreBtn.titleLabel setFont:BGFont(16)];
     _ignoreBtn.backgroundColor = [UIColor whiteColor];
     _ignoreBtn.layer.cornerRadius = 3;
     _ignoreBtn.layer.masksToBounds = YES;
     _ignoreBtn.layer.borderWidth = 1;
-    _ignoreBtn.layer.borderColor = [UIColor orangeColor].CGColor;
+    _ignoreBtn.layer.borderColor = orangeColor.CGColor;
     [self.contentView addSubview:_ignoreBtn];
     //查看btn
     _inspectBtn = [UIButton new];
     [_inspectBtn setTitle:@"查看项目" forState:UIControlStateNormal];
     [_inspectBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_inspectBtn.titleLabel setFont:BGFont(16)];
-    _inspectBtn.backgroundColor = [UIColor orangeColor];
+    _inspectBtn.backgroundColor = orangeColor;
     _inspectBtn.layer.cornerRadius = 3;
     _inspectBtn.layer.masksToBounds = YES;
     _inspectBtn.layer.borderWidth = 1;
-    _inspectBtn.layer.borderColor = [UIColor orangeColor].CGColor;
+    _inspectBtn.layer.borderColor = orangeColor.CGColor;
     [self.contentView addSubview:_inspectBtn];
     
     [_topView mas_makeConstraints:^(MASConstraintMaker *make) {

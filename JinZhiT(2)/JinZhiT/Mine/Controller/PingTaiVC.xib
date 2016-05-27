@@ -16,10 +16,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pingtai_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-W8-OXF">
-                    <rect key="frame" x="147" y="56" width="81" height="81"/>
+                    <rect key="frame" x="147" y="30" width="81" height="81"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金指投  V3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP7-2B-gcT">
-                    <rect key="frame" x="139.5" y="147" width="95" height="17"/>
+                    <rect key="frame" x="139.5" y="121" width="95" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="p2F-S1-iby"/>
                     </constraints>
@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京金指投信息科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elt-IW-mOP">
-                    <rect key="frame" x="96.5" y="182" width="182" height="21"/>
+                    <rect key="frame" x="96.5" y="153" width="182" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="HB9-j4-iaq"/>
                     </constraints>
@@ -37,20 +37,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FF0-Od-BcN">
-                    <rect key="frame" x="0.0" y="255" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="209" width="375" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="iqQ-Ry-9WE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="平台介绍" image="youjiantou">
                         <color key="titleColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帮助中心" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXC-7m-Bn2">
-                    <rect key="frame" x="20" y="318" width="56" height="14"/>
+                    <rect key="frame" x="20" y="265" width="56" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="y59-ka-gdT"/>
                     </constraints>
@@ -59,56 +59,69 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naf-bO-tIv">
-                    <rect key="frame" x="0.0" y="337" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="284" width="375" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="lP9-b3-kxU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="新手指南" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEV-IN-hur">
-                    <rect key="frame" x="20" y="379" width="355" height="1"/>
+                    <rect key="frame" x="20" y="326" width="355" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="z6b-O8-5lG"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-yb-QRB">
-                    <rect key="frame" x="0.0" y="381" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="328" width="375" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="DeR-GI-Tfb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="用户协议" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZh-Z3-D75">
-                    <rect key="frame" x="20" y="424" width="355" height="1"/>
+                    <rect key="frame" x="20" y="371" width="355" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="c4a-tr-rFb"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="ztT-Ki-vNY"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBD-4o-JRI">
+                    <rect key="frame" x="0.0" y="431" width="375" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Ie6-c2-3uV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="意见反馈" image="youjiantou">
+                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-Bw-3Ig">
-                    <rect key="frame" x="0.0" y="425" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="372" width="375" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Hjo-bC-vUk"/>
                         <constraint firstAttribute="height" constant="44" id="ZJD-1g-fcH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="免责申明" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -118,26 +131,13 @@
                         </mask>
                     </variation>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xBD-4o-JRI">
-                    <rect key="frame" x="0.0" y="487" width="375" height="44"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Ie6-c2-3uV"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="意见反馈" image="youjiantou">
-                        <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Elt-IW-mOP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1nw-UQ-Btn"/>
-                <constraint firstItem="Elt-IW-mOP" firstAttribute="top" secondItem="xP7-2B-gcT" secondAttribute="bottom" constant="18" id="1vP-tx-dPo"/>
+                <constraint firstItem="Elt-IW-mOP" firstAttribute="top" secondItem="xP7-2B-gcT" secondAttribute="bottom" constant="15" id="1vP-tx-dPo"/>
                 <constraint firstItem="eEV-IN-hur" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="3Rw-ya-EHu"/>
-                <constraint firstItem="SXC-7m-Bn2" firstAttribute="top" secondItem="FF0-Od-BcN" secondAttribute="bottom" constant="19" id="7Oj-Nk-CFx"/>
+                <constraint firstItem="SXC-7m-Bn2" firstAttribute="top" secondItem="FF0-Od-BcN" secondAttribute="bottom" constant="12" id="7Oj-Nk-CFx"/>
                 <constraint firstItem="naf-bO-tIv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8s5-Zu-QGL"/>
                 <constraint firstAttribute="trailing" secondItem="xBD-4o-JRI" secondAttribute="trailing" id="95i-Oy-AKP"/>
                 <constraint firstAttribute="trailing" secondItem="eaI-yb-QRB" secondAttribute="trailing" id="97C-hQ-bKH"/>
@@ -147,12 +147,12 @@
                 <constraint firstItem="xP7-2B-gcT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D2E-Se-AnJ"/>
                 <constraint firstItem="gNM-W8-OXF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="H6A-YS-tty"/>
                 <constraint firstAttribute="trailing" secondItem="w8A-Bw-3Ig" secondAttribute="trailing" id="HES-bH-l2K"/>
-                <constraint firstItem="gNM-W8-OXF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="56" id="HbF-qf-d02"/>
+                <constraint firstItem="gNM-W8-OXF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="HbF-qf-d02"/>
                 <constraint firstItem="w8A-Bw-3Ig" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jpm-fN-Kt8"/>
                 <constraint firstAttribute="trailing" secondItem="XZh-Z3-D75" secondAttribute="trailing" id="Jtq-0Z-Cvx"/>
                 <constraint firstItem="xBD-4o-JRI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K2E-bT-xAH"/>
                 <constraint firstItem="naf-bO-tIv" firstAttribute="top" secondItem="SXC-7m-Bn2" secondAttribute="bottom" constant="5" id="KuN-CO-Lgo"/>
-                <constraint firstItem="FF0-Od-BcN" firstAttribute="top" secondItem="Elt-IW-mOP" secondAttribute="bottom" constant="52" id="WY6-nM-pGd"/>
+                <constraint firstItem="FF0-Od-BcN" firstAttribute="top" secondItem="Elt-IW-mOP" secondAttribute="bottom" constant="35" id="WY6-nM-pGd"/>
                 <constraint firstItem="XZh-Z3-D75" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Wym-LD-F1I"/>
                 <constraint firstItem="Elt-IW-mOP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-19.5" id="baQ-mH-2GI"/>
                 <constraint firstItem="XZh-Z3-D75" firstAttribute="top" secondItem="eaI-yb-QRB" secondAttribute="bottom" constant="-1" id="cMW-ej-yCi"/>
@@ -163,7 +163,7 @@
                 <constraint firstItem="eaI-yb-QRB" firstAttribute="top" secondItem="naf-bO-tIv" secondAttribute="bottom" id="pWU-R9-cPY"/>
                 <constraint firstAttribute="trailing" secondItem="naf-bO-tIv" secondAttribute="trailing" id="tQc-Dj-D18"/>
                 <constraint firstAttribute="trailing" secondItem="eEV-IN-hur" secondAttribute="trailing" id="uGS-IG-etA"/>
-                <constraint firstItem="xBD-4o-JRI" firstAttribute="top" secondItem="w8A-Bw-3Ig" secondAttribute="bottom" constant="18" id="uek-2w-DSO"/>
+                <constraint firstItem="xBD-4o-JRI" firstAttribute="top" secondItem="w8A-Bw-3Ig" secondAttribute="bottom" constant="15" id="uek-2w-DSO"/>
                 <constraint firstItem="FF0-Od-BcN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="waj-1u-Vrk"/>
                 <constraint firstItem="eaI-yb-QRB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xSN-N6-QIf"/>
             </constraints>
@@ -173,7 +173,7 @@
                     <exclude reference="baQ-mH-2GI"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="155.5" y="289.5"/>
+            <point key="canvasLocation" x="-79.5" y="285.5"/>
         </view>
     </objects>
     <resources>

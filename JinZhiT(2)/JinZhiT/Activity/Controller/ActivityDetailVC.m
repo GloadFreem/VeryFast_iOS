@@ -66,7 +66,7 @@
     }];
     //报名按钮
     _signUpBtn = [[UIButton alloc]init];
-    _signUpBtn.backgroundColor = [UIColor orangeColor];
+    _signUpBtn.backgroundColor = orangeColor;
     [_signUpBtn setTitle:@"我要报名" forState:UIControlStateNormal];
     [_signUpBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_signUpBtn.titleLabel setFont:BGFont(19)];

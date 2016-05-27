@@ -122,7 +122,7 @@
         make.height.mas_equalTo(15);
     }];
     _leftLine = [[UIView alloc]init];
-    _leftLine.backgroundColor = [UIColor orangeColor];
+    _leftLine.backgroundColor = orangeColor;
     [_scrollView addSubview:_leftLine];
     [_leftLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_personLabel);
@@ -131,7 +131,7 @@
         make.width.mas_equalTo(2);
     }];
     _rightLine = [[UIView alloc]init];
-    _rightLine.backgroundColor = [UIColor orangeColor];
+    _rightLine.backgroundColor = orangeColor;
     [_scrollView addSubview:_rightLine];
     [_rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_personLabel);
@@ -184,7 +184,7 @@
     }];
     
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_attentionBtn.mas_bottom).offset(20);
+        make.bottom.mas_equalTo(_attentionBtn.mas_bottom).offset(69);
     }];
     
 }
@@ -192,9 +192,27 @@
 -(void)btnClick:(UIButton*)btn
 {
     if (btn.tag == 60) {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
+    
+    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:NO animated:NO];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

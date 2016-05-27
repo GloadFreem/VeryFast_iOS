@@ -44,6 +44,10 @@
     self.imageViewArray = [temp copy];
 }
 
+-(void)setIdentityStr:(NSString *)identityStr
+{
+    _identityStr = identityStr;
+}
 -(void)setPictureStringArray:(NSArray *)pictureStringArray
 {
     _pictureStringArray = pictureStringArray;
@@ -60,9 +64,29 @@
         return;
     }
     //布局imageView
-    CGFloat imageW = 101*WIDTHCONFIG;
-    CGFloat imageH = 84*HEIGHTCONFIG;
-    CGFloat margin =5;
+    CGFloat w;
+    CGFloat h;
+    if ([_identityStr isEqualToString:@"activity"]) {
+        CGFloat imageW = 101*WIDTHCONFIG;
+        CGFloat imageH = 84*HEIGHTCONFIG;
+        CGFloat margin =5;
+        for (int index = 0; index < _pictureStringArray.count; index++) {
+            //计算imageView在几行几列
+            int row = index / 3;
+            int column = index % 3;
+            UIImageView *imageView = [_imageViewArray objectAtIndex:index];
+            imageView.hidden = NO;
+            imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
+            imageView.frame = CGRectMake((margin + imageW) * column, row * (margin + imageH), imageW, imageH);
+        }
+        w = 3 * imageW + 2 * margin;
+        int num = ceilf(_pictureStringArray.count * 1.0 / 3);
+        h = num * imageH + (num - 1) *margin;
+    }else{
+    
+    CGFloat imageW = (SCREENWIDTH - 30)/3;
+    CGFloat imageH = imageW;
+    CGFloat margin =7;
     for (int index = 0; index < _pictureStringArray.count; index++) {
         //计算imageView在几行几列
         int row = index / 3;
@@ -72,17 +96,17 @@
         imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
         imageView.frame = CGRectMake((margin + imageW) * column, row * (margin + imageH), imageW, imageH);
     }
-    CGFloat w = 3 * imageW + 2 * margin;
+    w = 3 * imageW + 2 * margin;
     int num = ceilf(_pictureStringArray.count * 1.0 / 3);
-    CGFloat h = num * imageH + (num - 1) *margin;
-    
+    h = num * imageH + (num - 1) *margin;
+    }
     
     self.height = h;
     self.width = w;
     
     self.fixedWith = @(w);
     self.fixedHeight = @(h);
-    NSLog(@"视图尺寸为：%lf   %lf",w,h);
+//    NSLog(@"视图尺寸为：%lf   %lf",w,h);
 }
 
 #pragma mark - private  actions

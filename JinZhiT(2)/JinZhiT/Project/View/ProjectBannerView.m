@@ -87,7 +87,7 @@
     [_leftBtn setTag:20];
     [_leftBtn setTitle:@"路演项目" forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_leftBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    [_leftBtn setTitleColor:orangeColor forState:UIControlStateSelected];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     [_leftBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     ;
@@ -111,7 +111,7 @@
     [_rightBtn setTitle:@"预选项目" forState:UIControlStateNormal];
     [_rightBtn setTag:21];
     [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_rightBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    [_rightBtn setTitleColor:orangeColor forState:UIControlStateSelected];
     //    [_rightBtn setBackgroundColor:[UIColor blackColor]];
     _rightBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     [_rightBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -129,7 +129,7 @@
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(kPAGEX, kPAGEY, kPAGEWIDTH, kPAGEHEIGHT)];
     _pageControl.numberOfPages =kImageCount;
     //    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    _pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
+    _pageControl.currentPageIndicatorTintColor = orangeColor;
     [self addSubview:_pageControl];
     
     //设置默认显示btn
@@ -148,11 +148,11 @@
 -(void)setColorWithNum:(NSInteger)num
 {
     if (num == 20) {
-        [_leftSliderBottomView setBackgroundColor:[UIColor orangeColor]];
+        [_leftSliderBottomView setBackgroundColor:orangeColor];
         [_rightSliderBottomView setBackgroundColor:[UIColor whiteColor]];
     }else{
         [_leftSliderBottomView setBackgroundColor:[UIColor whiteColor]];
-        [_rightSliderBottomView setBackgroundColor:[UIColor orangeColor]];
+        [_rightSliderBottomView setBackgroundColor:orangeColor];
     }
 }
 #pragma mark- button点击事件

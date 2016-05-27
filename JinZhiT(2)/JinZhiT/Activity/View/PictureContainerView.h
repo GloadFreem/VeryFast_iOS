@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSArray *pictureStringArray;
 
+@property (nonatomic, copy) NSString *identityStr;
+
 @end

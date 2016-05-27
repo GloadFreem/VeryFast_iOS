@@ -51,6 +51,7 @@ CGFloat maxPictureViewHeight = 0;  //根据具体情况来定
     }
     //图片
     _pictureContainerView = [PictureContainerView new];
+    _pictureContainerView.identityStr = @"activity";
     _pictureContainerView.backgroundColor =[UIColor redColor];
 //    if (maxPictureViewHeight == 0) {
 //        maxPictureViewHeight = 84;

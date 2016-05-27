@@ -17,7 +17,7 @@
 #import "ProjectDetailLeftView.h"
 #import "ProjectDetailSceneView.h"
 #define defaultLineColor [UIColor blueColor]
-#define selectTitleColor [UIColor orangeColor]
+#define selectTitleColor orangeColor
 #define unselectTitleColor [UIColor blackColor]
 #define titleFont [UIFont systemFontOfSize:16]
 
@@ -52,7 +52,7 @@
     [_scrollView addSubview:bannerView];                     //添加广告栏
     
     _titleArray = @[@"详情",@"成员",@"现场"];
-    _lineColor = [UIColor orangeColor];
+    _lineColor = orangeColor;
     _type = 0;
     [_scrollView addSubview:self.titleScrollView];          //添加点击按钮
     [_scrollView addSubview:self.subViewScrollView];        //添加最下边scrollview

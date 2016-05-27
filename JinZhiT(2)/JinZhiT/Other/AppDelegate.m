@@ -16,6 +16,9 @@
 #import "RegisterViewController.h"
 #import "SetPassWordViewController.h"
 #import "MyNavViewController.h"
+
+#import "IQKeyboardManager.h"
+
 @interface AppDelegate ()
 
 @end
@@ -34,6 +37,14 @@
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:login];
     [_window setRootViewController:nav];
     [_window makeKeyAndVisible];
+    
+    //设置键盘防遮挡输入框
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = YES;
+    
     return YES;
 }
 
@@ -61,7 +72,7 @@
     self.tabBar.showCenterItem = YES;
     self.tabBar.centerItemImage = [UIImage imageNamed:@"mine.png"];
     self.tabBar.viewControllers = @[navProject,navInvest,navCircle,navActivity];
-    self.tabBar.textColor = [UIColor orangeColor];
+    self.tabBar.textColor = orangeColor;
     MyNavViewController *navMine = [[MyNavViewController alloc]initWithRootViewController:[[MineViewController alloc]init]];
     self.tabBar.centerViewController = navMine;
     

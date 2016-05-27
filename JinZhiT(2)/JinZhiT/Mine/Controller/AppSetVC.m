@@ -56,7 +56,7 @@
     [leaveBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [leaveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     leaveBtn.titleLabel.font = BGFont(17);
-    [leaveBtn setBackgroundColor:[UIColor orangeColor]];
+    [leaveBtn setBackgroundColor:orangeColor];
     leaveBtn.layer.cornerRadius = 3;
     leaveBtn.layer.masksToBounds = YES;
     [leaveBtn addTarget:self action:@selector(leaveBtnClick:) forControlEvents:UIControlEventTouchUpInside];

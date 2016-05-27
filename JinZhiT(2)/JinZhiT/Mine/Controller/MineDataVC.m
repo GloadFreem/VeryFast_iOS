@@ -96,7 +96,7 @@
     
     //底部button
     _bottomBtn = [UIButton new];
-    _bottomBtn.backgroundColor = [UIColor orangeColor];
+    _bottomBtn.backgroundColor = orangeColor;
     [_bottomBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _bottomBtn.titleLabel.font = BGFont(17);
     [self.view addSubview:_bottomBtn];
@@ -122,16 +122,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 85*HEIGHTCONFIG;
+        return 98*HEIGHTCONFIG;
     }
 
     if (indexPath.row == 6) {
-        return 8*HEIGHTCONFIG;
+        return 9*HEIGHTCONFIG;
     }
     if (indexPath.row == 2) {
-        return 31*HEIGHTCONFIG;
+        return 35*HEIGHTCONFIG;
     }
-    return 37*HEIGHTCONFIG;
+    return 44*HEIGHTCONFIG;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

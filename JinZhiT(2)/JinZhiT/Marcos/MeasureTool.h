@@ -15,7 +15,11 @@
 #define WIDTHCONFIG ([[UIScreen mainScreen] bounds].size.width/375.0)
 #define HEIGHTCONFIG ([[UIScreen mainScreen] bounds].size.height/667.0)
 #define color(r,g,b,al) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:al]
+#define color47  color(47,47,47,1)
+#define color74  color(74,74,74,1)
+#define orangeColor  color(255,103,0,1)
 
+#define colorGray   color(230,230,230,1)
 #define BGFont(size) [UIFont systemFontOfSize:size]
 
 #endif /* MeasureTool_h */

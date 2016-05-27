@@ -18,7 +18,7 @@
 #import "InvestThinkTankDetailVC.h"
 
 #define defaultLineColor [UIColor blueColor]
-#define selectTitleColor [UIColor orangeColor]
+#define selectTitleColor orangeColor
 #define unselectTitleColor [UIColor blackColor]
 #define titleFont [UIFont systemFontOfSize:16]
 
@@ -59,7 +59,7 @@
     
     _titleArray = @[@" 投资人",@" 投资机构",@" 智囊团"];
     _imageArray = @[@"touziren-icon",@"iconfont-jigouT",@"iconfont-danaoT"];
-    _lineColor = [UIColor orangeColor];
+    _lineColor = orangeColor;
     _type = 0;
     [self.view addSubview:self.titleScrollView];          //添加点击按钮
     [self.view addSubview:self.subViewScrollView];        //添加最下边scrollview
@@ -67,12 +67,12 @@
 
 -(void)createUI
 {
-    UILabel * titleLabel =[[UILabel alloc]init];
-    titleLabel.text = @"项目";
-    [titleLabel sizeToFit];
-    [titleLabel setTextColor:[UIColor whiteColor]];
-    self.navigationItem.titleView=titleLabel;
-    
+//    UILabel * titleLabel =[[UILabel alloc]init];
+//    titleLabel.text = @"项目";
+//    [titleLabel sizeToFit];
+//    [titleLabel setTextColor:[UIColor whiteColor]];
+//    self.navigationItem.titleView=titleLabel;
+    self.navigationItem.title = @"投资人";
 }
 
 
@@ -146,13 +146,7 @@
         //方向锁
         _subViewScrollView.directionalLockEnabled = YES;
         
-//        NSArray *colorArr = @[[UIColor lightGrayColor],[UIColor cyanColor],[UIColor greenColor]];
-//        for (int i = 0; i<_titleArray.count; i++) {
-//            
-//            UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(i*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-64-49-40)];
-//            subview.backgroundColor = colorArr[i%colorArr.count];
-//            [_subViewScrollView addSubview:subview];
-//        }
+
         //添加tableView
         _investPersonTableView = [[UITableView alloc]init];
         [self createTableView:_investPersonTableView index:0];
@@ -312,7 +306,7 @@
     
     if (_tableViewSelected == 1) {
         InvestPersonDetailViewController *vc = [InvestPersonDetailViewController new];
-        [self presentViewController:vc animated:NO completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     if (_tableViewSelected == 3) {
         InvestThinkTankDetailVC * vc = [InvestThinkTankDetailVC new];
