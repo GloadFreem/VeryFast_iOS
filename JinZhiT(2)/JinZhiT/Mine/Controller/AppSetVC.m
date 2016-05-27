@@ -63,7 +63,7 @@
     [self.view addSubview:leaveBtn];
     
     [leaveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_tableView.mas_bottom).offset(100);
+        make.top.mas_equalTo(_tableView.mas_bottom).offset(50);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(312*WIDTHCONFIG);
         make.height.mas_equalTo(39*HEIGHTCONFIG);

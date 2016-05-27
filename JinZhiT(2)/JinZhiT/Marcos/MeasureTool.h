@@ -18,7 +18,7 @@
 #define color47  color(47,47,47,1)
 #define color74  color(74,74,74,1)
 #define orangeColor  color(255,103,0,1)
-
+#define colorBlue    color(0,160,233,1)
 #define colorGray   color(230,230,230,1)
 #define BGFont(size) [UIFont systemFontOfSize:size]
 

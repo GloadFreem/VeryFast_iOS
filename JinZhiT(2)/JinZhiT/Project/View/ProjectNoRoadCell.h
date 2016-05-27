@@ -14,4 +14,17 @@
 
 @interface ProjectNoRoadCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *projectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *personNumLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *middleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+
 @end

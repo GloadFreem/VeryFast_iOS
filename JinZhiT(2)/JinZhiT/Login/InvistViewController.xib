@@ -28,7 +28,7 @@
                         <constraint firstAttribute="width" constant="20" id="1iL-qw-HcT"/>
                         <constraint firstAttribute="height" constant="20" id="J6P-je-d5J"/>
                     </constraints>
-                    <state key="normal" backgroundImage="Left-arrow-button.png"/>
+                    <state key="normal" backgroundImage="leftBack"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资领域" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDV-nW-CKm">
                     <rect key="frame" x="147" y="27.5" width="80" height="24"/>
@@ -66,7 +66,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Left-arrow-button.png" width="30" height="30"/>
+        <image name="leftBack" width="12" height="20"/>
         <image name="矩形-1-拷贝" width="375" height="44"/>
     </resources>
 </document>

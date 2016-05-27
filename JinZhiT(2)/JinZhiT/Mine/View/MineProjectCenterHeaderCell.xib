@@ -29,7 +29,7 @@
                     <constraint firstAttribute="bottom" secondItem="ud7-kY-VIn" secondAttribute="bottom" id="bix-GT-6CC"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="headerLabel" destination="ud7-kY-VIn" id="Wwv-kZ-1V8"/>
             </connections>

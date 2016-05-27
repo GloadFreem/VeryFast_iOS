@@ -27,7 +27,7 @@
                         <constraint firstAttribute="height" constant="20" id="9ld-qS-M2Z"/>
                         <constraint firstAttribute="width" constant="20" id="rDn-30-hfZ"/>
                     </constraints>
-                    <state key="normal" backgroundImage="Left-arrow-button.png"/>
+                    <state key="normal" backgroundImage="leftBack"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实名认证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqu-uz-Mbz">
                     <rect key="frame" x="151" y="24" width="72" height="21.5"/>
@@ -241,9 +241,9 @@
         </view>
     </objects>
     <resources>
-        <image name="Left-arrow-button.png" width="30" height="30"/>
         <image name="imagebj" width="150" height="90"/>
         <image name="jiahao" width="20" height="20"/>
+        <image name="leftBack" width="12" height="20"/>
         <image name="youjiantou" width="7" height="13"/>
         <image name="矩形-1-拷贝" width="375" height="44"/>
     </resources>

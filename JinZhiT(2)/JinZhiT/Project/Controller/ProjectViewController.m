@@ -15,6 +15,8 @@
 #import "ProjectNoRoadCell.h"
 #import "ProjectBannerView.h"
 #import "ProjectDetailController.h"
+
+#define BannerHeight   235
 @interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -36,7 +38,7 @@
     
     _selectedCellNum = 20;
     
-    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.75+40)];
+    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, BannerHeight*HEIGHTCONFIG)];
     [bannerView setSelectedNum:20];
     _tableView.tableHeaderView = bannerView;
      NSArray * arr = [NSArray array];
@@ -130,6 +132,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_selectedCellNum == 20) {
+        return 172;
+    }
     return 172;
 }
 
