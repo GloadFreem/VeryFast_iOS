@@ -22,6 +22,16 @@
 #pragma mark -创建内部视图
 -(void)createUI
 {
+    _topView = [UIView new];
+    _topView.backgroundColor = colorGray;
+    [self addSubview:_topView];
+    [_topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left);
+        make.top.mas_equalTo(self.mas_top);
+        make.right.mas_equalTo(self.mas_right);
+        make.height.mas_equalTo(10);
+    }];
+    
     //项目头像
     UIImage * projectImage = [UIImage imageNamed:@"drafts"];
     _projectImage = [[UIImageView alloc]initWithImage:projectImage];

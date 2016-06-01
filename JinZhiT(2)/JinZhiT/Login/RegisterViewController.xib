@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
+                <outlet property="certifyBtn" destination="voJ-8g-7P0" id="HUE-3x-MhH"/>
+                <outlet property="selectedBtn" destination="vOs-nT-ceR" id="9XY-NP-0Be"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -150,6 +152,9 @@
                                     <exclude reference="2fe-Cf-eXw"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="selectedBtnClick:" destination="-1" eventType="touchUpInside" id="6gI-qZ-xIs"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已阅读并同意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rI7-fF-aTy">
                             <rect key="frame" x="23" y="0.0" width="78" height="13"/>

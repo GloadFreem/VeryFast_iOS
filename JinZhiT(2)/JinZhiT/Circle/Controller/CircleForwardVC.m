@@ -76,7 +76,7 @@
         make.left.mas_equalTo(self.view.mas_left);
         make.top.mas_equalTo(self.view.mas_top);
         make.right.mas_equalTo(self.view.mas_right);
-        make.height.mas_equalTo(120);
+        make.height.mas_equalTo(120*HEIGHTCONFIG);
     }];
     //转发内容容器
     _containerView = [UIView new];
@@ -85,9 +85,9 @@
     
     [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
-        make.top.mas_equalTo(_textView.mas_bottom).offset(10);
+        make.top.mas_equalTo(_textView.mas_bottom).offset(10*HEIGHTCONFIG);
         make.right.mas_equalTo(self.view.mas_right);
-        make.height.mas_equalTo(60);
+        make.height.mas_equalTo(60*HEIGHTCONFIG);
     }];
     //头像
     _iconImage = [UIImageView new];
@@ -95,9 +95,9 @@
     _iconImage.layer.masksToBounds = YES;
     [_containerView addSubview:_iconImage];
     [_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_containerView.mas_left).offset(12);
-        make.top.mas_equalTo(_containerView.mas_top).offset(10);
-        make.width.height.mas_equalTo(40);
+        make.left.mas_equalTo(_containerView.mas_left).offset(12*WIDTHCONFIG);
+        make.top.mas_equalTo(_containerView.mas_top).offset(10*HEIGHTCONFIG);
+        make.width.height.mas_equalTo(40*WIDTHCONFIG);
     }];
     //标题
     _titleLabel = [UILabel new];
@@ -106,9 +106,9 @@
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     [_containerView addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(_iconImage.mas_right).offset(5);
-        make.top.mas_equalTo(_containerView.mas_top).offset(9);
-        make.height.mas_equalTo(15);
+        make.left.mas_equalTo(_iconImage.mas_right).offset(5*WIDTHCONFIG);
+        make.top.mas_equalTo(_containerView.mas_top).offset(9*HEIGHTCONFIG);
+        make.height.mas_equalTo(15*HEIGHTCONFIG);
     }];
     //内容
     _contentLabel = [UILabel new];
@@ -118,9 +118,9 @@
     [_containerView addSubview:_contentLabel];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_titleLabel.mas_left);
-        make.top.mas_equalTo(_titleLabel.mas_bottom).offset(7);
-        make.height.mas_equalTo(13);
-        make.right.mas_equalTo(_containerView.mas_right).offset(-12);
+        make.top.mas_equalTo(_titleLabel.mas_bottom).offset(7*HEIGHTCONFIG);
+        make.height.mas_equalTo(13*HEIGHTCONFIG);
+        make.right.mas_equalTo(_containerView.mas_right).offset(-12*WIDTHCONFIG);
     }];
     
 }
@@ -154,6 +154,8 @@
     if (btn.tag == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
+    if (btn.tag == 1) {
+        NSLog(@"点击转发按钮");
+    }
 }
 @end

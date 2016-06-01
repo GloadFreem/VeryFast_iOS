@@ -10,6 +10,8 @@
 #import "SetPassWordViewController.h"
 @interface RegisterViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *certifyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *selectedBtn;
 @end
 
 @implementation RegisterViewController
@@ -17,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _certifyBtn.layer.cornerRadius = 5;
+    _certifyBtn.layer.masksToBounds = YES;
 }
 
 #pragma mark --- leftBackBtn  Action
@@ -29,6 +33,10 @@
     
     SetPassWordViewController * set = [SetPassWordViewController new];
     [self.navigationController pushViewController:set animated:YES];
+}
+
+- (IBAction)selectedBtnClick:(UIButton *)sender {
+    
 }
 
 - (void)didReceiveMemoryWarning {

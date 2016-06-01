@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440701D41CFE7E39006D4406 /* CircleDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701D31CFE7E39006D4406 /* CircleDetailHeaderView.m */; };
+		440701D71CFE8A3A006D4406 /* CircleDetailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701D61CFE8A3A006D4406 /* CircleDetailCommentCell.m */; };
+		440701DA1CFE8F55006D4406 /* CircleDetailCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701D91CFE8F55006D4406 /* CircleDetailCommentModel.m */; };
+		440701E11CFEC39E006D4406 /* WSetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701DF1CFEC39E006D4406 /* WSetPassWordViewController.m */; };
+		440701E21CFEC39E006D4406 /* WSetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440701E01CFEC39E006D4406 /* WSetPassWordViewController.xib */; };
+		440701E51CFED99A006D4406 /* ProjectDetailLeftHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701E41CFED99A006D4406 /* ProjectDetailLeftHeaderCell.m */; };
+		440701E81CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701E71CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m */; };
+		440701EB1CFF0038006D4406 /* ProjectDetailLeftTeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701EA1CFF0038006D4406 /* ProjectDetailLeftTeamCell.m */; };
+		440701EF1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701ED1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m */; };
+		440701F31CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 440701F21CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m */; };
 		440A94741CF29C4C002426E8 /* money_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 440A945E1CF29C4C002426E8 /* money_icon@2x.png */; };
 		440A94751CF29C4C002426E8 /* money_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 440A945F1CF29C4C002426E8 /* money_icon@3x.png */; };
 		440A94761CF29C4C002426E8 /* iconfont-bill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 440A94601CF29C4C002426E8 /* iconfont-bill@2x.png */; };
@@ -58,8 +68,6 @@
 		440A94CD1CF32817002426E8 /* MineAttentionInvestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440A94CB1CF32817002426E8 /* MineAttentionInvestCell.xib */; };
 		440A94D11CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A94CF1CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.m */; };
 		440A94D21CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440A94D01CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.xib */; };
-		440B96891CDDB1A0004F76B1 /* WSetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440B96861CDDB1A0004F76B1 /* WSetPassWordViewController.m */; };
-		440B968A1CDDB1A0004F76B1 /* WSetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440B96871CDDB1A0004F76B1 /* WSetPassWordViewController.xib */; };
 		440B96971CDDCA93004F76B1 /* DetailAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440B96951CDDCA93004F76B1 /* DetailAreaViewController.m */; };
 		440B96981CDDCA93004F76B1 /* DetailAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440B96961CDDCA93004F76B1 /* DetailAreaViewController.xib */; };
 		440B969C1CDDD8FB004F76B1 /* UpProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440B969A1CDDD8FB004F76B1 /* UpProjectViewController.m */; };
@@ -130,7 +138,6 @@
 		4434238A1CF6F3E7005F5E19 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4434237C1CF6F3E7005F5E19 /* IQKeyboardManager.bundle */; };
 		44520C511CE56A4400AFF3F5 /* ProjectDetailMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44520C501CE56A4400AFF3F5 /* ProjectDetailMemberView.m */; };
 		44520C531CE56A5800AFF3F5 /* ProjectDetailMemberView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44520C521CE56A5800AFF3F5 /* ProjectDetailMemberView.xib */; };
-		44520C561CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44520C551CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.m */; };
 		44520C5D1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44520C5B1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.m */; };
 		44520C5E1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44520C5C1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.xib */; };
 		4452E3BB1CDDAA8C00BF2A01 /* SetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447A2C801CDAE22C00686DA7 /* SetPassWordViewController.m */; };
@@ -149,16 +156,6 @@
 		44716FED1CF7F5FD00BA203E /* InvestCommitProjectPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44716FEB1CF7F5FD00BA203E /* InvestCommitProjectPCell.xib */; };
 		44716FF11CF817D300BA203E /* InvestCommitProjectReasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FEF1CF817D300BA203E /* InvestCommitProjectReasonCell.m */; };
 		44716FF21CF817D300BA203E /* InvestCommitProjectReasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44716FF01CF817D300BA203E /* InvestCommitProjectReasonCell.xib */; };
-		4471700B1CF8438900BA203E /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FF51CF8438900BA203E /* MWCaptionView.m */; };
-		4471700C1CF8438900BA203E /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FF81CF8438900BA203E /* MWGridCell.m */; };
-		4471700D1CF8438900BA203E /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FFA1CF8438900BA203E /* MWGridViewController.m */; };
-		4471700E1CF8438900BA203E /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FFC1CF8438900BA203E /* MWPhoto.m */; };
-		4471700F1CF8438900BA203E /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44716FFE1CF8438900BA203E /* MWPhotoBrowser.m */; };
-		447170101CF8438900BA203E /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447170021CF8438900BA203E /* MWTapDetectingImageView.m */; };
-		447170111CF8438900BA203E /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447170041CF8438900BA203E /* MWTapDetectingView.m */; };
-		447170121CF8438900BA203E /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 447170061CF8438900BA203E /* MWZoomingScrollView.m */; };
-		447170131CF8438900BA203E /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 447170081CF8438900BA203E /* UIImage+Crop.m */; };
-		447170141CF8438900BA203E /* UIImage+MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471700A1CF8438900BA203E /* UIImage+MWPhotoBrowser.m */; };
 		4471701D1CF84D2B00BA203E /* CircleForwardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471701C1CF84D2B00BA203E /* CircleForwardVC.m */; };
 		447170201CF857AF00BA203E /* CircleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4471701F1CF857AF00BA203E /* CircleDetailVC.m */; };
 		4474B95E1CDC28BD00142EB4 /* RenzhengViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474B95C1CDC28BD00142EB4 /* RenzhengViewController.m */; };
@@ -268,7 +265,6 @@
 		449E9A501CF4556D0077ABB7 /* MineProjectCenterPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 449E9A4F1CF4556D0077ABB7 /* MineProjectCenterPersonModel.m */; };
 		44A34B821CDB86A3002ECA6D /* RegistSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A34B801CDB86A3002ECA6D /* RegistSuccessViewController.m */; };
 		44A34B831CDB86A3002ECA6D /* RegistSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A34B811CDB86A3002ECA6D /* RegistSuccessViewController.xib */; };
-		44AC0B681CE1AB240097668B /* ProjectDetailFirstHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B671CE1AB240097668B /* ProjectDetailFirstHeaderView.xib */; };
 		44AC0BCE1CE1ACD70097668B /* ...............................................................@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B6A1CE1ACD70097668B /* ...............................................................@2x.png */; };
 		44AC0BCF1CE1ACD70097668B /* ...............................................................@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B6B1CE1ACD70097668B /* ...............................................................@3x.png */; };
 		44AC0BD01CE1ACD70097668B /* 2011年5月13日-Intersection,-Seoul@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B6C1CE1ACD70097668B /* 2011年5月13日-Intersection,-Seoul@2x.png */; };
@@ -661,6 +657,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		440701D21CFE7E39006D4406 /* CircleDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailHeaderView.h; sourceTree = "<group>"; };
+		440701D31CFE7E39006D4406 /* CircleDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailHeaderView.m; sourceTree = "<group>"; };
+		440701D51CFE8A3A006D4406 /* CircleDetailCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailCommentCell.h; sourceTree = "<group>"; };
+		440701D61CFE8A3A006D4406 /* CircleDetailCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailCommentCell.m; sourceTree = "<group>"; };
+		440701D81CFE8F55006D4406 /* CircleDetailCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailCommentModel.h; sourceTree = "<group>"; };
+		440701D91CFE8F55006D4406 /* CircleDetailCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailCommentModel.m; sourceTree = "<group>"; };
+		440701DE1CFEC39E006D4406 /* WSetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSetPassWordViewController.h; sourceTree = "<group>"; };
+		440701DF1CFEC39E006D4406 /* WSetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSetPassWordViewController.m; sourceTree = "<group>"; };
+		440701E01CFEC39E006D4406 /* WSetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSetPassWordViewController.xib; sourceTree = "<group>"; };
+		440701E31CFED99A006D4406 /* ProjectDetailLeftHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftHeaderCell.h; sourceTree = "<group>"; };
+		440701E41CFED99A006D4406 /* ProjectDetailLeftHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftHeaderCell.m; sourceTree = "<group>"; };
+		440701E61CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftHeaderModel.h; sourceTree = "<group>"; };
+		440701E71CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftHeaderModel.m; sourceTree = "<group>"; };
+		440701E91CFF0038006D4406 /* ProjectDetailLeftTeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftTeamCell.h; sourceTree = "<group>"; };
+		440701EA1CFF0038006D4406 /* ProjectDetailLeftTeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftTeamCell.m; sourceTree = "<group>"; };
+		440701EC1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftFooterCell.h; sourceTree = "<group>"; };
+		440701ED1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftFooterCell.m; sourceTree = "<group>"; };
+		440701F11CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftFooterModel.h; sourceTree = "<group>"; };
+		440701F21CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftFooterModel.m; sourceTree = "<group>"; };
 		440A945E1CF29C4C002426E8 /* money_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money_icon@2x.png"; sourceTree = "<group>"; };
 		440A945F1CF29C4C002426E8 /* money_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money_icon@3x.png"; sourceTree = "<group>"; };
 		440A94601CF29C4C002426E8 /* iconfont-bill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-bill@2x.png"; sourceTree = "<group>"; };
@@ -718,9 +733,6 @@
 		440A94CE1CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineAttentionInvestOrganizationCell.h; sourceTree = "<group>"; };
 		440A94CF1CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineAttentionInvestOrganizationCell.m; sourceTree = "<group>"; };
 		440A94D01CF32CBF002426E8 /* MineAttentionInvestOrganizationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineAttentionInvestOrganizationCell.xib; sourceTree = "<group>"; };
-		440B96861CDDB1A0004F76B1 /* WSetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSetPassWordViewController.m; sourceTree = "<group>"; };
-		440B96871CDDB1A0004F76B1 /* WSetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSetPassWordViewController.xib; sourceTree = "<group>"; };
-		440B96881CDDB1A0004F76B1 /* WSetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSetPassWordViewController.h; sourceTree = "<group>"; };
 		440B96941CDDCA93004F76B1 /* DetailAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAreaViewController.h; sourceTree = "<group>"; };
 		440B96951CDDCA93004F76B1 /* DetailAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAreaViewController.m; sourceTree = "<group>"; };
 		440B96961CDDCA93004F76B1 /* DetailAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAreaViewController.xib; sourceTree = "<group>"; };
@@ -819,8 +831,6 @@
 		44520C4F1CE56A4400AFF3F5 /* ProjectDetailMemberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailMemberView.h; sourceTree = "<group>"; };
 		44520C501CE56A4400AFF3F5 /* ProjectDetailMemberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailMemberView.m; sourceTree = "<group>"; };
 		44520C521CE56A5800AFF3F5 /* ProjectDetailMemberView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailMemberView.xib; sourceTree = "<group>"; };
-		44520C541CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailFirstHeaderView.h; sourceTree = "<group>"; };
-		44520C551CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailFirstHeaderView.m; sourceTree = "<group>"; };
 		44520C5A1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailSceneRightCell.h; sourceTree = "<group>"; };
 		44520C5B1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailSceneRightCell.m; sourceTree = "<group>"; };
 		44520C5C1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailSceneRightCell.xib; sourceTree = "<group>"; };
@@ -848,29 +858,6 @@
 		44716FEE1CF817D300BA203E /* InvestCommitProjectReasonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestCommitProjectReasonCell.h; sourceTree = "<group>"; };
 		44716FEF1CF817D300BA203E /* InvestCommitProjectReasonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestCommitProjectReasonCell.m; sourceTree = "<group>"; };
 		44716FF01CF817D300BA203E /* InvestCommitProjectReasonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvestCommitProjectReasonCell.xib; sourceTree = "<group>"; };
-		44716FF41CF8438900BA203E /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
-		44716FF51CF8438900BA203E /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
-		44716FF61CF8438900BA203E /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
-		44716FF71CF8438900BA203E /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
-		44716FF81CF8438900BA203E /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
-		44716FF91CF8438900BA203E /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
-		44716FFA1CF8438900BA203E /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
-		44716FFB1CF8438900BA203E /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
-		44716FFC1CF8438900BA203E /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
-		44716FFD1CF8438900BA203E /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
-		44716FFE1CF8438900BA203E /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
-		44716FFF1CF8438900BA203E /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
-		447170001CF8438900BA203E /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
-		447170011CF8438900BA203E /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
-		447170021CF8438900BA203E /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
-		447170031CF8438900BA203E /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
-		447170041CF8438900BA203E /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
-		447170051CF8438900BA203E /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
-		447170061CF8438900BA203E /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
-		447170071CF8438900BA203E /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
-		447170081CF8438900BA203E /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
-		447170091CF8438900BA203E /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
-		4471700A1CF8438900BA203E /* UIImage+MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MWPhotoBrowser.m"; sourceTree = "<group>"; };
 		4471701B1CF84D2B00BA203E /* CircleForwardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleForwardVC.h; sourceTree = "<group>"; };
 		4471701C1CF84D2B00BA203E /* CircleForwardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleForwardVC.m; sourceTree = "<group>"; };
 		4471701E1CF857AF00BA203E /* CircleDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleDetailVC.h; sourceTree = "<group>"; };
@@ -1029,7 +1016,6 @@
 		44A34B7F1CDB86A3002ECA6D /* RegistSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistSuccessViewController.h; sourceTree = "<group>"; };
 		44A34B801CDB86A3002ECA6D /* RegistSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistSuccessViewController.m; sourceTree = "<group>"; };
 		44A34B811CDB86A3002ECA6D /* RegistSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistSuccessViewController.xib; sourceTree = "<group>"; };
-		44AC0B671CE1AB240097668B /* ProjectDetailFirstHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectDetailFirstHeaderView.xib; sourceTree = "<group>"; };
 		44AC0B6A1CE1ACD70097668B /* ...............................................................@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "...............................................................@2x.png"; sourceTree = "<group>"; };
 		44AC0B6B1CE1ACD70097668B /* ...............................................................@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "...............................................................@3x.png"; sourceTree = "<group>"; };
 		44AC0B6C1CE1ACD70097668B /* 2011年5月13日-Intersection,-Seoul@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2011年5月13日-Intersection,-Seoul@2x.png"; sourceTree = "<group>"; };
@@ -1732,36 +1718,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		44716FF31CF8438900BA203E /* MWPhoto */ = {
-			isa = PBXGroup;
-			children = (
-				44716FF41CF8438900BA203E /* MWCaptionView.h */,
-				44716FF51CF8438900BA203E /* MWCaptionView.m */,
-				44716FF61CF8438900BA203E /* MWCommon.h */,
-				44716FF71CF8438900BA203E /* MWGridCell.h */,
-				44716FF81CF8438900BA203E /* MWGridCell.m */,
-				44716FF91CF8438900BA203E /* MWGridViewController.h */,
-				44716FFA1CF8438900BA203E /* MWGridViewController.m */,
-				44716FFB1CF8438900BA203E /* MWPhoto.h */,
-				44716FFC1CF8438900BA203E /* MWPhoto.m */,
-				44716FFD1CF8438900BA203E /* MWPhotoBrowser.h */,
-				44716FFE1CF8438900BA203E /* MWPhotoBrowser.m */,
-				44716FFF1CF8438900BA203E /* MWPhotoBrowserPrivate.h */,
-				447170001CF8438900BA203E /* MWPhotoProtocol.h */,
-				447170011CF8438900BA203E /* MWTapDetectingImageView.h */,
-				447170021CF8438900BA203E /* MWTapDetectingImageView.m */,
-				447170031CF8438900BA203E /* MWTapDetectingView.h */,
-				447170041CF8438900BA203E /* MWTapDetectingView.m */,
-				447170051CF8438900BA203E /* MWZoomingScrollView.h */,
-				447170061CF8438900BA203E /* MWZoomingScrollView.m */,
-				447170071CF8438900BA203E /* UIImage+Crop.h */,
-				447170081CF8438900BA203E /* UIImage+Crop.m */,
-				447170091CF8438900BA203E /* UIImage+MWPhotoBrowser.h */,
-				4471700A1CF8438900BA203E /* UIImage+MWPhotoBrowser.m */,
-			);
-			path = MWPhoto;
-			sourceTree = "<group>";
-		};
 		4474B9791CDCD41300142EB4 /* LoginVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1868,9 +1824,9 @@
 				4474B9901CDCFBA800142EB4 /* PhoneCerityViewController.h */,
 				4474B9911CDCFBA800142EB4 /* PhoneCerityViewController.m */,
 				4474B9921CDCFBA800142EB4 /* PhoneCerityViewController.xib */,
-				440B96861CDDB1A0004F76B1 /* WSetPassWordViewController.m */,
-				440B96871CDDB1A0004F76B1 /* WSetPassWordViewController.xib */,
-				440B96881CDDB1A0004F76B1 /* WSetPassWordViewController.h */,
+				440701DE1CFEC39E006D4406 /* WSetPassWordViewController.h */,
+				440701DF1CFEC39E006D4406 /* WSetPassWordViewController.m */,
+				440701E01CFEC39E006D4406 /* WSetPassWordViewController.xib */,
 			);
 			name = WXLogin;
 			path = View;
@@ -2067,6 +2023,8 @@
 			children = (
 				443423421CF6B9A8005F5E19 /* CircleListModel.h */,
 				443423431CF6B9A8005F5E19 /* CircleListModel.m */,
+				440701D81CFE8F55006D4406 /* CircleDetailCommentModel.h */,
+				440701D91CFE8F55006D4406 /* CircleDetailCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2076,6 +2034,10 @@
 			children = (
 				443423451CF6BA87005F5E19 /* CircleListCell.h */,
 				443423461CF6BA87005F5E19 /* CircleListCell.m */,
+				440701D21CFE7E39006D4406 /* CircleDetailHeaderView.h */,
+				440701D31CFE7E39006D4406 /* CircleDetailHeaderView.m */,
+				440701D51CFE8A3A006D4406 /* CircleDetailCommentCell.h */,
+				440701D61CFE8A3A006D4406 /* CircleDetailCommentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2364,6 +2326,10 @@
 				448B10371CDF34C100F0F22A /* ProjectBannerModel.m */,
 				44EC1D771CF044B800E71740 /* ProjectLetterModel.h */,
 				44EC1D781CF044B800E71740 /* ProjectLetterModel.m */,
+				440701E61CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.h */,
+				440701E71CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m */,
+				440701F11CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.h */,
+				440701F21CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2381,11 +2347,14 @@
 				447BAB8C1CE03C8000EBD4D8 /* ProjectNoRoadCell.xib */,
 				44677C3C1CE0B4E300399552 /* ProjectDetailBannerView.h */,
 				44677C3D1CE0B4E300399552 /* ProjectDetailBannerView.m */,
-				44520C541CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.h */,
 				44B7A0E81CE6F81E0009B46D /* ProjectDetailLeftView.h */,
 				44B7A0E91CE6F81E0009B46D /* ProjectDetailLeftView.m */,
-				44520C551CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.m */,
-				44AC0B671CE1AB240097668B /* ProjectDetailFirstHeaderView.xib */,
+				440701E31CFED99A006D4406 /* ProjectDetailLeftHeaderCell.h */,
+				440701E41CFED99A006D4406 /* ProjectDetailLeftHeaderCell.m */,
+				440701E91CFF0038006D4406 /* ProjectDetailLeftTeamCell.h */,
+				440701EA1CFF0038006D4406 /* ProjectDetailLeftTeamCell.m */,
+				440701EC1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.h */,
+				440701ED1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m */,
 				44520C4F1CE56A4400AFF3F5 /* ProjectDetailMemberView.h */,
 				44520C501CE56A4400AFF3F5 /* ProjectDetailMemberView.m */,
 				44520C521CE56A5800AFF3F5 /* ProjectDetailMemberView.xib */,
@@ -2433,7 +2402,6 @@
 		449D95E01CD8498000D72769 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				44716FF31CF8438900BA203E /* MWPhoto */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -3327,8 +3295,8 @@
 				443423541CF6EBA2005F5E19 /* icon_releaseBtn@2x.png in Resources */,
 				44CEEB161CF59C9300EC09F5 /* MineRingCodeVC.xib in Resources */,
 				441EDF3E1CED9A3E0071AB2D /* iconfont-zan-拷贝@3x.png in Resources */,
-				44AC0B681CE1AB240097668B /* ProjectDetailFirstHeaderView.xib in Resources */,
 				44AC0C1E1CE1ACD80097668B /* icon_raised@2x .png in Resources */,
+				440701E21CFEC39E006D4406 /* WSetPassWordViewController.xib in Resources */,
 				44AC0C041CE1ACD80097668B /* iconfont-youjian@3x.png in Resources */,
 				4474B98E1CDCF27800142EB4 /* RegistNameTableViewCell.xib in Resources */,
 				44D25A541CD99820004A509B /* iconfont-denglu-(2)@3x.png in Resources */,
@@ -3541,7 +3509,6 @@
 				441EDF471CED9A3E0071AB2D /* 更多@2x.png in Resources */,
 				44EC1DA71CF064C600E71740 /* logo_close@3x.png in Resources */,
 				440A94C81CF32532002426E8 /* invest_roading.png in Resources */,
-				440B968A1CDDB1A0004F76B1 /* WSetPassWordViewController.xib in Resources */,
 				441EDF3D1CED9A3E0071AB2D /* iconfont-zan-拷贝@2x.png in Resources */,
 				44E537A81CE9D14B00FB1E95 /* write-share@3x.png in Resources */,
 				441EDF361CED9A3E0071AB2D /* a2a20e33762710.56b738f38ef83@3x.png in Resources */,
@@ -3741,6 +3708,7 @@
 				440A948D1CF29F43002426E8 /* MoneyAccountVC.m in Sources */,
 				4452E3BB1CDDAA8C00BF2A01 /* SetPassWordViewController.m in Sources */,
 				44CEEB221CF5A73E00EC09F5 /* PlatformIdentityVC.m in Sources */,
+				440701F31CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m in Sources */,
 				44716FEC1CF7F5FD00BA203E /* InvestCommitProjectPCell.m in Sources */,
 				44CE50311CEF102400671C59 /* UIView+SDExtension.m in Sources */,
 				44F365851CEAB73D001FE1C4 /* InvestPersonCell.m in Sources */,
@@ -3759,24 +3727,19 @@
 				447BAB8D1CE03C8000EBD4D8 /* ProjectNoRoadCell.m in Sources */,
 				449E9A491CF451270077ABB7 /* MineProjectCenterHeaderCell.m in Sources */,
 				447170201CF857AF00BA203E /* CircleDetailVC.m in Sources */,
-				44520C561CE5731800AFF3F5 /* ProjectDetailFirstHeaderView.m in Sources */,
 				44CE502A1CEF102400671C59 /* SDBrowserImageView.m in Sources */,
+				440701D41CFE7E39006D4406 /* CircleDetailHeaderView.m in Sources */,
 				447A2C7D1CDAC9DC00686DA7 /* RegisterViewController.m in Sources */,
 				44CE50261CEF102400671C59 /* TAPageControl.m in Sources */,
-				440B96891CDDB1A0004F76B1 /* WSetPassWordViewController.m in Sources */,
 				4434237E1CF6F3E7005F5E19 /* IQUIScrollView+Additions.m in Sources */,
 				443423891CF6F3E7005F5E19 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				447589DB1CDD807300AF366E /* InvistViewController.m in Sources */,
 				44B7A0EA1CE6F81E0009B46D /* ProjectDetailLeftView.m in Sources */,
 				4474B9631CDC40D800142EB4 /* IdentityTableViewCell.m in Sources */,
 				44716FF11CF817D300BA203E /* InvestCommitProjectReasonCell.m in Sources */,
-				4471700D1CF8438900BA203E /* MWGridViewController.m in Sources */,
 				44CEEB061CF585F000EC09F5 /* MyDataArrowCell.m in Sources */,
 				44CE50351CEF102400671C59 /* SDWebImageCompat.m in Sources */,
-				4471700B1CF8438900BA203E /* MWCaptionView.m in Sources */,
-				4471700C1CF8438900BA203E /* MWGridCell.m in Sources */,
 				44CE50371CEF102400671C59 /* SDWebImageDownloader.m in Sources */,
-				447170131CF8438900BA203E /* UIImage+Crop.m in Sources */,
 				449E9A4D1CF4531D0077ABB7 /* MineProjectCenterPersonSecondCell.m in Sources */,
 				44CE50301CEF102400671C59 /* SDRefreshView.m in Sources */,
 				449E99C91CF3E3DB0077ABB7 /* MineAttentionInvestThinkTankCell.m in Sources */,
@@ -3814,6 +3777,7 @@
 				44B7A1091CE7008B0009B46D /* MASConstraintMaker.m in Sources */,
 				44F365941CEAFBF1001FE1C4 /* InvestOrganizationSecondCell.m in Sources */,
 				44CEEAB11CF53F7000EC09F5 /* AppSetHeaderCell.m in Sources */,
+				440701EB1CFF0038006D4406 /* ProjectDetailLeftTeamCell.m in Sources */,
 				4465EF611CDBA87700180529 /* VerticalButton.m in Sources */,
 				44CE503F1CEF102400671C59 /* UIImageView+HighlightedWebCache.m in Sources */,
 				448B102E1CDEF1F100F0F22A /* MyNavViewController.m in Sources */,
@@ -3828,9 +3792,7 @@
 				443423871CF6F3E7005F5E19 /* IQTitleBarButtonItem.m in Sources */,
 				44E5377D1CE9A6D900FB1E95 /* ProjectDetailSceneView.m in Sources */,
 				4474B9931CDCFBA800142EB4 /* PhoneCerityViewController.m in Sources */,
-				447170121CF8438900BA203E /* MWZoomingScrollView.m in Sources */,
 				44CEEB101CF5881200EC09F5 /* MyDataNoArrowCell.m in Sources */,
-				447170111CF8438900BA203E /* MWTapDetectingView.m in Sources */,
 				44CE50231CEF102400671C59 /* TAAbstractDotView.m in Sources */,
 				44716FE31CF7EF6F00BA203E /* InvestCommitProjectVC.m in Sources */,
 				44FD96681CEFED7A007DE19D /* ActivityDetailCommentView.m in Sources */,
@@ -3846,16 +3808,18 @@
 				44CEEAAC1CF53E3B00EC09F5 /* AppSetSwitchCell.m in Sources */,
 				440A949B1CF2FC1C002426E8 /* MineAttentionVC.m in Sources */,
 				44F3658F1CEAF932001FE1C4 /* InvestOrganizationCell.m in Sources */,
+				440701E11CFEC39E006D4406 /* WSetPassWordViewController.m in Sources */,
 				442BB1621CE41B2B0039A007 /* ProjectDetailSceneMessageCell.m in Sources */,
 				44520C5D1CE6039900AFF3F5 /* ProjectDetailSceneRightCell.m in Sources */,
 				44540B651CEC43D100BCD8B9 /* InvestPersonWhiteImageView.m in Sources */,
 				44B7A10A1CE7008B0009B46D /* MASLayoutConstraint.m in Sources */,
 				44CE501E1CEF102400671C59 /* MLLabel.m in Sources */,
-				4471700E1CF8438900BA203E /* MWPhoto.m in Sources */,
+				440701E81CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m in Sources */,
 				44E961C41CEF71CB009F1C12 /* ActivityDetailExiciseContentCell.m in Sources */,
 				44CE503E1CEF102400671C59 /* UIImage+WebP.m in Sources */,
 				449D96171CD8592500D72769 /* InvestViewController.m in Sources */,
 				447589E31CDD830400AF366E /* InvistTableViewCell.m in Sources */,
+				440701D71CFE8A3A006D4406 /* CircleDetailCommentCell.m in Sources */,
 				44EC1D7F1CF062FA00E71740 /* MineViewController.m in Sources */,
 				44CE50271CEF102400671C59 /* SDCollectionViewCell.m in Sources */,
 				44540B611CEC1A9A00BCD8B9 /* ThinkTankCell.m in Sources */,
@@ -3865,9 +3829,7 @@
 				448B103C1CDF39D100F0F22A /* ProjectListCell.m in Sources */,
 				449E99D51CF3E9000077ABB7 /* MineActivityVC.m in Sources */,
 				44CEEB271CF5B29100EC09F5 /* MyDataCompanyVC.m in Sources */,
-				447170101CF8438900BA203E /* MWTapDetectingImageView.m in Sources */,
 				443423831CF6F3E7005F5E19 /* IQKeyboardManager.m in Sources */,
-				4471700F1CF8438900BA203E /* MWPhotoBrowser.m in Sources */,
 				4474B97C1CDCDF0200142EB4 /* NSString+Addition.m in Sources */,
 				44CE50331CEF102400671C59 /* NSData+ImageContentType.m in Sources */,
 				443423861CF6F3E7005F5E19 /* IQBarButtonItem.m in Sources */,
@@ -3879,6 +3841,7 @@
 				4474B9771CDC9BDD00142EB4 /* Renzheng4ViewController.m in Sources */,
 				44716FE71CF7F30A00BA203E /* InvestCommitProjectPersonCell.m in Sources */,
 				44CE50321CEF102400671C59 /* MKAnnotationView+WebCache.m in Sources */,
+				440701EF1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m in Sources */,
 				447A2C911CDB6C9100686DA7 /* ResetPassWordViewController.m in Sources */,
 				443423851CF6F3E7005F5E19 /* IQTextView.m in Sources */,
 				4471701D1CF84D2B00BA203E /* CircleForwardVC.m in Sources */,
@@ -3898,11 +3861,11 @@
 				44CE501D1CEF102400671C59 /* MLLabelLayoutManager.m in Sources */,
 				443423841CF6F3E7005F5E19 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				4474B98D1CDCF27800142EB4 /* RegistNameTableViewCell.m in Sources */,
-				447170141CF8438900BA203E /* UIImage+MWPhotoBrowser.m in Sources */,
 				448B10381CDF34C100F0F22A /* ProjectBannerModel.m in Sources */,
 				44A34B821CDB86A3002ECA6D /* RegistSuccessViewController.m in Sources */,
 				4474B9721CDC933B00142EB4 /* Renzheng3ViewController.m in Sources */,
 				44CE4FA01CEEEB5300671C59 /* UIView+SDAutoLayout.m in Sources */,
+				440701DA1CFE8F55006D4406 /* CircleDetailCommentModel.m in Sources */,
 				44B7A10D1CE7008B0009B46D /* NSArray+MASAdditions.m in Sources */,
 				44CE501A1CEF102400671C59 /* MLTextAttachment.m in Sources */,
 				44CEEAFC1CF57AE700EC09F5 /* MineDataVC.m in Sources */,
@@ -3916,6 +3879,7 @@
 				44FD96651CEFEA4A007DE19D /* ActivityDetailCommentCellModel.m in Sources */,
 				4474B96D1CDC7FE200142EB4 /* Renzheng2ViewController.m in Sources */,
 				44CE50241CEF102400671C59 /* TAAnimatedDotView.m in Sources */,
+				440701E51CFED99A006D4406 /* ProjectDetailLeftHeaderCell.m in Sources */,
 				4434234D1CF6E9D2005F5E19 /* CircleReleaseVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

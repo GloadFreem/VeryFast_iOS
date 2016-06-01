@@ -29,6 +29,9 @@
     _nextStup.layer.masksToBounds = YES;
     _nextStup.layer.borderColor = [[UIColor whiteColor] CGColor];
     _nextStup.layer.borderWidth = 1;
+    
+    _getVerifyBtn.layer.cornerRadius = 2;
+    _getVerifyBtn.layer.masksToBounds = YES;
 }
 //获取验证码
 - (IBAction)getVerify:(UIButton *)sender {

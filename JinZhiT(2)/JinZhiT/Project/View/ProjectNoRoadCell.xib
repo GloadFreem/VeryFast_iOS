@@ -186,8 +186,8 @@
                     <mask key="constraints">
                         <exclude reference="7Lf-k9-lHz"/>
                         <exclude reference="IlY-bY-eCs"/>
-                        <exclude reference="cRS-97-ATt"/>
                         <exclude reference="g0m-V6-eZ2"/>
+                        <exclude reference="cRS-97-ATt"/>
                         <exclude reference="4HU-5g-CAu"/>
                     </mask>
                 </variation>

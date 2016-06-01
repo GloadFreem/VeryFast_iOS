@@ -17,6 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    _certifyBtn.layer.cornerRadius = 5;
+    _certifyBtn.layer.masksToBounds = YES;
+    
+    _nextStepBtn.layer.cornerRadius = 22;
+    _nextStepBtn.layer.masksToBounds = 5;
+    
 }
 
 - (void)didReceiveMemoryWarning {

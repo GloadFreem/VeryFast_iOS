@@ -140,6 +140,13 @@
                     <constraint firstItem="oGl-PR-aNN" firstAttribute="leading" secondItem="P8k-QJ-eSf" secondAttribute="leading" id="yhk-JM-YGB"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="fifthLabel" destination="kYU-gd-T8c" id="diH-vg-3W1"/>
+                <outlet property="firstLabel" destination="Emf-bZ-BDb" id="tkB-y1-EHK"/>
+                <outlet property="fourthLabel" destination="puZ-tu-cjU" id="FaO-09-cFb"/>
+                <outlet property="secondLabel" destination="hly-QY-TKB" id="RGS-m9-F5i"/>
+                <outlet property="thirdLabel" destination="o8b-wV-4cu" id="K1l-su-E8F"/>
+            </connections>
             <point key="canvasLocation" x="198.5" y="324.5"/>
         </tableViewCell>
     </objects>

@@ -19,6 +19,19 @@
     return view;
 }
 
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    _leftBtn.layer.cornerRadius = 3;
+    _leftBtn.layer.masksToBounds = YES;
+    
+    _middleBtn.layer.cornerRadius = 3;
+    _middleBtn.layer.masksToBounds = YES;
+    
+    _rightBtn.layer.cornerRadius = 3;
+    _rightBtn.layer.masksToBounds = YES;
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

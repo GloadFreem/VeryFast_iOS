@@ -35,8 +35,8 @@
         //    [view refreshData];
         //计算View的高度
         
-        self.viewHeight = 320;
-        
+        self.viewHeight = 300;
+//        [self setupAutoHeightWithBottomView:_emailLabel bottomMargin:30];
         NSLog(@"实例化成员界面");
     }
     return self;
@@ -48,8 +48,4 @@
     
 }
 
-#pragma mark -计算高度
--(CGFloat)calculateViewHeight{
-    return CGRectGetMaxY(_emailLabel.frame)+30;
-}
 @end

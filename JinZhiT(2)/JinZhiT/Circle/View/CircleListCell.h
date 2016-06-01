@@ -17,6 +17,7 @@
 -(void)didClickPraiseBtnInCell:(CircleListCell*)cell andModel:(CircleListModel*)model;
 
 @end
+
 @interface CircleListCell : UITableViewCell
 
 @property (nonatomic, weak) id<CircleListCellDelegate> delegate;

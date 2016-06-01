@@ -133,6 +133,11 @@
                     <constraint firstItem="EWJ-ih-zuK" firstAttribute="top" secondItem="wXT-Vm-4cg" secondAttribute="bottom" constant="10" id="zua-jT-Yrh"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="leftBtn" destination="EWJ-ih-zuK" id="bPq-Ea-IEF"/>
+                <outlet property="middleBtn" destination="9VE-rz-hiO" id="FR3-uS-9kV"/>
+                <outlet property="rightBtn" destination="3kg-LA-2Wp" id="ibQ-8h-HJ7"/>
+            </connections>
             <point key="canvasLocation" x="424.5" y="94"/>
         </tableViewCell>
     </objects>

@@ -10,6 +10,7 @@
 
 @interface ProjectDetailLeftView : UIView<UIScrollViewDelegate>
 
+@property (nonatomic, strong) UIView *topView; //上边阴影区
 @property (nonatomic, strong) UIImageView * projectImage; // 项目头像
 @property (nonatomic, strong) UILabel *projectName;    //项目名字
 @property (nonatomic, strong) UIView *firstPartLine;   //第一条分隔线

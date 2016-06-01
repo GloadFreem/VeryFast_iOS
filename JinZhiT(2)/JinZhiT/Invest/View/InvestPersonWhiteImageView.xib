@@ -99,7 +99,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWC-7t-KBG">
-                    <rect key="frame" x="338" y="257" width="45" height="22"/>
+                    <rect key="frame" x="338" y="257" width="45" height="22.5"/>
                     <color key="backgroundColor" red="1" green="0.4432308506" blue="0.22156729850000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="45" id="B9q-Ni-rJX"/>
@@ -155,6 +155,16 @@
                 <constraint firstItem="hfH-Re-iX3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ycy-2V-WyM"/>
                 <constraint firstItem="ZWC-7t-KBG" firstAttribute="height" secondItem="la4-Bg-EcK" secondAttribute="height" id="zEr-ru-6Qj"/>
             </constraints>
+            <connections>
+                <outlet property="addressLabel" destination="4Tl-VW-Urr" id="S45-QO-fBX"/>
+                <outlet property="companyLabel" destination="ajV-r9-DaS" id="bri-ac-MKC"/>
+                <outlet property="iconImage" destination="OdT-q4-tbk" id="OrA-Ha-BSl"/>
+                <outlet property="leftBtn" destination="A0A-eo-Kin" id="WRH-Be-rzh"/>
+                <outlet property="middleBtn" destination="la4-Bg-EcK" id="IDZ-a4-1jz"/>
+                <outlet property="nameLabel" destination="vAy-6a-oDW" id="IYu-Ad-qeF"/>
+                <outlet property="positionLabel" destination="vnH-VZ-G1L" id="2oh-BU-aZv"/>
+                <outlet property="rightBtn" destination="ZWC-7t-KBG" id="DMz-ct-E1Z"/>
+            </connections>
         </view>
     </objects>
     <resources>

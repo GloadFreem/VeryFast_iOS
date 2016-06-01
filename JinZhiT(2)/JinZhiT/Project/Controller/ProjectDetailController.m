@@ -11,7 +11,7 @@
 #import "MeasureTool.h"
 
 #import "ProjectDetailBannerView.h"
-#import "ProjectDetailFirstHeaderView.h"
+
 #import "ProjectDetailMemberView.h"
 
 #import "ProjectDetailLeftView.h"

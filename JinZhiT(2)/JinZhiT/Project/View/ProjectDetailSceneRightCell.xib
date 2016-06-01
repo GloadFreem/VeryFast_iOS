@@ -14,29 +14,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="u=2343328600,711418469&amp;fm=21&amp;gp=0.png" translatesAutoresizingMaskIntoConstraints="NO" id="mlg-y1-IXR">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="u=2343328600,711418469&amp;fm=21&amp;gp=0.png" translatesAutoresizingMaskIntoConstraints="NO" id="mlg-y1-IXR">
                         <rect key="frame" x="322" y="20" width="33" height="33"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="LOVERAD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g24-Eo-df3" userLabel="nameLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOVERAD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g24-Eo-df3" userLabel="nameLabel">
                         <rect key="frame" x="307" y="58" width="63.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="北极光巴斯uaiajsncanc按擦三口阿基诺擦肩开那车按擦开车那块从哪看出你看了" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AH9-NF-XPx" userLabel="留言label">
-                        <rect key="frame" x="40" y="22" width="262" height="61"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北极光巴斯uaiajsncanc按擦三口阿基诺擦肩开那车按擦开车那块从哪看出你看了bacijcnakjcnakn难点的阿卡姆坑坑" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AH9-NF-XPx" userLabel="留言label">
+                        <rect key="frame" x="40" y="22" width="262" height="50.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.61176470588235299" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10 ：15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-ST-6Zm">
-                        <rect key="frame" x="163" y="88" width="48" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 : 15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-ST-6Zm">
+                        <rect key="frame" x="162" y="77.5" width="50" height="17"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="kgP-ZY-dgy"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="AH9-NF-XPx" firstAttribute="top" secondItem="mlg-y1-IXR" secondAttribute="top" constant="2" id="3HC-u0-hMb"/>
                     <constraint firstItem="g24-Eo-df3" firstAttribute="top" secondItem="mlg-y1-IXR" secondAttribute="bottom" constant="5" id="9AB-i9-amy"/>
@@ -50,7 +55,13 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="138.5" y="328"/>
+            <connections>
+                <outlet property="contentLabel" destination="AH9-NF-XPx" id="B8Q-Dn-FQk"/>
+                <outlet property="iconImage" destination="mlg-y1-IXR" id="fdc-CR-V0R"/>
+                <outlet property="nameLabel" destination="g24-Eo-df3" id="wae-6u-XYg"/>
+                <outlet property="timeLabel" destination="fd6-ST-6Zm" id="D5Q-nT-thx"/>
+            </connections>
+            <point key="canvasLocation" x="151.5" y="328"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -11,7 +11,10 @@
 @interface InvestPersonCell : UITableViewCell
 
 
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *middleBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

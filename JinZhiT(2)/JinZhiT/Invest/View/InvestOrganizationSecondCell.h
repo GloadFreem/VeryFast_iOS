@@ -11,6 +11,20 @@
 @interface InvestOrganizationSecondCell : UITableViewCell
 
 
+@property (weak, nonatomic) IBOutlet UILabel *firstLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *secondLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fourthLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *fifthLabel;
+
+
+
+
+
+
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
