@@ -22,4 +22,7 @@
 #define colorGray   color(230,230,230,1)
 #define BGFont(size) [UIFont systemFontOfSize:size]
 
+#define NUMBERFORTY 40
+#define NUMBERTHIRTY 30
+
 #endif /* MeasureTool_h */

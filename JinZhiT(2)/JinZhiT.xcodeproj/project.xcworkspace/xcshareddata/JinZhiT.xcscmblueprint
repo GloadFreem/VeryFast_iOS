@@ -1,0 +1,31 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "1a0beb16-39a9-491a-8432-0dfbb1476d54++7897" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1a0beb16-39a9-491a-8432-0dfbb1476d54++7897" : 0,
+    "AA5E2B662874715740F8A35A631A0A56546A45F4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A9295E31-90E9-4C76-A1B9-AC13FDF3BB91",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1a0beb16-39a9-491a-8432-0dfbb1476d54++7897" : "JinZhiT(2)\/JinZhiT\/Tools\/Camera\/UIImage-Extensions\/",
+    "AA5E2B662874715740F8A35A631A0A56546A45F4" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "JinZhiT",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "JinZhiT.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.duapp.com\/appid9kgedf0yca",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1a0beb16-39a9-491a-8432-0dfbb1476d54++7897"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GloadFreem\/VeryFast_iOS",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA5E2B662874715740F8A35A631A0A56546A45F4"
+    }
+  ]
+}

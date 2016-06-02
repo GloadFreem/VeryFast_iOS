@@ -32,5 +32,8 @@
 
 #pragma mark -searchbar
 
+#import "DialogUtil.h"
+#import "SDImageCache.h"
+
 
 #endif /* PrefixHeader_pch */

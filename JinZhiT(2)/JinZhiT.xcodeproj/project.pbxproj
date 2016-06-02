@@ -204,6 +204,21 @@
 		448834FC1D00200C006832E9 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F01D00200C006832E9 /* MWZoomingScrollView.m */; };
 		448834FD1D00200C006832E9 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F21D00200C006832E9 /* UIImage+Crop.m */; };
 		448834FE1D00200C006832E9 /* UIImage+MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F41D00200C006832E9 /* UIImage+MWPhotoBrowser.m */; };
+		448835041D00270B006832E9 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835011D00270B006832E9 /* DACircularProgressView.m */; };
+		448835051D00270B006832E9 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835031D00270B006832E9 /* DALabeledCircularProgressView.m */; };
+		4488351F1D002B2D006832E9 /* CustomImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835091D002B2D006832E9 /* CustomImagePickerController.m */; };
+		448835201D002B2D006832E9 /* IphoneScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488350B1D002B2D006832E9 /* IphoneScreen.m */; };
+		448835211D002B2D006832E9 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488350D1D002B2D006832E9 /* PECropRectView.m */; };
+		448835221D002B2D006832E9 /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488350F1D002B2D006832E9 /* PECropView.m */; };
+		448835231D002B2D006832E9 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835111D002B2D006832E9 /* PECropViewController.m */; };
+		448835241D002B2D006832E9 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835131D002B2D006832E9 /* PEResizeControl.m */; };
+		448835251D002B2D006832E9 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835161D002B2D006832E9 /* UIImage+Alpha.m */; };
+		448835261D002B2D006832E9 /* UIImage+Cut.m in Sources */ = {isa = PBXBuildFile; fileRef = 448835181D002B2D006832E9 /* UIImage+Cut.m */; };
+		448835271D002B2D006832E9 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488351A1D002B2D006832E9 /* UIImage+Resize.m */; };
+		448835281D002B2D006832E9 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488351C1D002B2D006832E9 /* UIImage+RoundedCorner.m */; };
+		448835291D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488351E1D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.m */; };
+		4488352F1D003A52006832E9 /* DialogUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488352C1D003A52006832E9 /* DialogUtil.m */; };
+		448835301D003A52006832E9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4488352E1D003A52006832E9 /* MBProgressHUD.m */; };
 		448B102B1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B102A1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m */; };
 		448B102E1CDEF1F100F0F22A /* MyNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B102D1CDEF1F100F0F22A /* MyNavViewController.m */; };
 		448B10301CDF0BF600F0F22A /* ProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448B102F1CDF0BF600F0F22A /* ProjectViewController.xib */; };
@@ -954,6 +969,39 @@
 		448834F21D00200C006832E9 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
 		448834F31D00200C006832E9 /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
 		448834F41D00200C006832E9 /* UIImage+MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MWPhotoBrowser.m"; sourceTree = "<group>"; };
+		448835001D00270B006832E9 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		448835011D00270B006832E9 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		448835021D00270B006832E9 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		448835031D00270B006832E9 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		448835071D002B2D006832E9 /* ColorMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMatrix.h; sourceTree = "<group>"; };
+		448835081D002B2D006832E9 /* CustomImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickerController.h; sourceTree = "<group>"; };
+		448835091D002B2D006832E9 /* CustomImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImagePickerController.m; sourceTree = "<group>"; };
+		4488350A1D002B2D006832E9 /* IphoneScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IphoneScreen.h; sourceTree = "<group>"; };
+		4488350B1D002B2D006832E9 /* IphoneScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IphoneScreen.m; sourceTree = "<group>"; };
+		4488350C1D002B2D006832E9 /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = "<group>"; };
+		4488350D1D002B2D006832E9 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropRectView.m; sourceTree = "<group>"; };
+		4488350E1D002B2D006832E9 /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropView.h; sourceTree = "<group>"; };
+		4488350F1D002B2D006832E9 /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropView.m; sourceTree = "<group>"; };
+		448835101D002B2D006832E9 /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropViewController.h; sourceTree = "<group>"; };
+		448835111D002B2D006832E9 /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
+		448835121D002B2D006832E9 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEResizeControl.h; sourceTree = "<group>"; };
+		448835131D002B2D006832E9 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
+		448835151D002B2D006832E9 /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		448835161D002B2D006832E9 /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		448835171D002B2D006832E9 /* UIImage+Cut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Cut.h"; sourceTree = "<group>"; };
+		448835181D002B2D006832E9 /* UIImage+Cut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Cut.m"; sourceTree = "<group>"; };
+		448835191D002B2D006832E9 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		4488351A1D002B2D006832E9 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		4488351B1D002B2D006832E9 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		4488351C1D002B2D006832E9 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		4488351D1D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SplitImageIntoTwoParts.h"; sourceTree = "<group>"; };
+		4488351E1D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SplitImageIntoTwoParts.m"; sourceTree = "<group>"; };
+		4488352B1D003A52006832E9 /* DialogUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogUtil.h; sourceTree = "<group>"; };
+		4488352C1D003A52006832E9 /* DialogUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogUtil.m; sourceTree = "<group>"; };
+		4488352D1D003A52006832E9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		4488352E1D003A52006832E9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		448835311D00523F006832E9 /* GlobalDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalDefine.h; sourceTree = "<group>"; };
+		448835321D005281006832E9 /* UConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UConstants.h; sourceTree = "<group>"; };
 		448B10291CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LYJ.h"; sourceTree = "<group>"; };
 		448B102A1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+LYJ.m"; sourceTree = "<group>"; };
 		448B102C1CDEF1F100F0F22A /* MyNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavViewController.h; sourceTree = "<group>"; };
@@ -1919,6 +1967,66 @@
 			path = MWPhoto;
 			sourceTree = "<group>";
 		};
+		448834FF1D00270B006832E9 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				448835001D00270B006832E9 /* DACircularProgressView.h */,
+				448835011D00270B006832E9 /* DACircularProgressView.m */,
+				448835021D00270B006832E9 /* DALabeledCircularProgressView.h */,
+				448835031D00270B006832E9 /* DALabeledCircularProgressView.m */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		448835061D002B2D006832E9 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				448835071D002B2D006832E9 /* ColorMatrix.h */,
+				448835081D002B2D006832E9 /* CustomImagePickerController.h */,
+				448835091D002B2D006832E9 /* CustomImagePickerController.m */,
+				4488350A1D002B2D006832E9 /* IphoneScreen.h */,
+				4488350B1D002B2D006832E9 /* IphoneScreen.m */,
+				4488350C1D002B2D006832E9 /* PECropRectView.h */,
+				4488350D1D002B2D006832E9 /* PECropRectView.m */,
+				4488350E1D002B2D006832E9 /* PECropView.h */,
+				4488350F1D002B2D006832E9 /* PECropView.m */,
+				448835101D002B2D006832E9 /* PECropViewController.h */,
+				448835111D002B2D006832E9 /* PECropViewController.m */,
+				448835121D002B2D006832E9 /* PEResizeControl.h */,
+				448835131D002B2D006832E9 /* PEResizeControl.m */,
+				448835141D002B2D006832E9 /* UIImage-Extensions */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		448835141D002B2D006832E9 /* UIImage-Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				448835151D002B2D006832E9 /* UIImage+Alpha.h */,
+				448835161D002B2D006832E9 /* UIImage+Alpha.m */,
+				448835171D002B2D006832E9 /* UIImage+Cut.h */,
+				448835181D002B2D006832E9 /* UIImage+Cut.m */,
+				448835191D002B2D006832E9 /* UIImage+Resize.h */,
+				4488351A1D002B2D006832E9 /* UIImage+Resize.m */,
+				4488351B1D002B2D006832E9 /* UIImage+RoundedCorner.h */,
+				4488351C1D002B2D006832E9 /* UIImage+RoundedCorner.m */,
+				4488351D1D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.h */,
+				4488351E1D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.m */,
+			);
+			path = "UIImage-Extensions";
+			sourceTree = "<group>";
+		};
+		4488352A1D003A52006832E9 /* dialog */ = {
+			isa = PBXGroup;
+			children = (
+				4488352B1D003A52006832E9 /* DialogUtil.h */,
+				4488352C1D003A52006832E9 /* DialogUtil.m */,
+				4488352D1D003A52006832E9 /* MBProgressHUD.h */,
+				4488352E1D003A52006832E9 /* MBProgressHUD.m */,
+			);
+			path = dialog;
+			sourceTree = "<group>";
+		};
 		449D95651CD8448D00D72769 = {
 			isa = PBXGroup;
 			children = (
@@ -2225,6 +2333,8 @@
 		449D95D01CD8498000D72769 /* Marcos */ = {
 			isa = PBXGroup;
 			children = (
+				448835321D005281006832E9 /* UConstants.h */,
+				448835311D00523F006832E9 /* GlobalDefine.h */,
 				449D96211CD86A0900D72769 /* MeasureTool.h */,
 			);
 			path = Marcos;
@@ -2475,6 +2585,9 @@
 		449D95E01CD8498000D72769 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4488352A1D003A52006832E9 /* dialog */,
+				448835061D002B2D006832E9 /* Camera */,
+				448834FF1D00270B006832E9 /* DACircularProgress */,
 				448834DD1D00200C006832E9 /* MWPhoto */,
 			);
 			path = Tools;
@@ -3813,6 +3926,7 @@
 				44B7A0EA1CE6F81E0009B46D /* ProjectDetailLeftView.m in Sources */,
 				4474B9631CDC40D800142EB4 /* IdentityTableViewCell.m in Sources */,
 				448834F91D00200C006832E9 /* MWPhotoBrowser.m in Sources */,
+				4488352F1D003A52006832E9 /* DialogUtil.m in Sources */,
 				44716FF11CF817D300BA203E /* InvestCommitProjectReasonCell.m in Sources */,
 				44CEEB061CF585F000EC09F5 /* MyDataArrowCell.m in Sources */,
 				44CE50351CEF102400671C59 /* SDWebImageCompat.m in Sources */,
@@ -3831,12 +3945,14 @@
 				44F365A31CEB202D001FE1C4 /* InvestThinkTankDetailVC.m in Sources */,
 				447589E81CDD8D3600AF366E /* AreaViewController.m in Sources */,
 				441EDEDF1CED62E40071AB2D /* UIView+Extension.m in Sources */,
+				448835041D00270B006832E9 /* DACircularProgressView.m in Sources */,
 				44CE50221CEF102400671C59 /* TTTAttributedLabel.m in Sources */,
 				448834FA1D00200C006832E9 /* MWTapDetectingImageView.m in Sources */,
 				44B7A1081CE7008B0009B46D /* MASConstraint.m in Sources */,
 				441EDF0B1CED98560071AB2D /* ActivityCell.m in Sources */,
 				44CE502C1CEF102400671C59 /* SDWaitingView.m in Sources */,
 				44B7A10C1CE7008B0009B46D /* MASViewConstraint.m in Sources */,
+				448835051D00270B006832E9 /* DALabeledCircularProgressView.m in Sources */,
 				449D95E11CD8498000D72769 /* AppDelegate.m in Sources */,
 				44CEEAA81CF53BB800EC09F5 /* AppSetVC.m in Sources */,
 				449D95731CD8448D00D72769 /* main.m in Sources */,
@@ -3848,6 +3964,7 @@
 				4474B95E1CDC28BD00142EB4 /* RenzhengViewController.m in Sources */,
 				44CEEAC71CF557B900EC09F5 /* PingTaiVC.m in Sources */,
 				44B7A10F1CE7008B0009B46D /* View+MASAdditions.m in Sources */,
+				448835251D002B2D006832E9 /* UIImage+Alpha.m in Sources */,
 				449E9A191CF4041E0077ABB7 /* MineGoldMingxiModel.m in Sources */,
 				44CE4F981CEEE7BD00671C59 /* ActivityDetailHeaderCell.m in Sources */,
 				449D96141CD8590D00D72769 /* ProjectViewController.m in Sources */,
@@ -3863,6 +3980,7 @@
 				448B102E1CDEF1F100F0F22A /* MyNavViewController.m in Sources */,
 				443423801CF6F3E7005F5E19 /* IQUIView+Hierarchy.m in Sources */,
 				44CE50391CEF102400671C59 /* SDWebImageManager.m in Sources */,
+				448835291D002B2D006832E9 /* UIImage+SplitImageIntoTwoParts.m in Sources */,
 				440B969C1CDDD8FB004F76B1 /* UpProjectViewController.m in Sources */,
 				44CE50291CEF102400671C59 /* UIView+SDExtension.m in Sources */,
 				443423441CF6B9A8005F5E19 /* CircleListModel.m in Sources */,
@@ -3885,6 +4003,8 @@
 				44CEEAB61CF54FDF00EC09F5 /* AppSetModifyPasswordVC.m in Sources */,
 				44CE4F9F1CEEEB5300671C59 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				449E9A0F1CF3F64F0077ABB7 /* MineGoldVC.m in Sources */,
+				448835261D002B2D006832E9 /* UIImage+Cut.m in Sources */,
+				448835201D002B2D006832E9 /* IphoneScreen.m in Sources */,
 				4434237F1CF6F3E7005F5E19 /* IQUITextFieldView+Additions.m in Sources */,
 				44B7A1101CE7008B0009B46D /* ViewController+MASAdditions.m in Sources */,
 				44CEEAAC1CF53E3B00EC09F5 /* AppSetSwitchCell.m in Sources */,
@@ -3896,6 +4016,7 @@
 				44540B651CEC43D100BCD8B9 /* InvestPersonWhiteImageView.m in Sources */,
 				44B7A10A1CE7008B0009B46D /* MASLayoutConstraint.m in Sources */,
 				44CE501E1CEF102400671C59 /* MLLabel.m in Sources */,
+				448835211D002B2D006832E9 /* PECropRectView.m in Sources */,
 				440701E81CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m in Sources */,
 				44E961C41CEF71CB009F1C12 /* ActivityDetailExiciseContentCell.m in Sources */,
 				44CE503E1CEF102400671C59 /* UIImage+WebP.m in Sources */,
@@ -3924,6 +4045,7 @@
 				4474B9771CDC9BDD00142EB4 /* Renzheng4ViewController.m in Sources */,
 				44716FE71CF7F30A00BA203E /* InvestCommitProjectPersonCell.m in Sources */,
 				44CE50321CEF102400671C59 /* MKAnnotationView+WebCache.m in Sources */,
+				448835281D002B2D006832E9 /* UIImage+RoundedCorner.m in Sources */,
 				440701EF1CFF0AFD006D4406 /* ProjectDetailLeftFooterCell.m in Sources */,
 				447A2C911CDB6C9100686DA7 /* ResetPassWordViewController.m in Sources */,
 				443423851CF6F3E7005F5E19 /* IQTextView.m in Sources */,
@@ -3931,7 +4053,10 @@
 				44B833371CE2D7570001807A /* ProjectBannerView.m in Sources */,
 				449E9A451CF450250077ABB7 /* MineProjectCenterVC.m in Sources */,
 				44CE50401CEF102400671C59 /* UIImageView+WebCache.m in Sources */,
+				448835231D002B2D006832E9 /* PECropViewController.m in Sources */,
 				4474B9681CDC50E400142EB4 /* EditTableViewCell.m in Sources */,
+				448835241D002B2D006832E9 /* PEResizeControl.m in Sources */,
+				448835221D002B2D006832E9 /* PECropView.m in Sources */,
 				448834FB1D00200C006832E9 /* MWTapDetectingView.m in Sources */,
 				449D961D1CD8595100D72769 /* CircleViewController.m in Sources */,
 				44CE50381CEF102400671C59 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3944,13 +4069,16 @@
 				440A94CC1CF32817002426E8 /* MineAttentionInvestCell.m in Sources */,
 				44CE4FA31CEF000900671C59 /* ActivityDetailHeaderModel.m in Sources */,
 				44CE501D1CEF102400671C59 /* MLLabelLayoutManager.m in Sources */,
+				4488351F1D002B2D006832E9 /* CustomImagePickerController.m in Sources */,
 				443423841CF6F3E7005F5E19 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				4474B98D1CDCF27800142EB4 /* RegistNameTableViewCell.m in Sources */,
 				448B10381CDF34C100F0F22A /* ProjectBannerModel.m in Sources */,
 				44A34B821CDB86A3002ECA6D /* RegistSuccessViewController.m in Sources */,
 				4474B9721CDC933B00142EB4 /* Renzheng3ViewController.m in Sources */,
+				448835271D002B2D006832E9 /* UIImage+Resize.m in Sources */,
 				44CE4FA01CEEEB5300671C59 /* UIView+SDAutoLayout.m in Sources */,
 				440701DA1CFE8F55006D4406 /* CircleDetailCommentModel.m in Sources */,
+				448835301D003A52006832E9 /* MBProgressHUD.m in Sources */,
 				44B7A10D1CE7008B0009B46D /* NSArray+MASAdditions.m in Sources */,
 				44CE501A1CEF102400671C59 /* MLTextAttachment.m in Sources */,
 				448834F61D00200C006832E9 /* MWGridCell.m in Sources */,

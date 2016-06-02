@@ -306,6 +306,11 @@
     
     if (_tableViewSelected == 1) {
         InvestPersonDetailViewController *vc = [InvestPersonDetailViewController new];
+        //隐藏tabbar
+        AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+        
+        [delegate.tabBar tabBarHidden:YES animated:NO];
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (_tableViewSelected == 3) {

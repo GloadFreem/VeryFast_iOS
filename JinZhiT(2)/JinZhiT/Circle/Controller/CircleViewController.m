@@ -123,6 +123,12 @@
 -(void)releaseBtnClick:(UIButton*)btn
 {
     CircleReleaseVC *vc = [CircleReleaseVC new];
+    
+    //隐藏tabbar
+    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:YES animated:NO];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
