@@ -10,7 +10,7 @@
 #import "PictureContainerView.h"
 
 CGFloat __maxContentLabelHeight = 0; //根据具体font来定
-CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
+
 
 @implementation ProjectDetailLeftHeaderCell
 {
@@ -67,6 +67,8 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     _statusLabel.textAlignment = NSTextAlignmentCenter;
     _statusLabel.textColor = [UIColor whiteColor];
     _statusLabel.numberOfLines = 3;
+    
+    _statusLabel.backgroundColor = [UIColor magentaColor];
     
     //项目图标
     UIImage *projectImage = [UIImage imageNamed:@"drafts"];
@@ -162,7 +164,7 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
     [_moreBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     
-    NSArray *views = @[_topView, _statusImage, _statusLabel, _iconImage, _projectLabel, _partLine, _goalImage, _goalLabel, _goalNumber, _achieveImage, _achieveLabel, _achieveNumber, _timeImage, _timeLabel, _timeNumber, _timeImage, _timeLabel, _timeNumber, _addressImage, _addressLabel, _addressContent, _contentLabel, _picContainerView, _moreBtn];
+    NSArray *views = @[_topView, _iconImage, _projectLabel, _partLine, _statusImage, _statusLabel, _goalImage, _goalLabel, _goalNumber, _achieveImage, _achieveLabel, _achieveNumber, _timeImage, _timeLabel, _timeNumber,  _addressImage, _addressLabel, _addressContent, _contentLabel, _picContainerView, _moreBtn];
     [self.contentView sd_addSubviews:views];
     
     UIView *contentView = self.contentView;
@@ -175,7 +177,7 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     
     _iconImage.sd_layout
     .leftSpaceToView(contentView, 13)
-    .topSpaceToView(contentView, 13)
+    .topSpaceToView(_topView, 13)
     .widthIs(16)
     .heightIs(20);
     
@@ -183,6 +185,7 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     .leftSpaceToView(_iconImage, 6)
     .centerYEqualToView(_iconImage)
     .heightIs(18);
+    [_projectLabel setSingleLineAutoResizeWithMaxWidth:150];
     
     _partLine.sd_layout
     .leftSpaceToView(contentView, 0)
@@ -198,7 +201,7 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     
     _statusLabel.sd_layout
     .topSpaceToView(contentView ,18)
-    .centerXEqualToView(_iconImage)
+    .centerXEqualToView(_statusImage)
     .widthIs(20)
     .heightIs(80);
     
@@ -212,15 +215,17 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     .leftSpaceToView(_goalImage, 4)
     .centerYEqualToView(_goalImage)
     .heightIs(14);
+    [_goalLabel setSingleLineAutoResizeWithMaxWidth:100];
     
     _goalNumber.sd_layout
     .leftSpaceToView(_goalLabel, 14)
     .centerYEqualToView(_goalImage)
     .heightIs(14);
+    [_goalNumber setSingleLineAutoResizeWithMaxWidth:100];
     
     _achieveImage.sd_layout
-    .topSpaceToView(_iconImage, 20)
-    .centerXEqualToView(_iconImage)
+    .topSpaceToView(_goalImage, 20)
+    .centerXEqualToView(_goalImage)
     .widthIs(16)
     .heightIs(16);
     
@@ -228,11 +233,13 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     .leftEqualToView(_goalLabel)
     .centerYEqualToView(_achieveImage)
     .heightIs(14);
+    [_achieveLabel setSingleLineAutoResizeWithMaxWidth:100];
     
     _achieveNumber.sd_layout
     .leftEqualToView(_goalNumber)
     .centerYEqualToView(_achieveImage)
     .heightIs(14);
+    [_achieveNumber setSingleLineAutoResizeWithMaxWidth:100];
     
     _timeImage.sd_layout
     .centerXEqualToView(_goalImage)
@@ -244,11 +251,13 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     .leftEqualToView(_goalLabel)
     .centerYEqualToView(_timeImage)
     .heightIs(14);
+    [_timeLabel setSingleLineAutoResizeWithMaxWidth:100];
     
     _timeNumber.sd_layout
     .leftEqualToView(_goalNumber)
     .centerYEqualToView(_timeImage)
     .heightIs(14);
+    [_timeLabel  setSingleLineAutoResizeWithMaxWidth:150];
     
     _addressImage.sd_layout
     .topSpaceToView(_timeImage, 20)
@@ -260,11 +269,13 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     .leftEqualToView(_goalLabel)
     .centerYEqualToView(_addressImage)
     .heightIs(14);
+    [_addressLabel setSingleLineAutoResizeWithMaxWidth:100];
     
     _addressContent.sd_layout
     .leftEqualToView(_goalNumber)
     .centerYEqualToView(_addressImage)
     .heightIs(14);
+    [_addressContent setSingleLineAutoResizeWithMaxWidth:150];
     
     _contentLabel.sd_layout
     .leftSpaceToView(contentView, 30)
@@ -297,17 +308,30 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     _addressContent.text = model.addressStr;
     [_addressContent sizeToFit];
     _statusLabel.text = model.statusStr;
+    _contentLabel.text = model.contentStr;
+    //默认显示一行数组
+    NSMutableArray *picArray = [NSMutableArray array];
     
-    _picContainerView.pictureStringArray = model.pictureArray;
     
     if (model.shouldShowMoreButton) {//如果文字超过三行
         if (model.isOpen) { //如果展开
+            _picContainerView.pictureStringArray = model.pictureArray;
             _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
             [_moreBtn setBackgroundImage:[UIImage imageNamed:@"收起"] forState:UIControlStateNormal];
         }else{
         _contentLabel.sd_layout.maxHeightIs(__maxContentLabelHeight);
         [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
-       }
+        
+            if (model.pictureArray.count > 3) {
+                for (NSInteger i =0; i<3; i++) {
+                    [picArray addObject:model.pictureArray[i]];
+                }
+                _picContainerView.pictureStringArray = picArray;
+                
+            }else{
+                _picContainerView.pictureStringArray = model.pictureArray;
+            }
+        }
     }
     
     CGFloat picContainerTopMargin = 0;
@@ -322,7 +346,7 @@ CGFloat __maxPictureViewHeight = 0;  //根据具体情况来定
     
 }
 
--(void)btnClick:(UIButton*)btn
+-(void)btnClick
 {
     if (self.moreButtonClickedBlock) {
         self.moreButtonClickedBlock(self.indexPath);

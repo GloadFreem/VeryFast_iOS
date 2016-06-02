@@ -7,6 +7,9 @@
 //
 
 #import "CircleReleaseVC.h"
+#import "MWPhotoBrowser.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+
 #define textViewContent @"发布最新、最热、最前沿的投融资话题"
 @interface CircleReleaseVC ()<UITextViewDelegate>
 @property (nonatomic, strong) UITextView *textView;

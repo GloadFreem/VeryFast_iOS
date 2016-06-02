@@ -192,6 +192,18 @@
 		447A2C921CDB6C9100686DA7 /* ResetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447A2C901CDB6C9100686DA7 /* ResetPassWordViewController.xib */; };
 		447BAB8D1CE03C8000EBD4D8 /* ProjectNoRoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 447BAB8B1CE03C8000EBD4D8 /* ProjectNoRoadCell.m */; };
 		447BAB8E1CE03C8000EBD4D8 /* ProjectNoRoadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 447BAB8C1CE03C8000EBD4D8 /* ProjectNoRoadCell.xib */; };
+		448834D91CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834D81CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.m */; };
+		448834DC1D0003AF006832E9 /* ProjectDetailInvestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834DB1D0003AF006832E9 /* ProjectDetailInvestVC.m */; };
+		448834F51D00200C006832E9 /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834DF1D00200C006832E9 /* MWCaptionView.m */; };
+		448834F61D00200C006832E9 /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834E21D00200C006832E9 /* MWGridCell.m */; };
+		448834F71D00200C006832E9 /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834E41D00200C006832E9 /* MWGridViewController.m */; };
+		448834F81D00200C006832E9 /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834E61D00200C006832E9 /* MWPhoto.m */; };
+		448834F91D00200C006832E9 /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834E81D00200C006832E9 /* MWPhotoBrowser.m */; };
+		448834FA1D00200C006832E9 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834EC1D00200C006832E9 /* MWTapDetectingImageView.m */; };
+		448834FB1D00200C006832E9 /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834EE1D00200C006832E9 /* MWTapDetectingView.m */; };
+		448834FC1D00200C006832E9 /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F01D00200C006832E9 /* MWZoomingScrollView.m */; };
+		448834FD1D00200C006832E9 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F21D00200C006832E9 /* UIImage+Crop.m */; };
+		448834FE1D00200C006832E9 /* UIImage+MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 448834F41D00200C006832E9 /* UIImage+MWPhotoBrowser.m */; };
 		448B102B1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B102A1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m */; };
 		448B102E1CDEF1F100F0F22A /* MyNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 448B102D1CDEF1F100F0F22A /* MyNavViewController.m */; };
 		448B10301CDF0BF600F0F22A /* ProjectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 448B102F1CDF0BF600F0F22A /* ProjectViewController.xib */; };
@@ -289,8 +301,8 @@
 		44AC0BE31CE1ACD80097668B /* iconfont-jine@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */; };
 		44AC0BE41CE1ACD80097668B /* iconfont-kefu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */; };
 		44AC0BE51CE1ACD80097668B /* iconfont-kefu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */; };
-		44AC0BE61CE1ACD80097668B /* iconfont-rocket-(1)@2x_26.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */; };
-		44AC0BE71CE1ACD80097668B /* iconfont-rocket-(1)@3x_61.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */; };
+		44AC0BE61CE1ACD80097668B /* iconfont-rocket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B821CE1ACD70097668B /* iconfont-rocket@2x.png */; };
+		44AC0BE71CE1ACD80097668B /* iconfont-rocket@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B831CE1ACD70097668B /* iconfont-rocket@3x.png */; };
 		44AC0BE81CE1ACD80097668B /* iconfont-rong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */; };
 		44AC0BE91CE1ACD80097668B /* iconfont-rong@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B851CE1ACD70097668B /* iconfont-rong@3x.png */; };
 		44AC0BEA1CE1ACD80097668B /* iconfont-shengyushijian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AC0B861CE1ACD70097668B /* iconfont-shengyushijian@2x.png */; };
@@ -915,6 +927,33 @@
 		447BAB8A1CE03C8000EBD4D8 /* ProjectNoRoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectNoRoadCell.h; sourceTree = "<group>"; };
 		447BAB8B1CE03C8000EBD4D8 /* ProjectNoRoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectNoRoadCell.m; sourceTree = "<group>"; };
 		447BAB8C1CE03C8000EBD4D8 /* ProjectNoRoadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectNoRoadCell.xib; sourceTree = "<group>"; };
+		448834D71CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailLeftTeamModel.h; sourceTree = "<group>"; };
+		448834D81CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailLeftTeamModel.m; sourceTree = "<group>"; };
+		448834DA1D0003AF006832E9 /* ProjectDetailInvestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailInvestVC.h; sourceTree = "<group>"; };
+		448834DB1D0003AF006832E9 /* ProjectDetailInvestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailInvestVC.m; sourceTree = "<group>"; };
+		448834DE1D00200C006832E9 /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
+		448834DF1D00200C006832E9 /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
+		448834E01D00200C006832E9 /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
+		448834E11D00200C006832E9 /* MWGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridCell.h; sourceTree = "<group>"; };
+		448834E21D00200C006832E9 /* MWGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridCell.m; sourceTree = "<group>"; };
+		448834E31D00200C006832E9 /* MWGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWGridViewController.h; sourceTree = "<group>"; };
+		448834E41D00200C006832E9 /* MWGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWGridViewController.m; sourceTree = "<group>"; };
+		448834E51D00200C006832E9 /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhoto.h; sourceTree = "<group>"; };
+		448834E61D00200C006832E9 /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhoto.m; sourceTree = "<group>"; };
+		448834E71D00200C006832E9 /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowser.h; sourceTree = "<group>"; };
+		448834E81D00200C006832E9 /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWPhotoBrowser.m; sourceTree = "<group>"; };
+		448834E91D00200C006832E9 /* MWPhotoBrowserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoBrowserPrivate.h; sourceTree = "<group>"; };
+		448834EA1D00200C006832E9 /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWPhotoProtocol.h; sourceTree = "<group>"; };
+		448834EB1D00200C006832E9 /* MWTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingImageView.h; sourceTree = "<group>"; };
+		448834EC1D00200C006832E9 /* MWTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingImageView.m; sourceTree = "<group>"; };
+		448834ED1D00200C006832E9 /* MWTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWTapDetectingView.h; sourceTree = "<group>"; };
+		448834EE1D00200C006832E9 /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWTapDetectingView.m; sourceTree = "<group>"; };
+		448834EF1D00200C006832E9 /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWZoomingScrollView.h; sourceTree = "<group>"; };
+		448834F01D00200C006832E9 /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWZoomingScrollView.m; sourceTree = "<group>"; };
+		448834F11D00200C006832E9 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		448834F21D00200C006832E9 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		448834F31D00200C006832E9 /* UIImage+MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MWPhotoBrowser.h"; sourceTree = "<group>"; };
+		448834F41D00200C006832E9 /* UIImage+MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MWPhotoBrowser.m"; sourceTree = "<group>"; };
 		448B10291CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LYJ.h"; sourceTree = "<group>"; };
 		448B102A1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+LYJ.m"; sourceTree = "<group>"; };
 		448B102C1CDEF1F100F0F22A /* MyNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavViewController.h; sourceTree = "<group>"; };
@@ -1040,8 +1079,8 @@
 		44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-jine@3x.png"; sourceTree = "<group>"; };
 		44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@2x.png"; sourceTree = "<group>"; };
 		44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-kefu@3x.png"; sourceTree = "<group>"; };
-		44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket-(1)@2x_26.png"; sourceTree = "<group>"; };
-		44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket-(1)@3x_61.png"; sourceTree = "<group>"; };
+		44AC0B821CE1ACD70097668B /* iconfont-rocket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket@2x.png"; sourceTree = "<group>"; };
+		44AC0B831CE1ACD70097668B /* iconfont-rocket@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rocket@3x.png"; sourceTree = "<group>"; };
 		44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rong@2x.png"; sourceTree = "<group>"; };
 		44AC0B851CE1ACD70097668B /* iconfont-rong@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-rong@3x.png"; sourceTree = "<group>"; };
 		44AC0B861CE1ACD70097668B /* iconfont-shengyushijian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-shengyushijian@2x.png"; sourceTree = "<group>"; };
@@ -1850,6 +1889,36 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		448834DD1D00200C006832E9 /* MWPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				448834DE1D00200C006832E9 /* MWCaptionView.h */,
+				448834DF1D00200C006832E9 /* MWCaptionView.m */,
+				448834E01D00200C006832E9 /* MWCommon.h */,
+				448834E11D00200C006832E9 /* MWGridCell.h */,
+				448834E21D00200C006832E9 /* MWGridCell.m */,
+				448834E31D00200C006832E9 /* MWGridViewController.h */,
+				448834E41D00200C006832E9 /* MWGridViewController.m */,
+				448834E51D00200C006832E9 /* MWPhoto.h */,
+				448834E61D00200C006832E9 /* MWPhoto.m */,
+				448834E71D00200C006832E9 /* MWPhotoBrowser.h */,
+				448834E81D00200C006832E9 /* MWPhotoBrowser.m */,
+				448834E91D00200C006832E9 /* MWPhotoBrowserPrivate.h */,
+				448834EA1D00200C006832E9 /* MWPhotoProtocol.h */,
+				448834EB1D00200C006832E9 /* MWTapDetectingImageView.h */,
+				448834EC1D00200C006832E9 /* MWTapDetectingImageView.m */,
+				448834ED1D00200C006832E9 /* MWTapDetectingView.h */,
+				448834EE1D00200C006832E9 /* MWTapDetectingView.m */,
+				448834EF1D00200C006832E9 /* MWZoomingScrollView.h */,
+				448834F01D00200C006832E9 /* MWZoomingScrollView.m */,
+				448834F11D00200C006832E9 /* UIImage+Crop.h */,
+				448834F21D00200C006832E9 /* UIImage+Crop.m */,
+				448834F31D00200C006832E9 /* UIImage+MWPhotoBrowser.h */,
+				448834F41D00200C006832E9 /* UIImage+MWPhotoBrowser.m */,
+			);
+			path = MWPhoto;
+			sourceTree = "<group>";
+		};
 		449D95651CD8448D00D72769 = {
 			isa = PBXGroup;
 			children = (
@@ -2313,6 +2382,8 @@
 				44677C371CE0953C00399552 /* ProjectDetailController.h */,
 				44677C381CE0953C00399552 /* ProjectDetailController.m */,
 				44677C391CE0953C00399552 /* ProjectDetailController.xib */,
+				448834DA1D0003AF006832E9 /* ProjectDetailInvestVC.h */,
+				448834DB1D0003AF006832E9 /* ProjectDetailInvestVC.m */,
 				44FD96691CEFFBBE007DE19D /* ProjectLetterViewController.h */,
 				44FD966A1CEFFBBE007DE19D /* ProjectLetterViewController.m */,
 			);
@@ -2328,6 +2399,8 @@
 				44EC1D781CF044B800E71740 /* ProjectLetterModel.m */,
 				440701E61CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.h */,
 				440701E71CFEDC80006D4406 /* ProjectDetailLeftHeaderModel.m */,
+				448834D71CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.h */,
+				448834D81CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.m */,
 				440701F11CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.h */,
 				440701F21CFF0DC5006D4406 /* ProjectDetailLeftFooterModel.m */,
 			);
@@ -2402,6 +2475,7 @@
 		449D95E01CD8498000D72769 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				448834DD1D00200C006832E9 /* MWPhoto */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2520,8 +2594,8 @@
 				44AC0B7F1CE1ACD70097668B /* iconfont-jine@3x.png */,
 				44AC0B801CE1ACD70097668B /* iconfont-kefu@2x.png */,
 				44AC0B811CE1ACD70097668B /* iconfont-kefu@3x.png */,
-				44AC0B821CE1ACD70097668B /* iconfont-rocket-(1)@2x_26.png */,
-				44AC0B831CE1ACD70097668B /* iconfont-rocket-(1)@3x_61.png */,
+				44AC0B821CE1ACD70097668B /* iconfont-rocket@2x.png */,
+				44AC0B831CE1ACD70097668B /* iconfont-rocket@3x.png */,
 				44AC0B841CE1ACD70097668B /* iconfont-rong@2x.png */,
 				44AC0B851CE1ACD70097668B /* iconfont-rong@3x.png */,
 				44AC0B861CE1ACD70097668B /* iconfont-shengyushijian@2x.png */,
@@ -3283,7 +3357,7 @@
 				441EDF341CED9A3E0071AB2D /* 2010年12月24日-Namsto-Lake,-Tibet@3x.png in Resources */,
 				44CEEB1B1CF5A44A00EC09F5 /* icon_project@2x.png in Resources */,
 				44AC0C071CE1ACD80097668B /* 更多@2x.png in Resources */,
-				44AC0BE71CE1ACD80097668B /* iconfont-rocket-(1)@3x_61.png in Resources */,
+				44AC0BE71CE1ACD80097668B /* iconfont-rocket@3x.png in Resources */,
 				44FD96821CEFFD1F007DE19D /* letterIconPoint2x.png in Resources */,
 				44CB73511CF6AFB900E77CB2 /* iconfont_share@3x.png in Resources */,
 				44AC0C051CE1ACD80097668B /* 多边形-2@2x.png in Resources */,
@@ -3500,7 +3574,7 @@
 				44AC0C231CE1ACD80097668B /* icon_noroad@3x.png in Resources */,
 				441EDF4D1CED9A3E0071AB2D /* 活动2_看图王.jpg in Resources */,
 				44E537AA1CE9D14B00FB1E95 /* 圆角矩形-3@2x_48.png in Resources */,
-				44AC0BE61CE1ACD80097668B /* iconfont-rocket-(1)@2x_26.png in Resources */,
+				44AC0BE61CE1ACD80097668B /* iconfont-rocket@2x.png in Resources */,
 				440A94881CF29C4C002426E8 /* bill_point@3x.png in Resources */,
 				44E537E51CE9D2D800FB1E95 /* 智囊团详情_看图王.jpg in Resources */,
 				441EDF4A1CED9A3E0071AB2D /* 椭圆-9-拷贝-2@3x.png in Resources */,
@@ -3713,6 +3787,7 @@
 				44CE50311CEF102400671C59 /* UIView+SDExtension.m in Sources */,
 				44F365851CEAB73D001FE1C4 /* InvestPersonCell.m in Sources */,
 				448B102B1CDEF0DB00F0F22A /* UIBarButtonItem+LYJ.m in Sources */,
+				448834FC1D00200C006832E9 /* MWZoomingScrollView.m in Sources */,
 				44E961BA1CEF6ADE009F1C12 /* ActivityDetailExerciseCell.m in Sources */,
 				44CE50411CEF102400671C59 /* UIView+WebCacheOperation.m in Sources */,
 				4434237D1CF6F3E7005F5E19 /* IQNSArray+Sort.m in Sources */,
@@ -3722,6 +3797,7 @@
 				44CE50181CEF102400671C59 /* NSString+MLLabel.m in Sources */,
 				449E9A131CF3FEAA0077ABB7 /* MineGoldMingxiVC.m in Sources */,
 				44CE501B1CEF102400671C59 /* NSAttributedString+MLExpression.m in Sources */,
+				448834F71D00200C006832E9 /* MWGridViewController.m in Sources */,
 				44CE503A1CEF102400671C59 /* SDWebImagePrefetcher.m in Sources */,
 				443423881CF6F3E7005F5E19 /* IQToolbar.m in Sources */,
 				447BAB8D1CE03C8000EBD4D8 /* ProjectNoRoadCell.m in Sources */,
@@ -3736,12 +3812,15 @@
 				447589DB1CDD807300AF366E /* InvistViewController.m in Sources */,
 				44B7A0EA1CE6F81E0009B46D /* ProjectDetailLeftView.m in Sources */,
 				4474B9631CDC40D800142EB4 /* IdentityTableViewCell.m in Sources */,
+				448834F91D00200C006832E9 /* MWPhotoBrowser.m in Sources */,
 				44716FF11CF817D300BA203E /* InvestCommitProjectReasonCell.m in Sources */,
 				44CEEB061CF585F000EC09F5 /* MyDataArrowCell.m in Sources */,
 				44CE50351CEF102400671C59 /* SDWebImageCompat.m in Sources */,
+				448834F51D00200C006832E9 /* MWCaptionView.m in Sources */,
 				44CE50371CEF102400671C59 /* SDWebImageDownloader.m in Sources */,
 				449E9A4D1CF4531D0077ABB7 /* MineProjectCenterPersonSecondCell.m in Sources */,
 				44CE50301CEF102400671C59 /* SDRefreshView.m in Sources */,
+				448834D91CFFCD7B006832E9 /* ProjectDetailLeftTeamModel.m in Sources */,
 				449E99C91CF3E3DB0077ABB7 /* MineAttentionInvestThinkTankCell.m in Sources */,
 				440A94971CF2EF08002426E8 /* DealBillFirstCell.m in Sources */,
 				44CE503D1CEF102400671C59 /* UIImage+MultiFormat.m in Sources */,
@@ -3753,6 +3832,7 @@
 				447589E81CDD8D3600AF366E /* AreaViewController.m in Sources */,
 				441EDEDF1CED62E40071AB2D /* UIView+Extension.m in Sources */,
 				44CE50221CEF102400671C59 /* TTTAttributedLabel.m in Sources */,
+				448834FA1D00200C006832E9 /* MWTapDetectingImageView.m in Sources */,
 				44B7A1081CE7008B0009B46D /* MASConstraint.m in Sources */,
 				441EDF0B1CED98560071AB2D /* ActivityCell.m in Sources */,
 				44CE502C1CEF102400671C59 /* SDWaitingView.m in Sources */,
@@ -3789,6 +3869,7 @@
 				44CEEABB1CF5502300EC09F5 /* AppSetChangePhoneVC.m in Sources */,
 				44B7A10B1CE7008B0009B46D /* MASViewAttribute.m in Sources */,
 				44CEEB0B1CF5876000EC09F5 /* MyDataHeaderCell.m in Sources */,
+				448834F81D00200C006832E9 /* MWPhoto.m in Sources */,
 				443423871CF6F3E7005F5E19 /* IQTitleBarButtonItem.m in Sources */,
 				44E5377D1CE9A6D900FB1E95 /* ProjectDetailSceneView.m in Sources */,
 				4474B9931CDCFBA800142EB4 /* PhoneCerityViewController.m in Sources */,
@@ -3798,6 +3879,7 @@
 				44FD96681CEFED7A007DE19D /* ActivityDetailCommentView.m in Sources */,
 				44CE50361CEF102400671C59 /* SDWebImageDecoder.m in Sources */,
 				443423821CF6F3E7005F5E19 /* IQUIWindow+Hierarchy.m in Sources */,
+				448834FD1D00200C006832E9 /* UIImage+Crop.m in Sources */,
 				449E9A161CF403CA0077ABB7 /* MineGoldMingxiCell.m in Sources */,
 				44CE50281CEF102400671C59 /* SDCycleScrollView.m in Sources */,
 				44CEEAB61CF54FDF00EC09F5 /* AppSetModifyPasswordVC.m in Sources */,
@@ -3824,6 +3906,7 @@
 				44CE50271CEF102400671C59 /* SDCollectionViewCell.m in Sources */,
 				44540B611CEC1A9A00BCD8B9 /* ThinkTankCell.m in Sources */,
 				44CE50191CEF102400671C59 /* MLExpressionManager.m in Sources */,
+				448834DC1D0003AF006832E9 /* ProjectDetailInvestVC.m in Sources */,
 				44B7A10E1CE7008B0009B46D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				44B7A1071CE7008B0009B46D /* MASCompositeConstraint.m in Sources */,
 				448B103C1CDF39D100F0F22A /* ProjectListCell.m in Sources */,
@@ -3849,6 +3932,7 @@
 				449E9A451CF450250077ABB7 /* MineProjectCenterVC.m in Sources */,
 				44CE50401CEF102400671C59 /* UIImageView+WebCache.m in Sources */,
 				4474B9681CDC50E400142EB4 /* EditTableViewCell.m in Sources */,
+				448834FB1D00200C006832E9 /* MWTapDetectingView.m in Sources */,
 				449D961D1CD8595100D72769 /* CircleViewController.m in Sources */,
 				44CE50381CEF102400671C59 /* SDWebImageDownloaderOperation.m in Sources */,
 				44677C3E1CE0B4E300399552 /* ProjectDetailBannerView.m in Sources */,
@@ -3856,6 +3940,7 @@
 				44CE503C1CEF102400671C59 /* UIImage+GIF.m in Sources */,
 				44CE50211CEF102400671C59 /* README.md in Sources */,
 				44CE50151CEF102400671C59 /* MLEmojiLabel.m in Sources */,
+				448834FE1D00200C006832E9 /* UIImage+MWPhotoBrowser.m in Sources */,
 				440A94CC1CF32817002426E8 /* MineAttentionInvestCell.m in Sources */,
 				44CE4FA31CEF000900671C59 /* ActivityDetailHeaderModel.m in Sources */,
 				44CE501D1CEF102400671C59 /* MLLabelLayoutManager.m in Sources */,
@@ -3868,6 +3953,7 @@
 				440701DA1CFE8F55006D4406 /* CircleDetailCommentModel.m in Sources */,
 				44B7A10D1CE7008B0009B46D /* NSArray+MASAdditions.m in Sources */,
 				44CE501A1CEF102400671C59 /* MLTextAttachment.m in Sources */,
+				448834F61D00200C006832E9 /* MWGridCell.m in Sources */,
 				44CEEAFC1CF57AE700EC09F5 /* MineDataVC.m in Sources */,
 				441EDF561CEDA1B60071AB2D /* ActivityDetailVC.m in Sources */,
 				449D96201CD8596500D72769 /* ActivityViewController.m in Sources */,

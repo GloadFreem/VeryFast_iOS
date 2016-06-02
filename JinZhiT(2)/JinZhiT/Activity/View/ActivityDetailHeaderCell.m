@@ -115,12 +115,16 @@ CGFloat maxPictureViewHeight = 0;  //根据具体情况来定
     
     _titleLabel.text = model.title;
     _contentLabel.text = model.content;
-    _pictureContainerView.pictureStringArray = model.pictureArray;
+    
+    //默认显示一行数组
+    NSMutableArray *picArray = [NSMutableArray array];
     
     
     if (model.shouldShowMoreButton) { //如果文字高度超过三行
         
         if (model.isOpen) {  //如果展开
+            _pictureContainerView.pictureStringArray = model.pictureArray;
+
             _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
 //            _pictureContainerView.sd_layout.maxHeightIs(MAXFLOAT);
             [_moreBtn setBackgroundImage:[UIImage imageNamed:@"收起"] forState:UIControlStateNormal];
@@ -128,6 +132,17 @@ CGFloat maxPictureViewHeight = 0;  //根据具体情况来定
             _contentLabel.sd_layout.maxHeightIs(maxContentLabelHeight);
 //            _pictureContainerView.sd_layout.maxHeightIs(maxPictureViewHeight);
             [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+            
+            if (model.pictureArray.count > 3) {
+                for (NSInteger i =0; i<3; i++) {
+                    [picArray addObject:model.pictureArray[i]];
+                }
+                _pictureContainerView.pictureStringArray = picArray;
+                
+            }else{
+                _pictureContainerView.pictureStringArray = model.pictureArray;
+            }
+            
         }
     }
     

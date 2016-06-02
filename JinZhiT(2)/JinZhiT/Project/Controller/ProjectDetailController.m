@@ -116,10 +116,10 @@
     
     if (!_subViewScrollView) {
         
-        //        _subViewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-0.75*kScreenWidth-40)];
+        
         //        _subViewScrollView.backgroundColor = [UIColor greenColor];
         _subViewScrollView = [[UIScrollView alloc]init];
-//        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
+
 
        
         
@@ -141,11 +141,10 @@
 //         _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
 //        
 //        [_subViewScrollView addSubview:detail];
-        ProjectDetailLeftView *left =[[ProjectDetailLeftView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 800)];
-        
-//        CGFloat height = [left calculateheight];
-        [_heightArray addObject:[NSNumber numberWithFloat:800]];
-        left.frame = CGRectMake(0, 0, SCREENWIDTH, 800);
+        ProjectDetailLeftView *left =[[ProjectDetailLeftView alloc]init];
+        CGFloat height = left.height;
+        [_heightArray addObject:[NSNumber numberWithFloat:height]];
+        left.frame = CGRectMake(0, 0, SCREENWIDTH, height);
         _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, 800);
         _scrollView.contentSize = CGSizeMake(0,CGRectGetMaxY(_subViewScrollView.frame));
         [_subViewScrollView addSubview:left];
@@ -156,37 +155,13 @@
         [_heightArray addObject:[NSNumber numberWithFloat:member.viewHeight]];
         [_subViewScrollView addSubview:member];
         
-        //实例化现场界面
-//        UIView * scene  = [[UIView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame))];
-//        scene.backgroundColor  = [UIColor greenColor];
-//        [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame) ]];
-//        [_subViewScrollView addSubview:scene];
+
         
         ProjectDetailSceneView *scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64)];
         [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 ]];
         [_subViewScrollView addSubview:scene];
 
         
-        /*
-        加进去的测试高度数据
-        NSNumber *aNumber = [NSNumber numberWithFloat:800];
-        [_heightArray addObject:aNumber];
-        NSNumber *bNumber = [NSNumber numberWithFloat:400];
-        [_heightArray addObject:bNumber];
-        NSNumber *cNumber = [NSNumber numberWithFloat:SCREENHEIGHT - CGRectGetMaxY(_titleScrollView.frame)];
-        [_heightArray addObject:cNumber];
-        
-                NSArray *colorArr = @[[UIColor lightGrayColor],[UIColor cyanColor],[UIColor greenColor]];
-                for (int i = 0; i<_titleArray.count; i++) {
-        
-                    UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(i*SCREENWIDTH, 0, SCREENWIDTH, [_heightArray[i] floatValue])];
-                    subview.backgroundColor = colorArr[i%colorArr.count];
-                    [_subViewScrollView addSubview:subview];
-                }
-        */
-        
-        
- 
     }
     
     return _subViewScrollView;

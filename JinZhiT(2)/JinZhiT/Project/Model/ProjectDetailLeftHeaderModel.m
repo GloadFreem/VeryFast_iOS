@@ -22,7 +22,7 @@ extern CGFloat __maxContentLabelHeight;
 
 -(NSString*)content
 {
-    CGFloat contentW = SCREENWIDTH - 45*WIDTHCONFIG;
+    CGFloat contentW = SCREENWIDTH - 50*WIDTHCONFIG;
     CGFloat height = [_contentStr commonStringHeighforLabelWidth:contentW withFontSize:14];
     if (height > __maxContentLabelHeight) {
         _shouldShowMoreButton = YES;
