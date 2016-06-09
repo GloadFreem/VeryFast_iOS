@@ -823,7 +823,12 @@
     str = [str lowercaseString];
     return str;
 }
-
+//加密获得partner
++(NSString*)encryKeyWithMD5:(NSString*)key action:(NSString*)actionStr
+{
+    NSString * string = [AES encrypt:actionStr password:key];
+    return  [self encryptMD5String:string];
+}
 //普通字符串转换为十六进制的。
 
 + (NSString *)hexStringFromString:(NSString *)string{

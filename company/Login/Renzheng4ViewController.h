@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Renzheng4ViewController : UIViewController
+@interface Renzheng4ViewController : RootViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (nonatomic, strong) NSMutableDictionary  *dataDic;
+@property (nonatomic, strong) NSMutableDictionary *dicData;
+
 @property (nonatomic, copy) NSString *identifyType;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @end

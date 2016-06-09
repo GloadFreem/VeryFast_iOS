@@ -17,7 +17,7 @@
 
 -(CGFloat)getCellHeight
 {
-    return _rightLabelHeight.constant;
+    return _rightLabelHeight.constant + 8;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

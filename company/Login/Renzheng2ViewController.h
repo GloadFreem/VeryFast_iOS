@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Renzheng2ViewController : UIViewController
+@interface Renzheng2ViewController : RootViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel; // 标题label
 
@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;  //下一步按钮
 
-@property (nonatomic, strong) NSMutableDictionary *dataDic;
+@property (nonatomic, strong) NSMutableDictionary *dicData;
 
 @property (nonatomic, copy) NSString *identifyType; //身份类型
 

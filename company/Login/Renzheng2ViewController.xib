@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="imageBtn" destination="A4e-KQ-sxT" id="Pe6-cJ-SiI"/>
                 <outlet property="nextBtn" destination="NF2-tE-QBh" id="0pt-Ge-BXe"/>
+                <outlet property="textField" destination="5ig-5l-VEr" id="Ndk-Ra-E4a"/>
                 <outlet property="titleLabel" destination="cGG-0y-H0G" id="RRS-Cn-oTO"/>
                 <outlet property="topViewHeight" destination="WrO-35-Cci" id="7gF-CN-Vps"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -163,6 +164,9 @@
                                     <exclude reference="znN-uK-WUn"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="selectImageBtn:" destination="-1" eventType="touchUpInside" id="NTa-9n-gVx"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -187,6 +187,12 @@
 #define PROVINCE_LIST @"getProvinceListAuthentic.action"
 //城市
 #define CITY_LIST @"getCityListByProvinceIdAuthentic.action"
+//认证
+#define AUTHENTICATE @"requestAuthentic.action"
+//认证协议
+#define AUTHENTICATE_PROTOCOL @"getProtocolAuthentic.action"
+
+
 
 
 //版本更新itunes 地址
@@ -235,13 +241,11 @@
 #define UPLOAD_PRISE @"uploadlike/"
 //投票
 #define VOTE  @"vote/"
-//认证协议
-#define INVESTOR_PROT @"investorqualification/"
+
 //基金规模
 #define FOUNSIZERANGE @"fundsizerange/"
 
-//投资人认证
-#define AUTHENTICATE  @"authenticate/"
+
 //上传名片
 #define UPLOAD_BUINESSCARD @"businesscard/"
 //获取城市

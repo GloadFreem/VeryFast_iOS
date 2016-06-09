@@ -292,6 +292,9 @@
  */
 + (NSString*)encryptMD5String:(NSString*)string;
 +(NSString*)encryptPhoneNumWithMD5:(NSString *)phoneNum passString:(NSString*)passStr;
+//加密partner
++(NSString*)encryKeyWithMD5:(NSString*)key action:(NSString*)actionStr;
+
 
 /**
  *  适用字符串转换颜色值

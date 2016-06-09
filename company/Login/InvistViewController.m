@@ -39,6 +39,9 @@
     if (!_idArray) {
         _idArray = [NSMutableArray array];
     }
+    if (!_idSelected) {
+        _idSelected = [NSMutableArray array];
+    }
     NSString * string = [AES encrypt:INVESTFIELD password:KEY];
     self.partner = [TDUtil encryptMD5String:string];
     
@@ -101,6 +104,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    NSLog(@"id数组：%@",_idSelected);
     if (_statusArray != nil && _statusArray.count != indexPath.row) {
         NSString *status = [_statusArray objectAtIndex:indexPath.row];
         InvistTableViewCell *cell = (InvistTableViewCell*)[_tableView cellForRowAtIndexPath:indexPath];
@@ -179,10 +183,10 @@
     for (NSInteger i= 0; i < _dataSelected.count; i ++) {
         if (i!=_dataSelected.count-1) {
             [investField appendFormat:@"%@ | ",_dataSelected[i]];
-            [idString appendFormat:@"%@,",_idArray[i]];
+            [idString appendFormat:@"%@,",_idSelected[i]];
         }else{
             [investField appendFormat:@"%@",_dataSelected[i]];
-            [idString appendFormat:@"%@",_idArray[i]];
+            [idString appendFormat:@"%@,",_idSelected[i]];
         }
         
     }
@@ -192,7 +196,7 @@
         if ([VC isKindOfClass:[RenzhengViewController class]]) {
             RenzhengViewController *vc = (RenzhengViewController*)VC;
             vc.investField = investField;
-            NSLog(@"投资淋浴%@",investField);
+            NSLog(@"投资领域%@",investField);
             vc.areaId = idString;
             NSLog(@"ID%@",idString);
             [vc refreshData];

@@ -17,7 +17,9 @@
 
 
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *rightLabel;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint * rightLabelHeight;
 
 

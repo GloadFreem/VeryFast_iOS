@@ -23,8 +23,9 @@
 {
     UIImagePickerController *imagePicker;
 }
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, copy) NSString *partner;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *nextStup;
 @property (nonatomic, strong) NSArray * leftLableArr;
@@ -44,8 +45,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:@"requestAuthentic"];
+    
     //初始化投资领域
-    self.investField = [NSString stringWithFormat:@""];
+    self.investField = @"";
     self.companyAddress = @"";
     [self createTableView];
     
@@ -67,6 +72,7 @@
     }else{
         self.titleLabel.text = @"(1/4)";
     }
+    
     //初始化tableView高度
     if ([self.identifyType integerValue] == 3 || [self.identifyType integerValue] == 4) {
         _tableViewHeight.constant = 510;
@@ -89,7 +95,7 @@
     _tableView.dataSource = self;
     [_tableView registerNib:[UINib nibWithNibName:@"IdentityTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellID"];
     
-    _nextStup.layer.cornerRadius = 5;
+    _nextStup.layer.cornerRadius = 20;
     _nextStup.layer.masksToBounds = YES;
     
 }
@@ -353,6 +359,9 @@
     [_dataDic setObject:_dataArray[0] forKey:@"identiyCarNo"];
     [_dataDic setObject:_dataArray[1] forKey:@"name"];
     [_dataDic setObject:self.cityId forKey:@"cityId"];
+    [_dataDic setObject:KEY forKey:@"key"];
+    [_dataDic setObject:self.partner forKey:@"partner"];
+    
     //项目方身份界面
     if ([self.identifyType integerValue] ==1) {
         //检验公司名称
@@ -374,14 +383,11 @@
         Renzheng2ViewController * regist = [Renzheng2ViewController new];
         regist.identifyType = self.identifyType;
         
-        regist.titleLabel.text = @"(2/2)";
-        [regist.nextBtn setTitle:@"完成" forState:UIControlStateNormal];
-        
         [_dataDic setObject:_dataArray[2] forKey:@"companyName"];
         
         [_dataDic setObject:_dataArray[4] forKey:@"position"];
         //字典赋值
-        regist.dataDic = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
+        regist.dicData = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
         
         [self.navigationController pushViewController:regist animated:YES];
     }
@@ -401,11 +407,10 @@
         //进入个人介绍页面
         Renzheng3ViewController * regist = [Renzheng3ViewController new];
         regist.identifyType = self.identifyType;
-        regist.titleLabel.text = @"(2/3)";
-        [regist.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        
         [_dataDic setObject:self.areaId forKey:@"areaId"];
         //字典赋值
-        regist.dataDic = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
+        regist.dicData = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
         
         [self.navigationController pushViewController:regist animated:YES];
     }
@@ -436,13 +441,12 @@
         //进入营业执照页面
         Renzheng2ViewController *regist = [Renzheng2ViewController new];
         regist.identifyType = self.identifyType;
-        regist.titleLabel.text = @"(2/4)";
-        [regist.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        
         [_dataDic setObject:_dataArray[2] forKey:@"companyName"];
         [_dataDic setObject:_dataArray[4] forKey:@"position"];
         [_dataDic setObject:self.areaId forKey:@"areaId"];
         //字典赋值
-        regist.dataDic = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
+        regist.dicData = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
         
         [self.navigationController pushViewController:regist animated:YES];
     }
@@ -478,7 +482,7 @@
         [_dataDic setObject:_dataArray[4] forKey:@"position"];
         [_dataDic setObject:self.areaId forKey:@"areaId"];
         //字典赋值
-        regist.dataDic = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
+        regist.dicData = [NSMutableDictionary dictionaryWithDictionary:_dataDic];
         
         [self.navigationController pushViewController:regist animated:YES];
     }

@@ -132,6 +132,7 @@
             //测试
             PerfectViewController *per = [PerfectViewController new];
             [self.navigationController pushViewController:per animated:YES];
+           
             
             NSUserDefaults* data =[NSUserDefaults standardUserDefaults];
             [data setValue:self.phoneField.text forKey:STATIC_USER_DEFAULT_DISPATCH_PHONE];

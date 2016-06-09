@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Renzheng3ViewController : UIViewController
+@interface Renzheng3ViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel; //标题label
 
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
-@property (nonatomic, strong) NSMutableDictionary  *dataDic;
+@property (nonatomic, strong) NSMutableDictionary *dicData;
+
 @property (nonatomic, copy) NSString *identifyType;
 
 @end
