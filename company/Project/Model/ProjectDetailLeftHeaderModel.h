@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *addressStr;
 
 @property (nonatomic, copy) NSString *statusStr;
-@property (nonatomic, copy) NSString *contentStr;
+@property (nonatomic, copy) NSString *content;
 @property (nonatomic, strong) NSArray *pictureArray;
 
 @property (nonatomic, assign) BOOL isOpen;

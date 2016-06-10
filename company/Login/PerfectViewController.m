@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnTopSpace;
 
 @property (weak, nonatomic) IBOutlet UIView *hiddenView;
+@property (nonatomic, assign) BOOL isSelected;
 @end
 
 @implementation PerfectViewController
@@ -69,6 +70,11 @@
 //认证
 - (IBAction)registSuccess:(id)sender {
     
+    if (!_isSelected) {
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:@"请选择身份"];
+        return;
+    }
+    
     NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",self.identifyType,@"ideniyType",@"0",@"isWebchatLogin", nil];
     UIImage *iconImage = self.iconBtn.currentBackgroundImage;
     //压缩图片
@@ -94,7 +100,6 @@
     //开始加载动画
     [activity startAnimating];
     
-//    [self.httpUtil getDataFromAPIWithOps:USER_IDENTIFY_TYPE postParam:dic type:0 delegate:self sel:@selector(requestSetIdentifyType:)];
     [self.httpUtil getDataFromAPIWithOps:USER_IDENTIFY_TYPE postParam:dic files:picDic type:0 delegate:self sel:@selector(requestSetIdentifyType:)];
 
 //    RegistSuccessViewController * regist = [RegistSuccessViewController new];
@@ -147,16 +152,19 @@
     
     
     sender.selected = !sender.selected;
+    
     if (sender.selected) {
         _hiddenView.hidden = NO;
         _identifyLabel.hidden = YES;
         _topSpace.constant = 122;
         _btnTopSpace.constant = 40;
+        _isSelected  = YES;
     }else{
         _hiddenView.hidden = YES;
         _identifyLabel.hidden = NO;
         _topSpace.constant = 92;
         _btnTopSpace.constant = 76;
+        _isSelected = NO;
     }
     for (UIButton *btn in _btn_Array) {
         if (btn.tag != sender.tag) {

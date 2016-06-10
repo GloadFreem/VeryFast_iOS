@@ -127,11 +127,11 @@
             NSLog(@"登陆成功");
             
             //进入主界面
-//            AppDelegate * app =(AppDelegate* )[[UIApplication sharedApplication] delegate];
-//            app.window.rootViewController = app.tabBar;
+            AppDelegate * app =(AppDelegate* )[[UIApplication sharedApplication] delegate];
+            app.window.rootViewController = app.tabBar;
             //测试
-            PerfectViewController *per = [PerfectViewController new];
-            [self.navigationController pushViewController:per animated:YES];
+//            PerfectViewController *per = [PerfectViewController new];
+//            [self.navigationController pushViewController:per animated:YES];
            
             
             NSUserDefaults* data =[NSUserDefaults standardUserDefaults];

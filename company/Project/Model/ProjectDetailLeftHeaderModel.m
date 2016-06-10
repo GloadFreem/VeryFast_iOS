@@ -13,24 +13,24 @@ extern CGFloat __maxContentLabelHeight;
 @implementation ProjectDetailLeftHeaderModel
 
 
-@synthesize contentStr = _contentStr;
+@synthesize content = _content;
 
 -(void)setContent:(NSString *)content
 {
-    _contentStr = content;
+    _content = content;
 }
 
 -(NSString*)content
 {
     CGFloat contentW = SCREENWIDTH - 50*WIDTHCONFIG;
-    CGFloat height = [_contentStr commonStringHeighforLabelWidth:contentW withFontSize:14];
+    CGFloat height = [_content commonStringHeighforLabelWidth:contentW withFontSize:14];
     if (height > __maxContentLabelHeight) {
         _shouldShowMoreButton = YES;
     }
     else{
         _shouldShowMoreButton = NO;
     }
-    return _contentStr;
+    return _content;
 }
 
 

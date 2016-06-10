@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyType;//公司类型
 
 
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 
 @property (assign, nonatomic) CGFloat viewHeight;

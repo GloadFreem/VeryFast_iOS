@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CircleViewController : UIViewController
+@interface CircleViewController : RootViewController
 
 @end

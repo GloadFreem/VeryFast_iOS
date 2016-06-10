@@ -49,7 +49,7 @@
     model.timeStr = @"2016.6.1";
     model.addressStr = @"陕西 | 西安";
     model.statusStr = @"路演中";
-    model.contentStr = @"迪士尼代表动画角色，米老鼠的最初原型是他的设计伙伴伍培·艾沃克斯（iwerke)执笔设计的。维·史密斯和费洛伊德·戈特佛森创作的米老鼠的故事。米老鼠的形象设计出来以后，迪士尼开始用它来制作动画片。";
+    model.content = @"迪士尼代表动画角色，米老鼠的最初原型是他的设计伙伴伍培·艾沃克斯（iwerke)执笔设计的。维·史密斯和费洛伊德·戈特佛森创作的米老鼠的故事。米老鼠的形象设计出来以后，迪士尼开始用它来制作动画片。";
     model.pictureArray = @[@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png",@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png",@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png"];
     
     [_dataArray addObject:model];
@@ -64,6 +64,7 @@
     _tableView = [[UITableView alloc]init];
     _tableView.delegate =self;
     _tableView.dataSource =self;
+    _tableView.bounces = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self addSubview:_tableView];
@@ -76,7 +77,11 @@
     _bottomView = [UIView new];
     _bottomView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_bottomView];
-    
+    _bottomView.sd_layout
+    .leftEqualToView(self)
+    .rightEqualToView(self)
+    .topSpaceToView(_tableView,0)
+    .heightIs(50);
     
     _serviceBtn = [UIButton new];
     [_serviceBtn setBackgroundImage:[UIImage imageNamed:@"iconfont-kefu"] forState:UIControlStateNormal];
@@ -85,6 +90,11 @@
     _serviceBtn.layer.cornerRadius = 20;
     _serviceBtn.layer.masksToBounds = YES;
     [_bottomView addSubview:_serviceBtn];
+    _serviceBtn.sd_layout
+    .leftSpaceToView(_bottomView,8*WIDTHCONFIG)
+    .topSpaceToView(_bottomView,5)
+    .bottomSpaceToView(_bottomView,5)
+    .widthIs(100*WIDTHCONFIG);
     
     
     _investBtn = [UIButton new];
@@ -94,6 +104,11 @@
     _investBtn.layer.cornerRadius = 20;
     _investBtn.layer.masksToBounds = YES;
     [_bottomView addSubview:_investBtn];
+    _investBtn.sd_layout
+    .leftSpaceToView(_serviceBtn,24*WIDTHCONFIG)
+    .heightRatioToView(_serviceBtn,1)
+    .centerYEqualToView(_serviceBtn)
+    .rightSpaceToView(_bottomView,8*WIDTHCONFIG);
     
     [self setupAutoHeightWithBottomView:_tableView bottomMargin:0];
 }
@@ -117,17 +132,25 @@
             _cellHeight = [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectDetailLeftTeamCell class] contentViewWidth:[self cellContentViewWith]];
             _tableHeight +=_cellHeight;
             _tableView.height = _tableHeight;
-            [self setupAutoHeightWithBottomView:_tableView bottomMargin:0];
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"calcauteHieght" object:nil userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%f",_tableHeight],@"height", nil]];
+            
             break;
         case 2:
             _cellHeight = [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectDetailLeftFooterCell class] contentViewWidth:[self cellContentViewWith]];
             
             _tableHeight +=_cellHeight;
             _tableView.height = _tableHeight;
+            
+            
+            
+            
+            [self setupAutoHeightWithBottomView:_tableView bottomMargin:0];
+            
             break;
         default:
+            
+            
             _cellHeight = [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectDetailLeftHeaderCell class] contentViewWidth:[self cellContentViewWith]];
             _tableHeight = _cellHeight;
             break;
@@ -147,12 +170,13 @@
             cell = [[ProjectDetailLeftHeaderCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
         }
         cell.indexPath = indexPath;
-//        __weak typeof (self) weakSelf = self;
+        //        __weak typeof (self) weakSelf = self;
         if (!cell.moreButtonClickedBlock) {
             [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
                 ProjectDetailLeftHeaderModel *model =_dataArray[0];
                 model.isOpen = !model.isOpen;
-                [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//                [_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                [_tableView reloadData];
             }];
         }
         cell.model = _dataArray[0];
@@ -168,6 +192,7 @@
         
         return cell;
     }
+    
     static NSString *cellId = @"ProjectDetailLeftFooterCell";
     ProjectDetailLeftFooterCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {

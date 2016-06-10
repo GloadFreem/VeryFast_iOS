@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D26298F1D4C5A88D985DBDF /* Pods_company.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB72B1372C8348B3F810BE /* Pods_company.framework */; };
+		446AF4141D0A9C5F0075B469 /* CircleBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 446AF4131D0A9C5F0075B469 /* CircleBaseModel.m */; };
 		4487187C1D02AD9900020DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4487187A1D02AD9900020DD9 /* Main.storyboard */; };
 		4487187E1D02AD9900020DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4487187D1D02AD9900020DD9 /* Assets.xcassets */; };
 		448718811D02AD9900020DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4487187F1D02AD9900020DD9 /* LaunchScreen.storyboard */; };
@@ -809,6 +810,8 @@
 
 /* Begin PBXFileReference section */
 		08DB24DD5F3D02EA9147373C /* Pods-company.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-company.debug.xcconfig"; path = "Pods/Target Support Files/Pods-company/Pods-company.debug.xcconfig"; sourceTree = "<group>"; };
+		446AF4121D0A9C5F0075B469 /* CircleBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleBaseModel.h; sourceTree = "<group>"; };
+		446AF4131D0A9C5F0075B469 /* CircleBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleBaseModel.m; sourceTree = "<group>"; };
 		4487186E1D02AD9800020DD9 /* company.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = company.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4487187B1D02AD9900020DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4487187D1D02AD9900020DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -2357,6 +2360,8 @@
 				44871A3C1D02B31800020DD9 /* CircleDetailCommentModel.m */,
 				44871A3D1D02B31800020DD9 /* CircleListModel.h */,
 				44871A3E1D02B31800020DD9 /* CircleListModel.m */,
+				446AF4121D0A9C5F0075B469 /* CircleBaseModel.h */,
+				446AF4131D0A9C5F0075B469 /* CircleBaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4738,6 +4743,7 @@
 				44871B9B1D02B37800020DD9 /* SDRefreshFooterView.m in Sources */,
 				4487199B1D02B2FE00020DD9 /* InvestOrganizationCell.m in Sources */,
 				44871B7B1D02B37800020DD9 /* View+MASAdditions.m in Sources */,
+				446AF4141D0A9C5F0075B469 /* CircleBaseModel.m in Sources */,
 				44871A1E1D02B30800020DD9 /* MineAttentionInvestCell.m in Sources */,
 				44871B881D02B37800020DD9 /* NSAttributedString+MLExpression.m in Sources */,
 				44871BAA1D02B37800020DD9 /* UIImage+MultiFormat.m in Sources */,

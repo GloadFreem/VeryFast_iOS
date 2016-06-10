@@ -10,11 +10,19 @@
 #import "CircleListModel.h"
 #import "CircleListCell.h"
 #import "CircleReleaseVC.h"
+#import "SVProgressHUD.h"
+#import "MJRefresh.h"
+
+#import "CircleBaseModel.h"
+
+
+#define CIRCLE_CONTENT @"requestFeelingList"
 
 @interface CircleViewController ()<UITableViewDelegate,UITableViewDataSource,CircleListCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;  //数据数组
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -23,11 +31,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataArray = [NSMutableArray array];
-    
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_CONTENT];
+    _page = 0;
     [self setupNav];
     [self createTableView];
-    [self.dataArray addObjectsFromArray:[self createModelWithCount:5]];
+    
+    //下载数据
+    [self loadData];
 }
 
 
@@ -49,6 +63,12 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    //设置刷新控件
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
+    //自动改变透明度
+    _tableView.mj_header.automaticallyChangeAlpha = YES;
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+
     [self.view addSubview:_tableView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,6 +80,51 @@
     
 }
 
+-(void)nextPage
+{
+    
+}
+
+-(void)refreshHttp
+{
+    
+}
+
+-(void)loadData
+{
+    [SVProgressHUD show];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",@"0",@"page", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:CYCLE_CONTENT_LIST postParam:dic type:0 delegate:self sel:@selector(requestCircleContentList:)];
+}
+
+-(void)requestCircleContentList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+//    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic!=nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status intValue] == 200) {
+            [SVProgressHUD dismiss];
+            //解析数据  将data字典转换为BaseModel
+            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+            NSLog(@"data----%@",dataArray);
+            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:dataArray[0]];
+            
+            NSLog(@"content_-------%@",dataDic);
+            
+            
+        }else{
+            
+            [SVProgressHUD dismiss];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+            
+        }
+        
+    }
+}
 -(NSArray*)createModelWithCount:(NSInteger)count
 {
     CircleListModel *model = [CircleListModel new];

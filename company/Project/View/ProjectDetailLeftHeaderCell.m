@@ -169,6 +169,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     
     UIView *contentView = self.contentView;
     
+    
     _topView.sd_layout
     .leftSpaceToView(contentView, 0)
     .topSpaceToView(contentView, 0)
@@ -284,7 +285,8 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     .autoHeightRatio(0);
     
     _picContainerView.sd_layout
-    .leftEqualToView(_contentLabel);//内部实现高度自适应，top值是具体有无图片在setModel里边设置的
+    .leftEqualToView(_contentLabel);
+    
     
     _moreBtn.sd_layout
     .centerXEqualToView(_contentLabel)
@@ -308,7 +310,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     _addressContent.text = model.addressStr;
     [_addressContent sizeToFit];
     _statusLabel.text = model.statusStr;
-    _contentLabel.text = model.contentStr;
+    _contentLabel.text = model.content;
     //默认显示一行数组
     NSMutableArray *picArray = [NSMutableArray array];
     
@@ -319,9 +321,8 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
             _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
             [_moreBtn setBackgroundImage:[UIImage imageNamed:@"收起"] forState:UIControlStateNormal];
         }else{
-        _contentLabel.sd_layout.maxHeightIs(__maxContentLabelHeight);
-        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
-        
+            _contentLabel.sd_layout.maxHeightIs(__maxContentLabelHeight);
+            [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
             if (model.pictureArray.count > 3) {
                 for (NSInteger i =0; i<3; i++) {
                     [picArray addObject:model.pictureArray[i]];
@@ -331,6 +332,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
             }else{
                 _picContainerView.pictureStringArray = model.pictureArray;
             }
+            
         }
     }
     
@@ -340,7 +342,8 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     }
     
     _picContainerView.sd_layout
-    .topSpaceToView(_contentLabel, picContainerTopMargin);
+    .topSpaceToView(_contentLabel, picContainerTopMargin)
+    .leftSpaceToView(self.contentView,15);
     
     [self setupAutoHeightWithBottomView:_moreBtn bottomMargin:15];
     
@@ -355,7 +358,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

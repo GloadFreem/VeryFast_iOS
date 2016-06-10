@@ -86,7 +86,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="-29" minY="38" maxX="4" maxY="2"/>
-                    <inset key="imageEdgeInsets" minX="20" minY="13" maxX="20" maxY="28"/>
+                    <inset key="imageEdgeInsets" minX="25" minY="13" maxX="20" maxY="28"/>
                     <state key="normal" title="投资人" image="iconfont-ren.png"/>
                     <connections>
                         <action selector="chooseIdentity:" destination="-1" eventType="touchUpInside" id="dwd-U2-8gT"/>
@@ -100,7 +100,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="-31" minY="38" maxX="4" maxY="2"/>
-                    <inset key="imageEdgeInsets" minX="20" minY="13" maxX="20" maxY="28"/>
+                    <inset key="imageEdgeInsets" minX="25" minY="13" maxX="20" maxY="28"/>
                     <state key="normal" title="智囊团" image="iconfont-danao.png"/>
                     <connections>
                         <action selector="chooseIdentity:" destination="-1" eventType="touchUpInside" id="12W-kd-Mk3"/>
@@ -128,7 +128,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="-29" minY="38" maxX="4" maxY="2"/>
-                    <inset key="imageEdgeInsets" minX="20" minY="13" maxX="20" maxY="28"/>
+                    <inset key="imageEdgeInsets" minX="25" minY="13" maxX="20" maxY="28"/>
                     <size key="titleShadowOffset" width="0.0" height="2.2250738585072014e-308"/>
                     <state key="normal" title="项目方" image="icon-project.png"/>
                     <connections>
@@ -143,7 +143,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="titleEdgeInsets" minX="-30" minY="38" maxX="0.0" maxY="2"/>
-                    <inset key="imageEdgeInsets" minX="20" minY="13" maxX="20" maxY="28"/>
+                    <inset key="imageEdgeInsets" minX="25" minY="13" maxX="20" maxY="28"/>
                     <state key="normal" title="投资机构" image="iconfont-jigou.png"/>
                     <connections>
                         <action selector="chooseIdentity:" destination="-1" eventType="touchUpInside" id="wpA-WS-gIR"/>

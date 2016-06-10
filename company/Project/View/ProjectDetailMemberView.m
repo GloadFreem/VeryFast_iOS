@@ -23,7 +23,7 @@
 +(ProjectDetailMemberView*)instancetationProjectDetailMemberView
 {
     ProjectDetailMemberView *view =[[[NSBundle mainBundle] loadNibNamed:@"ProjectDetailMemberView" owner:nil options:nil] lastObject];
-   
+   view.autoresizingMask = UIViewAutoresizingNone;
     return view;
 }
 
@@ -36,6 +36,7 @@
         //计算View的高度
         
         self.viewHeight = 300;
+        self.width = SCREENWIDTH;
 //        [self setupAutoHeightWithBottomView:_emailLabel bottomMargin:30];
         NSLog(@"实例化成员界面");
     }

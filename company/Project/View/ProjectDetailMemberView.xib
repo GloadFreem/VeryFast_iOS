@@ -29,13 +29,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconfont-youjian.png" translatesAutoresizingMaskIntoConstraints="NO" id="8s5-ug-sFs">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-youjian.png" translatesAutoresizingMaskIntoConstraints="NO" id="8s5-ug-sFs">
                     <rect key="frame" x="77.5" y="193" width="60" height="60"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-dian.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-CL-uTk">
                     <rect key="frame" x="237.5" y="193" width="60" height="60"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="za12@163.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOA-a3-y9t">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="za12@163.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOA-a3-y9t">
                     <rect key="frame" x="39.5" y="266" width="136.5" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -119,7 +119,13 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="addressLabel" destination="850-HQ-U4o" id="Zc6-W2-qT2"/>
+                <outlet property="companyType" destination="iL4-bN-AVj" id="90e-i1-34k"/>
                 <outlet property="emailLabel" destination="eOA-a3-y9t" id="aQm-3Q-Su2"/>
+                <outlet property="iconImage" destination="Q9k-T0-EBq" id="QJ9-1w-W7F"/>
+                <outlet property="nameLabel" destination="XY8-9D-549" id="yxs-LZ-Xcw"/>
+                <outlet property="phoneLabel" destination="2yb-Q7-kdw" id="5J3-oT-IYq"/>
+                <outlet property="positionLabel" destination="hQP-X4-6XR" id="kqj-Vj-Dw3"/>
             </connections>
             <point key="canvasLocation" x="149.5" y="68"/>
         </view>

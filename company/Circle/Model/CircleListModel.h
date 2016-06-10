@@ -8,7 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+
+
+
+
+
 @interface CircleListModel : NSObject
+
+
+
+
+
 
 @property (nonatomic, copy) NSString *iconNameStr;
 @property (nonatomic, copy) NSString *nameStr;  //
@@ -23,5 +35,6 @@
 @property (nonatomic, strong) NSArray *picNamesArray;    //
 @property (nonatomic, assign) BOOL isOpening;
 @property (nonatomic, assign ,readonly) BOOL shouldShowMoreBtn;
+
 
 @end

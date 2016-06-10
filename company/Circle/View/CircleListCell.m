@@ -127,6 +127,10 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     
     [self.contentView sd_addSubviews:views];
     
+}
+#pragma mark -子视图重新布局
+-(void)layoutSubviews
+{
     UIView *contentView = self.contentView;
     CGFloat margin = 8;
     
@@ -228,8 +232,6 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     .centerYEqualToView(_shareBtn)
     .widthIs(width)
     .heightIs(height);
-    
-    
 }
 
 -(void)setModel:(CircleListModel *)model

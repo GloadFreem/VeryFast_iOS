@@ -32,6 +32,11 @@
 @property (nonatomic,strong) NSMutableArray *heightArray;       // subviewScrollView子视图高度数组
 @property (nonatomic,strong) NSMutableArray *btArray;           //点击切换按钮数组
 
+@property (nonatomic, strong) UIView *bottomView;   //底部按钮视图
+@property (nonatomic, strong) UIButton *kefuBtn;  //客服按钮
+@property (nonatomic, strong) UIButton *investBtn;   //投资按钮
+
+
 @end
 
 @implementation ProjectDetailController
@@ -43,6 +48,8 @@
     _heightArray = [NSMutableArray array];                  //子视图高度数组
     
     _scrollView.bounces = NO;                               //关闭弹性
+    
+    _scrollView.autoresizingMask = UIViewAutoresizingNone;
     
     //广告栏视图
     ProjectDetailBannerView * bannerView= [[ProjectDetailBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.6)];
@@ -56,8 +63,10 @@
     _type = 0;
     [_scrollView addSubview:self.titleScrollView];          //添加点击按钮
     [_scrollView addSubview:self.subViewScrollView];        //添加最下边scrollview
-
-
+    
+    //    self.view.backgroundColor = [UIColor blackColor];
+    
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(calcuateLeftViewHeightNotification:) name:@"calcauteHieght" object:nil];
     
 }
@@ -116,10 +125,9 @@
 - (UIScrollView *)subViewScrollView{
     
     if (!_subViewScrollView) {
-        
-        
         //        _subViewScrollView.backgroundColor = [UIColor greenColor];
         _subViewScrollView = [[UIScrollView alloc]init];
+        
         _subViewScrollView.bounces = NO;
         _subViewScrollView.showsHorizontalScrollIndicator = NO;
         _subViewScrollView.showsVerticalScrollIndicator = NO;
@@ -132,14 +140,54 @@
         
         //实例化详情分页面
         
-
+        //        ProjectDetailFirstHeaderView *detail = [ProjectDetailFirstHeaderView instancetypeProjectDetailFirstHeaderView];
+        //        detail.frame = CGRectMake(0, 0, SCREENWIDTH, detail.viewHeight);
+        //        [_heightArray addObject:[NSNumber numberWithFloat:detail.viewHeight]];
+        //        _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, detail.viewHeight);
+        //         _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+        //
+        //        [_subViewScrollView addSubview:detail];
         ProjectDetailLeftView *left =[[ProjectDetailLeftView alloc]init];
         
         [_subViewScrollView addSubview:left];
         
-        left.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
-        left.frame = CGRectMake(0, 0, SCREENWIDTH,left.height);
+        left.sd_layout
+        .spaceToSuperView(UIEdgeInsetsMake(0, 0, 0, 0));
+        
+        left.frame = CGRectMake(0, 0, SCREENWIDTH, left.height);
         [_heightArray addObject:[NSNumber numberWithFloat:left.height]];
+        
+        //实例化底部按钮视图
+        _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREENHEIGHT-64 - 50, SCREENWIDTH, 50)];
+        [_bottomView setBackgroundColor:[UIColor whiteColor]];
+        _kefuBtn = [UIButton new];
+        [_kefuBtn setBackgroundImage:[UIImage imageNamed:@"iconfont-kefu"] forState:UIControlStateNormal];
+        [_kefuBtn setBackgroundImage:[UIImage imageNamed:@"iconfont-kefu"] forState:UIControlStateHighlighted];
+        [_kefuBtn setTag:0];
+        [_kefuBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView addSubview:_kefuBtn];
+        [_kefuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_bottomView.mas_centerY);
+            make.left.mas_equalTo(_bottomView.mas_left).offset(8);
+            make.top.mas_equalTo(_bottomView.mas_top).offset(5);
+            make.bottom.mas_equalTo(_bottomView.mas_bottom).offset(-5);
+            make.width.mas_equalTo(100*WIDTHCONFIG);
+        }];
+        //认投按钮
+        _investBtn = [UIButton new];
+        [_investBtn setBackgroundImage:[UIImage imageNamed:@"iconfont-rocket"] forState:UIControlStateNormal];
+        [_investBtn setBackgroundImage:[UIImage imageNamed:@"iconfont-rocket"] forState:UIControlStateHighlighted];
+        [_investBtn setTag:1];
+        [_investBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomView addSubview:_investBtn];
+        [_investBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_kefuBtn.mas_centerY);
+            make.left.mas_equalTo(_kefuBtn.mas_right).offset(24*WIDTHCONFIG);
+            make.right.mas_equalTo(_bottomView.mas_right).offset(-8*WIDTHCONFIG);
+            make.height.mas_equalTo(_kefuBtn.mas_height);
+        }];
+
+//        [self.view addSubview:_bottomView];
         
         //实例化成员分页面
         ProjectDetailMemberView * member = [ProjectDetailMemberView instancetationProjectDetailMemberView];
@@ -147,12 +195,12 @@
         [_heightArray addObject:[NSNumber numberWithFloat:member.viewHeight]];
         [_subViewScrollView addSubview:member];
         
-
+        
         
         ProjectDetailSceneView *scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64)];
         [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 ]];
         [_subViewScrollView addSubview:scene];
-
+        
         
     }
     
@@ -182,6 +230,7 @@
         
     }
     //子scrollView的偏移量
+    NSLog(@"移动%f",SCREENWIDTH*(sender.tag-10));
     _subViewScrollView.contentOffset=CGPointMake(SCREENWIDTH*(sender.tag-10), 0);
     
     //重置子scrollView的大小  以及父scrollView的contentSize
@@ -190,11 +239,14 @@
         case 10:
         {
             
+            //            _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[0] floatValue]);
+            //            _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+            
             _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[0] floatValue]);
+            //                _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+            float  h = CGRectGetMaxY(_subViewScrollView.frame)+_titleScrollView.height+SCREENWIDTH*0.6+20;
+            _scrollView.contentSize = CGSizeMake(0,h);
             
-            float h = CGRectGetMaxY(_subViewScrollView.frame) +_titleScrollView.height +SCREENWIDTH*0.6+20;
-            
-            _scrollView.contentSize = CGSizeMake(0, h);
             NSLog(@"点击了第%ld个",sender.tag-10);
         }
             break;
@@ -215,7 +267,10 @@
         default:
             break;
     }
-    
+//    for(int i = 0; i< _subViewScrollView.subviews.count;i++){
+//        NSLog(_subViewScrollView.description);
+//        NSLog(_subViewScrollView.subviews[i].description);
+//    }
     
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -236,13 +291,14 @@
             
         }
         
-         //重置子scrollView的大小  以及父scrollView的contentSize
+        //重置子scrollView的大小  以及父scrollView的contentSize
         CGFloat valueY = CGRectGetMaxY(_titleScrollView.frame);
         switch (index) {
             case 0:
             {
                 
                 _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[0] floatValue]);
+                //                _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
                 float  h = CGRectGetMaxY(_subViewScrollView.frame)+_titleScrollView.height+SCREENWIDTH*0.6+20;
                 _scrollView.contentSize = CGSizeMake(0,h);
                 
@@ -252,22 +308,29 @@
             {
                 _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[1] floatValue]);
                 _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
-               
+                
             }
                 break;
             case 2:
             {
                 _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[2] floatValue]);
                 _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
-               
+                
             }
                 break;
             default:
                 break;
         }
     }
-   
+    
+    
+//    for(int i = 0; i< _subViewScrollView.subviews.count;i++){
+//        NSLog(_subViewScrollView.description);
+//        NSLog(_subViewScrollView.subviews[i].description);
+//    }
+    
 }
+
 
 -(void)calcuateLeftViewHeightNotification:(NSNotification *) notification{
     float h = [[notification.userInfo valueForKey:@"height"] floatValue];
@@ -275,12 +338,30 @@
     [_heightArray  replaceObjectAtIndex:0 withObject:[NSNumber numberWithFloat:h]];
     
     _subViewScrollView.frame = CGRectMake(0, CGRectGetMaxY(_titleScrollView.frame), SCREENWIDTH, h);
+    //    _subViewScrollView.sd_layout
+    //    .leftSpaceToView(self.view,0)
+    //    .rightSpaceToView(self.view,0)
+    //    .topSpaceToView(_titleScrollView,0)
+    //    .heightIs(h)
+    //    ;
     
     h = CGRectGetMaxY(_subViewScrollView.frame)+_titleScrollView.height+SCREENWIDTH*0.6+20;
     _scrollView.contentSize = CGSizeMake(0,h);
+    //    _subViewScrollView.contentSize = CGSizeMake(0,CGRectGetMaxY(_subViewScrollView.frame));
     
     [self.view setupAutoHeightWithBottomView:_subViewScrollView bottomMargin:0];
-    
+}
+
+
+#pragma mark - 底部按钮点击事件
+-(void)btnClick:(UIButton*)btn
+{
+    if (btn.tag == 0) {
+        NSLog(@"拨打电话");
+    }
+    if (btn.tag == 1) {
+        NSLog(@"进入投资页面");
+    }
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -295,7 +376,7 @@
     AppDelegate * delegate =[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:NO animated:NO];
-   
+    
 }
 
 - (void)didReceiveMemoryWarning {

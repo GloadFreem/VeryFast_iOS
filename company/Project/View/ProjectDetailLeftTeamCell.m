@@ -32,21 +32,23 @@
     _topView = [UIView new];
     _topView.backgroundColor = colorGray;
     [self.contentView addSubview:_topView];
-    [_topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left);
-        make.top.mas_equalTo(self.contentView.mas_top);
-        make.right.mas_equalTo(self.contentView.mas_right);
-        make.height.mas_equalTo(10);
-    }];
+    
+    _topView.sd_layout
+    .leftEqualToView(self.contentView)
+    .topEqualToView(self.contentView)
+    .rightEqualToView(self.contentView)
+    .heightIs(10);
     
     UIImage *teamImage = [UIImage imageNamed:@"friends"];
     _teamImage = [[UIImageView alloc]initWithImage:teamImage];
     _teamImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.contentView addSubview:_teamImage];
-    [_teamImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(13);
-        make.top.mas_equalTo(_topView.mas_bottom).offset(15);
-    }];
+    
+    _teamImage.sd_layout
+    .widthIs(20)
+    .heightIs(20)
+    .leftSpaceToView(self.contentView,13)
+    .topSpaceToView(_topView,15);
     
     _teamLabel = [UILabel new];
     _teamLabel.text = @"团队";
@@ -54,55 +56,69 @@
     _teamLabel .textAlignment = NSTextAlignmentLeft;
     _teamLabel.font = BGFont(18);
     [self.contentView addSubview:_teamLabel];
-    [_teamLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_teamImage);
-        make.left.mas_equalTo(_teamImage.mas_right).offset(6);
-        make.height.mas_equalTo(18);
-    }];
+    
+    _teamLabel.sd_layout
+    .centerYEqualToView(_teamImage)
+    .leftSpaceToView(_teamImage,6)
+    .heightIs(18);
+    
+    [_teamLabel setSingleLineAutoResizeWithMaxWidth:200];
     
     _partLine = [UIView new];
     _partLine.backgroundColor = colorGray;
     [self.contentView addSubview:_partLine];
-    [_partLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.right.mas_equalTo(0);
-        make.top.mas_equalTo(_teamImage.mas_bottom).offset(10);
-        make.height.mas_equalTo(0.5);
-    }];
+    
+    _partLine.sd_layout
+    .leftEqualToView(self.contentView)
+    .rightEqualToView(self.contentView)
+    .topSpaceToView(_teamImage,10)
+    .heightIs(0.5);
+    
     
     _scrollView = [UIScrollView new];
     _scrollView.delegate = self;
-    _scrollView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:_scrollView];
-    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(_partLine.mas_bottom);
-        make.height.mas_equalTo(120);
-    }];
+    
+    _scrollView.sd_layout
+    .leftSpaceToView(self.contentView,10)
+    .rightSpaceToView(self.contentView,10)
+    .topSpaceToView(_partLine,10)
+    .heightIs(120);
+    
+    
     
     _bottomView = [UIView new];
     _bottomView.backgroundColor = colorGray;
     [self.contentView addSubview:_bottomView];
-    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(_scrollView.mas_bottom);
-        make.height.mas_equalTo(10);
-    }];
+    
+    
+    _bottomView.sd_layout
+    .leftEqualToView(self.contentView)
+    .topSpaceToView(_scrollView,15)
+    .rightEqualToView(self.contentView)
+    .heightIs(10);
+    
+    
+    [self setupAutoHeightWithBottomView:_bottomView bottomMargin:0];
+    //测试
+    //    [self setModelArray:NULL];
     
 }
 
 -(void)setModelArray:(NSArray *)modelArray
 {
     _modelArray = modelArray;
-   
-     NSInteger i = 0;
+    
+    NSInteger i = 0;
     CGFloat width = 50;
     CGFloat spaceMargin = 26;
-    for (; i < modelArray.count; i++) {
+    for (; i < 10; i++) {
         UIButton *btn = [UIButton new];
-        btn.frame = CGRectMake(30 + i*(width + spaceMargin), 23, width, width);
+        btn.frame = CGRectMake(0 + i*(width + spaceMargin), 23, width, width);
         btn.layer.cornerRadius = 25;
         btn.layer.masksToBounds = YES;
+        
+        [btn setBackgroundImage:IMAGENAMED(@"Avatar-sample-165") forState:UIControlStateNormal];
         
         [_scrollView addSubview:btn];
         
@@ -110,7 +126,9 @@
         nameLabel.textAlignment = NSTextAlignmentCenter;
         nameLabel.textColor = color47;
         nameLabel.font = BGFont(13);
-
+        
+        nameLabel.text = @"王明";
+        
         [_scrollView addSubview:nameLabel];
         [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(btn.mas_bottom).offset(12);
@@ -122,6 +140,8 @@
         positionLabel.textAlignment = NSTextAlignmentCenter;
         positionLabel.textColor = color74;
         positionLabel.font = BGFont(11);
+        
+        positionLabel.text = @"经理";
         
         [_scrollView addSubview:positionLabel];
         [positionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,7 +162,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

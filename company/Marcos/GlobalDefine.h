@@ -150,7 +150,7 @@
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://192.168.5.102:8080/jinzht/"//本地
+#define SERVICE_URL @"http://192.168.5.106:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -420,8 +420,9 @@
 //知识库更新数据
 #define latestknowledgecount @"latestknowledgecount/"
 
+
 //圈子功能
-#define CYCLE_CONTENT_LIST @"feeling/"
+#define CYCLE_CONTENT_LIST @"requestFeelingList.action"
 //发布心情
 #define CYCLE_CONTENT_PUBLISH @"postfeeling/"
 //点赞
