@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CircleDetailVC : UIViewController
+@interface CircleDetailVC : RootViewController
+
+@property (nonatomic, assign) NSInteger publicContentId;
+
+@property (nonatomic, assign) NSInteger page;
 
 @end

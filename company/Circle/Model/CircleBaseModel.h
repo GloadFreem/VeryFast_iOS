@@ -23,7 +23,7 @@
 #pragma mark -点赞内容模型
 @interface CircleContentprisesContentModel : NSObject
 //点赞人ID
-@property (nonatomic, assign) NSNumber *priseId;
+@property (nonatomic, assign) NSInteger priseId;
 //点赞人模型
 @property (nonatomic, strong) CircleContentprisesUsersModel *users;
 
@@ -57,7 +57,7 @@
 //评论model
 @interface CircleCommentsModel : NSObject
 //评论id
-@property (nonatomic, assign) NSNumber *commentId;
+@property (nonatomic, assign) NSInteger commentId;
 //评论内容
 @property (nonatomic, copy) NSString *content;
 //
@@ -79,14 +79,14 @@
 
 @property (nonatomic, assign) BOOL isInvlid;
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, assign) NSNumber *provinceId;
+@property (nonatomic, assign) NSInteger provinceId;
 
 @end
 
 #pragma mark -微博认证人城市模型
 @interface CircleUsersAuthenticsCityModel :NSObject
 
-@property (nonatomic, assign) NSNumber *cityId;
+@property (nonatomic, assign) NSInteger cityId;
 @property (nonatomic, assign) BOOL isInvlid;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) CircleUsersAuthenticsCityProvinceModel *province;
@@ -123,7 +123,7 @@
 
 @interface CircleBaseModel : NSObject
 //评论数量
-@property (nonatomic, assign) NSNumber *commentCount;
+@property (nonatomic, assign) NSInteger commentCount;
 //评论内容
 @property (nonatomic, strong) NSArray *comments;
 //微博内容
@@ -133,12 +133,17 @@
 //点赞人数组
 @property (nonatomic, strong) NSArray *contentprises;
 //点赞数量
-@property (nonatomic, assign) NSNumber *priseCount;
+@property (nonatomic, assign) NSInteger priseCount;
 //发布内容ID
-@property (nonatomic, assign) NSNumber *publicContentId;
+@property (nonatomic, assign) NSInteger publicContentId;
 //分享数量
-@property (nonatomic, assign) NSNumber *shareCount;
+@property (nonatomic, assign) NSInteger shareCount;
 //微博发表人
 @property (nonatomic, strong) CircleUsersModel *users;
+//是否点赞
+@property (nonatomic, assign) NSInteger flag;
+//发布时间
+@property (nonatomic, copy) NSString *publicDate;
+
 
 @end

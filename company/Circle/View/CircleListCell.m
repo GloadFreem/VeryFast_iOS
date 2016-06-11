@@ -55,6 +55,8 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     
     _iconView = [UIImageView new];
     
+    
+    
     _nameLabel = [UILabel new];
     _nameLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:17];
     _nameLabel.textColor = color47;
@@ -94,6 +96,7 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     
     _picContainerView = [PictureContainerView new];
     
+    
     _partLine = [UIView new];
     _partLine.backgroundColor = color74;
     
@@ -127,10 +130,6 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     
     [self.contentView sd_addSubviews:views];
     
-}
-#pragma mark -子视图重新布局
--(void)layoutSubviews
-{
     UIView *contentView = self.contentView;
     CGFloat margin = 8;
     
@@ -148,7 +147,7 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     
     _nameLabel.sd_layout
     .leftSpaceToView(_iconView,9)
-    .topSpaceToView(contentView,8)
+    .topSpaceToView(_topView,8)
     .heightIs(17);
     [_nameLabel setSingleLineAutoResizeWithMaxWidth:150];
     
@@ -232,14 +231,15 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     .centerYEqualToView(_shareBtn)
     .widthIs(width)
     .heightIs(height);
+    
 }
 
 -(void)setModel:(CircleListModel *)model
 {
     _model = model;
     _shouldOpenContentLabel = NO;
-   
-    _iconView.image = [UIImage imageNamed:model.iconNameStr];
+//    NSLog(@"图片地址---%@",model.iconNameStr);
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.iconNameStr]] placeholderImage:[UIImage new]];
     _nameLabel.text = model.nameStr;
     //防止单行文本label在重用时宽度计算不准的问题
     [_nameLabel sizeToFit];

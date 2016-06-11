@@ -22,7 +22,8 @@
 
 @property (nonatomic, weak) id<CircleListCellDelegate> delegate;
 
-@property (nonatomic, strong)  CircleListModel *model;    //
+@property (nonatomic, strong)  CircleListModel *model;
+//
 @property (nonatomic, strong) NSIndexPath *indexPath;    //
 @property (nonatomic, copy) void (^moreButtonClickedBlock)(NSIndexPath*indexPath);  //
 @property (nonatomic, strong) UIButton *praiseBtn;

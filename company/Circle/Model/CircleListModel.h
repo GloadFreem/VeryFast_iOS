@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString *positionStr;  //
 @property (nonatomic, copy) NSString *timeSTr;  //
 @property (nonatomic, copy) NSString *msgContent;  //
+@property (nonatomic, assign) NSInteger publicContentId; //帖子id
 
 @property (nonatomic, assign, getter = isLiked) BOOL liked;
 

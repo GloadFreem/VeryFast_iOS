@@ -14,7 +14,7 @@
 #import "MJRefresh.h"
 
 #import "CircleBaseModel.h"
-
+#import "CircleDetailVC.h"
 
 #define CIRCLE_CONTENT @"requestFeelingList"
 
@@ -67,6 +67,7 @@
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
     //自动改变透明度
     _tableView.mj_header.automaticallyChangeAlpha = YES;
+    [self.tableView.mj_header beginRefreshing];
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
 
     [self.view addSubview:_tableView];
@@ -82,18 +83,23 @@
 
 -(void)nextPage
 {
-    
+    _page ++;
+    [self loadData];
+//    NSLog(@"回到顶部");
 }
 
 -(void)refreshHttp
 {
+    _page = 0;
     
+    [self loadData];
+//    NSLog(@"下拉刷新");
 }
 
 -(void)loadData
 {
     [SVProgressHUD show];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",@"0",@"page", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",_page],@"page", nil];
     //开始请求
     [self.httpUtil getDataFromAPIWithOps:CYCLE_CONTENT_LIST postParam:dic type:0 delegate:self sel:@selector(requestCircleContentList:)];
 }
@@ -104,46 +110,62 @@
 //    NSLog(@"返回:%@",jsonString);
     NSMutableDictionary* jsonDic = [jsonString JSONValue];
     
+    if (_page == 0) {
+        [_dataArray removeAllObjects];
+    }
+    
     if (jsonDic!=nil) {
         NSString *status = [jsonDic valueForKey:@"status"];
         if ([status intValue] == 200) {
             [SVProgressHUD dismiss];
             //解析数据  将data字典转换为BaseModel
             NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
-            NSLog(@"data----%@",dataArray);
-            NSDictionary *dataDic = [[NSDictionary alloc]initWithDictionary:dataArray[0]];
-            
-            NSLog(@"content_-------%@",dataDic);
-            
+//            NSLog(@"shuzu------%@",dataArray[0]);
+            for (NSInteger i =0; i < dataArray.count; i ++) {
+                //实例化圈子模型
+                CircleListModel *listModel = [CircleListModel new];
+                
+                //实例化返回数据baseModel
+                CircleBaseModel *baseModel = [CircleBaseModel mj_objectWithKeyValues:dataArray[i]];
+                //一级模型赋值
+                listModel.timeSTr = baseModel.publicDate;  //发布时间
+                listModel.iconNameStr = baseModel.users.headSculpture; //发布者头像
+                listModel.nameStr = baseModel.users.name;   //发布者名字
+                listModel.msgContent = baseModel.content;
+                listModel.publicContentId = baseModel.publicContentId; //帖子ID
+                //拿到usrs认证数组
+                NSArray *authenticsArray = [NSArray arrayWithArray:baseModel.users.authentics];
+                //实例化认证人模型
+                CircleUsersAuthenticsModel *usersAuthenticsModel =authenticsArray[0];
+                listModel.addressStr = usersAuthenticsModel.companyAddress;
+                listModel.companyStr = usersAuthenticsModel.companyName;
+                listModel.positionStr = usersAuthenticsModel.position;
+                NSMutableArray *picArray = [NSMutableArray array];
+                for (NSInteger i = 0; i < baseModel.contentimageses.count; i ++) {
+                    CircleContentimagesesModel *imageModel = baseModel.contentimageses[i];
+                    [picArray addObject:imageModel.url];
+                }
+                listModel.picNamesArray = [NSArray arrayWithArray:picArray];
+//                NSLog(@"照片数组---%@",listModel.picNamesArray);
+                //将model加入数据数组
+                [_dataArray addObject:listModel];
+                
+            }
+//            NSLog(@"数组个数---%ld",_dataArray.count);
+            [_tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
             
         }else{
             
             [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
             
         }
         
     }
 }
--(NSArray*)createModelWithCount:(NSInteger)count
-{
-    CircleListModel *model = [CircleListModel new];
-    model.picNamesArray = @[@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png",@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png",@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png",@"2010年11月25日-Blue-Footed-Booby,-Galápagos-Islands.png"];
-    model.iconNameStr = @"logo_icon";
-    model.nameStr = @"张丹三";
-    model.addressStr = @"北京";
-    model.companyStr = @"北京金指投";
-    model.positionStr = @"总经理";
-    model.msgContent = @"iPhone 6采用4.7英寸屏幕，分辨率为1334*750像素，内置64位构架的苹果A8处理器，性能提升非常明显；同时还搭配全新的M8协处理器，专为健康应用所设计；采用后置800万像素镜头，前置120万像素 鞠昀摄影FaceTime HD 高清摄像头；并且加入Touch ID支持指纹识别，首次新增NFC功能";
-    model.timeSTr = @"2016-5-26";
-    
-    NSMutableArray *mArr = [NSMutableArray array];
-    for (NSInteger i=0; i< count; i++) {
-        [mArr addObject:model];
-    }
-    return [mArr copy];
-}
- 
+
 #pragma mark -tableViewDatasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -163,6 +185,7 @@
     if (!cell) {
         cell = [[CircleListCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     }
+    
     cell.indexPath = indexPath;
     __weak typeof (self) weakSelf = self;
     if (!cell.moreButtonClickedBlock) {
@@ -177,11 +200,20 @@
     
 
     cell.model = self.dataArray[indexPath.row];
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    CircleListModel *listModel = _dataArray[indexPath.row];
+    
+    CircleDetailVC *detail = [CircleDetailVC new];
+    detail.publicContentId  =listModel.publicContentId;//帖子ID
+    detail.page = 0;
+    [self.navigationController pushViewController:detail animated:YES];
     
 }
 #pragma mark -发布动态
@@ -190,7 +222,7 @@
     CircleReleaseVC *vc = [CircleReleaseVC new];
     
     //隐藏tabbar
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
     

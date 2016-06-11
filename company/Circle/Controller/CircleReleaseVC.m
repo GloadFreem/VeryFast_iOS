@@ -575,7 +575,7 @@
     
     [self presentViewController:self.customPicker animated:YES completion:nil];
     
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
 }
@@ -672,7 +672,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:NO animated:NO];
     

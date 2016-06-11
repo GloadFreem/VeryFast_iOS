@@ -33,10 +33,11 @@
     NSMutableArray *temp = [NSMutableArray new];
     for (int i =0; i<9; i++) {
         UIImageView *imageView = [UIImageView new];
-        imageView.backgroundColor = [UIColor redColor];
+//        imageView.backgroundColor = [UIColor redColor];
         [self addSubview:imageView];
         imageView.userInteractionEnabled = YES;
         imageView.tag = i;
+//        imageView.backgroundColor = [UIColor greenColor];
         UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapImageView:)];
         [imageView addGestureRecognizer:tap];
         [temp addObject:imageView];
@@ -76,7 +77,10 @@
             int column = index % 3;
             UIImageView *imageView = [_imageViewArray objectAtIndex:index];
             imageView.hidden = NO;
-            imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
+            //设置图片
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_pictureStringArray[index]]]];
+
+//            imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
             imageView.frame = CGRectMake((margin + imageW) * column, row * (margin + imageH), imageW, imageH);
         }
         w = 3 * imageW + 2 * margin;
@@ -93,7 +97,8 @@
         int column = index % 3;
         UIImageView *imageView = [_imageViewArray objectAtIndex:index];
         imageView.hidden = NO;
-        imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
+        //设置图片
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_pictureStringArray[index]]]];//        imageView.image = [UIImage imageNamed:_pictureStringArray[index]];
         imageView.frame = CGRectMake((margin + imageW) * column, row * (margin + imageH), imageW, imageH);
     }
     w = 3 * imageW + 2 * margin;

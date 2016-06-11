@@ -9,12 +9,15 @@
 #import "CircleDetailVC.h"
 #import "CircleDetailHeaderView.h"
 #import "CircleDetailCommentCell.h"
+#define CIRCLEDETAIL @"requestFeelingDetail"
 
 @interface CircleDetailVC ()<UITableViewDelegate,UITableViewDataSource,CircleDetailHeaderViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITextField *textField;
+
+
 
 @end
 
@@ -23,18 +26,66 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:CIRCLEDETAIL];
     
     //设置导航栏
     [self setupNav];
     
     [self createTableView];
+    
+    [self loadData];
+    
 }
 
+-(void)loadData
+{
+    NSLog(@"id====%ld",self.publicContentId);
+    [SVProgressHUD show];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",self.publicContentId],@"feelingId",[NSString stringWithFormat:@"%ld",_page],@"page",nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:CIRCLE_FEELING_DETAIL postParam:dic type:0 delegate:self sel:@selector(requestCircleDetail:)];
+}
+
+#pragma mark -网络请求
+-(void)requestCircleDetail:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+//        NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (_page == 0) {
+        [_dataArray removeAllObjects];
+    }
+    
+    if (jsonDic!=nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status intValue] == 200) {
+            [SVProgressHUD dismiss];
+            //解析数据  将data字典转换为BaseModel
+            NSLog(@"data字典---%@",jsonDic[@"data"]);
+            
+    
+            [_tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else{
+            
+            [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+            
+        }
+        
+    }
+    
+    
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     //隐藏tabbar
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
     
@@ -46,9 +97,9 @@
 {
     [super viewWillDisappear:animated];
     //隐藏tabbar
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    [delegate.tabBar tabBarHidden:YES animated:NO];
+    [delegate.tabBar tabBarHidden:NO animated:NO];
     
     [[IQKeyboardManager sharedManager]setEnableAutoToolbar:YES];
 }
@@ -73,6 +124,9 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
+    
+    CircleDetailHeaderView *headerView = [CircleDetailHeaderView new];
+    
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);
@@ -104,7 +158,7 @@
     field.layer.borderColor = colorGray.CGColor;
     field.layer.borderWidth = .5f;
     field.delegate = self;
-    [field setValue:color47 forKeyPath:@"_placeholderLabel.textColor"];
+    [field setValue:color74 forKeyPath:@"_placeholderLabel.textColor"];
     field.textAlignment = NSTextAlignmentLeft;
     field.textColor = [UIColor blackColor];
     field.font = BGFont(14);
@@ -171,6 +225,7 @@
     if (!cell) {
         cell = [[CircleDetailCommentCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
     }
+    
     return cell;
 }
 
