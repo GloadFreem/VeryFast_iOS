@@ -145,12 +145,14 @@
 /***===================================================================================**
  *                                          服务器数据获取相关
  *
+ 
+ 
  ***===================================================================================**/
 
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
-//#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://192.168.5.107:8080/jinzht/"//本地
+#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
+//#define SERVICE_URL @"http://192.168.5.108:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -193,11 +195,14 @@
 #define AUTHENTICATE_PROTOCOL @"getProtocolAuthentic.action"
 //圈子功能
 #define CYCLE_CONTENT_LIST @"requestFeelingList.action"
+//圈子首页点赞
+#define CYCLE_CELL_PRAISE @"requestPriseFeeling.action"
 //圈子详情
 #define CIRCLE_FEELING_DETAIL  @"requestFeelingDetail.action"
-
-
-
+//状态分享
+#define CIRCLE_FEELING_SHARE @"requestShareFeeling.action"
+//分享状态更新
+#define CIRCLE_FEELING_UPDATFEEL @"requestUpdateShareFeeling.action"
 
 
 //版本更新itunes 地址

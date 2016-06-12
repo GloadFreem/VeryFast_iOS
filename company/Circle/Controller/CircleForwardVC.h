@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CircleListModel.h"
 
-@interface CircleForwardVC : UIViewController
+@interface CircleForwardVC : RootViewController
+
+@property (nonatomic, strong) CircleListModel *listModel;
 
 @end

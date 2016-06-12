@@ -86,7 +86,7 @@
     _namelabel.text = model.nameStr;
     [_namelabel sizeToFit];
     
-    _timelabel.text = model.timeStr;
+    _timelabel.text = model.publicDate;
     [_timelabel sizeToFit];
     
     _contentLabel.text = model.contentStr;

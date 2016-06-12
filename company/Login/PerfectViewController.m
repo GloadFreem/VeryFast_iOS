@@ -101,10 +101,6 @@
     [activity startAnimating];
     
     [self.httpUtil getDataFromAPIWithOps:USER_IDENTIFY_TYPE postParam:dic files:picDic type:0 delegate:self sel:@selector(requestSetIdentifyType:)];
-
-//    RegistSuccessViewController * regist = [RegistSuccessViewController new];
-//    regist.identify = _identifyType;
-//    [self.navigationController pushViewController:regist animated:YES];
 }
 //注册身份
 -(void)requestSetIdentifyType:(ASIHTTPRequest *)request
@@ -135,12 +131,6 @@
     }
     [activity stopAnimating];
     
-    //测试
-    
-//    //进入注册成功界面
-//    RegistSuccessViewController * regist = [RegistSuccessViewController new];
-//    regist.identify = _identifyType;
-//    [self.navigationController pushViewController:regist animated:YES];
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request

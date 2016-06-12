@@ -12,7 +12,8 @@
 
 @property (nonatomic, copy) NSString *iconImageStr;
 @property (nonatomic, copy) NSString *nameStr;
-@property (nonatomic, copy) NSString *timeStr;
+
 @property (nonatomic, copy) NSString *contentStr;
+@property (nonatomic, copy) NSString *publicDate;
 
 @end

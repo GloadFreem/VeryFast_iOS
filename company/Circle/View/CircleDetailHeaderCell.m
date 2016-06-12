@@ -1,16 +1,16 @@
 //
-//  CircleDetailHeaderView.m
-//  JinZhiT
+//  CircleDetailHeaderCell.m
+//  company
 //
-//  Created by Eugene on 16/6/1.
+//  Created by Eugene on 16/6/12.
 //  Copyright © 2016年 Eugene. All rights reserved.
 //
 
-#import "CircleDetailHeaderView.h"
-
+#import "CircleDetailHeaderCell.h"
 #import "PictureContainerView.h"
 
-@implementation CircleDetailHeaderView
+@implementation CircleDetailHeaderCell
+
 {
     UIView *_topView;
     UIImageView *_iconView;
@@ -28,14 +28,14 @@
     UIView *_bottomView;
 }
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if ([super initWithFrame: frame]) {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
-
 -(void)setup
 {
     _topView = [UIView new];
@@ -91,10 +91,9 @@
     
     NSArray *views = @[_topView,_iconView, _nameLabel, _addressLabel, _companyLabel, _shuView, _positionLabel, _timeLabel, _contentLabel,_picContainerView,_middleView, _praiseBtn, _praiseLabel, _bottomView];
     
-    [self sd_addSubviews:views];
-    
-    UIView *contentView = self;
+    UIView *contentView = self.contentView;
     CGFloat margin = 8;
+    [contentView sd_addSubviews:views];
     
     _topView.sd_layout
     .leftEqualToView(contentView)
@@ -152,8 +151,9 @@
     
     _picContainerView.sd_layout
     .leftEqualToView(_contentLabel);//已经在内部实现宽度和高度的自适应所以不需要在设置高度和宽度，top值是具体有无图片在setmodel方法设置
-    
+    //中间灰色分区
     _middleView.sd_layout
+    .topSpaceToView(_picContainerView,5)
     .leftEqualToView(self)
     .rightEqualToView(self)
     .heightIs(10);
@@ -175,55 +175,24 @@
     .rightEqualToView(self)
     .topSpaceToView(_praiseLabel, 13*HEIGHTCONFIG)
     .heightIs(10*HEIGHTCONFIG);
-    
-    
-}
--(void)setModel:(CircleListModel *)model
-{
-    _model = model;
-    
-    _iconView.image = [UIImage imageNamed:model.iconNameStr];
-    _nameLabel.text = model.nameStr;
-    //防止单行文本label在重用时宽度计算不准的问题
-    [_nameLabel sizeToFit];
-    
-    _addressLabel.text = model.addressStr;
-    [_addressLabel sizeToFit];
-    
-    _companyLabel.text = model.companyStr;
-    [_companyLabel sizeToFit];
-    
-    _positionLabel.text = model.positionStr;
-    [_positionLabel sizeToFit];
-    
-    _timeLabel.text = model.timeSTr;
-    [_timeLabel sizeToFit];
-    
-    _contentLabel.text = model.msgContent;
-    _picContainerView.pictureStringArray = model.picNamesArray;
-    
-    
-    CGFloat picContainerTopMargin = 0;
-    if (model.picNamesArray.count) {
-        picContainerTopMargin = 10*HEIGHTCONFIG;
-    }
-    _picContainerView.sd_layout.topSpaceToView(_contentLabel,picContainerTopMargin);
-    _praiseLabel.text = model.priseLabel;
-    CGFloat height = [_praiseLabel.text commonStringHeighforLabelWidth:SCREENWIDTH -20 -12 -16 - 10 withFontSize:12];
-    if (height > _contentLabel.font.lineHeight * 3) {
-        _contentLabel.sd_layout.maxHeightIs(_contentLabel.font.lineHeight * 3);
-    }else{
-        _contentLabel.sd_layout.maxHeightIs(height);
-    }
-    
-    [self setupAutoHeightWithBottomView:_bottomView bottomMargin:0];
+
 }
 
--(void)praiseBtnClick
+-(void)setModel:(CircleListModel *)model
 {
-    if ([self.delegate respondsToSelector:@selector(didClickPraiseBtn:model:)]) {
-        [self.delegate didClickPraiseBtn:self model:_model];
-    }
+    
+}
+
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
 }
 
 @end

@@ -8,15 +8,23 @@
 
 #import "CircleDetailVC.h"
 #import "CircleDetailHeaderView.h"
+#import "CircleListCell.h"
 #import "CircleDetailCommentCell.h"
+#import "CircleDetailCommentModel.h"
+#import "CircleListModel.h"
+#import "CircleBaseModel.h"
+
 #define CIRCLEDETAIL @"requestFeelingDetail"
 
 @interface CircleDetailVC ()<UITableViewDelegate,UITableViewDataSource,CircleDetailHeaderViewDelegate,UITextFieldDelegate>
 
+{
+    CircleDetailHeaderView *_headerView;
+    CircleListModel *_listModel;
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITextField *textField;
-
 
 
 @end
@@ -29,20 +37,27 @@
     //获得partner
     self.partner = [TDUtil encryKeyWithMD5:KEY action:CIRCLEDETAIL];
     
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    //初始化为0详情页面
+    _page = 0;
+    //请求数据
+    [self loadData];
+    
     //设置导航栏
     [self setupNav];
     
     [self createTableView];
     
-    [self loadData];
+    
     
 }
 
 -(void)loadData
 {
-    NSLog(@"id====%ld",self.publicContentId);
     [SVProgressHUD show];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",self.publicContentId],@"feelingId",[NSString stringWithFormat:@"%ld",_page],@"page",nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%d",27],@"feelingId",[NSString stringWithFormat:@"%ld",_page],@"page",nil];
     //开始请求
     [self.httpUtil getDataFromAPIWithOps:CIRCLE_FEELING_DETAIL postParam:dic type:0 delegate:self sel:@selector(requestCircleDetail:)];
 }
@@ -63,23 +78,93 @@
         if ([status intValue] == 200) {
             [SVProgressHUD dismiss];
             //解析数据  将data字典转换为BaseModel
-            NSLog(@"data字典---%@",jsonDic[@"data"]);
+//            NSLog(@"data字典---%@",jsonDic[@"data"]);
+            NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:jsonDic[@"data"]];
+            //实例化数据模型
+            CircleListModel *listModel = [CircleListModel new];
+            //基本模型转换
+            CircleBaseModel *baseModel = [CircleBaseModel mj_objectWithKeyValues:dataDic];
+            //一级模型赋值
+            listModel.msgContent  = baseModel.content;  //微博内容
+            listModel.nameStr = baseModel.users.name;
+            listModel.iconNameStr = baseModel.users.headSculpture;
+            listModel.publicContentId = baseModel.publicContentId; //帖子ID
+            listModel.timeSTr = baseModel.publicDate;              //发布时间
+            listModel.flag = baseModel.flag;    //是否点赞
             
-    
-            [_tableView reloadData];
+            //拿到usrs认证数组
+            NSArray *authenticsArray = [NSArray arrayWithArray:baseModel.users.authentics];
+            //实例化认证人模型
+            CircleUsersAuthenticsModel *usersAuthenticsModel =authenticsArray[0];
+            listModel.addressStr = usersAuthenticsModel.companyAddress;
+            listModel.companyStr = usersAuthenticsModel.companyName;
+            listModel.positionStr = usersAuthenticsModel.position;
+            //微博照片
+            NSMutableArray *picArray = [NSMutableArray array];
+            for (NSInteger i = 0; i < baseModel.contentimageses.count; i ++) {
+                CircleContentimagesesModel *imageModel = baseModel.contentimageses[i];
+                [picArray addObject:imageModel.url];
+            }
+            listModel.picNamesArray = [NSArray arrayWithArray:picArray];
+            //点赞人名
+            NSMutableArray *priseArray = [NSMutableArray array];
+            for (NSInteger i =0; i < baseModel.contentprises.count; i ++) {
+                CircleContentprisesContentModel *contentModel = baseModel.contentprises[i];
+                
+                if (contentModel.users.name.length) {
+                    [priseArray addObject:contentModel.users.name];
+                }
+                
+            }
+            //将人名转换成字符串
+            NSMutableString *nsmStr = [[NSMutableString alloc]init];
+            
+      
+            if (priseArray.count) {
+                for (NSInteger i =0; i < priseArray.count; i ++) {
+                    if (i != priseArray.count -1) {
+                        [nsmStr appendFormat:@"%@，",priseArray[i]];
+                    }else{
+                        [nsmStr appendFormat:@"%@",priseArray[i]];
+                    }
+                }
+            }
+           
+            listModel.priseLabel = [nsmStr copy];
+            _listModel = listModel;
+//            NSLog(@"打印listModel-----------%@",_listModel);
+//            [_dataArray addObject:_listModel];
+            //评论模型数据
+            //实例化评论cell模型
+            
+            for (NSInteger i =0; i < baseModel.comments.count; i ++) {
+                CircleDetailCommentModel *detailCommentModel = [CircleDetailCommentModel new];
+                CircleCommentsModel *commentModel = baseModel.comments[i];
+                detailCommentModel.iconImageStr = commentModel.usersByUserId.headSculpture;
+                detailCommentModel.nameStr = commentModel.usersByUserId.name;
+                detailCommentModel.publicDate = commentModel.publicDate;
+                //如果有回复
+                if (![commentModel.usersByAtUserId.name isEqualToString:@""]) {
+                    detailCommentModel.contentStr = [NSString stringWithFormat:@"%@回复%@：%@",commentModel.usersByUserId.name,commentModel.usersByAtUserId.name,commentModel.content];
+                }else{
+                    detailCommentModel.contentStr = commentModel.content;
+                }
+                //将模型加到数据数组中
+                [_dataArray addObject:detailCommentModel];
+            }
+            
+//            NSLog(@"dataArray的个数：---%ld",_dataArray.count);
+//            [_tableView reloadData];
             [self.tableView.mj_header endRefreshing];
             
         }else{
             
             [SVProgressHUD dismiss];
-            [self.tableView.mj_header endRefreshing];
+//            [self.tableView.mj_header endRefreshing];
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
             
         }
-        
     }
-    
-    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -124,8 +209,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    
-    CircleDetailHeaderView *headerView = [CircleDetailHeaderView new];
     
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -181,6 +264,8 @@
     [answerBtn setTitle:@"回复" forState:UIControlStateNormal];
     [answerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [answerBtn setBackgroundColor:colorBlue];
+    answerBtn.layer.cornerRadius = 3;
+    answerBtn.layer.masksToBounds = YES;
     answerBtn.titleLabel.font = BGFont(16);
     [answerBtn addTarget:self action:@selector(sendComment:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:answerBtn];
@@ -188,7 +273,7 @@
         make.left.mas_equalTo(field.mas_right).offset(5);
         make.height.mas_equalTo(field.mas_height);
         make.centerY.mas_equalTo(field.mas_centerY);
-        make.right.mas_equalTo(view.mas_right).offset(10);
+        make.right.mas_equalTo(view.mas_right).offset(-5);
     }];
 }
 #pragma mark -导航栏按钮点击事件
@@ -208,18 +293,46 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _dataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     id model = self.dataArray[indexPath.row];
+//    if (indexPath.row == 0) {
+//        return [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[CircleListCell class] contentViewWidth:[self cellContentViewWith]];
+//    }
     return [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[CircleDetailCommentCell class] contentViewWidth:[self cellContentViewWith]];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    if (indexPath.row == 0) {
+//        static NSString *cellId = @"CircleListCell";
+//        CircleListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+//        if (!cell) {
+//            cell = [[CircleListCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
+//        }
+//        
+//        cell.indexPath = indexPath;
+//        __weak typeof (self) weakSelf = self;
+//        if (!cell.moreButtonClickedBlock) {
+//            [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
+//                CircleListModel *model =weakSelf.dataArray[indexPath.row];
+//                model.isOpening  = !model.isOpening;
+//                [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//            }];
+//            
+//        }
+//        cell.delegate = self;
+//        
+//        
+//        cell.model = self.dataArray[indexPath.row];
+//        
+//        return cell;
+//        
+//    }
     static NSString *cellId = @"CircleDetailCommentCell";
     CircleDetailCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {

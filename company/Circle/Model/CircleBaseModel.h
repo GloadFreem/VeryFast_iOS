@@ -64,7 +64,8 @@
 @property (nonatomic, strong) CircleUsersByAtUserIdModel *usersByAtUserId;
 //
 @property (nonatomic, strong) CircleUsersByUserIdModel *usersByUserId;
-
+//发布时间
+@property (nonatomic, copy) NSString *publicDate;
 @end
 
 #pragma mark -微博照片模型
@@ -141,7 +142,7 @@
 //微博发表人
 @property (nonatomic, strong) CircleUsersModel *users;
 //是否点赞
-@property (nonatomic, assign) NSInteger flag;
+@property (nonatomic, assign) BOOL flag;
 //发布时间
 @property (nonatomic, copy) NSString *publicDate;
 

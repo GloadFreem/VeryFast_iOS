@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>ASIHTTPRequest.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,17 +52,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F39376DE7215967EB8AF5B37F4B4E75</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3C34098A7DACA89F52BF902062730F50</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4878C70B21CA37D7CB8A476BF986741B</key>
+		<key>5F2AEC95231DD42F4DACB1CB66DB6806</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,22 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6DB39B007C17FD0A0CD649750DA21689</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7C0126D717EB28DC6DB2EEA2E20B5172</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9018D03C4E766D7E50F0BBADCF648DDD</key>
+		<key>8D8BD0D051DEEA1CB0C3D1CA12621C3A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E7FF33B5DFF643A2ACA9ADC4A3CFF8E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8BFED3DB1AB8FEFE730E3AD94FE189E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

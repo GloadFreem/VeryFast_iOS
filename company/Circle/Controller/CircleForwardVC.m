@@ -8,6 +8,7 @@
 
 #import "CircleForwardVC.h"
 #define kTextContent @"说说吧···"
+#define CIRCLE_SHARE @"requestShareFeeling"
 @interface CircleForwardVC ()<UITextViewDelegate>
 
 @property (nonatomic, strong) UITextView *textView;
@@ -23,11 +24,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_SHARE];
+    
+    //获取数据
+    [self loadData];
     [self setupNav];
     
     [self createUI];
 }
 
+-(void)loadData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",@"2",@"type",_listModel.publicContentId,@"contentId", nil];
+    
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:CIRCLE_FEELING_SHARE postParam:dic type:0 delegate:self sel:@selector(requestShareStatus:)];
+}
+-(void)requestShareStatus:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    //        NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic != nil) {
+        
+    }else{
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        
+    }
+}
 #pragma mark -设置导航栏
 -(void)setupNav
 {
@@ -38,7 +64,7 @@
     [leftback addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftback] ;
     
-    UIButton *forwardBtn = [UIButton new];
+    UIButton *forwardBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 35, 22)];
     [forwardBtn setBackgroundColor:[UIColor clearColor]];
     
     forwardBtn.tag = 1;
@@ -115,6 +141,7 @@
     _contentLabel.font = BGFont(13);
     _contentLabel.textColor = color47;
     _contentLabel.textAlignment = NSTextAlignmentLeft;
+    _contentLabel.numberOfLines = 1;
     [_containerView addSubview:_contentLabel];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_titleLabel.mas_left);
@@ -125,6 +152,13 @@
     
 }
 
+-(void)setListModel:(CircleListModel *)listModel
+{
+    _listModel = listModel;
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",listModel.iconNameStr]]];
+    [_titleLabel setText:listModel.nameStr];
+    [_contentLabel setText:listModel.msgContent];
+}
 #pragma mark -textViewDelegate
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -146,7 +180,6 @@
         _textView.font = BGFont(14);
         _textView.text = kTextContent;
     }
-    
 }
 
 -(void)btnClick:(UIButton*)btn
@@ -155,7 +188,29 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     if (btn.tag == 1) {
-        NSLog(@"点击转发按钮");
+        if ([_textView.text isEqualToString:@""] || [_textView.text isEqualToString:kTextContent]) {
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:@"发布内容不能为空"];
+            return;
+        }else{
+        //发布内容
+            
+        }
     }
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:YES animated:NO];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:NO animated:NO];
 }
 @end

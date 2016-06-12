@@ -104,7 +104,7 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     [_shareBtn setImage:[UIImage imageNamed:@"iconfont_share"] forState:UIControlStateNormal];
     [_shareBtn addTarget:self action:@selector(shareBtnClick) forControlEvents:UIControlEventTouchUpInside];
     _shareBtn.titleLabel.font = BGFont(14);
-    _shareBtn.titleLabel.textColor = color74;
+    [_shareBtn setTitleColor:color74 forState:UIControlStateNormal];
     
     _firstShuView = [UIView new];
     [_firstShuView setBackgroundColor:colorGray];
@@ -113,17 +113,17 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     [_commentBtn setImage:[UIImage imageNamed:@"iconfont_pinglun"] forState:UIControlStateNormal];
     [_commentBtn addTarget:self action:@selector(commentBtnClick) forControlEvents:UIControlEventTouchUpInside];
     _commentBtn.titleLabel.font = BGFont(14);
-    _commentBtn.titleLabel.textColor = color74;
+    [_commentBtn setTitleColor:color74 forState:UIControlStateNormal];
     
     _secondShuView = [UIView new];
     [_secondShuView setBackgroundColor:colorGray];
     
     _praiseBtn = [UIButton new];
-    [_praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
-    [_praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateSelected];
+//    [_praiseBtn setTitle:@"250" forState:UIControlStateNormal];
+    [_praiseBtn setTitleColor:color74 forState:UIControlStateNormal];
     [_praiseBtn addTarget:self action:@selector(praiseBtnClick) forControlEvents:UIControlEventTouchUpInside];
     _praiseBtn.titleLabel.font = BGFont(14);
-    _praiseBtn.titleLabel.textColor = color74;
+    
     
     
     NSArray *views = @[_topView,_iconView, _nameLabel, _addressLabel, _companyLabel, _shuView, _positionLabel, _timeLabel, _contentLabel, _moreBtn, _picContainerView, _partLine,_shareBtn,_firstShuView,_commentBtn,_secondShuView,_praiseBtn];
@@ -236,8 +236,14 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
 
 -(void)setModel:(CircleListModel *)model
 {
+    
     _model = model;
     _shouldOpenContentLabel = NO;
+    if (model.flag) {
+        [_praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateNormal];
+    }else{
+        [_praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
+    }
 //    NSLog(@"图片地址---%@",model.iconNameStr);
     [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.iconNameStr]] placeholderImage:[UIImage new]];
     _nameLabel.text = model.nameStr;
@@ -278,11 +284,19 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     if (model.picNamesArray.count) {
         picContainerTopMargin = 10;
     }
+    //设置底部操作按钮标题
+    [_shareBtn setTitle:[NSString stringWithFormat:@" %ld",model.shareCount] forState:UIControlStateNormal];
+    [_commentBtn setTitle:[NSString stringWithFormat:@" %ld",model.commentCount] forState:UIControlStateNormal];
+    [_praiseBtn setTitle:[NSString stringWithFormat:@" %ld",model.priseCount] forState:UIControlStateNormal];
     _picContainerView.sd_layout.topSpaceToView(_moreBtn,picContainerTopMargin);
     
     [self setupAutoHeightWithBottomView:_shareBtn bottomMargin:5];
 }
 
+-(void)setIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+}
 -(void)moreBtnClick
 {
     if (self.moreButtonClickedBlock) {
@@ -306,8 +320,8 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
 
 -(void)praiseBtnClick
 {
-    if ([self.delegate respondsToSelector:@selector(didClickPraiseBtnInCell:andModel:)]) {
-        [self.delegate didClickPraiseBtnInCell:self andModel:_model];
+    if ([self.delegate respondsToSelector:@selector(didClickPraiseBtnInCell:andModel:andIndexPath:)]) {
+        [self.delegate didClickPraiseBtnInCell:self andModel:_model andIndexPath:_indexPath];
     }
     
 }

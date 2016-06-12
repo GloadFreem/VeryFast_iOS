@@ -46,7 +46,7 @@
 //网络请求
 #import "AES.h"
 #import "NSString+MD5.h"
-#import "MJRefresh.h"
+
 #import "UConstants.h"
 #import "Reachability.h"
 #import "ASIFormDataRequest.h"

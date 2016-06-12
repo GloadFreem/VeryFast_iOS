@@ -100,7 +100,7 @@
     ActivityDetailVC * vc = [ActivityDetailVC new];
     
     //隐藏tabbar
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
     

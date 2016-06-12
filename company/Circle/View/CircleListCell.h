@@ -14,7 +14,7 @@
 
 -(void)didClickShareBtnInCell:(CircleListCell*)cell andModel:(CircleListModel*)model;
 -(void)didClickCommentBtnInCell:(CircleListCell*)cell andModel:(CircleListModel*)model;
--(void)didClickPraiseBtnInCell:(CircleListCell*)cell andModel:(CircleListModel*)model;
+-(void)didClickPraiseBtnInCell:(CircleListCell*)cell andModel:(CircleListModel*)model andIndexPath:(NSIndexPath*)indexPath;
 
 @end
 

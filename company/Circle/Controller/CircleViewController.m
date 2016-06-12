@@ -7,22 +7,38 @@
 //
 
 #import "CircleViewController.h"
+
+#import "CircleShareBottomView.h"
+
+#import "CircleForwardVC.h"
+
 #import "CircleListModel.h"
 #import "CircleListCell.h"
 #import "CircleReleaseVC.h"
-#import "SVProgressHUD.h"
-#import "MJRefresh.h"
 
 #import "CircleBaseModel.h"
 #import "CircleDetailVC.h"
+#import "CircleShareBottomView.h"
 
 #define CIRCLE_CONTENT @"requestFeelingList"
+#define CIRCLE_PRAISE @"requestPriseFeeling"
+#define CIRCLE_SHARE @"requestShareFeeling"
+#define CIRCLE_UPDATE_SHARE @"requestUpdateShareFeeling"
+@interface CircleViewController ()<CircleShareBottomViewDelegate,UITableViewDelegate,UITableViewDataSource,CircleListCellDelegate>
+@property (nonatomic,strong)UIView * bottomView;
 
-@interface CircleViewController ()<UITableViewDelegate,UITableViewDataSource,CircleListCellDelegate>
+@property (nonatomic, copy) NSString *praisePartner;
+@property (nonatomic, copy) NSString *sharePartner;
+@property (nonatomic, copy) NSString *updateSharePartner;
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;  //数据数组
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, copy) NSString *flag;
+@property (nonatomic, strong) CircleListModel *listModel;
+@property (nonatomic, strong) CircleListCell *listCell;
+@property (nonatomic, assign) BOOL praiseSuccess;
+@property (nonatomic, copy) NSString *shareUrl; //分享地址
 
 @end
 
@@ -34,8 +50,15 @@
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
-    //获得partner
+    //获得内容partner
     self.partner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_CONTENT];
+    //获得点赞partner
+    self.praisePartner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_PRAISE];
+    //获得状态分享partner
+    self.sharePartner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_SHARE];
+    //获得状态分享更新partner
+    self.updateSharePartner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_UPDATE_SHARE];
+    
     _page = 0;
     [self setupNav];
     [self createTableView];
@@ -98,7 +121,7 @@
 
 -(void)loadData
 {
-    [SVProgressHUD show];
+//    [SVProgressHUD show];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",_page],@"page", nil];
     //开始请求
     [self.httpUtil getDataFromAPIWithOps:CYCLE_CONTENT_LIST postParam:dic type:0 delegate:self sel:@selector(requestCircleContentList:)];
@@ -117,7 +140,7 @@
     if (jsonDic!=nil) {
         NSString *status = [jsonDic valueForKey:@"status"];
         if ([status intValue] == 200) {
-            [SVProgressHUD dismiss];
+//            [SVProgressHUD dismiss];
             //解析数据  将data字典转换为BaseModel
             NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
 //            NSLog(@"shuzu------%@",dataArray[0]);
@@ -128,11 +151,15 @@
                 //实例化返回数据baseModel
                 CircleBaseModel *baseModel = [CircleBaseModel mj_objectWithKeyValues:dataArray[i]];
                 //一级模型赋值
-                listModel.timeSTr = baseModel.publicDate;  //发布时间
+                listModel.timeSTr = baseModel.publicDate;              //发布时间
                 listModel.iconNameStr = baseModel.users.headSculpture; //发布者头像
-                listModel.nameStr = baseModel.users.name;   //发布者名字
+                listModel.nameStr = baseModel.users.name;              //发布者名字
                 listModel.msgContent = baseModel.content;
                 listModel.publicContentId = baseModel.publicContentId; //帖子ID
+                listModel.shareCount = baseModel.shareCount;           //分享数量
+                listModel.commentCount = baseModel.commentCount;       //评论数量
+                listModel.priseCount = baseModel.priseCount;           //点赞数量
+                listModel.flag = baseModel.flag;
                 //拿到usrs认证数组
                 NSArray *authenticsArray = [NSArray arrayWithArray:baseModel.users.authentics];
                 //实例化认证人模型
@@ -157,7 +184,7 @@
             
         }else{
             
-            [SVProgressHUD dismiss];
+//            [SVProgressHUD dismiss];
             [self.tableView.mj_header endRefreshing];
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
             
@@ -241,32 +268,164 @@
 }
 
 #pragma mark- CircleListCellDelegate
+#pragma maerk -分享按钮
 -(void)didClickShareBtnInCell:(CircleListCell *)cell andModel:(CircleListModel *)model
 {
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.sharePartner,@"partner",@"2",@"type",[NSString stringWithFormat:@"%ld",model.publicContentId],@"contentId", nil];
     
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:CIRCLE_FEELING_SHARE postParam:dic type:0 delegate:self sel:@selector(requestShareStatus:)];
+    
+    //开始分享
+    [self startShare];
+}
+#pragma mark -分享请求网址
+-(void)requestShareStatus:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:jsonDic[@"data"]];
+            _shareUrl = dataDic[@"url"];
+            
+        }
+        
+    }else{
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        
+    }
+}
+#pragma mark -开始分享
+
+#pragma mark  转发
+
+- (UIView*)topView {
+    UIViewController *recentView = self;
+    while (recentView.parentViewController != nil) {
+        recentView = recentView.parentViewController;
+    }
+    return recentView.view;
 }
 
+/**
+ *  点击空白区域shareView消失
+ */
+
+- (void)dismissBG
+{
+    if(self.bottomView != nil)
+    {
+        [self.bottomView removeFromSuperview];
+    }
+}
+
+-(void)startShare
+{
+    NSArray *titleList = @[@"QQ",@"微信",@"朋友圈",@"短信"];
+    NSArray *imageList = @[@"icon_share_qq",@"icon_share_wx",@"icon_share_friend",@"icon_share_msg"];
+    CircleShareBottomView *share = [CircleShareBottomView new];
+    share.tag = 1;
+    [share createShareViewWithTitleArray:titleList imageArray:imageList];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBG)];
+    [share addGestureRecognizer:tap];
+    [[self topView] addSubview:share];
+    self.bottomView = share;
+    share.delegate = self;
+}
+-(void)sendShareBtnWithView:(CircleShareBottomView *)view index:(int)index
+{
+    //分享
+    if (view.tag == 1) {
+        //得到用户SID
+        switch (index) {
+            case 0:{
+                NSLog(@"分享到QQ");
+            }
+                break;
+            case 1:{
+                NSLog(@"分享到微信");
+            }
+                break;
+            case 2:{
+                NSLog(@"分享到朋友圈");
+            }
+                break;
+            case 3:{
+                NSLog(@"分享短信");
+            }
+                break;
+            case 100:{
+                [self dismissBG];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+#pragma mark -评论按钮
 -(void)didClickCommentBtnInCell:(CircleListCell *)cell andModel:(CircleListModel *)model
 {
     
 }
-
--(void)didClickPraiseBtnInCell:(CircleListCell *)cell andModel:(CircleListModel *)model
+#pragma mark -点赞按钮
+-(void)didClickPraiseBtnInCell:(CircleListCell *)cell andModel:(CircleListModel *)model andIndexPath:(NSIndexPath *)indexPath
 {
-    if (model.isLiked) {
-        [cell.praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateNormal];
+    model.flag = !model.flag;
+    
+    if (model.flag) {
+//        [cell.praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateNormal];
+        _flag = @"1";
 
     }else{
-        [cell.praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
+//        [cell.praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
+        _flag = @"2";
     }
-    model.liked = !model.liked;
+    //请求更新数据数据
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.praisePartner,@"partner",[NSString stringWithFormat:@"%ld",model.publicContentId],@"contentId",_flag,@"flag", nil];
     
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:CYCLE_CELL_PRAISE postParam:dic type:0 delegate:self sel:@selector(requestPraiseStatus:)];
+    if (_praiseSuccess) {
+        if (model.flag) {
+            [cell.praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateNormal];
+            model.priseCount ++;
+            [cell.praiseBtn setTitle:[NSString stringWithFormat:@" %ld",model.priseCount] forState:UIControlStateNormal];
+        }else{
+            [cell.praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
+            model.priseCount --;
+            [cell.praiseBtn setTitle:[NSString stringWithFormat:@" %ld",model.priseCount] forState:UIControlStateNormal];
+        }
+
+    }
 }
+
+-(void)requestPraiseStatus:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    //    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status intValue] == 200) {
+            _praiseSuccess = YES;
+           
+            
+        }else{
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
+
 #pragma mark -视图即将显示
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     self.navigationController.navigationBar.translucent=NO;

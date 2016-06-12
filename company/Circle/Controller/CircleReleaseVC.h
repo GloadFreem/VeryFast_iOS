@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CircleReleaseVC : UIViewController
+@interface CircleReleaseVC : RootViewController
 
 @end
