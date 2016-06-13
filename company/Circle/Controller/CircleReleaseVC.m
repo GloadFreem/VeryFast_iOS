@@ -16,6 +16,7 @@
 #import "CustomImagePickerController.h"
 
 #define textViewContent @"发布最新、最热、最前沿的投融资话题"
+#define PUBLICFEEL @"requestPublicFeeling"
 #define NUMBERFORTY 40
 #define NUMBERTHIRTY 30
 @interface CircleReleaseVC ()<UITextViewDelegate,MWPhotoBrowserDelegate,CustomImagePickerControllerDelegate>
@@ -47,6 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //取得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:PUBLICFEEL];
     
     self.view.backgroundColor = colorGray;
     
@@ -113,6 +116,9 @@
     [_btnSelect setImage:[UIImage imageNamed:@"icon_releaseAdd"] forState:UIControlStateNormal];
     [_imgContentView addSubview:_btnSelect];
 
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];
+    
     _isSelectPic = NO;
     
     [self loadAssets];
@@ -123,11 +129,16 @@
 {
     NSString *content = _textView.text;
     NSMutableArray *postArray = [NSMutableArray new];
-    for (UIView *view in _imgContentView.subviews) {
-        UIImage *image = ((UIImageView*)view).image;
-        image = [image imageByCroppingSelf];
-        [postArray addObject:image];
-    }
+    
+        for (UIView *view in _imgContentView.subviews) {
+            if ([view isKindOfClass:UIImageView.class]) {
+                UIImage *image = ((UIImageView*)view).image;
+                image = [image imageByCroppingSelf];
+//                image = 
+                [postArray addObject:image];
+            }
+        }
+    
     
     if ([content isEqualToString:textViewContent] || [content isEqualToString:@""]) {
         if ((!postArray || postArray.count == 0)) {
@@ -143,13 +154,66 @@
     [dataDic setValue:content forKey:@"content"];
     [dataDic setValue:postArray forKey:@"files"];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"publishContent" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:dataDic,@"data", nil]];
+    //1.获得全局的并发队列
+    dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //2.添加任务到队列中，就可以执行任务
+    //异步函数：具备开启新线程的能力
+    dispatch_async(queue, ^{
+        [self savePhoto:dataDic];
+    });
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
     [self performSelector:@selector(dissmissController) withObject:nil afterDelay:1];
     
     return true;
 }
+#pragma mark -保存照片
+-(void)savePhoto:(NSDictionary*)dic
+{
+    NSMutableArray *uploadFiles = [NSMutableArray new];
+    NSMutableArray *postArray = [dic valueForKey:@"files"];
+    int i = 0;
+    for (UIView *view in postArray) {
+        UIImage *image = (UIImage*)view;
+        //保存照片
+        BOOL flag = [TDUtil saveContent:image fileName:[NSString stringWithFormat:@"file%d",i]];
+        if (flag) {
+            [uploadFiles addObject:[NSString stringWithFormat:@"file%d",i]];
+            i++;
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"publish" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:uploadFiles,@"uploadFiles",[dic valueForKey:@"content" ],@"content", nil]];
+    
+//    [self publishPhotos:uploadFiles content:dic[@"content"]];
+    
+    
+}
+#pragma mark -发布内容
+-(void)publishPhotos:(NSMutableArray*)filesArray content:(NSString*)content
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",content,@"content", nil];
+    [self.httpUtil getDataFromAPIWithOps:CIRCLE_PUBLIC_FEELING postParam:dic files:filesArray postName:@"images" type:0 delegate:self sel:@selector(requestPublishContent:)];
+}
 
-
+-(void)requestPublishContent:(ASIHTTPRequest*)request
+{
+    NSString* jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary * dic =[jsonString JSONValue];
+    if (dic!=nil) {
+        NSString* status = [dic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+//            [shareNewsView removeFromSuperview];
+            
+        }else{
+//        self.startLoading = NO;
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[dic valueForKey:@"message"]];
+        }
+    }
+}
 
 #pragma mark -底部弹出选择器
 - (void)showSecureTextEntryAlert {
@@ -652,6 +716,7 @@
     }
     
 }
+#pragma mark -返回按钮
 -(void)btnClick:(UIButton*)btn
 {
     if (btn.tag == 0) {
@@ -659,12 +724,16 @@
     }
 }
 
-#pragma mark
+#pragma mark---
 -(void)dissmissController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark -请求失败
+-(void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSLog(@"%@",request.responseString);
+}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -674,7 +743,7 @@
     
     AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
-    [delegate.tabBar tabBarHidden:NO animated:NO];
+    [delegate.tabBar tabBarHidden:YES animated:NO];
     
 }
 

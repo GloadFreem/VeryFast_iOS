@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CircleListModel.h"
 
 @class CircleDetailHeaderCell;
-@class CircleListModel;
+
 
 @protocol CircleDetailHeaderCellDelegate <NSObject>
 
@@ -20,7 +21,7 @@
 @interface CircleDetailHeaderCell : UITableViewCell
 
 @property (nonatomic, weak) id<CircleDetailHeaderCellDelegate>delegate;
-
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) CircleListModel *model;
 @property (nonatomic, strong) UIButton *praiseBtn;
 

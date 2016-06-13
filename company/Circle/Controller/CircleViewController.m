@@ -8,6 +8,8 @@
 
 #import "CircleViewController.h"
 
+#import "AuthenticInfoBaseModel.h"
+
 #import "CircleShareBottomView.h"
 
 #import "CircleForwardVC.h"
@@ -20,6 +22,7 @@
 #import "CircleDetailVC.h"
 #import "CircleShareBottomView.h"
 
+#define AUTHENINFO @"authenticInfoUser"
 #define CIRCLE_CONTENT @"requestFeelingList"
 #define CIRCLE_PRAISE @"requestPriseFeeling"
 #define CIRCLE_SHARE @"requestShareFeeling"
@@ -27,6 +30,7 @@
 @interface CircleViewController ()<CircleShareBottomViewDelegate,UITableViewDelegate,UITableViewDataSource,CircleListCellDelegate>
 @property (nonatomic,strong)UIView * bottomView;
 
+@property (nonatomic, copy) NSString *authenPartner;
 @property (nonatomic, copy) NSString *praisePartner;
 @property (nonatomic, copy) NSString *sharePartner;
 @property (nonatomic, copy) NSString *updateSharePartner;
@@ -39,6 +43,7 @@
 @property (nonatomic, strong) CircleListCell *listCell;
 @property (nonatomic, assign) BOOL praiseSuccess;
 @property (nonatomic, copy) NSString *shareUrl; //分享地址
+@property (nonatomic, strong) CircleListModel *replaceListModel; //假model
 
 @end
 
@@ -58,15 +63,75 @@
     self.sharePartner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_SHARE];
     //获得状态分享更新partner
     self.updateSharePartner = [TDUtil encryKeyWithMD5:KEY action:CIRCLE_UPDATE_SHARE];
+    //获得认证partner
+    self.authenPartner = [TDUtil encryKeyWithMD5:KEY action:AUTHENINFO];
+    
     
     _page = 0;
     [self setupNav];
     [self createTableView];
-    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publishContent:) name:@"publish" object:nil];
     //下载数据
     [self loadData];
+    
+    //下载认证信息
+    [self loadAuthenData];
 }
 
+#pragma mark -下载认证信息
+-(void)loadAuthenData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.authenPartner,@"partner", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:AUTHENTIC_INFO postParam:dic type:0 delegate:self sel:@selector(requestAuthenInfo:)];
+}
+
+-(void)requestAuthenInfo:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    //    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+            NSDictionary *dataDic = dataArray[0];
+            
+            AuthenticInfoBaseModel *baseModel = [AuthenticInfoBaseModel mj_objectWithKeyValues:dataDic];
+            NSLog(@"打印个人信息：----%@",baseModel);
+//            _replaceListModel.iconNameStr = 
+        }
+    }
+}
+
+#pragma mark -发布照片通知
+-(void)publishContent:(NSDictionary*)dic
+{
+    NSMutableArray* uploadFiles =[[dic valueForKey:@"userInfo"] valueForKey:@"uploadFiles"];
+    NSString* content = [[dic valueForKey:@"userInfo"] valueForKey:@"content"];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",content,@"content", nil];
+    [self.httpUtil getDataFromAPIWithOps:CIRCLE_PUBLIC_FEELING postParam:dict files:uploadFiles postName:@"images" type:0 delegate:self sel:@selector(requestPublishContent:)];
+    
+}
+
+-(void)requestPublishContent:(ASIHTTPRequest*)request
+{
+    NSString* jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary * dic =[jsonString JSONValue];
+    if (dic!=nil) {
+        NSString* status = [dic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+            [self refreshHttp];
+        }else{
+            //        self.startLoading = NO;
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:@"网速不好，请手动刷新"];
+        }
+    }
+}
 
 #pragma mark -设置导航栏
 -(void)setupNav
@@ -181,11 +246,13 @@
 //            NSLog(@"数组个数---%ld",_dataArray.count);
             [_tableView reloadData];
             [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
             
         }else{
             
 //            [SVProgressHUD dismiss];
             [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
             
         }
@@ -224,7 +291,6 @@
         
     }
     cell.delegate = self;
-    
 
     cell.model = self.dataArray[indexPath.row];
     
@@ -426,6 +492,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //隐藏tabbar
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:NO animated:NO];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     self.navigationController.navigationBar.translucent=NO;

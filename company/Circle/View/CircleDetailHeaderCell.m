@@ -42,6 +42,8 @@
     [_topView setBackgroundColor:colorGray];
     
     _iconView = [UIImageView new];
+    _iconView.layer.cornerRadius = 20;
+    _iconView.layer.masksToBounds = YES;
     
     _nameLabel = [UILabel new];
     _nameLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:17];
@@ -91,9 +93,10 @@
     
     NSArray *views = @[_topView,_iconView, _nameLabel, _addressLabel, _companyLabel, _shuView, _positionLabel, _timeLabel, _contentLabel,_picContainerView,_middleView, _praiseBtn, _praiseLabel, _bottomView];
     
+    [self.contentView sd_addSubviews:views];
+    
     UIView *contentView = self.contentView;
     CGFloat margin = 8;
-    [contentView sd_addSubviews:views];
     
     _topView.sd_layout
     .leftEqualToView(contentView)
@@ -109,9 +112,15 @@
     
     _nameLabel.sd_layout
     .leftSpaceToView(_iconView,9)
-    .topSpaceToView(contentView,8)
+    .topSpaceToView(_topView,8)
     .heightIs(17);
     [_nameLabel setSingleLineAutoResizeWithMaxWidth:150];
+    
+    _companyLabel.sd_layout
+    .leftEqualToView(_nameLabel)
+    .topSpaceToView(_nameLabel,8)
+    .heightIs(12);
+    [_companyLabel setSingleLineAutoResizeWithMaxWidth:150];
     
     _addressLabel.sd_layout
     .leftSpaceToView(_nameLabel,10)
@@ -119,11 +128,7 @@
     .heightIs(12);
     [_addressLabel setSingleLineAutoResizeWithMaxWidth:150];
     
-    _companyLabel.sd_layout
-    .leftEqualToView(_nameLabel)
-    .topSpaceToView(_nameLabel,8)
-    .heightIs(12);
-    [_companyLabel setSingleLineAutoResizeWithMaxWidth:150];
+    
     
     _shuView.sd_layout
     .leftSpaceToView(_companyLabel,5)
@@ -154,35 +159,89 @@
     //中间灰色分区
     _middleView.sd_layout
     .topSpaceToView(_picContainerView,5)
-    .leftEqualToView(self)
-    .rightEqualToView(self)
+    .leftEqualToView(contentView)
+    .rightEqualToView(contentView)
     .heightIs(10);
     
     _praiseBtn.sd_layout
-    .leftSpaceToView(self, 12*WIDTHCONFIG)
-    .topSpaceToView(_middleView, 10*HEIGHTCONFIG)
+    .leftSpaceToView(contentView, 12*WIDTHCONFIG)
+    .topSpaceToView(_middleView, 12*HEIGHTCONFIG)
     .widthIs(16)
     .heightIs(16);
     
     _praiseLabel.sd_layout
     .leftSpaceToView(_praiseBtn, 10*WIDTHCONFIG)
     .topSpaceToView(_middleView, 13*HEIGHTCONFIG)
-    .rightSpaceToView(self,20)
+    .rightSpaceToView(contentView,20)
     .autoHeightRatio(0);
     
     _bottomView.sd_layout
-    .leftEqualToView(self)
-    .rightEqualToView(self)
+    .leftEqualToView(contentView)
+    .rightEqualToView(contentView)
     .topSpaceToView(_praiseLabel, 13*HEIGHTCONFIG)
     .heightIs(10*HEIGHTCONFIG);
 
 }
-
+#pragma mark -设置模型
 -(void)setModel:(CircleListModel *)model
 {
+    _model = model;
+    //是否点赞
+    if (model.flag) {
+        [_praiseBtn setImage:[UIImage imageNamed:@"iconfont-dianzan"] forState:UIControlStateNormal];
+    }else{
+        [_praiseBtn setImage:[UIImage imageNamed:@"icon_dianzan"] forState:UIControlStateNormal];
+    }
+    //头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.iconNameStr]] placeholderImage:[UIImage new]];
+    //防止单行文本label在重用时宽度计算不准的问题
+    _nameLabel.text = model.nameStr;
+    [_nameLabel sizeToFit];
     
+    _addressLabel.text = model.addressStr;
+    [_addressLabel sizeToFit];
+    
+    _companyLabel.text = model.companyStr;
+    [_companyLabel sizeToFit];
+    
+    _positionLabel.text = model.positionStr;
+    [_positionLabel sizeToFit];
+    
+    _timeLabel.text = model.timeSTr;
+    [_timeLabel sizeToFit];
+    
+    _contentLabel.text = model.msgContent;
+    _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
+    _picContainerView.pictureStringArray = model.picNamesArray;
+    
+    CGFloat picContainerTopMargin = 0;
+    if (model.picNamesArray.count) {
+        picContainerTopMargin = 10*HEIGHTCONFIG;
+    }
+    _picContainerView.sd_layout.topSpaceToView(_contentLabel,picContainerTopMargin);
+    _praiseLabel.text = model.priseLabel;
+    CGFloat height = [_praiseLabel.text commonStringHeighforLabelWidth:SCREENWIDTH -20 -12 -16 - 10 withFontSize:12];
+    if (height > _praiseLabel.font.lineHeight * 3) {
+        _praiseLabel.sd_layout.maxHeightIs(_contentLabel.font.lineHeight * 3);
+    }else{
+        _praiseLabel.sd_layout.maxHeightIs(height);
+    }
+    
+    [self setupAutoHeightWithBottomView:_bottomView bottomMargin:0];
 }
 
+-(void)setIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPath = indexPath;
+}
+
+#pragma mark -点赞按钮事件处理
+-(void)praiseBtnClick
+{
+    if ([self.delegate respondsToSelector:@selector(didClickPraiseBtn:model:)]) {
+        [self.delegate didClickPraiseBtn:self model:_model];
+    }
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

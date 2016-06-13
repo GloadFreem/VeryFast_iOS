@@ -93,7 +93,7 @@
     
 }
 
-//上传图片
+//上传图片（数组）
 - (void)getDataFromAPIWithOps:(NSString*)urlStr
                     postParam:(NSDictionary*)postDic
                          files:(NSMutableArray*)files
@@ -107,6 +107,9 @@
     NSLog(@"上传文件:%@",url);
     
     self.requestInstance=[ASIFormDataRequest requestWithURL:url];
+    
+    [self.requestInstance setPostFormat:ASIMultipartFormDataPostFormat];
+    
     [self.requestInstance setTimeOutSeconds:5];
     if (postDic!=nil) {
         for (int i=0; i<postDic.count; i++) {
@@ -121,7 +124,13 @@
         fileName = [files objectAtIndex:i];
         NSString* filePath = [TDUtil loadContentPath:fileName];
         fileName = [fileName stringByAppendingString:@".jpg"];
-        [self.requestInstance setFile:filePath withFileName:fileName andContentType:@"jpg" forKey:[NSString stringWithFormat:@"%@%d",postName,i]];
+//        [self.requestInstance setFile:filePath withFileName:fileName andContentType:@"jpg" forKey:[NSString stringWithFormat:@"%@%d",postName,i]];
+        
+        UIImage * image = [TDUtil loadContent:[files objectAtIndex:i]];
+//        NSData * imageData = UIImageJPEGRepresentation(image, 100);
+        NSData * imageData = UIImagePNGRepresentation(image);
+        [self.requestInstance addData:imageData withFileName:fileName andContentType:@"image/jpeg" forKey:@"images"];
+        
     }
     
     //设置请求模式

@@ -151,8 +151,8 @@
 
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-//#define SERVICE_URL @"http://192.168.5.108:8080/jinzht/"//本地
+//#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
+#define SERVICE_URL @"http://192.168.5.108:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -203,6 +203,17 @@
 #define CIRCLE_FEELING_SHARE @"requestShareFeeling.action"
 //分享状态更新
 #define CIRCLE_FEELING_UPDATFEEL @"requestUpdateShareFeeling.action"
+//状态评论
+#define CIRCLE_COMMENT_FEELING @"requestCommentFeeling.action"
+//发表状态
+#define CIRCLE_PUBLIC_FEELING @"requestPublicFeeling.action"
+
+
+
+
+//认证信息
+#define AUTHENTIC_INFO  @"authenticInfoUser.action"
+
 
 
 //版本更新itunes 地址

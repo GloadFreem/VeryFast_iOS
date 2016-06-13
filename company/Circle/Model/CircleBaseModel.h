@@ -116,7 +116,7 @@
 //名字
 @property (nonatomic, copy) NSString *name;
 //userId
-@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, assign) NSInteger userId;
 
 @end
 

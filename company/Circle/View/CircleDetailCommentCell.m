@@ -48,7 +48,13 @@
     _contentLabel.textAlignment = NSTextAlignmentLeft;
     _contentLabel.numberOfLines = 0;
     
-    NSArray *views = @[_iconImage, _namelabel, _timelabel, _contentLabel];
+    _bottomLine = [UIView new];
+    [_bottomLine setBackgroundColor:color74];
+    
+    _bottomView = [UIView new];
+    [_bottomView setBackgroundColor:colorGray];
+    
+    NSArray *views = @[_iconImage, _namelabel, _timelabel, _contentLabel,_bottomLine,_bottomView];
     [self.contentView sd_addSubviews:views];
     
     UIView *contentView = self.contentView;
@@ -63,25 +69,39 @@
     .leftSpaceToView(_iconImage, 10*WIDTHCONFIG)
     .topSpaceToView(contentView, 11*HEIGHTCONFIG)
     .heightIs(13);
+    [_namelabel setSingleLineAutoResizeWithMaxWidth:150];
     
     _timelabel.sd_layout
     .leftEqualToView(_namelabel)
     .topSpaceToView(_namelabel, 5*HEIGHTCONFIG)
     .heightIs(10);
+    [_timelabel setSingleLineAutoResizeWithMaxWidth:150];
     
     _contentLabel.sd_layout
     .leftEqualToView(_namelabel)
     .topSpaceToView(_timelabel, 10*HEIGHTCONFIG)
+    .rightSpaceToView(contentView,12)
     .autoHeightRatio(0);
     
+    _bottomLine.sd_layout
+    .leftSpaceToView(contentView,12)
+    .bottomEqualToView(contentView)
+    .rightEqualToView(contentView)
+    .heightIs(0.5);
     
+    _bottomView.sd_layout
+    .leftEqualToView(contentView)
+    .rightEqualToView(contentView)
+    .heightIs(10)
+    .bottomEqualToView(contentView);
 }
 
 -(void)setModel:(CircleDetailCommentModel *)model
 {
     _model = model;
     
-    _iconImage.image = [UIImage imageNamed:model.iconImageStr];
+    //头像
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.iconImageStr]] placeholderImage:[UIImage new]];
     
     _namelabel.text = model.nameStr;
     [_namelabel sizeToFit];

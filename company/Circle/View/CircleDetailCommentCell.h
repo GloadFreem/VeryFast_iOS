@@ -13,4 +13,8 @@
 
 @property (nonatomic, strong) CircleDetailCommentModel *model;
 
+@property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) UIView *bottomLine;
+
+
 @end

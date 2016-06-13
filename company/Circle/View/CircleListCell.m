@@ -54,7 +54,8 @@ CGFloat _maxContentLabelHeight = 0; //根据具体font而定
     [_topView setBackgroundColor:colorGray];
     
     _iconView = [UIImageView new];
-    
+    _iconView.layer.cornerRadius = 20;
+    _iconView.layer.masksToBounds = YES;
     
     
     _nameLabel = [UILabel new];
