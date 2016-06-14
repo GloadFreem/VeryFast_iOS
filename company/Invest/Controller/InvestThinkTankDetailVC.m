@@ -7,6 +7,8 @@
 //
 
 #import "InvestThinkTankDetailVC.h"
+#import "InvestDetailModel.h"
+#define INVESTDETAIL  @"requestInvestorDetail"
 
 @interface InvestThinkTankDetailVC ()<UIScrollViewDelegate>
 
@@ -40,7 +42,7 @@
 
 @property (nonatomic, strong) UIButton *attationBtn;
 
-
+@property (nonatomic, strong) InvestDetailModel *model;
 
 @end
 
@@ -51,11 +53,50 @@
     // Do any additional setup after loading the view from its nib.
     //1、设置当有导航栏自动添加64高度的属性为NO
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //2.设置导航栏内容
-    [self setUpNavBar];
-    [self createUI];
+    
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:INVESTDETAIL];
+    
+    [self startLoadData];
+    
+    
 //    [self setKeyScrollView:_scrollView scrolOffsetY:300 options:nil];
     
+}
+
+
+-(void)startLoadData
+{
+//    NSLog(@"----%@",self.investorId);
+//    NSLog(@"----- 数量%@",self.attentionCount);
+    [SVProgressHUD show];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",self.investorId,@"investorId", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:INVEST_LIST_DETAIL postParam:dic type:0 delegate:self sel:@selector(requestInvestDetail:)];
+}
+
+-(void)requestInvestDetail:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+//    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic !=nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+            InvestDetailModel *detailModel =[InvestDetailModel mj_objectWithKeyValues:jsonDic[@"data"]];
+            _model = detailModel;
+//            NSLog(@"dayin模型----%@",_model);
+            //2.设置导航栏内容
+//            [self setUpNavBar];
+            [self createUI];
+            
+        }else{
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+    
+    [SVProgressHUD dismiss];
 }
 #pragma mark- 设置导航栏
 -(void)setUpNavBar
@@ -80,27 +121,33 @@
     _backgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
     _backgroundImage.image = [UIImage imageNamed:@"touziren-bg"];
     [self.view addSubview:_backgroundImage];
-//    //标题
-//    _titleLabel = [[UILabel alloc]init];
-//    _titleLabel.text = @"个人资料";
-//    _titleLabel.textColor = [UIColor whiteColor];
-//    _titleLabel.textAlignment = NSTextAlignmentCenter;
-//    _titleLabel.font = [UIFont systemFontOfSize:20];
-//    [self.view addSubview:_titleLabel];
-//    
-//    //返回按钮
-//    _leftBack = [[UIButton alloc]init];
-//    [_leftBack setBackgroundImage:[UIImage imageNamed:@"leftBack"] forState:UIControlStateNormal];
-//    [self.view addSubview:_leftBack];
-//    //分享
-//    _shareBtn = [[UIButton alloc]init];
-//    [_shareBtn setBackgroundImage:[UIImage imageNamed:@"write-拷贝-2"] forState:UIControlStateNormal];
-//    [self.view addSubview:_shareBtn];
     //滚动视图
     _scrollView = [[UIScrollView alloc]init];
     _scrollView.delegate = self;
     _scrollView.scrollEnabled = YES;
     [self.view addSubview:_scrollView];
+    
+    //标题
+    _titleLabel = [[UILabel alloc]init];
+    _titleLabel.text = @"个人资料";
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.font = [UIFont systemFontOfSize:20];
+    [_scrollView addSubview:_titleLabel];
+    
+    //返回按钮
+    _leftBack = [[UIButton alloc]init];
+    [_leftBack setBackgroundImage:[UIImage imageNamed:@"leftBack"] forState:UIControlStateNormal];
+    _leftBack.tag = 0;
+    [_leftBack addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:_leftBack];
+    //分享
+    _shareBtn = [[UIButton alloc]init];
+    [_shareBtn setBackgroundImage:[UIImage imageNamed:@"write-拷贝-2"] forState:UIControlStateNormal];
+    _shareBtn.tag = 1;
+    [_shareBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:_shareBtn];
+    
     //白色底板
     _whiteImage = [[UIImageView alloc]init];
     _whiteImage.image = [UIImage imageNamed:@"圆角矩形-4-拷贝-2"];
@@ -110,28 +157,31 @@
     _iconImage.layer.cornerRadius = 47;
     _iconImage.layer.masksToBounds = YES;
     [_whiteImage addSubview:_iconImage];
-    [_iconImage setBackgroundColor:[UIColor redColor]];
+//    [_iconImage setBackgroundColor:[UIColor redColor]];
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_model.user.headSculpture]] placeholderImage:[UIImage new]];
     //名字
     _name = [[UILabel alloc]init];
     _name.textColor = [UIColor blackColor];
     _name.textAlignment = NSTextAlignmentCenter;
     _name.font = [UIFont systemFontOfSize:15];
     [_whiteImage addSubview:_name];
-    _name.text = @"胡雅瑜";
+    _name.text = _model.user.name;
     //职位
     _posiotion = [[UILabel alloc]init];
     _posiotion.textAlignment = NSTextAlignmentLeft;
     _posiotion.textColor = [UIColor darkTextColor];
     _posiotion.font = [UIFont systemFontOfSize:10];
     [_whiteImage addSubview:_posiotion];
-    _posiotion.text = @"总经理";
+    DetailAuthentics *authentics = _model.user.authentics[0];
+    
+    _posiotion.text = authentics.position;
     //公司
     _company = [[UILabel alloc]init];
     _company.textColor = [UIColor darkTextColor];
     _company.textAlignment = NSTextAlignmentCenter;
     _company.font = [UIFont systemFontOfSize:13];
     [_whiteImage addSubview:_company];
-    _company.text = @"一斤背公营私";
+    _company.text = authentics.companyName;
     //下划线
     _bottonLine = [[UIView alloc]init];
     _bottonLine.backgroundColor = [UIColor darkGrayColor];
@@ -142,11 +192,13 @@
     _address.font = [UIFont systemFontOfSize:10];
     _address.textAlignment = NSTextAlignmentCenter;
     [_whiteImage addSubview:_address];
-    _address.text = @"河南 | 郑州";
+    _address.text = authentics.companyAddress;
     //透明的View
     _firstView = [[UIView alloc]init];
     _firstView.backgroundColor = [UIColor whiteColor];
     _firstView.alpha = 0.3;
+    _firstView.layer.cornerRadius = 3;
+    _firstView.layer.masksToBounds = YES;
     [_scrollView addSubview:_firstView];
     //左分隔线
     _firstLeftView = [[UIView alloc]init];
@@ -171,11 +223,15 @@
     _fieldContent.font = [UIFont systemFontOfSize:12];
 //    _fieldContent.preferredMaxLayoutWidth = maxWidth;
     _fieldContent.numberOfLines =0;
+    
+    
     [_scrollView addSubview:_fieldContent];
     //第二个透明的View
     _secondView = [[UIView alloc]init];
     _secondView.backgroundColor = [UIColor whiteColor];
     _secondView.alpha = 0.3;
+    _secondView.layer.cornerRadius = 3;
+    _secondView.layer.masksToBounds = YES;
     [_scrollView addSubview:_secondView];
     //分隔线
     _secondLeftView = [[UIView alloc]init];
@@ -199,6 +255,9 @@
     _personContent.font = [UIFont systemFontOfSize:12];
 //    _personContent.preferredMaxLayoutWidth = maxWidth;
     _personContent.numberOfLines = 0;
+    
+    
+    
     [_scrollView addSubview:_personContent];
     //关注按钮
     _attationBtn = [[UIButton alloc]init];
@@ -207,46 +266,46 @@
     _attationBtn.titleLabel.textColor = [UIColor whiteColor];
     _attationBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_scrollView addSubview:_attationBtn];
-    [_attationBtn setTitle:@"关注(269)" forState:UIControlStateNormal];
-//    //添加约束
-//    //标题
-//    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(28);
-//        make.centerX.mas_equalTo(self.view);
-//        make.height.mas_equalTo(20);
-//    }];
-//    //返回按钮
-//    [_leftBack mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(22);
-//        make.centerY.mas_equalTo(_titleLabel);
-//    }];
-//    //分享按钮
-//    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(-22);
-//        make.centerY.mas_equalTo(_titleLabel);
-//    }];
+    [_attationBtn setTitle:[NSString stringWithFormat:@" 关注(%@)",self.attentionCount] forState:UIControlStateNormal];
+    //添加约束
     //背景图片
     [_backgroundImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(-64);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.right.mas_equalTo(self.view.mas_right);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
+        make.top.left.right.bottom.mas_equalTo(0);
     }];
     //滚定视图
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).offset(-64);
+        make.top.mas_equalTo(self.view.mas_top);
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
         make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
     
+    //标题
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_scrollView.mas_top).offset(25);
+        make.centerX.equalTo(_scrollView);
+        make.height.mas_equalTo(18);
+    }];
+    //返回按钮
+    [_leftBack mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_titleLabel);
+        make.left.mas_equalTo(_scrollView.mas_left).offset(22);
+    }];
+    //分享按钮
+    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(_titleLabel);
+        make.right.mas_equalTo(_scrollView.mas_right).offset(-22);
+    }];
+    
+    
+    
     //白色底板
     [_whiteImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(_scrollView);
-        make.top.mas_equalTo(_scrollView.mas_top).offset(64);
-        make.left.mas_equalTo(_scrollView.mas_left).offset(40);
-        make.right.mas_equalTo(_scrollView.mas_right).offset(-40);
-        make.height.mas_equalTo(SCREENWIDTH-100);
+        make.top.mas_equalTo(_titleLabel.mas_bottom).offset(30);
+        make.left.mas_equalTo(_scrollView.mas_left).offset(30);
+        make.right.mas_equalTo(_scrollView.mas_right).offset(-30);
+        make.height.mas_equalTo(300);
     }];
     //头像
     [_iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -306,7 +365,8 @@
         make.left.mas_equalTo(_fieldLabel.mas_right).offset(1);
     }];
     //领域内容
-    _fieldContent.text = @"我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label，我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label";
+    _fieldContent.text = authentics.companyIntroduce;
+    
     CGFloat height1 = [_fieldContent.text commonStringHeighforLabelWidth:SCREENWIDTH-72 withFontSize:12];
     [_fieldContent mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_fieldLabel.mas_bottom).offset(19);
@@ -342,7 +402,8 @@
         make.width.mas_equalTo(2);
     }];
     //个人内容
-    _personContent.text =@"我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label，我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label";
+    _personContent.text = authentics.introduce;
+    
     CGFloat height2 = [_personContent.text commonStringHeighforLabelWidth:SCREENWIDTH-72 withFontSize:12] ;
     [_personContent mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_personLabel.mas_bottom).offset(19);
@@ -377,14 +438,22 @@
     if (btn.tag == 0) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    if (btn.tag == 1) {
+        
+    }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
-    
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [self.navigationController.navigationBar setHidden:NO];
     [delegate.tabBar tabBarHidden:NO animated:NO];
     
 }

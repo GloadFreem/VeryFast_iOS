@@ -21,7 +21,7 @@
                             <constraint firstAttribute="height" constant="10" id="gtl-Tc-IfY"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar-sample-165.png" translatesAutoresizingMaskIntoConstraints="NO" id="cyB-AP-kel">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar-sample-165.png" translatesAutoresizingMaskIntoConstraints="NO" id="cyB-AP-kel">
                         <rect key="frame" x="12" y="25" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="NpB-xF-rot"/>
@@ -97,10 +97,16 @@
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                         <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
                         <state key="normal" title="关注(269)" image="icon-guanzhu.png" backgroundImage="icon-guanzhubg.png"/>
+                        <connections>
+                            <action selector="attentionBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hVL-sL-K6m"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1h-jM-cak">
                         <rect key="frame" x="129" y="114" width="110" height="29"/>
                         <state key="normal" backgroundImage="icon-commit.png"/>
+                        <connections>
+                            <action selector="commitBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cEO-nz-IMr"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -134,9 +140,18 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="collectBtn" destination="kJO-Wi-DUR" id="A9N-7M-zrn"/>
+                <outlet property="companyAddress" destination="MwA-ML-Bsn" id="o7L-pL-hxg"/>
+                <outlet property="companyName" destination="h6h-1z-I6j" id="Mnt-QV-uMH"/>
+                <outlet property="iconImage" destination="cyB-AP-kel" id="GAC-cp-ZvF"/>
                 <outlet property="leftBtn" destination="EWJ-ih-zuK" id="bPq-Ea-IEF"/>
                 <outlet property="middleBtn" destination="9VE-rz-hiO" id="FR3-uS-9kV"/>
+                <outlet property="name" destination="b2t-tQ-gQx" id="oE7-Ca-pXL"/>
+                <outlet property="position" destination="olv-6m-ncC" id="zNM-fG-FjG"/>
                 <outlet property="rightBtn" destination="3kg-LA-2Wp" id="ibQ-8h-HJ7"/>
+                <outletCollection property="btnArray" destination="EWJ-ih-zuK" id="3v6-Mm-MrV"/>
+                <outletCollection property="btnArray" destination="9VE-rz-hiO" id="uvc-hH-Q3n"/>
+                <outletCollection property="btnArray" destination="3kg-LA-2Wp" id="Fza-i8-5RW"/>
             </connections>
             <point key="canvasLocation" x="424.5" y="94"/>
         </tableViewCell>

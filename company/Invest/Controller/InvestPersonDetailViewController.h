@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvestPersonDetailViewController : UIViewController
+@interface InvestPersonDetailViewController : RootViewController
 
+@property (nonatomic, copy) NSString *investorId;
+@property (nonatomic, copy) NSString *attentionCount;
 
+@property (nonatomic, copy) NSString *titleText;
 
 @end

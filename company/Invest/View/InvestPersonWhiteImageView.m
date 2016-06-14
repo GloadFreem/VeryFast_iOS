@@ -22,6 +22,9 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    _iconImage.layer.cornerRadius = 47;
+    _iconImage.layer.masksToBounds =YES;
+    
     _leftBtn.layer.cornerRadius = 3;
     _leftBtn.layer.masksToBounds = YES;
     

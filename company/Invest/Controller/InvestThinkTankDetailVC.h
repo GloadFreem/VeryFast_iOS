@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InvestThinkTankDetailVC : UIViewController
+@interface InvestThinkTankDetailVC : RootViewController
+
+@property (nonatomic, copy) NSString *investorId;
+@property (nonatomic, copy) NSString *attentionCount;
 
 @end

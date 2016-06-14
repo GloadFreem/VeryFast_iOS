@@ -15,7 +15,7 @@ typedef enum{
     
 }SelectType;
 
-@interface InvestViewController : UIViewController
+@interface InvestViewController : RootViewController
 
 @property (nonatomic,strong) UIColor *lineColor;
 @property (nonatomic,assign) SelectType type;

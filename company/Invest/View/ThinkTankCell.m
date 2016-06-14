@@ -19,9 +19,30 @@
     }
     return cell;
 }
+
+-(void)setModel:(InvestListModel *)model
+{
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.headSculpture]] placeholderImage:[UIImage new]];
+    
+    _name.text = model.name;
+    _position.text = model.position;
+    _companyName.text = model.companyName;
+    _companyAddress.text = model.companyAddress;
+    _content.text = model.introduce;
+    
+    [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+    
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    _iconImage.layer.cornerRadius = 30;
+    _iconImage.layer.masksToBounds = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

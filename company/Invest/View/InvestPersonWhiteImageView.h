@@ -23,6 +23,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 
+
+
+
 #pragma mark- 实例化视图
 +(InvestPersonWhiteImageView*)instancetationInvestPersonWhiteImageView;
 

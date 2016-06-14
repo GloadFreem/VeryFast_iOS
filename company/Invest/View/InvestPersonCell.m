@@ -25,6 +25,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    _iconImage.layer.cornerRadius = 30;
+    _iconImage.layer.masksToBounds = YES;
+    
     _leftBtn.layer.cornerRadius = 3;
     _leftBtn.layer.masksToBounds = YES;
     _leftBtn.layer.borderColor = colorBlue.CGColor;
@@ -41,6 +45,38 @@
     _rightBtn.layer.borderWidth = 0.5;
     
 }
+
+-(void)setModel:(InvestListModel *)model
+{
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.headSculpture]] placeholderImage:[UIImage new]];
+    _name.text = model.name;
+    _position.text = model.position;
+    _companyName.text = model.companyName;
+    _companyAddress.text = model.companyAddress;
+    
+    for (NSInteger i = model.areas.count; i < _btnArray.count; i ++) {
+        UIButton *btn = (UIButton*)_btnArray[i];
+        btn.hidden = YES;
+    }
+    //标题赋值
+    for (NSInteger i = 0; i < model.areas.count; i ++) {
+        UIButton *btn = (UIButton*)_btnArray[i];
+        [btn setTitle:[NSString stringWithFormat:@"%@",model.areas[i]] forState:UIControlStateNormal];
+    }
+    
+    [_collectBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+}
+
+#pragma mark -提交按钮
+- (IBAction)commitBtnClick:(UIButton *)sender {
+}
+#pragma mark -关注按钮
+- (IBAction)attentionBtnClick:(UIButton *)sender {
+}
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

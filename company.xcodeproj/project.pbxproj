@@ -10,6 +10,13 @@
 		2D26298F1D4C5A88D985DBDF /* Pods_company.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB72B1372C8348B3F810BE /* Pods_company.framework */; };
 		445E38DD1D0D95FA003462A8 /* CircleDetailHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 445E38DC1D0D95FA003462A8 /* CircleDetailHeaderCell.m */; };
 		446AF4141D0A9C5F0075B469 /* CircleBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 446AF4131D0A9C5F0075B469 /* CircleBaseModel.m */; };
+		4474C20A1D0FA3E900DC923D /* InvestListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C2091D0FA3E900DC923D /* InvestListModel.m */; };
+		4474C20D1D0FD1B600DC923D /* InvestOrganizationBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C20C1D0FD1B600DC923D /* InvestOrganizationBaseModel.m */; };
+		4474C2161D0FD71500DC923D /* InvestDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C2151D0FD71500DC923D /* InvestDetailModel.m */; };
+		4474C2191D0FF93A00DC923D /* OrganizationFirstModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C2181D0FF93A00DC923D /* OrganizationFirstModel.m */; };
+		4474C21C1D0FF94800DC923D /* OrganizationSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C21B1D0FF94800DC923D /* OrganizationSecondModel.m */; };
+		4474C21F1D1011D800DC923D /* ThinkTankBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C21E1D1011D800DC923D /* ThinkTankBaseModel.m */; };
+		4474C2221D1032F400DC923D /* InvestWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4474C2211D1032F400DC923D /* InvestWebViewController.m */; };
 		4487187C1D02AD9900020DD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4487187A1D02AD9900020DD9 /* Main.storyboard */; };
 		4487187E1D02AD9900020DD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4487187D1D02AD9900020DD9 /* Assets.xcassets */; };
 		448718811D02AD9900020DD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4487187F1D02AD9900020DD9 /* LaunchScreen.storyboard */; };
@@ -332,6 +339,7 @@
 		449354E31D0D560000B22F7E /* icon_share_msg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449354D81D0D560000B22F7E /* icon_share_msg@2x.png */; };
 		449354E41D0D560000B22F7E /* icon_share-msg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449354D91D0D560000B22F7E /* icon_share-msg@3x.png */; };
 		449354E71D0D5CB200B22F7E /* CircleShareBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449354E61D0D5CB200B22F7E /* CircleShareBottomView.m */; };
+		44A6F1B71D0F9F5700A1FF73 /* InvestBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A6F1B61D0F9F5700A1FF73 /* InvestBaseModel.m */; };
 		44AE87A21D0EC0AB0067404F /* ImageSelectedOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AE87961D0EC0AB0067404F /* ImageSelectedOff.png */; };
 		44AE87A31D0EC0AB0067404F /* ImageSelectedOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AE87971D0EC0AB0067404F /* ImageSelectedOff@2x.png */; };
 		44AE87A41D0EC0AB0067404F /* ImageSelectedOff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AE87981D0EC0AB0067404F /* ImageSelectedOff@3x.png */; };
@@ -839,6 +847,20 @@
 		445E38DC1D0D95FA003462A8 /* CircleDetailHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleDetailHeaderCell.m; sourceTree = "<group>"; };
 		446AF4121D0A9C5F0075B469 /* CircleBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleBaseModel.h; sourceTree = "<group>"; };
 		446AF4131D0A9C5F0075B469 /* CircleBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleBaseModel.m; sourceTree = "<group>"; };
+		4474C2081D0FA3E900DC923D /* InvestListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestListModel.h; sourceTree = "<group>"; };
+		4474C2091D0FA3E900DC923D /* InvestListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestListModel.m; sourceTree = "<group>"; };
+		4474C20B1D0FD1B600DC923D /* InvestOrganizationBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestOrganizationBaseModel.h; sourceTree = "<group>"; };
+		4474C20C1D0FD1B600DC923D /* InvestOrganizationBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestOrganizationBaseModel.m; sourceTree = "<group>"; };
+		4474C2141D0FD71500DC923D /* InvestDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestDetailModel.h; sourceTree = "<group>"; };
+		4474C2151D0FD71500DC923D /* InvestDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestDetailModel.m; sourceTree = "<group>"; };
+		4474C2171D0FF93A00DC923D /* OrganizationFirstModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationFirstModel.h; sourceTree = "<group>"; };
+		4474C2181D0FF93A00DC923D /* OrganizationFirstModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationFirstModel.m; sourceTree = "<group>"; };
+		4474C21A1D0FF94800DC923D /* OrganizationSecondModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationSecondModel.h; sourceTree = "<group>"; };
+		4474C21B1D0FF94800DC923D /* OrganizationSecondModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationSecondModel.m; sourceTree = "<group>"; };
+		4474C21D1D1011D800DC923D /* ThinkTankBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThinkTankBaseModel.h; sourceTree = "<group>"; };
+		4474C21E1D1011D800DC923D /* ThinkTankBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThinkTankBaseModel.m; sourceTree = "<group>"; };
+		4474C2201D1032F400DC923D /* InvestWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestWebViewController.h; sourceTree = "<group>"; };
+		4474C2211D1032F400DC923D /* InvestWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestWebViewController.m; sourceTree = "<group>"; };
 		4487186E1D02AD9800020DD9 /* company.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = company.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4487187B1D02AD9900020DD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4487187D1D02AD9900020DD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1421,6 +1443,8 @@
 		449354D91D0D560000B22F7E /* icon_share-msg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share-msg@3x.png"; sourceTree = "<group>"; };
 		449354E51D0D5CB200B22F7E /* CircleShareBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleShareBottomView.h; sourceTree = "<group>"; };
 		449354E61D0D5CB200B22F7E /* CircleShareBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleShareBottomView.m; sourceTree = "<group>"; };
+		44A6F1B51D0F9F5700A1FF73 /* InvestBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestBaseModel.h; sourceTree = "<group>"; };
+		44A6F1B61D0F9F5700A1FF73 /* InvestBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestBaseModel.m; sourceTree = "<group>"; };
 		44AE87961D0EC0AB0067404F /* ImageSelectedOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageSelectedOff.png; sourceTree = "<group>"; };
 		44AE87971D0EC0AB0067404F /* ImageSelectedOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOff@2x.png"; sourceTree = "<group>"; };
 		44AE87981D0EC0AB0067404F /* ImageSelectedOff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ImageSelectedOff@3x.png"; sourceTree = "<group>"; };
@@ -2225,6 +2249,8 @@
 				448719641D02B2FE00020DD9 /* InvestThinkTankDetailVC.m */,
 				448719651D02B2FE00020DD9 /* InvestViewController.h */,
 				448719661D02B2FE00020DD9 /* InvestViewController.m */,
+				4474C2201D1032F400DC923D /* InvestWebViewController.h */,
+				4474C2211D1032F400DC923D /* InvestWebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2232,6 +2258,20 @@
 		448719731D02B2FE00020DD9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				44A6F1B51D0F9F5700A1FF73 /* InvestBaseModel.h */,
+				44A6F1B61D0F9F5700A1FF73 /* InvestBaseModel.m */,
+				4474C2081D0FA3E900DC923D /* InvestListModel.h */,
+				4474C2091D0FA3E900DC923D /* InvestListModel.m */,
+				4474C2141D0FD71500DC923D /* InvestDetailModel.h */,
+				4474C2151D0FD71500DC923D /* InvestDetailModel.m */,
+				4474C20B1D0FD1B600DC923D /* InvestOrganizationBaseModel.h */,
+				4474C20C1D0FD1B600DC923D /* InvestOrganizationBaseModel.m */,
+				4474C2171D0FF93A00DC923D /* OrganizationFirstModel.h */,
+				4474C2181D0FF93A00DC923D /* OrganizationFirstModel.m */,
+				4474C21A1D0FF94800DC923D /* OrganizationSecondModel.h */,
+				4474C21B1D0FF94800DC923D /* OrganizationSecondModel.m */,
+				4474C21D1D1011D800DC923D /* ThinkTankBaseModel.h */,
+				4474C21E1D1011D800DC923D /* ThinkTankBaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4761,6 +4801,8 @@
 				44871B731D02B37800020DD9 /* MASCompositeConstraint.m in Sources */,
 				44871A121D02B30800020DD9 /* PingTaiVC.m in Sources */,
 				44871B961D02B37800020DD9 /* UIView+SDExtension.m in Sources */,
+				4474C20A1D0FA3E900DC923D /* InvestListModel.m in Sources */,
+				4474C2191D0FF93A00DC923D /* OrganizationFirstModel.m in Sources */,
 				44871BA41D02B37800020DD9 /* SDWebImageDownloader.m in Sources */,
 				44871B691D02B37800020DD9 /* IQUIWindow+Hierarchy.m in Sources */,
 				44871EE51D02B57C00020DD9 /* MWZoomingScrollView.m in Sources */,
@@ -4775,6 +4817,7 @@
 				44871A8A1D02B34400020DD9 /* ProjectDetailController.m in Sources */,
 				44871BAB1D02B37800020DD9 /* UIImage+WebP.m in Sources */,
 				448718DC1D02B21C00020DD9 /* ActivityDetailListCell.m in Sources */,
+				4474C21C1D0FF94800DC923D /* OrganizationSecondModel.m in Sources */,
 				448719321D02B28B00020DD9 /* AreaViewController.m in Sources */,
 				448719481D02B28B00020DD9 /* Renzheng3ViewController.m in Sources */,
 				44871A901D02B34400020DD9 /* UpProjectViewController.m in Sources */,
@@ -4815,6 +4858,7 @@
 				44871B6E1D02B37800020DD9 /* IQTitleBarButtonItem.m in Sources */,
 				448719951D02B2FE00020DD9 /* InvestCommitProjectPCell.m in Sources */,
 				448718ED1D02B23D00020DD9 /* UIViewController+NavBarHidden.m in Sources */,
+				4474C2161D0FD71500DC923D /* InvestDetailModel.m in Sources */,
 				44871BAC1D02B37800020DD9 /* UIImageView+HighlightedWebCache.m in Sources */,
 				44871B771D02B37800020DD9 /* MASViewAttribute.m in Sources */,
 				44871EEE1D02B5BA00020DD9 /* DALabeledCircularProgressView.m in Sources */,
@@ -4848,6 +4892,7 @@
 				44871A4C1D02B31800020DD9 /* CircleDetailCommentCell.m in Sources */,
 				44871B9F1D02B37800020DD9 /* MKAnnotationView+WebCache.m in Sources */,
 				44871F0E1D02B63B00020DD9 /* UIImage+Alpha.m in Sources */,
+				4474C21F1D1011D800DC923D /* ThinkTankBaseModel.m in Sources */,
 				44871EE21D02B57C00020DD9 /* MWPhotoBrowser.m in Sources */,
 				44871A041D02B30800020DD9 /* MineAttentionVC.m in Sources */,
 				448719521D02B28B00020DD9 /* EditTableViewCell.m in Sources */,
@@ -4884,10 +4929,13 @@
 				448718D31D02B21C00020DD9 /* ActivityCell.m in Sources */,
 				44871BA51D02B37800020DD9 /* SDWebImageDownloaderOperation.m in Sources */,
 				44871EE01D02B57C00020DD9 /* MWGridViewController.m in Sources */,
+				4474C20D1D0FD1B600DC923D /* InvestOrganizationBaseModel.m in Sources */,
 				44871A1A1D02B30800020DD9 /* AppSetSwitchCell.m in Sources */,
 				448720301D02FC5B00020DD9 /* JKCountDownButton.m in Sources */,
 				44871F081D02B63B00020DD9 /* CustomImagePickerController.m in Sources */,
+				4474C2221D1032F400DC923D /* InvestWebViewController.m in Sources */,
 				44871B971D02B37800020DD9 /* SDBrowserImageView.m in Sources */,
+				44A6F1B71D0F9F5700A1FF73 /* InvestBaseModel.m in Sources */,
 				448719991D02B2FE00020DD9 /* InvestCommitProjectReasonCell.m in Sources */,
 				44871B941D02B37800020DD9 /* SDCollectionViewCell.m in Sources */,
 				44871B871D02B37800020DD9 /* MLTextAttachment.m in Sources */,

@@ -17,10 +17,22 @@
 #import "InvestPersonDetailViewController.h"
 #import "InvestThinkTankDetailVC.h"
 
+#import "InvestBaseModel.h"
+#import "InvestListModel.h"
+
+#import "InvestOrganizationBaseModel.h"
+#import "OrganizationFirstModel.h"
+#import "OrganizationSecondModel.h"
+
+#import "ThinkTankBaseModel.h"
+
 #define defaultLineColor [UIColor blueColor]
 #define selectTitleColor orangeColor
 #define unselectTitleColor [UIColor blackColor]
 #define titleFont [UIFont systemFontOfSize:16]
+
+#define INVESPUBLICTLIST @"requestInvestorList"
+#define INVESTLISTDETAIL @"requestInvestorDetail"
 
 @interface InvestViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -36,11 +48,20 @@
 
 @property (nonatomic, strong) UITableView *investOrganizationTableView; //投资机构视图
 @property (nonatomic, strong) NSMutableArray *investOrganizationArray; //投资机构模型数组
+@property (nonatomic, strong) NSMutableArray *investOrganizationSecondArray; //第二个数组
 
 @property (nonatomic, strong) UITableView *thinkTankTableView; //智囊团视图
 @property (nonatomic, strong) NSMutableArray *thinkTankArray; //智囊团模型数组
 
 @property (nonatomic, assign) NSInteger tableViewSelected; //当前显示tableView
+
+@property (nonatomic, copy) NSString *identyType;  //身份类型
+@property (nonatomic, assign) NSInteger page;  //当前页
+@property (nonatomic, assign) NSInteger investPage;
+@property (nonatomic, assign) NSInteger organizationPage;
+@property (nonatomic, assign) NSInteger tankPage;
+@property (nonatomic, strong) UITableView *tableView; //当前biao
+
 
 @end
 
@@ -51,30 +72,189 @@
     // Do any additional setup after loading the view.
     [self createUI];
     
-    _tableViewSelected =1;
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:INVESPUBLICTLIST];
+    
+    [self startLoadData];
+    
     //初始化模型数组
     _investPersonArray = [NSMutableArray array];
     _investOrganizationArray = [NSMutableArray array];
     _thinkTankArray = [NSMutableArray array];
+    _investOrganizationSecondArray = [NSMutableArray array];
     
     _titleArray = @[@" 投资人",@" 投资机构",@" 智囊团"];
     _imageArray = @[@"touziren-icon",@"iconfont-jigouT",@"iconfont-danaoT"];
     _lineColor = orangeColor;
     _type = 0;
+    
     [self.view addSubview:self.titleScrollView];          //添加点击按钮
-    [self.view addSubview:self.subViewScrollView];        //添加最下边scrollview
+    [self.view addSubview:self.subViewScrollView];
+    
+    
+    //默认请求投资人列表
+    _tableViewSelected =1;
+    _investPage = 0;
+    _organizationPage  = 0;
+    _tankPage = 0;
+    
+    _identyType = @"2";
+    
+    
+           
 }
 
 -(void)createUI
 {
-//    UILabel * titleLabel =[[UILabel alloc]init];
-//    titleLabel.text = @"项目";
-//    [titleLabel sizeToFit];
-//    [titleLabel setTextColor:[UIColor whiteColor]];
-//    self.navigationItem.titleView=titleLabel;
     self.navigationItem.title = @"投资人";
 }
 
+#pragma mark - 开始请求数据
+-(void)startLoadData
+{
+    //投资人
+    if (_tableViewSelected == 1) {
+        
+        _identyType = @"2";
+        _page = _investPage;
+        self.tableView =_investPersonTableView;
+    }
+    
+    //投机机构
+    if (_tableViewSelected == 2) {
+        _identyType = @"3";
+        _page = _organizationPage;
+        self.tableView = _investOrganizationTableView;
+    }
+    
+    //智囊团
+    if (_tableViewSelected == 3) {
+        _identyType = @"4";
+        _page = _tankPage;
+        self.tableView = _thinkTankTableView;
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",_identyType,@"type",[NSString stringWithFormat:@"%ld",(long)_page],@"page", nil];
+    
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:INVEST_PUBLIC_LIST postParam:dic type:0 delegate:self sel:@selector(requestInvestList:)];
+}
+
+-(void)requestInvestList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+//        NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    //如果刷新到顶部  移除原来数组数据
+    if (_page == 0) {
+        if (_tableViewSelected == 1) {
+            [_investPersonArray removeAllObjects];
+        }
+        if (_tableViewSelected == 2) {
+            [_investOrganizationArray removeAllObjects];
+            [_investOrganizationSecondArray removeAllObjects];
+        }
+        if (_tableViewSelected == 3) {
+            [_thinkTankArray removeAllObjects];
+        }
+    }
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            //投资人列表
+            if (_tableViewSelected == 1) {
+                NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+
+                NSArray *investBaseModelArray = [InvestBaseModel mj_objectArrayWithKeyValuesArray:dataArray];
+                for (NSInteger i = 0; i < investBaseModelArray.count; i ++) {
+                    InvestListModel *listModel = [InvestListModel new];
+                    InvestBaseModel *baseModel = investBaseModelArray[i];
+                    listModel.headSculpture =baseModel.user.headSculpture;
+                    listModel.name = baseModel.user.name;
+                    listModel.areas = baseModel.areas;
+                    listModel.userId = [NSString stringWithFormat:@"%ld",(long)baseModel.user.userId];
+                    listModel.collectCount = baseModel.collectCount;
+                    //二级认证信息
+                    Authentics *authentics = baseModel.user.authentics[0];
+                    listModel.position = authentics.position;
+                    listModel.companyName = authentics.companyName;
+                    listModel.companyAddress = authentics.companyAddress;
+    
+                    [_investPersonArray addObject:listModel];
+                }
+            }
+            
+            //投资机构列表
+            if (_tableViewSelected == 2) {
+                
+                InvestOrganizationBaseModel *baseModel =[InvestOrganizationBaseModel mj_objectWithKeyValues:jsonDic[@"data"]];
+    
+                NSArray *firstArray = [NSArray arrayWithArray:baseModel.founddations];
+                for (NSInteger i= 0; i < firstArray.count;  i ++) {
+                    OrganizationFirstModel *model = [OrganizationFirstModel new];
+                    OrganizationFounddations *foundation = firstArray[i];
+                    model.image = foundation.image;
+                    model.name = foundation.name;
+                    model.content = foundation.content;
+                    model.foundationId = foundation.foundationId;
+                    model.url = foundation.url;
+                    [_investOrganizationArray addObject:model];
+                }
+                NSArray *secondArray = [NSArray arrayWithArray:baseModel.investors];
+                for (NSInteger i = 0; i < secondArray.count; i ++) {
+                    OrganizationSecondModel *model =[OrganizationSecondModel new];
+                    OrganizationInvestors *investor = secondArray[i];
+                    model.areas = investor.areas;
+                    model.collectCount = investor.collectCount;
+                    //二级认证信息
+                    OrganizationAuthentics *authentics =investor.user.authentics[0];
+                    model.headSculpture = investor.user.headSculpture;
+                    model.companyName = authentics.companyName;
+                    model.companyAddress = authentics.companyAddress;
+                    model.userId = [NSString stringWithFormat:@"%ld",(long)investor.user.userId];
+                    [_investOrganizationSecondArray addObject:model];
+                }
+            }
+            
+            //智囊团
+            if (_tableViewSelected == 3) {
+                NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+                NSArray *thinkTankBaseModelArray = [ThinkTankBaseModel mj_objectArrayWithKeyValuesArray:dataArray];
+                for (NSInteger i = 0; i < thinkTankBaseModelArray.count; i ++) {
+                    InvestListModel *listModel = [InvestListModel new];
+                    ThinkTankBaseModel *baseModel = thinkTankBaseModelArray[i];
+                    listModel.headSculpture =baseModel.user.headSculpture;
+                    listModel.name = baseModel.user.name;
+                    listModel.userId = [NSString stringWithFormat:@"%ld",(long)baseModel.user.userId];
+                    listModel.collectCount = baseModel.collectCount;
+                    //二级认证信息
+                    ThinkAuthentics *authentics = baseModel.user.authentics[0];
+                    listModel.position = authentics.position;
+                    listModel.companyName = authentics.companyName;
+                    ThinkCity *city = authentics.city;
+                    ThinkProvince *province = city.province;
+                    listModel.companyAddress = [NSString stringWithFormat:@"%@ | %@",province.name,city.name];
+                    listModel.introduce = authentics.introduce;
+                    [_thinkTankArray addObject:listModel];
+                }
+                
+            }
+            
+            
+            
+            [self.tableView reloadData];
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
 
 
 #pragma mark - 设置下滑条
@@ -150,6 +330,7 @@
         //添加tableView
         _investPersonTableView = [[UITableView alloc]init];
         [self createTableView:_investPersonTableView index:0];
+        self.tableView = _investPersonTableView;
         
         _investOrganizationTableView = [[UITableView alloc]init];
         [self createTableView:_investOrganizationTableView index:1];
@@ -193,7 +374,7 @@
     //子scrollView的偏移量
     _subViewScrollView.contentOffset=CGPointMake(SCREENWIDTH*(sender.tag-10), 0);
     //下载数据
-    [self loadData];
+    [self startLoadData];
 
     
 }
@@ -219,8 +400,12 @@
             10+index == (10+i) ? [bt setTitleColor:selectTitleColor forState:UIControlStateNormal] : [bt setTitleColor:unselectTitleColor forState:UIControlStateNormal];
             
         }
-        //下载数据
-        [self loadData];
+        //当没有数据才下载数据
+        if (!_investPersonArray.count || !_investOrganizationArray.count || !_thinkTankArray.count) {
+            [self startLoadData];
+        }
+        
+        
         
         switch (index) {
             case 0:
@@ -246,30 +431,68 @@
     }
 }
 
-#pragma mark -tableViewDatasource
+#pragma mark ---------------tableViewDatasource--------------------
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (_tableViewSelected == 2) {
+        return 2;
+    }
+    return 1;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_tableViewSelected == 1) {
         return 150;
-    }else if (_tableViewSelected == 2){
-        if (indexPath.row < 3) {
+    }
+    
+    if (_tableViewSelected == 2) {
+        if (indexPath.section == 0) {
             return 110;
         }
         return 155;
     }
     return 150;
 }
+#pragma mark -footerView----
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 10)];
+    view.backgroundColor = colorGray;
+    
+    if (_tableViewSelected == 2) {
+        if (section == 1) {
+            return view;
+        }
+        return nil;
+    }
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (_tableViewSelected == 2) {
+        if (section == 1) {
+            return 10;
+        }
+        return 0.0000001f;
+    }
+    return 10;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (_tableViewSelected == 1) {
-//        return _investPersonArray.count;
-        return 8;
-    }else if (_tableViewSelected == 2){
-//        return _investOrganizationArray.count;
-        return 8;
+        return _investPersonArray.count;
+
     }
-//    return _thinkTankArray.count;
-    return 8;
+    if (_tableViewSelected == 2){
+        
+        if (section == 0) {
+            return _investOrganizationArray.count;
+        }
+        return _investOrganizationSecondArray.count;
+        
+    }
+    return _thinkTankArray.count;
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -278,24 +501,34 @@
     if (_tableViewSelected == 1) {
         tableView = _investPersonTableView;
         InvestPersonCell *cell = [InvestPersonCell cellWithTableView:tableView];
-        
+        if (_investPersonArray.count) {
+            cell.model = _investPersonArray[indexPath.row];
+        }
         return cell;
-    }else if (_tableViewSelected == 2){ // 投资机构
+    }
+    if (_tableViewSelected == 2){ // 投资机构
         tableView = _investOrganizationTableView;
-        if (indexPath.row < 3) {
+        if (indexPath.section == 0) {
             InvestOrganizationCell * cell = [InvestOrganizationCell cellWithTableView:tableView];
             
+            if (_investOrganizationArray.count) {
+                cell.model = _investOrganizationArray[indexPath.row];
+            }
             return cell;
         }
         
         InvestOrganizationSecondCell * cell = [InvestOrganizationSecondCell cellWithTableView:tableView];
-        
+        if (_investOrganizationSecondArray.count) {
+            cell.model = _investOrganizationSecondArray[indexPath.row];
+        }
         return cell;
     };
     //智囊团
     tableView = _thinkTankTableView;
     ThinkTankCell *  cell = [ThinkTankCell cellWithTableView:tableView];
-    
+    if (_thinkTankArray.count) {
+        cell.model = _thinkTankArray[indexPath.row];
+    }
     return cell;
 }
 
@@ -305,18 +538,49 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (_tableViewSelected == 1) {
+        InvestListModel *listModel = _investPersonArray[indexPath.row];
         InvestPersonDetailViewController *vc = [InvestPersonDetailViewController new];
         //隐藏tabbar
-        AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+        AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
         
         [delegate.tabBar tabBarHidden:YES animated:NO];
-        
+        vc.attentionCount = [NSString stringWithFormat:@"%ld",(long)listModel.collectCount];
+        vc.titleText = @"个人 · 简介";
+        vc.investorId = listModel.userId;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+    if (_tableViewSelected == 2) {
+        if (indexPath.section == 0) {
+            
+            
+        }
+        
+        if (indexPath.section == 1) {
+            
+            OrganizationSecondModel *listModel = _investOrganizationSecondArray[indexPath.row];
+            
+            InvestPersonDetailViewController *vc = [InvestPersonDetailViewController new];
+            //隐藏tabbar
+            AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+            
+            [delegate.tabBar tabBarHidden:YES animated:NO];
+            vc.attentionCount = [NSString stringWithFormat:@"%ld",(long)listModel.collectCount];
+            vc.investorId = listModel.userId;
+            vc.titleText = @"机构 · 简介";
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+    }
+    
     if (_tableViewSelected == 3) {
+        InvestListModel *listModel = _investPersonArray[indexPath.row];
+
         InvestThinkTankDetailVC * vc = [InvestThinkTankDetailVC new];
         //隐藏tabbar
-        AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+        AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+        vc.investorId = listModel.userId;
+        vc.attentionCount = [NSString stringWithFormat:@"%ld",(long)listModel.collectCount];
         
         [delegate.tabBar tabBarHidden:YES animated:NO];
         [self.navigationController pushViewController:vc animated:YES];
@@ -345,13 +609,59 @@
     tableView.delegate=self;
     tableView.dataSource=self;
     tableView.backgroundColor=[UIColor whiteColor];
+    
+    //设置刷新控件
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
+    //自动改变透明度
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    [tableView.mj_header beginRefreshing];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+    
     [_subViewScrollView addSubview:tableView];
 }
+#pragma mark -刷新控件
+-(void)nextPage
+{
+    if (_tableViewSelected == 1) {
+        _investPage ++;
+    }
+    if (_tableViewSelected == 2) {
+        _organizationPage ++;
+    }
+    if (_tableViewSelected == 3) {
+        _tankPage ++;
+    }
+    [self startLoadData];
+    //    NSLog(@"回到顶部");
+}
+
+-(void)refreshHttp
+{
+    if (_tableViewSelected == 1) {
+        _investPage = 0;
+    }
+    if (_tableViewSelected == 2) {
+        _organizationPage = 0;
+    }
+    if (_tableViewSelected == 3) {
+        _tankPage = 0;
+    }
+    
+    [self startLoadData];
+    //    NSLog(@"下拉刷新");
+}
+
 
 #pragma mark- 视图即将显示
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //bu隐藏tabbar
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:NO animated:NO];
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     self.navigationController.navigationBar.translucent=NO;
     

@@ -8,11 +8,15 @@
 
 #import "InvestPersonDetailViewController.h"
 #import "InvestPersonWhiteImageView.h"
+#import "InvestDetailModel.h"
+
+#define INVESTDETAIL  @"requestInvestorDetail"
+
 @interface InvestPersonDetailViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *background;//背景
 @property (nonatomic, strong) UIScrollView *scrollView;  //滑动视图
-@property (nonatomic, strong) UIView *whiteView;    //白色地板视图
+@property (nonatomic, strong) InvestPersonWhiteImageView *whiteView;    //白色地板视图
 
 @property (nonatomic, strong) UIButton *leftBackBtn; //左返回按钮
 @property (nonatomic, strong) UILabel *titleLabel;   //标题
@@ -27,6 +31,8 @@
 @property (nonatomic, strong) UIButton *commitBtn;    //提交按钮
 @property (nonatomic, strong) UIButton *attentionBtn;  //关注按钮
 
+@property (nonatomic, strong) InvestDetailModel *model;
+
 @end
 
 @implementation InvestPersonDetailViewController
@@ -34,10 +40,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor greenColor];
-    [self createUI];
+    
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:INVESTDETAIL];
+    
+    [self startLoadData];
+    
+    
 }
 
+-(void)startLoadData
+{
+//    NSLog(@"----%@",self.investorId);
+//    NSLog(@"----- 数量%@",self.attentionCount);
+    [SVProgressHUD show];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",self.investorId,@"investorId", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:INVEST_LIST_DETAIL postParam:dic type:0 delegate:self sel:@selector(requestInvestDetail:)];
+}
+
+-(void)requestInvestDetail:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+        NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic !=nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+            InvestDetailModel *detailModel =[InvestDetailModel mj_objectWithKeyValues:jsonDic[@"data"]];
+            _model = detailModel;
+//            NSLog(@"dayin模型----%@",_model);
+            [self createUI];
+            
+        }else{
+          [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+    
+    [SVProgressHUD dismiss];
+}
 #pragma mark -搭建UI
 -(void)createUI
 {
@@ -95,9 +137,19 @@
     
     //白色地板
     _whiteView = [InvestPersonWhiteImageView instancetationInvestPersonWhiteImageView];
+    [_whiteView.iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_model.user.headSculpture]] placeholderImage:[UIImage new]];
+    _whiteView.nameLabel.text = _model.user.name;
+    
+    DetailAuthentics *authentics = _model.user.authentics[0];
+    _whiteView.positionLabel.text = authentics.position;
+    _whiteView.companyLabel.text = authentics.companyName;
+    _whiteView.addressLabel.text = authentics.companyAddress;
+    //拿到投资领域
+    NSArray *fieldArray = _model.areas;
+    
     [_scrollView addSubview:_whiteView];
     [_whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_titleLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(_titleLabel.mas_bottom).offset(30);
         make.centerX.equalTo(_scrollView);
         make.left.mas_equalTo(_scrollView.mas_left).offset(30);
         make.right.mas_equalTo(_scrollView.mas_right).offset(-30);
@@ -107,11 +159,14 @@
     _mengBanView = [[UIView alloc]init];
     _mengBanView.backgroundColor = [UIColor whiteColor];
     _mengBanView.alpha = 0.3;
+    _mengBanView.layer.cornerRadius = 3;
+    _mengBanView.layer.masksToBounds = YES;
     [_scrollView addSubview:_mengBanView];
     
     //个人简介
     _personLabel = [[UILabel alloc]init];
-    _personLabel.text =@"个人 · 简介";
+//    _personLabel.text =@"个人 · 简介";
+    _personLabel.text = self.titleText;
     _personLabel.textColor = [UIColor whiteColor];
     _personLabel.textAlignment = NSTextAlignmentCenter;
     _personLabel.font = [UIFont systemFontOfSize:15];
@@ -145,7 +200,7 @@
     _personContent.textAlignment = NSTextAlignmentLeft;
     _personContent.font = [UIFont systemFontOfSize:14];
     _personContent.numberOfLines = 0;
-    _personContent.text = @"我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label，我现在程序中有一个label，宽度固定，高度需要根据获取到的文字的长度来决定，本来是有方法来根据string获取高度的，但是现在获取到的不是一个简单的我现在程序中有一个label";
+    _personContent.text = authentics.introduce;
     CGFloat height = [_personContent.text commonStringHeighforLabelWidth:SCREENWIDTH-72 withFontSize:14] + 20;
     [_scrollView addSubview:_personContent];
     [_personContent  mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,7 +230,11 @@
     //关注按钮
     _attentionBtn = [[UIButton alloc]init];
     [_attentionBtn setBackgroundImage:[UIImage imageNamed:@"icon-guanzhubg"] forState:UIControlStateNormal];
+    
     [_attentionBtn setImage:[UIImage imageNamed:@"icon-guanzhu"] forState:UIControlStateNormal];
+    
+    [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%@)",self.attentionCount] forState:UIControlStateNormal];
+    
     [_scrollView addSubview:_attentionBtn];
     [_attentionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_scrollView.mas_centerX).offset(23);
@@ -207,7 +266,7 @@
     
     self.navigationController.navigationBar.hidden = NO;
     
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:NO animated:NO];
     

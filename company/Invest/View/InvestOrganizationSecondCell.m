@@ -23,6 +23,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    _iconImage.layer.cornerRadius = 32.5;
+    _iconImage.layer.masksToBounds = YES;
+    
     _firstLabel.layer.cornerRadius = 3;
     _firstLabel.layer.masksToBounds = YES;
     _firstLabel.layer.borderColor = colorBlue.CGColor;
@@ -38,18 +42,22 @@
     _thirdLabel.layer.borderColor = colorBlue.CGColor;
     _thirdLabel.layer.borderWidth = 0.5;
     
-    _fourthLabel.layer.cornerRadius = 3;
-    _fourthLabel.layer.masksToBounds = YES;
-    _fourthLabel.layer.borderColor = colorBlue.CGColor;
-    _fourthLabel.layer.borderWidth = 0.5;
-    
-    _fifthLabel.layer.cornerRadius = 3;
-    _fifthLabel.layer.masksToBounds = YES;
-    _fifthLabel.layer.borderColor = colorBlue.CGColor;
-    _fifthLabel.layer.borderWidth = 0.5;
     
 }
 
+-(void)setModel:(OrganizationSecondModel *)model
+{
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.headSculpture]] placeholderImage:[UIImage new]];
+    _name.text = model.companyName;
+    _address.text = model.companyAddress;
+    //标题赋值
+    for (NSInteger i = 0; i < model.areas.count; i ++) {
+        UILabel *label = (UILabel*)_labelArray[i];
+        label.text = model.areas[i];
+    }
+    [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

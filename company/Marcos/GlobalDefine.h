@@ -152,7 +152,7 @@
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://192.168.5.108:8080/jinzht/"//本地
+#define SERVICE_URL @"http://192.168.5.111:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -172,6 +172,7 @@
 //#define SERVICE_URL @"http://192.168.31.236:8080/weini/"
 //#define SERVICE_URL @"http://192.168.0.182:8080/weini/"
 
+#pragma mark --------------------------------注册认证-------------------------------
 
 //手机验证码发送
 #define  SEND_MESSAGE_CODE @"verifyCode.action"
@@ -193,6 +194,8 @@
 #define AUTHENTICATE @"requestAuthentic.action"
 //认证协议
 #define AUTHENTICATE_PROTOCOL @"getProtocolAuthentic.action"
+
+#pragma mark -----------------------------圈子内容-----------------------------
 //圈子功能
 #define CYCLE_CONTENT_LIST @"requestFeelingList.action"
 //圈子首页点赞
@@ -209,10 +212,24 @@
 #define CIRCLE_PUBLIC_FEELING @"requestPublicFeeling.action"
 
 
+#pragma mark -------------------------------投资人---------------------------------
+
+//投资人列表
+#define INVEST_PUBLIC_LIST @"requestInvestorList.action"
+//投资人详情
+#define INVEST_LIST_DETAIL @"requestInvestorDetail.action"
+
+
 
 
 //认证信息
 #define AUTHENTIC_INFO  @"authenticInfoUser.action"
+
+
+
+
+
+
 
 
 

@@ -26,6 +26,16 @@
     // Initialization code
 }
 
+
+-(void)setModel:(OrganizationFirstModel *)model
+{
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.image]] placeholderImage:[UIImage new]];
+    _name.text = model.name;
+    _content.text = model.content;
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

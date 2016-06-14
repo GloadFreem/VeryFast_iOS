@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="10" id="PuV-mg-M1o"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar-sample-165.png" translatesAutoresizingMaskIntoConstraints="NO" id="5yv-ER-AON">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar-sample-165.png" translatesAutoresizingMaskIntoConstraints="NO" id="5yv-ER-AON">
                         <rect key="frame" x="20" y="25" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="eSW-fM-avh"/>
@@ -116,6 +116,15 @@
                     <constraint firstAttribute="trailing" secondItem="zLH-gJ-YNC" secondAttribute="trailing" constant="8" id="wkC-k8-xb6"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="attentionBtn" destination="FK2-6q-zaL" id="xIc-E9-PXv"/>
+                <outlet property="companyAddress" destination="zLH-gJ-YNC" id="WQE-Ig-IYI"/>
+                <outlet property="companyName" destination="tL7-to-duv" id="XaV-fv-sxv"/>
+                <outlet property="content" destination="8m0-9k-9pH" id="CJP-H5-IJ1"/>
+                <outlet property="iconImage" destination="5yv-ER-AON" id="ySF-YI-xhA"/>
+                <outlet property="name" destination="92s-p5-FXV" id="9mC-Tz-G6B"/>
+                <outlet property="position" destination="3DK-aE-NP4" id="7v9-ck-Wio"/>
+            </connections>
             <point key="canvasLocation" x="161.5" y="248"/>
         </tableViewCell>
     </objects>

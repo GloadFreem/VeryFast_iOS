@@ -57,6 +57,11 @@
                     <constraint firstItem="1gx-4F-BXt" firstAttribute="leading" secondItem="p4S-f0-0Mf" secondAttribute="trailing" constant="12" id="zaP-Xk-mM7"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="content" destination="kUg-OA-DQv" id="bkL-IS-xlb"/>
+                <outlet property="iconImage" destination="p4S-f0-0Mf" id="ECh-Z3-TXV"/>
+                <outlet property="name" destination="1gx-4F-BXt" id="pks-Ph-c1Z"/>
+            </connections>
             <point key="canvasLocation" x="-97.5" y="200"/>
         </tableViewCell>
     </objects>
