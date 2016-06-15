@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppSetModifyPasswordVC : UIViewController
+@interface AppSetModifyPasswordVC : RootViewController
 
 @end

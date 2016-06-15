@@ -20,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UITextField *passwordRepeat;
+
+
+
 @end
 
 @implementation SetPassWordViewController
@@ -30,6 +33,7 @@
     [self createUI];
     NSString * string = [AES encrypt:ZHUCE password:KEY];
     self.partner = [TDUtil encryptMD5String:string];
+    
 //    NSLog(@"partner%@",self.partner);
 //    NSLog(@"%@--%@--%@",self.telephone,self.certifyNum,self.ringCode);
 }
@@ -104,9 +108,9 @@
         if ([status intValue] == 200) {
             NSUserDefaults* data =[NSUserDefaults standardUserDefaults];
             NSString* password  =self.password.text;
-            NSString* phoneNumber=[data valueForKey:USER_STATIC_TEL];
-            password = [TDUtil encryptPhoneNumWithMD5:phoneNumber passString:password];
+            password = [TDUtil encryptPhoneNumWithMD5:self.telephone passString:password];
             [data setValue:password forKey:STATIC_USER_PASSWORD];
+            
             
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
             

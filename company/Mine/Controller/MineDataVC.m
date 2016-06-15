@@ -102,6 +102,7 @@
     [self.view addSubview:_bottomBtn];
     
     [_bottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX);
         make.bottom.mas_equalTo(self.view.mas_bottom).offset(-16*HEIGHTCONFIG);
         make.height.mas_equalTo(35*HEIGHTCONFIG);
         make.width.mas_equalTo(288*WIDTHCONFIG);

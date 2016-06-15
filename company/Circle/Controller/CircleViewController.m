@@ -95,12 +95,11 @@
     if (jsonDic != nil) {
         NSString *status = [jsonDic valueForKey:@"status"];
         if ([status integerValue] == 200) {
-            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
-            NSDictionary *dataDic = dataArray[0];
+            NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:jsonDic[@"data"]];
             
             AuthenticInfoBaseModel *baseModel = [AuthenticInfoBaseModel mj_objectWithKeyValues:dataDic];
             NSLog(@"打印个人信息：----%@",baseModel);
-//            _replaceListModel.iconNameStr = 
+//          
         }
     }
 }
@@ -291,8 +290,9 @@
         
     }
     cell.delegate = self;
-
-    cell.model = self.dataArray[indexPath.row];
+    if (self.dataArray.count) {
+        cell.model = self.dataArray[indexPath.row];
+    }
     
     return cell;
 }
@@ -507,6 +507,7 @@
 {
     [super viewWillDisappear:animated];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"publish" object:nil];
 }
 
 

@@ -241,6 +241,18 @@
 #define LOGO_PROJECT_CENTER @"requestProjectCenter.action"
 
 
+
+
+
+
+//软件设置
+//修改登录密码
+#define MODIFYPASSWORD @"requestModifyPassword.action"
+
+//更换手机号
+#define CHANGEBINDTELEPHONE @"requestChangeBindTelephone.action"
+
+
 //版本更新itunes 地址
 #define ITUNES_URL @"https://itunes.apple.com/us/app/jin-zhi-tou-zhong-guo-cheng/id1024857089?mt=8"
 //Banner

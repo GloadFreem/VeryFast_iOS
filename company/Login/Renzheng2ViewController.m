@@ -79,7 +79,6 @@
         [[DialogUtil sharedInstance]showDlg:self.view textOnly:@"请输入营业执照号"];
     }
     
-    
     NSLog(@"结束编辑");
 }
 #pragma mark - 返回上一页

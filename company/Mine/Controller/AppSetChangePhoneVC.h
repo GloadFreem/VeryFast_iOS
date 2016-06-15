@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppSetChangePhoneVC : UIViewController
+@interface AppSetChangePhoneVC : RootViewController
 
 @end
