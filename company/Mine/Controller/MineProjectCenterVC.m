@@ -9,6 +9,8 @@
 #import "MineProjectCenterVC.h"
 #import "MineProjectCenterPersonSecondCell.h"
 #import "MineProjectCenterHeaderCell.h"
+
+#define PROJECTCENTER @"requestProjectCenter"
 @interface MineProjectCenterVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -21,12 +23,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataArray = [NSMutableArray array];
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:PROJECTCENTER];
+    [self startLoadData];
     
     [self setupNav];
     
     [self createTableView];
 }
+
+-(void)startLoadData
+{
+    
+    
+    //开始请求
+//    [self.httpUtil getDataFromAPIWithOps:LOGO_PROJECT_CENTER postParam:dic type:0 delegate:self sel:@selector(requestGoldInfo:)];
+}
+
 
 #pragma mark -设置导航栏
 -(void)setupNav

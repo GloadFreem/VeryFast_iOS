@@ -9,10 +9,17 @@
 #import "MineActivityVC.h"
 #import "ActivityCell.h"
 
+#import "ActivityViewModel.h"
+#import "MineActivityListModel.h"
+
+#define LOGOACTIVITY @"requestMineAction"
+
 @interface MineActivityVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, assign) NSInteger page;
 
 @end
 
@@ -21,8 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:LOGOACTIVITY];
+    _page = 0;
     
-    _dataArray = [NSMutableArray array];
+    [self startLoadData];
     
     [self setupNav];
     [self createTableView];
@@ -44,8 +56,16 @@
 {
     _tableView  = [UITableView new];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    //设置刷新控件
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
+    //自动改变透明度
+    _tableView.mj_header.automaticallyChangeAlpha = YES;
+    [_tableView.mj_header beginRefreshing];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+    
     [self.view addSubview:_tableView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,6 +77,59 @@
     
 }
 
+#pragma mark -刷新控件
+-(void)nextPage
+{
+    _page ++;
+    
+    [self startLoadData];
+    //    NSLog(@"回到顶部");
+}
+
+-(void)refreshHttp
+{
+    _page --;
+    if (_page < 0) {
+        _page = 0;
+    }
+    [self startLoadData];
+    //    NSLog(@"下拉刷新");
+}
+
+-(void)startLoadData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",_page],@"page", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:LOGO_ACTIVITY_LIST postParam:dic type:0 delegate:self sel:@selector(requestInvestList:)];
+}
+
+-(void)requestInvestList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (_page == 0) {
+        [_dataArray removeAllObjects];
+    }
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+            
+            [self.tableView reloadData];
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        
+        }
+    }
+}
 
 #pragma mark -tableViewDatasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

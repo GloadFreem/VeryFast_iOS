@@ -75,6 +75,14 @@
     //获得partner
     self.partner = [TDUtil encryKeyWithMD5:KEY action:INVESPUBLICTLIST];
     
+    //默认请求投资人列表
+    _tableViewSelected =1;
+    _investPage = 0;
+    _organizationPage  = 0;
+    _tankPage = 0;
+    
+    _identyType = @"2";
+    
     [self startLoadData];
     
     //初始化模型数组
@@ -92,13 +100,7 @@
     [self.view addSubview:self.subViewScrollView];
     
     
-    //默认请求投资人列表
-    _tableViewSelected =1;
-    _investPage = 0;
-    _organizationPage  = 0;
-    _tankPage = 0;
     
-    _identyType = @"2";
     
     
            
@@ -586,19 +588,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-#pragma mark -下载数据
--(void)loadData
-{
-    if (_tableViewSelected == 1) {
-        [_investPersonTableView reloadData];
-    }
-    if (_tableViewSelected == 2) {
-        [_investOrganizationTableView reloadData];
-    }
-    if (_tableViewSelected == 3) {
-        [_thinkTankTableView reloadData];
-    }
-}
+
 #pragma mark- 创建tableView
 -(void)createTableView:(UITableView*)tableView index:(int)index
 {

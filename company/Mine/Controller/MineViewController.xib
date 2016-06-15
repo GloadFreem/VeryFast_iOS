@@ -146,7 +146,7 @@
                         <constraint firstAttribute="height" constant="55" id="iPK-X9-ZcN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <inset key="titleEdgeInsets" minX="-30" minY="40" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-28" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="20"/>
                     <state key="normal" title="我的关注" image="logo-guanzhu.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -168,7 +168,7 @@
                         <constraint firstAttribute="height" constant="55" id="YDW-uF-JWz"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <inset key="titleEdgeInsets" minX="-30" minY="40" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-28" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="10" maxY="20"/>
                     <state key="normal" title="资金账户" image="logo_wallet.png">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

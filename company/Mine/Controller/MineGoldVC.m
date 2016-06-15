@@ -8,7 +8,13 @@
 
 #import "MineGoldVC.h"
 #import "MineGoldMingxiVC.h"
+
+#define GOLDACCOUNT @"requestGoldAccount"
 @interface MineGoldVC ()
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+@property (nonatomic, copy) NSString *count;
+@property (nonatomic, assign) NSInteger rewardId;
 
 @end
 
@@ -17,7 +23,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:GOLDACCOUNT];
+    [self startLoadData];
 }
+
+-(void)startLoadData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:LOGO_GOLD_ACCOUNT postParam:dic type:0 delegate:self sel:@selector(requestGoldInfo:)];
+    
+}
+
+-(void)requestGoldInfo:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic !=nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+            NSDictionary *dataDic = [NSDictionary dictionaryWithDictionary:dataArray[0]];
+            
+            _count = [dataDic valueForKey:@"count"];
+            _countLabel.text = [NSString stringWithFormat:@"%@",_count];
+            
+        }else{
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
+
 - (IBAction)leftBack:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

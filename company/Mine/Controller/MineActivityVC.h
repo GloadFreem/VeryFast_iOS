@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineActivityVC : UIViewController
+@interface MineActivityVC : RootViewController
 
 @end

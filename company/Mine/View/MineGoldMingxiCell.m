@@ -42,6 +42,7 @@
     _calenderImage = [UIImageView new];
     _calenderImage.image = [UIImage imageNamed:@"mine_gold_calender"];
     [_topContainerView addSubview:_calenderImage];
+    CGSize size = _calenderImage.image.size;
     
     _yearlabel = [UILabel new];
     _yearlabel.font = BGFont(17);
@@ -92,8 +93,10 @@
     
     [self.contentView sd_addSubviews:@[_dayLabel,_point,_secondLine,_whiteImage]];
     
+    CGFloat width = size.width / 2;
+   
     _point.sd_layout
-    .centerXEqualToView(_calenderImage)
+    .leftSpaceToView(self.contentView,37 + width)
     .topSpaceToView(_topContainerView,5)
     .widthIs(4)
     .heightIs(4);

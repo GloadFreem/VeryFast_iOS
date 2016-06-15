@@ -19,7 +19,7 @@
                     <rect key="frame" x="147" y="30" width="81" height="81"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金指投  V3.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xP7-2B-gcT">
-                    <rect key="frame" x="139.5" y="121" width="95" height="17"/>
+                    <rect key="frame" x="139" y="121" width="95" height="17"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="p2F-S1-iby"/>
                     </constraints>
@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京金指投信息科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elt-IW-mOP">
-                    <rect key="frame" x="96.5" y="153" width="182" height="21"/>
+                    <rect key="frame" x="96" y="153" width="182" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="HB9-j4-iaq"/>
                     </constraints>
@@ -43,8 +43,8 @@
                         <constraint firstAttribute="height" constant="44" id="iqQ-Ry-9WE"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="平台介绍" image="youjiantou">
                         <color key="titleColor" red="0.18431372549019609" green="0.18431372549019609" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -65,8 +65,8 @@
                         <constraint firstAttribute="height" constant="44" id="lP9-b3-kxU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="新手指南" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -85,8 +85,8 @@
                         <constraint firstAttribute="height" constant="44" id="DeR-GI-Tfb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="用户协议" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -106,8 +106,8 @@
                         <constraint firstAttribute="height" constant="44" id="Ie6-c2-3uV"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="意见反馈" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -120,8 +120,8 @@
                         <constraint firstAttribute="height" constant="44" id="ZJD-1g-fcH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <inset key="titleEdgeInsets" minX="-240" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="300" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="titleEdgeInsets" minX="-280" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="350" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="免责申明" image="youjiantou">
                         <color key="titleColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -144,7 +144,7 @@
                 <constraint firstItem="xBD-4o-JRI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9AR-Yt-MHZ"/>
                 <constraint firstItem="xP7-2B-gcT" firstAttribute="top" secondItem="gNM-W8-OXF" secondAttribute="bottom" constant="10" id="B7Y-yX-kpd"/>
                 <constraint firstItem="eEV-IN-hur" firstAttribute="top" secondItem="naf-bO-tIv" secondAttribute="bottom" constant="-2" id="Bsf-e2-boH"/>
-                <constraint firstItem="xP7-2B-gcT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D2E-Se-AnJ"/>
+                <constraint firstItem="xP7-2B-gcT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-1" id="D2E-Se-AnJ"/>
                 <constraint firstItem="gNM-W8-OXF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="H6A-YS-tty"/>
                 <constraint firstAttribute="trailing" secondItem="w8A-Bw-3Ig" secondAttribute="trailing" id="HES-bH-l2K"/>
                 <constraint firstItem="gNM-W8-OXF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="HbF-qf-d02"/>
@@ -173,7 +173,7 @@
                     <exclude reference="baQ-mH-2GI"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="-79.5" y="285.5"/>
+            <point key="canvasLocation" x="-85.5" y="189.5"/>
         </view>
     </objects>
     <resources>

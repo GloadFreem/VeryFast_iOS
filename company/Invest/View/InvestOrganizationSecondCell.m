@@ -50,6 +50,12 @@
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.headSculpture]] placeholderImage:[UIImage new]];
     _name.text = model.companyName;
     _address.text = model.companyAddress;
+    
+    //隐藏多余的
+    for (NSInteger i = model.areas.count; i < _labelArray.count; i ++) {
+        UILabel *label = (UILabel *)_labelArray[i];
+        label.hidden = YES;
+    }
     //标题赋值
     for (NSInteger i = 0; i < model.areas.count; i ++) {
         UILabel *label = (UILabel*)_labelArray[i];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineAttentionVC : UIViewController
+@interface MineAttentionVC : RootViewController
 
 @end

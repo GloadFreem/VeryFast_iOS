@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineGoldVC : UIViewController
+@interface MineGoldVC : RootViewController
 
 @end

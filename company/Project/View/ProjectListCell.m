@@ -30,6 +30,45 @@
     _rightLabel.layer.borderColor = colorBlue.CGColor;
 }
 
+-(void)setModel:(ProjectListProModel *)model
+{
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.startPageImage]] placeholderImage:[UIImage new]];
+    
+    //根据状态判断 状态图片
+    if (!model.status) {
+        _iconImage.hidden = YES;
+    }
+    if ([model.status isEqualToString:@"待路演"]) {
+        _iconImage.image = [UIImage imageNamed:@"invest_noroad"];
+    }
+    if ([model.status isEqualToString:@"路演中"]) {
+        _iconImage.image = [UIImage imageNamed:@"invest_roading"];
+    }
+    if ([model.status isEqualToString:@"预选"]) {
+        _iconImage.image = [UIImage imageNamed:@"invest_yuxuan"];
+    }
+    
+    //隐藏多余的 label
+    for (NSInteger i =model.areas.count; i < _labelArray.count; i ++) {
+        UILabel *label = (UILabel *)_labelArray[i];
+        label.hidden = YES;
+    }
+    //赋值
+    for (NSInteger i =0; i < model.areas.count; i ++) {
+        UILabel *label = (UILabel *)_labelArray[i];
+        label.text = model.areas[i];
+    }
+    
+    _projectLabel.text = model.abbrevName;
+    _addressLabel.text = model.address;
+    _companyLabel.text = model.fullName;
+    _personNumLabel.text = [NSString stringWithFormat:@"%ld",model.collectionCount];
+    _moneyLabel.text = [NSString stringWithFormat:@"%ld",model.financeTotal];
+    
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

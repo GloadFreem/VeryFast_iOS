@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MineProjectCenterVC : UIViewController
+@interface MineProjectCenterVC : RootViewController
 
 @end

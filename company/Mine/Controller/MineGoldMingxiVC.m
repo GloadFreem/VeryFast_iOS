@@ -9,6 +9,8 @@
 #import "MineGoldMingxiVC.h"
 #import "MineGoldMingxiCell.h"
 #import "MineGoldMingxiModel.h"
+
+#define GOLDDETAIL @"requestGoldTradList"
 @interface MineGoldMingxiVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -45,7 +47,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    _tableView.backgroundColor = [UIColor redColor];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left);

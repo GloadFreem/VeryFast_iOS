@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineGoldVC">
             <connections>
+                <outlet property="countLabel" destination="ZSn-TT-Prv" id="0oP-ML-JsU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,15 +37,12 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户现有金条" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdB-K6-eWu">
                             <rect key="frame" x="22" y="76" width="78" height="13"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="13" id="MKn-u9-Gke"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="82" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSn-TT-Prv">
-                            <rect key="frame" x="156" y="102" width="62.5" height="47"/>
+                            <rect key="frame" x="156" y="102" width="63" height="47"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="47" id="RVO-O1-eAf"/>
                             </constraints>
@@ -53,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="根" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqy-M4-4JP">
-                            <rect key="frame" x="221" y="133" width="12" height="12"/>
+                            <rect key="frame" x="222" y="133" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="ozO-Yl-VKi"/>
                             </constraints>
@@ -72,9 +70,10 @@
                         <constraint firstItem="ZSn-TT-Prv" firstAttribute="centerX" secondItem="5Kq-Hx-FHv" secondAttribute="centerX" id="7bF-CQ-Vrk"/>
                         <constraint firstItem="1RZ-5N-ktN" firstAttribute="leading" secondItem="5Kq-Hx-FHv" secondAttribute="leading" constant="22" id="Ehy-5o-DHD"/>
                         <constraint firstItem="tbS-pM-uqK" firstAttribute="top" secondItem="ZSn-TT-Prv" secondAttribute="bottom" id="Niy-oy-jac"/>
-                        <constraint firstItem="xdB-K6-eWu" firstAttribute="leading" secondItem="5Kq-Hx-FHv" secondAttribute="leading" constant="22" id="P25-6v-pAt"/>
                         <constraint firstItem="tbS-pM-uqK" firstAttribute="centerX" secondItem="5Kq-Hx-FHv" secondAttribute="centerX" id="RhB-tj-TFa"/>
-                        <constraint firstItem="xdB-K6-eWu" firstAttribute="top" secondItem="1RZ-5N-ktN" secondAttribute="bottom" constant="29" id="VZk-EM-ROr"/>
+                        <constraint firstItem="xdB-K6-eWu" firstAttribute="leading" secondItem="1RZ-5N-ktN" secondAttribute="leading" id="SA8-0y-WdF"/>
+                        <constraint firstItem="tbS-pM-uqK" firstAttribute="top" secondItem="xdB-K6-eWu" secondAttribute="bottom" constant="60" id="TGj-jo-l36"/>
+                        <constraint firstItem="xdB-K6-eWu" firstAttribute="top" secondItem="1RZ-5N-ktN" secondAttribute="bottom" constant="29" id="YbQ-Xq-soR"/>
                         <constraint firstItem="Vqy-M4-4JP" firstAttribute="bottom" secondItem="ZSn-TT-Prv" secondAttribute="bottom" constant="-4" id="a7W-ua-AQg"/>
                         <constraint firstItem="Vqy-M4-4JP" firstAttribute="leading" secondItem="ZSn-TT-Prv" secondAttribute="trailing" constant="3" id="iMa-Sg-lH9"/>
                         <constraint firstItem="CpN-P6-rmg" firstAttribute="centerX" secondItem="5Kq-Hx-FHv" secondAttribute="centerX" id="lLU-nX-fzv"/>
@@ -83,7 +82,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ow-f6-Eeb" userLabel="shuView">
-                    <rect key="frame" x="187" y="324" width="0.5" height="230"/>
+                    <rect key="frame" x="187" y="324" width="1" height="230"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="0.5" id="MZH-9Y-mLc"/>
@@ -91,21 +90,21 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0B-S4-NwP" userLabel="hengView1">
-                    <rect key="frame" x="0.0" y="439" width="375" height="0.5"/>
+                    <rect key="frame" x="0.0" y="439" width="375" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="vYc-Fw-k5L"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WM-Si-3tf">
-                    <rect key="frame" x="0.0" y="554" width="375" height="0.5"/>
+                    <rect key="frame" x="0.0" y="554" width="375" height="1"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="Jg9-O6-ttL"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4R-ib-ow9">
-                    <rect key="frame" x="0.0" y="324" width="187.5" height="115"/>
+                    <rect key="frame" x="0.0" y="324" width="187" height="115"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="-35" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="60" minY="-20" maxX="0.0" maxY="0.0"/>
@@ -129,7 +128,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-gv-HiZ">
-                    <rect key="frame" x="0.0" y="439" width="187.5" height="114.5"/>
+                    <rect key="frame" x="0.0" y="440" width="187" height="114"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="-35" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="72" minY="-20" maxX="0.0" maxY="0.0"/>
@@ -141,7 +140,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4q-lM-ui8">
-                    <rect key="frame" x="188" y="439" width="187" height="114.5"/>
+                    <rect key="frame" x="188" y="440" width="187" height="114"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="-35" minY="40" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="72" minY="-20" maxX="0.0" maxY="0.0"/>

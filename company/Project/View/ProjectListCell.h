@@ -10,8 +10,12 @@
 //---------------------------------首页路演项目cell--------------------------
 
 #import <UIKit/UIKit.h>
+#import "ProjectListProModel.h"
 
 @interface ProjectListCell : UITableViewCell
+
+@property (nonatomic, strong) ProjectListProModel *model;
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *statusImage;
@@ -25,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *personNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labelArray;
+
 
 
 @end

@@ -8,7 +8,17 @@
 
 #import "MineAttentionVC.h"
 #import "ProjectListCell.h"
-#import "ProjectNoRoadCell.h"
+
+#import "MineAttentionInvestCell.h"
+
+#import "ProjectListProBaseModel.h"
+#import "ProjectListProModel.h"
+
+#import "MineCollectionInvestorBaseModel.h"
+#import "MineCollectionListModel.h"
+
+#define LOGOATTENTION @"requestMineCollection"
+
 @interface MineAttentionVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *titleView;
 @property (nonatomic, strong) UIButton *projectBtn;    //
@@ -19,6 +29,15 @@
 @property (nonatomic, assign) NSInteger selectedTableView;  //选择要加载的视图
 @property (nonatomic, strong) UITableView *investTableView;  //投资视图
 
+@property (nonatomic, copy) NSString *identyType;  //身份类型
+@property (nonatomic, assign) NSInteger page;  //当前页
+@property (nonatomic, assign) NSInteger projectPage;
+@property (nonatomic, assign) NSInteger investPage;
+@property (nonatomic, strong) UITableView *tableView; //当前biao
+
+@property (nonatomic, strong) NSMutableArray *projectArray;
+@property (nonatomic, strong) NSMutableArray *investArray;
+
 @end
 
 @implementation MineAttentionVC
@@ -26,12 +45,125 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (!_projectTableView) {
+        _projectArray = [NSMutableArray array];
+    }
+    if (!_investArray) {
+        _investArray  = [NSMutableArray array];
+    }
     _selectedTableView = 0;  //默认显示第一个视图
+    _identyType = @"0";       //默认请求项目
+    _projectPage = 0;
+    _investPage = 0;
+    
+    //获得partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:LOGOATTENTION];
+    
+    [self startLoadData];
+    
     //创建基本布局
     [self setupNav];
     [self createUI];
     
+    
 }
+#pragma mark--下载数据
+-(void)startLoadData
+{
+    if (_selectedTableView == 0) {
+        _identyType = @"0";
+        _page = _projectPage;
+        self.tableView = _projectTableView;
+    }
+    
+    if (_selectedTableView == 1) {
+        _identyType = @"1";
+        _page = _investPage;
+        self.tableView = _investTableView;
+    }
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",_identyType,@"type",[NSString stringWithFormat:@"%ld",(long)_page],@"page", nil];
+    
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:LOGO_ATTENTION_LIST postParam:dic type:0 delegate:self sel:@selector(requestInvestList:)];
+}
+
+-(void)requestInvestList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+            NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    //如果刷新到顶部  移除原来数组数据
+    if (_page == 0) {
+        if (_selectedTableView == 0) {
+            [_projectArray removeAllObjects];
+        }
+        if (_selectedTableView == 1) {
+            [_investArray removeAllObjects];
+        }
+    }
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            //项目
+            if (_selectedTableView == 0) {
+                NSArray *dataArray = [ProjectListProBaseModel mj_objectArrayWithKeyValuesArray:jsonDic[@"data"]];
+                for (NSInteger i = 0; i < dataArray.count; i ++) {
+                    ProjectListProModel *listModel = [ProjectListProModel new];
+                    ProjectListProBaseModel *baseModel = dataArray[i];
+                    listModel.startPageImage = baseModel.project.startPageImage;
+                    listModel.abbrevName = baseModel.project.abbrevName;
+                    listModel.address = baseModel.project.address;
+                    listModel.fullName = baseModel.project.fullName;
+                    listModel.status = baseModel.project.financestatus.name;
+                    //少一个areas 数组
+                    
+                    listModel.collectionCount = baseModel.project.collectionCount;
+                    Roadshows *roadshows = baseModel.project.roadshows[0];
+                    listModel.financeTotal = roadshows.roadshowplan.financeTotal;
+                    listModel.financedMount = roadshows.roadshowplan.financedMount;
+                    listModel.endDate = roadshows.roadshowplan.endDate;
+                    
+                    [_projectArray addObject:listModel];
+                    
+                }
+                
+            }
+            NSLog(@"数组个数---%ld",_projectArray.count);
+            //投资
+            if (_selectedTableView == 1) {
+                NSArray *dataArray = [MineCollectionInvestorBaseModel mj_objectArrayWithKeyValuesArray:jsonDic[@"data"]];
+                for (NSInteger i =0; i < dataArray.count; i ++) {
+                    MineCollectionInvestorBaseModel *baseModel = dataArray[i];
+                    MineCollectionListModel *listModel = [MineCollectionListModel new];
+                    listModel.headSculpture = baseModel.usersByUserId.headSculpture;
+                    listModel.name = baseModel.usersByUserId.name;
+                    MineCollectionAuthentics *authentics = baseModel.usersByUserId.authentics[0];
+                    listModel.position = authentics.position;
+                    listModel.identiyTypeId = authentics.identiytype.name;
+                    listModel.companyName = authentics.companyName;
+                    listModel.companyAddress = authentics.companyAddress;
+                    //领域
+                    
+                    [_investArray addObject:listModel];
+                }
+            }
+            
+            [self.tableView reloadData];
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
+
+
 #pragma mark -导航栏设置
 -(void)setupNav
 {
@@ -113,7 +245,7 @@
         }
     _selectedTableView = btn.tag;
     _scrollView.contentOffset = CGPointMake(SCREENWIDTH*btn.tag, 0);
-    [self loadData];
+    [self startLoadData];
     
     }
 }
@@ -142,8 +274,10 @@
         }
         
        
-        //下载数据
-        [self loadData];
+        //当没有数据才下载数据
+        if (!_projectArray.count || !_investArray.count) {
+            [self startLoadData];
+        }
         
         switch (index) {
             case 0:
@@ -167,18 +301,6 @@
                 break;
         }
     }
-}
-
-#pragma mark -下载数据
--(void)loadData
-{
-    if (_selectedTableView == 0) {
-        [_projectTableView reloadData];
-    }
-    if (_selectedTableView == 1) {
-        [_investTableView reloadData];
-    }
-    
 }
 
 -(void)createUI
@@ -209,9 +331,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (_selectedTableView == 0) {
-        return 5;
+        return _projectArray.count;
     }
-    return 6;
+    return _investArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -219,8 +341,8 @@
     if (_selectedTableView == 0) {
         return 172;
     }
-//    return 113;
-    return 172;
+    return 113;
+    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,15 +354,23 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ProjectListCell" owner:nil options:nil] lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (_projectArray.count) {
+            cell.model = _projectArray[indexPath.row];
+        }
+        
         return cell;
     }
     
-    static NSString * cellId =@"ProjectNoRoadCell";
-    ProjectNoRoadCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    static NSString * cellId =@"MineAttentionInvestCell";
+    MineAttentionInvestCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
         
     }
+    if (_investArray.count) {
+        cell.model = _investArray[indexPath.row];
+    }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -259,10 +389,43 @@
     tableView.tag = index;
     tableView.delegate=self;
     tableView.dataSource=self;
-    tableView.backgroundColor=[UIColor whiteColor];
+    tableView.backgroundColor=[UIColor groupTableViewBackgroundColor];
+    //设置刷新控件
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
+    //自动改变透明度
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    [tableView.mj_header beginRefreshing];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+    
     [_scrollView addSubview:tableView];
 }
 
+#pragma mark -刷新控件
+-(void)nextPage
+{
+    if (_selectedTableView == 0) {
+        _projectPage ++;
+    }
+    if (_selectedTableView == 1) {
+        _investPage ++;
+    }
+
+    [self startLoadData];
+    //    NSLog(@"回到顶部");
+}
+
+-(void)refreshHttp
+{
+    if (_selectedTableView == 0) {
+        _projectPage = 0;
+    }
+    if (_selectedTableView == 1) {
+        _investPage = 0;
+    }
+    
+    [self startLoadData];
+    //    NSLog(@"下拉刷新");
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

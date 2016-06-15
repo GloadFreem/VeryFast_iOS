@@ -221,16 +221,24 @@
 
 
 
-
+#pragma mark -----------------------------LOGO菜单---------------------------------
 //认证信息
 #define AUTHENTIC_INFO  @"authenticInfoUser.action"
 
+//我的关注
+#define LOGO_ATTENTION_LIST @"requestMineCollection.action"
+
+//我的活动
+#define LOGO_ACTIVITY_LIST @"requestMineAction.action"
+
+//我的金条账户
+#define LOGO_GOLD_ACCOUNT @"requestGoldAccount.action"
+//金条交易明细
+#define LOGO_GOLD_DETAIL @"requestGoldTradList.action"
 
 
-
-
-
-
+//项目中心
+#define LOGO_PROJECT_CENTER @"requestProjectCenter.action"
 
 
 //版本更新itunes 地址

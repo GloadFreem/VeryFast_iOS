@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ASIFormDataRequest.h"
+
 @interface HttpUtils : NSObject<ASIHTTPRequestDelegate>
 
 @property(retain,nonatomic)ASIFormDataRequest* requestInstance;  //请求实例
