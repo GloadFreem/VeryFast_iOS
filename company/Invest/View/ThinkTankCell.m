@@ -32,7 +32,13 @@
     _companyAddress.text = model.companyAddress;
     _content.text = model.introduce;
     
-    [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+    if (model.collected) {
+        [_attentionBtn setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+        [_attentionBtn setBackgroundColor:btnCray];
+    }else{
+        [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+        [_attentionBtn setBackgroundColor:btnGreen];
+    }
     
 }
 
@@ -43,6 +49,14 @@
     _iconImage.layer.cornerRadius = 30;
     _iconImage.layer.masksToBounds = YES;
     
+    _attentionBtn.layer.cornerRadius = 3;
+    _attentionBtn.layer.masksToBounds = YES;
+    
+}
+- (IBAction)attentionBtnClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickAttentionBtnInCell:andModel:)]) {
+        [self.delegate didClickAttentionBtnInCell:self andModel:_model];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

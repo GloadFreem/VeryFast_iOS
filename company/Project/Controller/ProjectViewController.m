@@ -13,14 +13,21 @@
 
 #import "ProjectListCell.h"
 #import "ProjectNoRoadCell.h"
+
 #import "ProjectBannerView.h"
+#import "ProjectBannerModel.h"
+
 #import "ProjectDetailController.h"
 
-#define BannerHeight   235
+#define BANNERSYSTEM @"bannerSystem"
+#define BannerHeight  SCREENWIDTH * 0.75
 @interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, assign) NSInteger selectedCellNum;//选择显示cell的类型
+
+@property (nonatomic, copy) NSString *bannerPartner; 
+@property (nonatomic, strong) NSMutableArray *bannerModelArray; //banner数组
 
 @end
 
@@ -35,19 +42,57 @@
 //    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
 //
 //    [self setKeyScrollView:self.tableView scrolOffsetY:600 options:HYHidenControlOptionTitle];
+    if (!_bannerModelArray) {
+        _bannerModelArray = [NSMutableArray array];
+    }
     
+    //获得partner
+    self.bannerPartner = [TDUtil encryKeyWithMD5:KEY action:BANNERSYSTEM];
+    
+    [self startLoadBannerData];
+    
+    [self createBanner];
+
+    [self createUI];
+    
+    
+}
+
+-(void)startLoadBannerData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.bannerPartner,@"partner", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:BANNER_SYSTEM postParam:dic type:0 delegate:self sel:@selector(requestBannerList:)];
+    
+}
+
+-(void)requestBannerList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    //        NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+            NSArray *bannerModelArray = [ProjectBannerModel mj_objectArrayWithKeyValuesArray:dataArray];
+            
+        }else{
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
+-(void)createBanner
+{
     _selectedCellNum = 20;
     
     ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, BannerHeight*HEIGHTCONFIG)];
     [bannerView setSelectedNum:20];
     _tableView.tableHeaderView = bannerView;
-     NSArray * arr = [NSArray array];
+    NSArray * arr = [NSArray array];
     [bannerView relayoutWithModelArray:arr];
-    
     bannerView.delegate = self;
-    [self createUI];
-    
-    
 }
 #pragma mark -视图即将显示
 -(void)viewWillAppear:(BOOL)animated
@@ -180,7 +225,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProjectDetailController * detail = [[ProjectDetailController alloc]init];
     //隐藏tabbar
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:YES animated:NO];
     

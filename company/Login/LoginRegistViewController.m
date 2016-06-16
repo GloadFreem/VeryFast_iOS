@@ -42,6 +42,18 @@
     NSString * string = [AES encrypt:DENGLU password:KEY];
     self.partner = [TDUtil encryptMD5String:string];
     //    NSLog(@"%@",_partner);
+    
+    //加载本地默认数据
+    [self loadDefaultData];
+}
+
+-(void)loadDefaultData
+{
+    NSUserDefaults * data = [NSUserDefaults standardUserDefaults];
+    NSString * phoneNumber = [data valueForKey:STATIC_USER_DEFAULT_DISPATCH_PHONE];
+    if (phoneNumber) {
+        self.phoneField.text = phoneNumber;
+    }
 }
 
 -(void)createUI{
@@ -142,7 +154,7 @@
 //            [self removeFromParentViewController];
         }else{
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
-
+         
         }
         
     }

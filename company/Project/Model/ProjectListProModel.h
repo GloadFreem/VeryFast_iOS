@@ -10,6 +10,9 @@
 
 @interface ProjectListProModel : NSObject
 
+
+@property (nonatomic, copy) NSString *desc;
+
 @property (nonatomic, copy) NSString *startPageImage;
 @property (nonatomic, copy) NSString *abbrevName;
 @property (nonatomic, copy) NSString *address;
@@ -19,6 +22,7 @@
 @property (nonatomic, copy) NSString *endDate;
 @property (nonatomic, assign) NSInteger financeTotal; //融资总额
 @property (nonatomic, assign) NSInteger financedMount; //已融金额
+@property (nonatomic, assign) NSInteger projectId; 
 
 @property (nonatomic, strong) NSArray *areas;
 

@@ -20,6 +20,9 @@
 #define orangeColor  color(255,103,0,1)
 #define colorBlue    color(0,160,233,1)
 #define colorGray   color(230,230,230,1)
+#define btnGreen    color(84,175,135,1)
+#define btnCray     color(204,204,204,1)
+
 #define BGFont(size) [UIFont systemFontOfSize:size]
 
 #define NUMBERFORTY 40

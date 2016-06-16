@@ -38,11 +38,20 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="144" id="kkl-if-g1n"/>
                         </constraints>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <color key="textColor" red="0.1843137255" green="0.1843137255" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="H9V-JT-VXY"/>
+                        </connections>
                     </textView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWA-VX-uj7">
+                        <rect key="frame" x="0.0" y="189.5" width="375" height="10"/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="PnY-CT-EWo"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dFw-LM-OVt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="9ry-m9-HHO"/>
@@ -50,11 +59,17 @@
                     <constraint firstItem="dFw-LM-OVt" firstAttribute="top" secondItem="W6N-jK-4Yl" secondAttribute="bottom" constant="6" id="NVf-ef-QzB"/>
                     <constraint firstAttribute="trailing" secondItem="dFw-LM-OVt" secondAttribute="trailing" constant="17" id="OZV-Kf-qkS"/>
                     <constraint firstItem="W6N-jK-4Yl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="QjU-cg-fbc"/>
+                    <constraint firstAttribute="bottom" secondItem="yWA-VX-uj7" secondAttribute="bottom" id="TOz-2C-Crx"/>
                     <constraint firstItem="0KV-s8-oE5" firstAttribute="leading" secondItem="W6N-jK-4Yl" secondAttribute="trailing" constant="12" id="gq2-FX-oYQ"/>
+                    <constraint firstItem="yWA-VX-uj7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tJz-Lt-hcr"/>
                     <constraint firstItem="W6N-jK-4Yl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="vTM-7E-a0T"/>
+                    <constraint firstAttribute="trailing" secondItem="yWA-VX-uj7" secondAttribute="trailing" id="xvt-Ov-JOP"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="207.5" y="158"/>
+            <connections>
+                <outlet property="textView" destination="dFw-LM-OVt" id="IgJ-f7-Z6j"/>
+            </connections>
+            <point key="canvasLocation" x="-340.5" y="132"/>
         </tableViewCell>
     </objects>
 </document>

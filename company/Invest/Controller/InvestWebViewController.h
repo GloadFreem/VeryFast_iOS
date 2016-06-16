@@ -10,4 +10,6 @@
 
 @interface InvestWebViewController : UIViewController
 
+@property (nonatomic, copy) NSString *url;
+
 @end

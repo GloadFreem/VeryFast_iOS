@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *areas;
 @property (nonatomic, assign) NSInteger collectCount; // 关注数量
+@property (nonatomic, assign) BOOL collected; //是否关注
 
+@property (nonatomic, assign) BOOL commited;
 
 @end

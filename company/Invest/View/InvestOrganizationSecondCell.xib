@@ -75,14 +75,18 @@
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-1C-cpL">
-                        <rect key="frame" x="252" y="109" width="110" height="29"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-1C-cpL">
+                        <rect key="frame" x="252" y="111.5" width="110" height="29"/>
+                        <color key="backgroundColor" red="0.3294117647" green="0.68627450980000004" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="nWY-xa-6re"/>
+                            <constraint firstAttribute="height" constant="29" id="zsT-3i-lOD"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title=" 关注(269)" image="icon-guanzhu.png" backgroundImage="icon-guanzhubg.png"/>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zuq-SQ-kpa">
-                        <rect key="frame" x="129" y="109" width="110" height="29"/>
-                        <state key="normal" backgroundImage="icon-commit.png"/>
+                        <state key="normal" title=" 关注(269)" image="icon-guanzhu.png"/>
+                        <connections>
+                            <action selector="attentionBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A5N-zZ-JMM"/>
+                        </connections>
                     </button>
                     <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3K-b5-0wn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="10"/>
@@ -91,6 +95,15 @@
                             <constraint firstAttribute="height" constant="10" id="vaJ-AF-4ke"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zuq-SQ-kpa">
+                        <rect key="frame" x="129" y="111" width="110" height="29"/>
+                        <color key="backgroundColor" red="1" green="0.4432308506" blue="0.22156729850000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title=" 提交项目" image="icon_commit1.png"/>
+                        <connections>
+                            <action selector="commitBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="I49-26-d7O"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="gfn-1C-cpL" secondAttribute="trailing" constant="13" id="1P6-b0-Xb9"/>
@@ -100,6 +113,7 @@
                     <constraint firstItem="oGl-PR-aNN" firstAttribute="top" secondItem="P8k-QJ-eSf" secondAttribute="bottom" constant="8" id="HBe-04-3kb"/>
                     <constraint firstItem="gfn-1C-cpL" firstAttribute="leading" secondItem="Zuq-SQ-kpa" secondAttribute="trailing" constant="13" id="HvB-FE-B4X"/>
                     <constraint firstItem="P8k-QJ-eSf" firstAttribute="top" secondItem="ktu-5B-QK8" secondAttribute="top" id="NKc-Gf-aNN"/>
+                    <constraint firstItem="Zuq-SQ-kpa" firstAttribute="top" secondItem="o8b-wV-4cu" secondAttribute="bottom" constant="17" id="QMV-io-1Nz"/>
                     <constraint firstItem="Emf-bZ-BDb" firstAttribute="top" secondItem="mzR-rn-srV" secondAttribute="bottom" constant="7" id="TYb-xO-hmY"/>
                     <constraint firstItem="mzR-rn-srV" firstAttribute="leading" secondItem="oGl-PR-aNN" secondAttribute="leading" id="Toy-20-fEC"/>
                     <constraint firstAttribute="trailing" secondItem="F3K-b5-0wn" secondAttribute="trailing" id="VhF-b1-5Ya"/>
@@ -120,6 +134,7 @@
             <connections>
                 <outlet property="address" destination="oGl-PR-aNN" id="Y5G-vr-X0Y"/>
                 <outlet property="attentionBtn" destination="gfn-1C-cpL" id="8bL-b6-dz2"/>
+                <outlet property="commitBtn" destination="Zuq-SQ-kpa" id="szC-bL-mFS"/>
                 <outlet property="firstLabel" destination="Emf-bZ-BDb" id="tkB-y1-EHK"/>
                 <outlet property="iconImage" destination="ktu-5B-QK8" id="yCO-tX-Wca"/>
                 <outlet property="name" destination="P8k-QJ-eSf" id="TyT-Rq-mTe"/>
@@ -134,9 +149,8 @@
     </objects>
     <resources>
         <image name="Avatar-sample-165.png" width="50" height="50"/>
-        <image name="icon-commit.png" width="110" height="29"/>
         <image name="icon-guanzhu.png" width="17" height="15"/>
-        <image name="icon-guanzhubg.png" width="105" height="29"/>
+        <image name="icon_commit1.png" width="15" height="15"/>
         <image name="image-point.png" width="268" height="1"/>
     </resources>
 </document>

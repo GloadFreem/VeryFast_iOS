@@ -229,12 +229,21 @@
     }];
     //关注按钮
     _attentionBtn = [[UIButton alloc]init];
-    [_attentionBtn setBackgroundImage:[UIImage imageNamed:@"icon-guanzhubg"] forState:UIControlStateNormal];
+    _attentionBtn.layer.cornerRadius =3;
+    _attentionBtn.layer.masksToBounds = YES;
+    
+    [_attentionBtn addTarget:self action:@selector(attentionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [_attentionBtn setImage:[UIImage imageNamed:@"icon-guanzhu"] forState:UIControlStateNormal];
+    [_attentionBtn.titleLabel setFont:BGFont(14)];
     
+    if (_collected) {
+        [_attentionBtn setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+        [_attentionBtn setBackgroundColor:btnCray];
+    }else{
     [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%@)",self.attentionCount] forState:UIControlStateNormal];
-    
+        [_attentionBtn setBackgroundColor:btnGreen];
+    }
     [_scrollView addSubview:_attentionBtn];
     [_attentionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_scrollView.mas_centerX).offset(23);
@@ -251,7 +260,82 @@
 -(void)btnClick:(UIButton*)btn
 {
     if (btn.tag == 60) {
+        
+        if (_selectedNum == 1) {
+            NSInteger index =  [_viewController.investPersonArray indexOfObject:_viewController.investModel];
+            _viewController.investModel.collected  = _collected;
+            if (_collected) {
+                _viewController.investModel.collectCount++;
+            }else{
+                _viewController.investModel.collectCount--;
+            }
+            [_viewController.investPersonArray replaceObjectAtIndex:index withObject:_viewController.investModel];
+            [_viewController.tableView reloadData];
+        }
+        if (_selectedNum == 2) {
+            NSInteger index = [_viewController.investOrganizationSecondArray indexOfObject:_viewController.organizationModel];
+            _viewController.organizationModel.collected = _collected;
+            if (_collected) {
+                _viewController.organizationModel.collectCount ++;
+            }else{
+                _viewController.organizationModel.collectCount --;
+            }
+            [_viewController.investOrganizationSecondArray replaceObjectAtIndex:index withObject:_viewController.organizationModel];
+            [_viewController.tableView reloadData];
+        }
+        
+        
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+-(void)attentionClick:(UIButton*)btn
+{
+    _collected = !_collected;
+    NSString *flag;
+    if (_collected) {
+        //关注
+        flag = @"1";
+        
+    }else{
+        //quxiao关注
+        flag = @"2";
+        
+    }
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.investorCollectPartner,@"partner",[NSString stringWithFormat:@"%ld",_model.user.userId],@"userId",flag,@"flag", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:REQUEST_INVESTOR_COLLECT postParam:dic type:0 delegate:self sel:@selector(requestInvestorCollect:)];
+}
+-(void)requestInvestorCollect:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+           NSInteger  count=  [_attentionCount integerValue];
+            
+            if (_collected) {
+                count ++;
+                
+                [_attentionBtn  setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+                [_attentionBtn setBackgroundColor:btnCray];
+                
+                
+            }else{
+                
+                [_attentionBtn  setTitle:[NSString stringWithFormat:@" 关注(%ld)",--count] forState:UIControlStateNormal];
+                [_attentionBtn setBackgroundColor:btnGreen];
+            }
+            _attentionCount = [NSString stringWithFormat:@"%ld",count];
+            
+
+            NSLog(@"关注成功");
+        }else{
+            NSLog(@"关注失败");
+        }
     }
 }
 

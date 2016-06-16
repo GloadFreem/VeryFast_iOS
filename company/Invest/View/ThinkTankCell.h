@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "InvestListModel.h"
 
+
+@class ThinkTankCell;
+
+@protocol ThinkTankCellDelegate <NSObject>
+
+-(void)didClickAttentionBtnInCell:(ThinkTankCell*)cell andModel:(InvestListModel*)model;
+
+@end
+
 @interface ThinkTankCell : UITableViewCell
+
+@property (nonatomic, weak) id<ThinkTankCellDelegate>delegate;
 
 @property (nonatomic, strong) InvestListModel *model;
 

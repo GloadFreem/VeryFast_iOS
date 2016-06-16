@@ -42,11 +42,17 @@
     _thirdLabel.layer.borderColor = colorBlue.CGColor;
     _thirdLabel.layer.borderWidth = 0.5;
     
+    _commitBtn.layer.cornerRadius =3;
+    _commitBtn.layer.masksToBounds = YES;
+    
+    _attentionBtn.layer.cornerRadius =3;
+    _attentionBtn.layer.masksToBounds = YES;
     
 }
 
 -(void)setModel:(OrganizationSecondModel *)model
 {
+    _model = model;
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.headSculpture]] placeholderImage:[UIImage new]];
     _name.text = model.companyName;
     _address.text = model.companyAddress;
@@ -61,9 +67,38 @@
         UILabel *label = (UILabel*)_labelArray[i];
         label.text = model.areas[i];
     }
-    [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
-
+    
+    if (model.commited) {
+        [_commitBtn setTitle:[NSString stringWithFormat:@" 已提交"] forState:UIControlStateNormal];
+        [_commitBtn setBackgroundColor:color(255, 103, 0, 1)];//设置灰色背景
+        [_commitBtn setUserInteractionEnabled:NO];
+    }else{
+        [_commitBtn setTitle:[NSString stringWithFormat:@" 提交项目"] forState:UIControlStateNormal];
+        [_commitBtn setBackgroundColor:orangeColor];
+    }
+    
+    if (model.collected) {
+        [_attentionBtn setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+        [_attentionBtn setBackgroundColor:btnCray];
+    }else{
+        [_attentionBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+        [_attentionBtn setBackgroundColor:btnGreen];
+    }
 }
+
+- (IBAction)commitBtnClick:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(didClickCommitBtn:andModel:)]) {
+        [self.delegate didClickCommitBtn:self andModel:_model];
+    }
+}
+- (IBAction)attentionBtnClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickAttentionBtn:andModel:)]) {
+        [self.delegate didClickAttentionBtn:self andModel:_model];
+    }
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

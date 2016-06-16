@@ -9,8 +9,22 @@
 #import <UIKit/UIKit.h>
 
 #import "InvestListModel.h"
+@class InvestPersonCell;
+
+@protocol InvestPersonCellDelegate <NSObject>
+
+-(void)didClickCommitBtn:(InvestPersonCell*)cell andModel:(InvestListModel*)model andIndexPath:(NSIndexPath*)indexPath;
+
+-(void)didClickAttentionBtn:(InvestPersonCell*)cell andModel:(InvestListModel*)model andIndexPath:(NSIndexPath*)indexPath;
+
+@end
+
 
 @interface InvestPersonCell : UITableViewCell
+
+@property (nonatomic, weak) id<InvestPersonCellDelegate>delegate;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @property (nonatomic, strong) InvestListModel *model;
 
@@ -31,6 +45,7 @@
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 @property (weak, nonatomic) IBOutlet UIButton *collectBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cimmitBtn;
 
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;

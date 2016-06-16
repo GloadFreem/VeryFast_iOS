@@ -152,7 +152,7 @@
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://192.168.5.111:8080/jinzht/"//本地
+#define SERVICE_URL @"http://192.168.5.122:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -218,7 +218,10 @@
 #define INVEST_PUBLIC_LIST @"requestInvestorList.action"
 //投资人详情
 #define INVEST_LIST_DETAIL @"requestInvestorDetail.action"
-
+//项目提交
+#define REQUEST_PROJECT_COMMIT @"requestProjectCommit.action"
+//关注投资人
+#define REQUEST_INVESTOR_COLLECT @"requestInvestorCollect.action"
 
 
 #pragma mark -----------------------------LOGO菜单---------------------------------
@@ -251,6 +254,43 @@
 
 //更换手机号
 #define CHANGEBINDTELEPHONE @"requestChangeBindTelephone.action"
+//平台介绍
+#define PLATFORM_INTRODUCE @"requestPlatformIntroduce.action"
+//新手指南
+#define NEWUSER_GUIDE @"requestNewUseIntroduce.action"
+//用户协议
+#define USER_PROTOCOL @"requestUserProctol.action"
+//免责声明
+#define REQUEST_LAWER_INTRODUCE @"requestLawerIntroduce.action"
+//意见反馈
+#define REQUEST_FEEDBACK @"requestFeedBack.action"
+//更换头像
+#define REQUEST_CHANGE_HEADERPIC @"requestChangeHeaderPicture.action"
+//修改公司
+#define REQUEST_MODIFY_COMPANY @"requestModifyCompany.action"
+//修改职位
+#define REQUEST_MODIFY_POSITION @"requestModifyPosition.action"
+//修改所在地
+#define REQUEST_MODIFY_CITY @"requestModifyCity.action"
+//站内信
+#define REQUEST_INNER_MESSAGE @"requestInnerMessageList.action"
+//站内信详情
+#define REQUEST_INNER_MESSAGE_DETAIL @"requestInnermessageDetail.action"
+//删除站内信
+#define REQUEST_DELETE_INNER_MESSAGE @"requestDeleteInnerMessage.action"
+//标记站内信为已读
+#define REQUEST_HAS_READ_MESSAGE @"requestHasReadMessage.action"
+
+
+//广告栏Banner
+#define BANNER_SYSTEM @"bannerSystem.action"
+
+
+
+
+
+
+
 
 
 //版本更新itunes 地址

@@ -261,12 +261,20 @@
     [_scrollView addSubview:_personContent];
     //关注按钮
     _attationBtn = [[UIButton alloc]init];
-    [_attationBtn setBackgroundImage:[UIImage imageNamed:@"icon-guanzhubg"] forState:UIControlStateNormal];
+    [_attationBtn addTarget:self action:@selector(attentionClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [_attationBtn setImage:[UIImage imageNamed:@"icon-guanzhu"] forState:UIControlStateNormal];
     _attationBtn.titleLabel.textColor = [UIColor whiteColor];
     _attationBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [_scrollView addSubview:_attationBtn];
-    [_attationBtn setTitle:[NSString stringWithFormat:@" 关注(%@)",self.attentionCount] forState:UIControlStateNormal];
+    
+    if (_collected) {
+        [_attationBtn setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+        [_attationBtn setBackgroundColor:btnCray];
+    }else{
+        [_attationBtn setTitle:[NSString stringWithFormat:@" 关注(%@)",self.attentionCount] forState:UIControlStateNormal];
+        [_attationBtn setBackgroundColor:btnGreen];
+    }
     //添加约束
     //背景图片
     [_backgroundImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -436,10 +444,89 @@
 -(void)btnClick:(UIButton*)btn
 {
     if (btn.tag == 0) {
+        //获得当前点击的模型在数组的位置
+        NSInteger index = [_viewController.thinkTankArray indexOfObject:_viewController.investModel];
+        //改变当前模型的状态属性
+        _viewController.investModel.collected  = _collected;
+        if (_collected) {
+            _viewController.investModel.collectCount ++;
+        }else{
+            _viewController.investModel.collectCount --;
+        }
+        //替换模型  刷新表格
+        [_viewController.thinkTankArray replaceObjectAtIndex:index withObject:_viewController.investModel];
+        [_viewController.tableView reloadData];
         [self.navigationController popViewControllerAnimated:YES];
     }
     if (btn.tag == 1) {
         
+    }
+}
+
+
+-(void)attentionClick:(UIButton*)btn
+{
+    _collected = !_collected;
+    NSString *flag;
+    if (_collected) {
+        //关注
+        flag = @"1";
+        
+    }else{
+        //quxiao关注
+        flag = @"2";
+        
+    }
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.investorCollectPartner,@"partner",[NSString stringWithFormat:@"%ld",_model.user.userId],@"userId",flag,@"flag", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:REQUEST_INVESTOR_COLLECT postParam:dic type:0 delegate:self sel:@selector(requestInvestorCollect:)];
+}
+-(void)requestInvestorCollect:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            
+            NSInteger  count=  [_attentionCount integerValue];
+            
+            if (_collected) {
+                
+                count ++;
+                [_attationBtn  setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+                [_attationBtn setBackgroundColor:btnCray];
+                
+            }else{
+                count --;
+                
+                [_attationBtn  setTitle:[NSString stringWithFormat:@" 关注(%ld)",count] forState:UIControlStateNormal];
+                [_attationBtn setBackgroundColor:btnGreen];
+                
+            }
+            _attentionCount = [NSString stringWithFormat:@"%ld",count];
+            
+            
+            //                    InvestListModel * model = (InvestListModel*)klistModel;
+            //                    InvestPersonCell * cell = (InvestPersonCell*)klistCell;
+            //                    if (model.collected) {
+            //                        model.collectCount ++;
+            //                        //刷新cell
+            //                        [cell.collectBtn setTitle:[NSString stringWithFormat:@" 已关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+            //                    }else{
+            //                        //关注数量减1
+            //                        model.collectCount --;
+            //                        //刷新cell
+            //                        [cell.collectBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+            //                    }
+            
+            
+            
+            NSLog(@"关注成功");
+        }else{
+            NSLog(@"关注失败");
+        }
     }
 }
 

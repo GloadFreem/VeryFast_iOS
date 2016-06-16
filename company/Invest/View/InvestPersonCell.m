@@ -44,6 +44,12 @@
     _rightBtn.layer.borderColor = colorBlue.CGColor;
     _rightBtn.layer.borderWidth = 0.5;
     
+    _cimmitBtn.layer.cornerRadius = 3;
+    _cimmitBtn.layer.masksToBounds = YES;
+    
+    _collectBtn.layer.cornerRadius = 3;
+    _collectBtn.layer.masksToBounds = YES;
+    
 }
 
 -(void)setModel:(InvestListModel *)model
@@ -66,15 +72,38 @@
         [btn setTitle:[NSString stringWithFormat:@"%@",model.areas[i]] forState:UIControlStateNormal];
     }
     
+    if (model.commited) {
+        [_cimmitBtn setTitle:[NSString stringWithFormat:@" 已提交"] forState:UIControlStateNormal];
+        [_cimmitBtn setBackgroundColor:color(255, 103, 0, 1)];//设置灰色背景
+        [_cimmitBtn setUserInteractionEnabled:NO];
+    }else{
+        [_cimmitBtn setTitle:[NSString stringWithFormat:@" 提交项目"] forState:UIControlStateNormal];
+        [_cimmitBtn setBackgroundColor:orangeColor];
+        
+    }
+    if (model.collected) {
+        [_collectBtn setTitle:[NSString stringWithFormat:@" 已关注"] forState:UIControlStateNormal];
+        [_collectBtn setBackgroundColor:btnCray];
+    }else{
     [_collectBtn setTitle:[NSString stringWithFormat:@" 关注(%ld)",model.collectCount] forState:UIControlStateNormal];
+        [_collectBtn setBackgroundColor:btnGreen];
+    }
 }
 
 #pragma mark -提交按钮
 - (IBAction)commitBtnClick:(UIButton *)sender {
+    
+    if ([self.delegate respondsToSelector:@selector(didClickCommitBtn:andModel:andIndexPath:)]) {
+        [self.delegate didClickCommitBtn:self andModel:_model andIndexPath:_indexPath];
+    }
 }
 #pragma mark -关注按钮
-- (IBAction)attentionBtnClick:(UIButton *)sender {
+- (IBAction)attentionClick:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickAttentionBtn:andModel:andIndexPath:)]) {
+        [self.delegate didClickAttentionBtn:self andModel:_model andIndexPath:_indexPath];
+    }
 }
+
 
 
 

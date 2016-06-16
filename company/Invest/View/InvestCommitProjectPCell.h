@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ProjectListProModel.h"
+
 @interface InvestCommitProjectPCell : UITableViewCell
+
+@property (nonatomic, strong) ProjectListProModel *model;
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *statusImage;

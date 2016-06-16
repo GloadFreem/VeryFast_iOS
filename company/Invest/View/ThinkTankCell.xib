@@ -73,13 +73,17 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FK2-6q-zaL">
                         <rect key="frame" x="232" y="114" width="120" height="27.5"/>
+                        <color key="backgroundColor" red="0.3294117647" green="0.68627450980000004" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="FLi-Cw-4MG"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="  关注(269)" image="icon-guanzhu.png" backgroundImage="icon-guanzhubg.png">
+                        <state key="normal" title="  关注(269)" image="icon-guanzhu.png">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="attentionBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b12-KA-ob1"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京 | 海淀" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLH-gJ-YNC">
                         <rect key="frame" x="308" y="53" width="59" height="12"/>
@@ -131,7 +135,6 @@
     <resources>
         <image name="Avatar-sample-165.png" width="50" height="50"/>
         <image name="icon-guanzhu.png" width="17" height="15"/>
-        <image name="icon-guanzhubg.png" width="105" height="29"/>
         <image name="image-point.png" width="268" height="1"/>
     </resources>
 </document>

@@ -38,16 +38,16 @@
     
     //根据状态判断 状态图片
     if (!model.status) {
-        _iconImage.hidden = YES;
+        _statusImage.hidden = YES;
     }
     if ([model.status isEqualToString:@"待路演"]) {
-        _iconImage.image = [UIImage imageNamed:@"invest_noroad"];
+        _statusImage.image = [UIImage imageNamed:@"invest_noroad"];
     }
     if ([model.status isEqualToString:@"路演中"]) {
-        _iconImage.image = [UIImage imageNamed:@"invest_roading"];
+        _statusImage.image = [UIImage imageNamed:@"invest_roading"];
     }
     if ([model.status isEqualToString:@"预选"]) {
-        _iconImage.image = [UIImage imageNamed:@"invest_yuxuan"];
+        _statusImage.image = [UIImage imageNamed:@"invest_yuxuan"];
     }
     
     //隐藏多余的 label

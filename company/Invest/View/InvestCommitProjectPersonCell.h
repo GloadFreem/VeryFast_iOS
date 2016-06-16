@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "InvestListModel.h"
 @interface InvestCommitProjectPersonCell : UITableViewCell
+
+@property (nonatomic, strong) InvestListModel *model;
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *positionLabel;

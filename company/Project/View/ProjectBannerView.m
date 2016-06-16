@@ -13,7 +13,7 @@
 #import "ProjectBannerModel.h"
 #define kADcount 4
 #define kImageCount 4
-#define SCROLLVIEWHEIGHT SCREENWIDTH*0.5
+#define SCROLLVIEWHEIGHT SCREENWIDTH*0.75 - 45
 
 #define kPAGEWIDTH 40
 #define kPAGEHEIGHT 5

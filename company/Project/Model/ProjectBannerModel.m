@@ -10,4 +10,11 @@
 
 @implementation ProjectBannerModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{
+             @"desc" : @"description"
+             };
+}
+
 @end

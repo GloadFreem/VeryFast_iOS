@@ -10,4 +10,8 @@
 
 @interface InvestCommitProjectReasonCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
+
+
 @end

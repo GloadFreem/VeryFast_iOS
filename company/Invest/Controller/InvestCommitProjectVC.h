@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InvestListModel.h"
 
-@interface InvestCommitProjectVC : UIViewController
+@interface InvestCommitProjectVC : RootViewController
+
+@property (nonatomic, strong) InvestListModel *model;
 
 @end
