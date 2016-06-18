@@ -107,19 +107,21 @@
 
 -(void)setModelArray:(NSArray *)modelArray
 {
-    _modelArray = modelArray;
+//    _modelArray = modelArray;
     
     NSInteger i = 0;
     CGFloat width = 50;
     CGFloat spaceMargin = 26;
-    for (; i < 10; i++) {
+    for (; i < modelArray.count; i++) {
+        DetailTeams *model = modelArray[i];
         UIButton *btn = [UIButton new];
         btn.frame = CGRectMake(0 + i*(width + spaceMargin), 23, width, width);
         btn.layer.cornerRadius = 25;
         btn.layer.masksToBounds = YES;
         
-        [btn setBackgroundImage:IMAGENAMED(@"Avatar-sample-165") forState:UIControlStateNormal];
+//        [btn setBackgroundImage:IMAGENAMED(@"Avatar-sample-165") forState:UIControlStateNormal];
         
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.icon]] forState:UIControlStateNormal];
         [_scrollView addSubview:btn];
         
         UILabel *nameLabel = [UILabel new];
@@ -127,7 +129,7 @@
         nameLabel.textColor = color47;
         nameLabel.font = BGFont(13);
         
-        nameLabel.text = @"王明";
+        nameLabel.text = model.name;
         
         [_scrollView addSubview:nameLabel];
         [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +143,7 @@
         positionLabel.textColor = color74;
         positionLabel.font = BGFont(11);
         
-        positionLabel.text = @"经理";
+        positionLabel.text = model.position;
         
         [_scrollView addSubview:positionLabel];
         [positionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

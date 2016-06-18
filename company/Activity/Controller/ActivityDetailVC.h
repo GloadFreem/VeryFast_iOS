@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityDetailVC : UIViewController
-
+@interface ActivityDetailVC : RootViewController
+@property(nonatomic, retain)ActivityViewModel * activityModel;
 @end

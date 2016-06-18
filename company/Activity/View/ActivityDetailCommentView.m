@@ -49,12 +49,12 @@
 
 -(void)setCommentItemsArray:(NSArray *)commentItemsArray
 {
-    _commentItemsArray = commentItemsArray;
-    
     //初始化commentLabelsArray
     if(!self.commentLabelsArray){
         self.commentLabelsArray = [NSMutableArray new];
     }
+    
+    _commentItemsArray = commentItemsArray;
     
     long originalLabelsCount = self.commentLabelsArray.count;
     long needsToAddCount = commentItemsArray.count > originalLabelsCount ? (commentItemsArray.count - originalLabelsCount) : 0;
@@ -187,8 +187,13 @@
     text = [text stringByAppendingString:[NSString stringWithFormat:@"：%@", model.commentString]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
     [attString setAttributes:@{NSLinkAttributeName : model.firstUserId} range:[text rangeOfString:model.firstUserName]];
+    
+    UIColor *highLightColor = orangeColor;
+    [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.firstUserId} range:[text rangeOfString:model.firstUserName]];
+    
     if (model.secondUserName) {
         [attString setAttributes:@{NSLinkAttributeName : model.secondUserId} range:[text rangeOfString:model.secondUserName]];
+        [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.secondUserName} range:[text rangeOfString:model.secondUserName]];
     }
     return attString;
 }
@@ -196,11 +201,18 @@
 - (NSMutableAttributedString *)generateAttributedStringWithLikeItemModel:(ActivityDetailCellLikeItemModel *)model
 {
     NSString *text = model.userName;
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
-    UIColor *highLightColor = orangeColor;
-    [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
+    if(![text isKindOfClass:NSNull.class])
+    {
+        NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:text];
+        UIColor *highLightColor = orangeColor;
+        [attString setAttributes:@{NSForegroundColorAttributeName : highLightColor, NSLinkAttributeName : model.userId} range:[text rangeOfString:model.userName]];
+        
+        return attString;
+    }
     
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:@""];
     return attString;
+   
 }
 
 #pragma mark - MLLinkLabelDelegate

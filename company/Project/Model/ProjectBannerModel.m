@@ -10,11 +10,37 @@
 
 @implementation ProjectBannerModel
 
-+(NSDictionary *)mj_replacedKeyFromPropertyName
+
+@end
+
+@implementation Extr
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"roadshows" : [BannerRoadshows class]};
+}
+
+@end
+
+
+@implementation BannerRoadshows
+
+@end
+
+
+@implementation BannerRoadshowplan
+
+@end
+
+
+@implementation Body
+
+
++(NSDictionary*)mj_replacedKeyFromPropertyName
 {
     return @{
              @"desc" : @"description"
              };
 }
-
 @end
+
+

@@ -86,7 +86,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkS-8C-nMY">
-                        <rect key="frame" x="84" y="67" width="34" height="17"/>
+                        <rect key="frame" x="84" y="67" width="30" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="3Kc-Qt-jRV"/>
                             <constraint firstAttribute="height" constant="17" id="A6P-Xh-hPk"/>
@@ -97,12 +97,13 @@
                         </state>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="3Kc-Qt-jRV"/>
                                 <exclude reference="mU0-aL-94H"/>
                             </mask>
                         </variation>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSB-Bg-5LG">
-                        <rect key="frame" x="123" y="67" width="34" height="17"/>
+                        <rect key="frame" x="119" y="67" width="30" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="irw-dh-ny2"/>
                         </constraints>
@@ -116,7 +117,7 @@
                         </variation>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycW-ul-TIj">
-                        <rect key="frame" x="162" y="67" width="34" height="17"/>
+                        <rect key="frame" x="154" y="67" width="30" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Xu3-5x-bWu"/>
                         </constraints>
@@ -187,8 +188,12 @@
                         <exclude reference="7Lf-k9-lHz"/>
                         <exclude reference="IlY-bY-eCs"/>
                         <exclude reference="g0m-V6-eZ2"/>
+                        <exclude reference="9IV-e5-zMo"/>
+                        <exclude reference="YqJ-Vh-BZA"/>
                         <exclude reference="cRS-97-ATt"/>
                         <exclude reference="4HU-5g-CAu"/>
+                        <exclude reference="QHV-bA-vJj"/>
+                        <exclude reference="VSo-zz-hhA"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -201,6 +206,9 @@
                 <outlet property="personNumLabel" destination="xhm-PI-9nd" id="uTP-Wh-udp"/>
                 <outlet property="projectLabel" destination="UtG-rY-uK5" id="KR6-aZ-SpI"/>
                 <outlet property="rightBtn" destination="ycW-ul-TIj" id="h7B-UT-bs6"/>
+                <outletCollection property="btnArray" destination="wkS-8C-nMY" id="g7d-5x-WJL"/>
+                <outletCollection property="btnArray" destination="NSB-Bg-5LG" id="xMb-p4-bIU"/>
+                <outletCollection property="btnArray" destination="ycW-ul-TIj" id="9By-0s-tqi"/>
             </connections>
             <point key="canvasLocation" x="177.5" y="235.5"/>
         </tableViewCell>

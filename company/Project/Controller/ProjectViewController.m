@@ -16,48 +16,158 @@
 
 #import "ProjectBannerView.h"
 #import "ProjectBannerModel.h"
+#import "ProjectBannerListModel.h"
+#import "ProjectBannerDetailVC.h"
+
+#import "ProjectListProBaseModel.h"
+#import "ProjectListProModel.h"
 
 #import "ProjectDetailController.h"
+#import "ProjectPrepareDetailVC.h"
 
+#define PROJECTLIST @"requestProjectList"
 #define BANNERSYSTEM @"bannerSystem"
-#define BannerHeight  SCREENWIDTH * 0.75
+#define BannerHeight  SCREENWIDTH * 0.5 + 45
 @interface ProjectViewController ()<UITableViewDataSource,UITableViewDelegate,ProjectBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @property (nonatomic, assign) NSInteger selectedCellNum;//选择显示cell的类型
 
 @property (nonatomic, copy) NSString *bannerPartner; 
 @property (nonatomic, strong) NSMutableArray *bannerModelArray; //banner数组
+@property (nonatomic, strong) NSMutableArray *projectModelArray;
+@property (nonatomic, strong) NSMutableArray *roadModelArray;
 
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger projectPage;
+@property (nonatomic, assign) NSInteger roadPage;
+@property (nonatomic, copy) NSString *type;
 @end
 
 @implementation ProjectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    //1.设置当有导航栏自动添加64的高度的属性为NO
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-//
-//    [self setKeyScrollView:self.tableView scrolOffsetY:600 options:HYHidenControlOptionTitle];
+
     if (!_bannerModelArray) {
         _bannerModelArray = [NSMutableArray array];
     }
-    
+    if (!_projectModelArray) {
+        _projectModelArray = [NSMutableArray array];
+    }
+    if (!_roadModelArray) {
+        _roadModelArray = [NSMutableArray array];
+    }
+    _selectedCellNum = 20;
+    _page = 0;
+    _projectPage = 0;
+    _roadPage = 0;
+    _type = @"0";
     //获得partner
     self.bannerPartner = [TDUtil encryKeyWithMD5:KEY action:BANNERSYSTEM];
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:PROJECTLIST];
     
     [self startLoadBannerData];
     
-    [self createBanner];
+    [self startLoadData];
+    
 
     [self createUI];
     
     
 }
 
+-(void)startLoadData
+{
+    
+    if (_selectedCellNum == 20) {
+        _type = @"0";
+        _page = _projectPage;
+    }else{
+        _type = @"1";
+        _page = _roadPage;
+    }
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",_page],@"page",[NSString stringWithFormat:@"%@",_type],@"type", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:REQUEST_PROJECT_LIST postParam:dic type:0 delegate:self sel:@selector(requestProjectList:)];
+}
+
+-(void)requestProjectList:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+//    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (_page == 0) {
+        if (_selectedCellNum == 20) {
+            [_projectModelArray removeAllObjects];
+        }else{
+            [_roadModelArray removeAllObjects];
+        }
+    }
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSArray *dataArray = [Project mj_objectArrayWithKeyValuesArray:jsonDic[@"data"]];
+            if (_selectedCellNum == 20) {
+                
+                for (NSInteger i =0; i < dataArray.count; i ++) {
+                    ProjectListProModel *listModel = [ProjectListProModel new];
+                    Project *project = (Project*)dataArray[i];
+                    listModel.startPageImage = project.startPageImage;
+                    listModel.abbrevName = project.abbrevName;
+                    listModel.address = project.address;
+                    listModel.fullName = project.fullName;
+                    listModel.status = project.financestatus.name;
+                    listModel.projectId = project.projectId;
+                    //少一个areas数组
+                    listModel.areas = [project.industoryType componentsSeparatedByString:@"，"];
+                    listModel.collectionCount = project.collectionCount;
+                    Roadshows *roadshows = project.roadshows[0];
+                    listModel.financedMount = roadshows.roadshowplan.financedMount;
+                    listModel.financeTotal = roadshows.roadshowplan.financeTotal;
+                    listModel.endDate = roadshows.roadshowplan.endDate;
+                    
+                    [_projectModelArray addObject:listModel];
+                }
+                
+            }else{
+            
+                for (NSInteger i =0; i < dataArray.count; i ++) {
+                    ProjectListProModel *listModel = [ProjectListProModel new];
+                    Project *project = (Project*)dataArray[i];
+                    listModel.startPageImage = project.startPageImage;
+                    listModel.abbrevName = project.abbrevName;
+                    listModel.address = project.address;
+                    listModel.fullName = project.fullName;
+                    listModel.status = project.financestatus.name;
+                    listModel.projectId = project.projectId;
+                    //少一个areas数组
+                    listModel.areas = [project.industoryType componentsSeparatedByString:@"，"];
+                    NSLog(@"领域 ----%@",project.industoryType);
+                    listModel.collectionCount = project.collectionCount;
+                    Roadshows *roadshows = project.roadshows[0];
+                    listModel.financedMount = roadshows.roadshowplan.financedMount;
+                    listModel.financeTotal = roadshows.roadshowplan.financeTotal;
+                    listModel.endDate = roadshows.roadshowplan.endDate;
+                    
+                    [_roadModelArray addObject:listModel];
+                }
+            }
+            [self.tableView reloadData];
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }else{
+            //结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
 -(void)startLoadBannerData
 {
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.bannerPartner,@"partner", nil];
@@ -69,7 +179,7 @@
 -(void)requestBannerList:(ASIHTTPRequest *)request
 {
     NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
-    //        NSLog(@"返回:%@",jsonString);
+//            NSLog(@"返回:%@",jsonString);
     NSMutableDictionary* jsonDic = [jsonString JSONValue];
     
     if (jsonDic != nil) {
@@ -77,6 +187,29 @@
         if ([status integerValue] == 200) {
             NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
             NSArray *bannerModelArray = [ProjectBannerModel mj_objectArrayWithKeyValuesArray:dataArray];
+            for (NSInteger i = 0; i < bannerModelArray.count; i ++) {
+                ProjectBannerModel *baseModel = bannerModelArray[i];
+                ProjectBannerListModel *listModel = [ProjectBannerListModel new];
+                listModel.type = baseModel.type;
+                listModel.image = baseModel.body.image;
+                listModel.url = baseModel.body.url;
+                listModel.desc = baseModel.body.desc;
+                listModel.bannerId = baseModel.body.bannerId;
+                listModel.name = baseModel.body.name;
+                if ([baseModel.type isEqualToString:@"Project"]) {
+                    listModel.industoryType = baseModel.extr.industoryType;
+                    listModel.projectId = baseModel.extr.projectId;
+                    BannerRoadshows *roadshows = baseModel.extr.roadshows[0];
+                    BannerRoadshowplan *roadshowplan = roadshows.roadshowplan;
+                    listModel.financedMount = roadshowplan.financedMount;
+                    listModel.financeTotal = roadshowplan.financeTotal;
+                    
+                }
+                [_bannerModelArray addObject:listModel];
+//                NSLog(@"打印数组个数---%ld",_bannerModelArray.count);
+            }
+            //搭建banner
+            [self createBanner];
             
         }else{
         [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
@@ -87,12 +220,14 @@
 {
     _selectedCellNum = 20;
     
-    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, BannerHeight*HEIGHTCONFIG)];
+    ProjectBannerView * bannerView = [[ProjectBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, BannerHeight)];
     [bannerView setSelectedNum:20];
-    _tableView.tableHeaderView = bannerView;
-    NSArray * arr = [NSArray array];
-    [bannerView relayoutWithModelArray:arr];
+    bannerView.modelArray = _bannerModelArray;
+    
+    bannerView.imageCount = _bannerModelArray.count;
+    [bannerView relayoutWithModelArray:_bannerModelArray];
     bannerView.delegate = self;
+    _tableView.tableHeaderView = bannerView;
 }
 #pragma mark -视图即将显示
 -(void)viewWillAppear:(BOOL)animated
@@ -137,6 +272,37 @@
     [upLoadBtn addTarget:self action:@selector(buttonCilck:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:upLoadBtn];
     
+    //设置刷新控件
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHttp)];
+    //自动改变透明度
+    _tableView.mj_header.automaticallyChangeAlpha = YES;
+    [_tableView.mj_header beginRefreshing];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(nextPage)];
+    
+}
+#pragma mark -刷新控件
+-(void)nextPage
+{
+    if (_selectedCellNum == 20) {
+        _projectPage ++;
+    }else{
+        _roadPage ++;
+    }
+    
+    [self startLoadData];
+    //    NSLog(@"回到顶部");
+}
+
+-(void)refreshHttp
+{
+    if (_selectedCellNum == 20) {
+        _projectPage = 0;
+    }else{
+        _roadPage = 0;
+    }
+    
+    [self startLoadData];
+    //    NSLog(@"下拉刷新");
 }
 
 #pragma mark- navigationBar  button的点击事件
@@ -146,7 +312,7 @@
         
         ProjectLetterViewController *letter = [ProjectLetterViewController new];
         //隐藏tabbar
-        AppDelegate *delegate = [[UIApplication  sharedApplication] delegate];
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication  sharedApplication] delegate];
         [delegate.tabBar tabBarHidden:YES animated:NO];
         
         [self.navigationController pushViewController:letter animated:YES];
@@ -157,7 +323,7 @@
         UpProjectViewController *up = [UpProjectViewController new];
         
         //隐藏tabbar
-        AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+        AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
         
         [delegate.tabBar tabBarHidden:YES animated:NO];
         
@@ -173,7 +339,10 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if (_selectedCellNum == 20) {
+        return _projectModelArray.count;
+    }
+    return _roadModelArray.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -205,6 +374,9 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ProjectListCell" owner:nil options:nil] lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (_projectModelArray.count) {
+            cell.model = _projectModelArray[indexPath.row];
+        }
         return cell;
     }
     
@@ -214,6 +386,9 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:cellId owner:nil options:nil] lastObject];
             
         }
+        if (_roadModelArray.count) {
+            cell.model = _roadModelArray[indexPath.row];
+        }
        cell.selectionStyle = UITableViewCellSelectionStyleNone;
        return cell;
 }
@@ -221,27 +396,60 @@
 #pragma mark -tableView的点击事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ProjectListProModel *model = [ProjectListProModel new];
+    
     //反选
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ProjectDetailController * detail = [[ProjectDetailController alloc]init];
-    //隐藏tabbar
-    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    if (_selectedCellNum == 20) {
+        
+        ProjectDetailController * detail = [[ProjectDetailController alloc]init];
+        model = _projectModelArray[indexPath.row];
+        detail.projectId = model.projectId;
+        //隐藏tabbar
+        AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+        
+        [delegate.tabBar tabBarHidden:YES animated:NO];
+        
+        [self.navigationController pushViewController:detail animated:YES];
+    }else{
+        
+        ProjectPrepareDetailVC *detail = [ProjectPrepareDetailVC new];
+        model = _roadModelArray[indexPath.row];
+        
+        detail.projectId = model.projectId;
+        //隐藏tabbar
+        AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+        
+        [delegate.tabBar tabBarHidden:YES animated:NO];
+        
+        [self.navigationController pushViewController:detail animated:YES];
+    }
     
-    [delegate.tabBar tabBarHidden:YES animated:NO];
     
-    [self.navigationController pushViewController:detail animated:YES];
 }
 #pragma mark- ProjectBannerCellDelegate 代理方法
 -(void)transportProjectBannerView:(ProjectBannerView *)view andTagValue:(NSInteger)tagValue
 {
     _selectedCellNum  = tagValue;//将传过来的tag赋值给_selectedCellNum来决定显示cell的类型
     
+    [self startLoadData];
     //tableView开始更新
-    [_tableView beginUpdates];
-    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-    [_tableView endUpdates];
+//    [_tableView beginUpdates];
+//    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+//    [_tableView endUpdates];
 }
 
+-(void)clickBannerImage:(ProjectBannerListModel *)model
+{
+    ProjectBannerDetailVC *vc = [ProjectBannerDetailVC new];
+    vc.url = model.url;
+    //隐藏tabbar
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
+    
+    [delegate.tabBar tabBarHidden:YES animated:NO];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 @end

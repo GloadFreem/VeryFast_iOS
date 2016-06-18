@@ -14,6 +14,7 @@
 
 @optional
 
+-(void)didClickShowAllButton;
 -(void)didClickLikeButton;
 -(void)didClickCommentButton;
 
@@ -21,6 +22,7 @@
 
 @interface ActivityDetailFooterView : UIView
 
+@property (nonatomic, assign) Boolean isShowTopView; //是否展示顶部视图
 @property (nonatomic, assign) id<ActivityDetailFooterViewDelegate> delegate;
 
 @property (nonatomic, strong) ActivityDetailCommentCellModel *model;

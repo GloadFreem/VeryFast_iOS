@@ -10,6 +10,8 @@
 //       --------------------------项目首页广告栏----------------------
 
 #import <UIKit/UIKit.h>
+#import "ProjectBannerListModel.h"
+
 
 @class ProjectBannerView;
 @protocol ProjectBannerViewDelegate <NSObject>
@@ -18,12 +20,14 @@
 //代理方法
 
 -(void)transportProjectBannerView:(ProjectBannerView*)view andTagValue:(NSInteger)tagValue;
+-(void)clickBannerImage:(ProjectBannerListModel*)model;
 
 @end
 
 
 @interface ProjectBannerView : UIView<UIScrollViewDelegate>
 
+@property (nonatomic, strong) ProjectBannerListModel *model;
 
 @property (assign, nonatomic) id<ProjectBannerViewDelegate> delegate;
 
@@ -43,6 +47,9 @@
 
 @property (strong, nonatomic) UIButton * selectedBtn;          //当前选中btn
 @property (assign, nonatomic) NSInteger selectedNum;           //选中标识
+@property (nonatomic, assign) NSInteger imageCount;
+@property (nonatomic, strong) NSArray *modelArray;
+
 
 -(void)relayoutWithModelArray:(NSArray*)array;                 // 加载数据
               

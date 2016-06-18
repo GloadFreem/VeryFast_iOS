@@ -24,11 +24,15 @@
     _cancleBtn.layer.masksToBounds = YES;
     _certainBtn.layer.cornerRadius = 5;
     _certainBtn.layer.masksToBounds = YES;
+    
+    [_backView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeFromSuperview)]];
 }
 - (IBAction)btnClick:(UIButton *)sender {
     
-    if ([self.delegate respondsToSelector:@selector(clickBtnInView:andIndex:)]) {
-        [self.delegate clickBtnInView:self andIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(clickBtnInView:andIndex:content:)]) {
+        [self.delegate clickBtnInView:self andIndex:sender.tag content:_textView.text];
+        
+        [_textView resignFirstResponder];
     }
 }
 

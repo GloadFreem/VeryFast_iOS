@@ -44,7 +44,13 @@
 #pragma mark- 表头
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 80)];
+    
+    UIImageView *firstLineImage = [UIImageView new];
+    firstLineImage.image = [UIImage imageNamed:@"bill_line"];
+    [headerView addSubview:firstLineImage];
+    
     UIImageView *imageView = [UIImageView new];
     imageView.image = [UIImage imageNamed:@"bill_calendar"];
     [headerView addSubview:imageView];
@@ -60,10 +66,23 @@
     label.font = BGFont(17);
     [headerView addSubview:label];
     
+    
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(headerView.mas_top).offset(38);
         make.left.mas_equalTo(headerView.mas_left).offset(62);
     }];
+    
+    if (section != 0) {
+        [firstLineImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(imageView);
+            make.top.mas_equalTo(headerView.mas_top);
+            make.bottom.mas_equalTo(imageView.mas_top);
+        }];
+    }else{
+        [firstLineImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    }
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(imageView);

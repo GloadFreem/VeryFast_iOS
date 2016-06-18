@@ -45,6 +45,8 @@
 
 @property (nonatomic, assign) NSInteger projectType;
 
+@property (nonatomic, copy) NSString *industoryType;
+
 @end
 
 @interface Financestatus : NSObject

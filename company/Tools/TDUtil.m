@@ -297,7 +297,32 @@
             break;
     }
 }
-
++(NSString*)weekOfDate:(NSString * )dateStr
+{
+    //获取日期
+    NSArray * arrWeek=[NSArray arrayWithObjects:@"星期日",@"星期一",@"星期二",@"星期三",@"星期四",@"星期五",@"星期六", nil];
+    NSDate *date = [self dateFromStringYMD:dateStr];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit |
+    NSMonthCalendarUnit |
+    NSDayCalendarUnit |
+    NSWeekdayCalendarUnit |
+    NSHourCalendarUnit |
+    NSMinuteCalendarUnit |
+    NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:date];
+    int week = [comps weekday];
+    
+    if(week!=0)
+    {
+        week--;
+    }else{
+        week=5;
+    }
+    return  [arrWeek objectAtIndex:week];
+}
 
 //是否到达指定时间
 +(BOOL)isArrivedTime:(NSString*)compareTimeStr
@@ -970,71 +995,71 @@
     return str;
 }
 
-+(void)tableView:(UITableView *)tableView  target:(id)target refreshAction:(SEL)refreshAction loadAction:(SEL)loadAction
-{
-    NSMutableArray* imgArrays =[[NSMutableArray alloc]init];
-    
-    NSString* fileName=@"";
-    
-    UIImage* image;
-    
-    for (int i = 0; i<7; i++) {
-        
-        fileName = [NSString stringWithFormat:@"person%d",i+1];
-        
-        image = IMAGENAMED(fileName);
-        
-        [imgArrays addObject:image];
-        
-    }
-    
-    
-    
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    
-    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:refreshAction];
-    
-    // 设置普通状态的动画图片
-    
-    [header setImages:imgArrays forState:MJRefreshStateIdle];
-    
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    
-    [header setImages:imgArrays forState:MJRefreshStatePulling];
-    
-    // 设置正在刷新状态的动画图片
-    
-    [header setImages:imgArrays forState:MJRefreshStateRefreshing];
-    
-    
-    
-    
-    
-    tableView.mj_header = header;
-    
-    
-    
-    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
-    
-    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:target refreshingAction:loadAction];
-    
-    // 设置普通状态的动画图片
-    
-    [footer setImages:imgArrays forState:MJRefreshStateIdle];
-    
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    
-    [footer setImages:imgArrays forState:MJRefreshStatePulling];
-    
-    // 设置正在刷新状态的动画图片
-    
-    [footer setImages:imgArrays forState:MJRefreshStateRefreshing];
-    
-    // 上拉刷新
-    
-    tableView.mj_footer = footer;
-    
-}
+//+(void)tableView:(UITableView *)tableView  target:(id)target refreshAction:(SEL)refreshAction loadAction:(SEL)loadAction
+//{
+//    NSMutableArray* imgArrays =[[NSMutableArray alloc]init];
+//    
+//    NSString* fileName=@"";
+//    
+//    UIImage* image;
+//    
+//    for (int i = 0; i<7; i++) {
+//        
+//        fileName = [NSString stringWithFormat:@"person%d",i+1];
+//        
+//        image = IMAGENAMED(fileName);
+//        
+//        [imgArrays addObject:image];
+//        
+//    }
+//    
+//    
+//    
+//    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+//    
+//    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:refreshAction];
+//    
+//    // 设置普通状态的动画图片
+//    
+//    [header setImages:imgArrays forState:MJRefreshStateIdle];
+//    
+//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//    
+//    [header setImages:imgArrays forState:MJRefreshStatePulling];
+//    
+//    // 设置正在刷新状态的动画图片
+//    
+//    [header setImages:imgArrays forState:MJRefreshStateRefreshing];
+//    
+//    
+//    
+//    
+//    
+//    tableView.mj_header = header;
+//    
+//    
+//    
+//    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+//    
+//    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:target refreshingAction:loadAction];
+//    
+//    // 设置普通状态的动画图片
+//    
+//    [footer setImages:imgArrays forState:MJRefreshStateIdle];
+//    
+//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+//    
+//    [footer setImages:imgArrays forState:MJRefreshStatePulling];
+//    
+//    // 设置正在刷新状态的动画图片
+//    
+//    [footer setImages:imgArrays forState:MJRefreshStateRefreshing];
+//    
+//    // 上拉刷新
+//    
+//    tableView.mj_footer = footer;
+//    
+//}
 
 +(void)collectView:(UICollectionView *)collectionView target:(id)target refreshAction:(SEL)refreshAction loadAction:(SEL)loadAction
 {

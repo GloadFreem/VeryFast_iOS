@@ -11,8 +11,16 @@
 
 
 #import <UIKit/UIKit.h>
-
+#import "ProjectDetailMemberModel.h"
+#import "HttpUtils.h"
+#import "DialogUtil.h"
 @interface ProjectDetailMemberView : UIView
+@property(retain,nonatomic)HttpUtils* httpUtil; //网络请求对象
+
+@property (nonatomic, assign) NSInteger projectId;
+
+@property (nonatomic, strong) ProjectDetailMemberModel *model;
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;//头像
 @property (weak, nonatomic) IBOutlet UILabel *positionLabel;//职位
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;//名字

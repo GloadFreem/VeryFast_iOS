@@ -27,6 +27,7 @@
 #import "SVProgressHUD.h"
 
 #import "MeasureTool.h"
+#import "Single.h"
 
 #import "AppDelegate.h"
 

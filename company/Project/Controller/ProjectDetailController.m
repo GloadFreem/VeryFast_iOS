@@ -16,6 +16,18 @@
 
 #import "ProjectDetailLeftView.h"
 #import "ProjectDetailSceneView.h"
+
+
+#import "ProjectDetailBaseMOdel.h"
+#import "ProjectDetailMemberModel.h"
+
+
+#define REQUESTDETAIL @"requestProjectDetail"
+
+
+#define REQUESTRECORDATA @"requestRecorData"
+#define REQUESTPROJECTCOMMENT @"requestProjectComment"
+
 #define defaultLineColor [UIColor blueColor]
 #define selectTitleColor orangeColor
 #define unselectTitleColor [UIColor blackColor]
@@ -23,6 +35,14 @@
 
 
 @interface ProjectDetailController ()<ProjectDetailBannerViewDelegate,UIScrollViewDelegate>
+{
+    ProjectDetailMemberView * member;
+    
+    
+    NSString *_recorDataPartner;
+    BOOL memberLoadData;
+    
+}
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic,strong) UIScrollView *titleScrollView;     //切换按钮
@@ -44,6 +64,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //获得内容partner
+    self.partner = [TDUtil encryKeyWithMD5:KEY action:REQUESTDETAIL];
+    
+    
+    
+    //下载详情数据
+//    [self startLoadData];
     
     _heightArray = [NSMutableArray array];                  //子视图高度数组
     
@@ -64,12 +91,36 @@
     [_scrollView addSubview:self.titleScrollView];          //添加点击按钮
     [_scrollView addSubview:self.subViewScrollView];        //添加最下边scrollview
     
-    //    self.view.backgroundColor = [UIColor blackColor];
-    
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(calcuateLeftViewHeightNotification:) name:@"calcauteHieght" object:nil];
     
 }
+
+-(void)startLoadData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",self.projectId],@"projectId", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:REQUEST_PROJECT_DETAIL postParam:dic type:0 delegate:self sel:@selector(requestProjectDetail:)];
+}
+
+-(void)requestProjectDetail:(ASIHTTPRequest *)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            ProjectDetailBaseMOdel *baseModel = [ProjectDetailBaseMOdel mj_objectWithKeyValues:jsonDic[@"data"]];
+            
+            
+        }else{
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+        }
+    }
+}
+
 #pragma mark - 设置下滑条
 - (void)setLineColor:(UIColor *)lineColor{
     
@@ -190,7 +241,8 @@
 //        [self.view addSubview:_bottomView];
         
         //实例化成员分页面
-        ProjectDetailMemberView * member = [ProjectDetailMemberView instancetationProjectDetailMemberView];
+        member = [ProjectDetailMemberView instancetationProjectDetailMemberView];
+        member.projectId = self.projectId;
         member.frame = CGRectMake(SCREENWIDTH, 0, SCREENWIDTH, member.viewHeight);
         [_heightArray addObject:[NSNumber numberWithFloat:member.viewHeight]];
         [_subViewScrollView addSubview:member];
@@ -198,6 +250,7 @@
         
         
         ProjectDetailSceneView *scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64)];
+        scene.projectId = self.projectId;
         [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 ]];
         [_subViewScrollView addSubview:scene];
         
@@ -255,6 +308,8 @@
             _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[1] floatValue]);
             _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
             NSLog(@"点击了第%ld个",sender.tag-10);
+            
+            
         }
             break;
         case 12:
@@ -267,10 +322,7 @@
         default:
             break;
     }
-//    for(int i = 0; i< _subViewScrollView.subviews.count;i++){
-//        NSLog(_subViewScrollView.description);
-//        NSLog(_subViewScrollView.subviews[i].description);
-//    }
+
     
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -308,6 +360,8 @@
             {
                 _subViewScrollView.frame = CGRectMake(0, valueY, SCREENWIDTH, [_heightArray[1] floatValue]);
                 _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_subViewScrollView.frame));
+                
+                
                 
             }
                 break;
@@ -373,7 +427,7 @@
 {
     [super viewWillDisappear:animated];
     
-    AppDelegate * delegate =[UIApplication sharedApplication].delegate;
+    AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:NO animated:NO];
     

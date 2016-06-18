@@ -32,6 +32,27 @@
     
 }
 
+-(void)setModel:(ProjectListProModel *)model
+{
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.startPageImage]] placeholderImage:[UIImage new]];
+    _projectLabel.text = model.abbrevName;
+    _companyLabel.text = model.fullName;
+    
+    for (NSInteger i = model.areas.count; i < _btnArray.count; i ++) {
+        UIButton *btn = (UIButton*)_btnArray[i];
+        btn.hidden = YES;
+    }
+    
+    for (NSInteger i = 0; i < model.areas.count; i ++) {
+        UIButton *btn = (UIButton*)_btnArray[i];
+        [btn setTitle:[NSString stringWithFormat:@"%@",model.areas[i]] forState:UIControlStateNormal];
+    }
+    _personNumLabel.text = [NSString stringWithFormat:@"%ld",model.collectionCount];
+    _moneyLabel.text = [NSString stringWithFormat:@"%ld",model.financeTotal];
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

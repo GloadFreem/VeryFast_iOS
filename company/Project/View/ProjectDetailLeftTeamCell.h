@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ProjectDetailLeftTeamModel.h"
-
+#import "ProjectDetailBaseMOdel.h"
 @interface ProjectDetailLeftTeamCell : UITableViewCell<UIScrollViewDelegate>
 
-@property (nonatomic, strong) ProjectDetailLeftTeamModel *model;
+@property (nonatomic, strong) DetailTeams *model;
 @property (nonatomic, strong) NSArray *modelArray;
 
 @end

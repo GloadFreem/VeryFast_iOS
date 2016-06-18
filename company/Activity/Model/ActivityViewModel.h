@@ -28,4 +28,7 @@
 
 @property (nonatomic, assign) NSInteger type;
 
+@property (nonatomic, assign) Boolean flag;
+
+@property (nonatomic, assign) Boolean attended;
 @end

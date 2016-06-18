@@ -14,8 +14,10 @@
 @interface ActivityDetailHeaderModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, assign) NSInteger flag;
 @property (nonatomic, copy) NSString *content;
-@property (nonatomic, strong) NSArray *pictureArray;    //
+@property (nonatomic, assign) NSInteger actionId;
+@property (nonatomic, copy) NSArray *pictureArray;    //
 
 
 

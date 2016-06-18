@@ -161,7 +161,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     
     //morebtn
     _moreBtn = [UIButton new];
-    [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
+    [_moreBtn setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
     [_moreBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
     
     NSArray *views = @[_topView, _iconImage, _projectLabel, _partLine, _statusImage, _statusLabel, _goalImage, _goalLabel, _goalNumber, _achieveImage, _achieveLabel, _achieveNumber, _timeImage, _timeLabel, _timeNumber,  _addressImage, _addressLabel, _addressContent, _contentLabel, _picContainerView, _moreBtn];
@@ -291,7 +291,7 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     _moreBtn.sd_layout
     .centerXEqualToView(_contentLabel)
     .topSpaceToView(_picContainerView,16*HEIGHTCONFIG)
-    .widthIs(21)
+    .widthIs(40)
     .heightIs(28);
 }
 
@@ -311,31 +311,35 @@ CGFloat __maxContentLabelHeight = 0; //根据具体font来定
     [_addressContent sizeToFit];
     _statusLabel.text = model.statusStr;
     _contentLabel.text = model.content;
-    //默认显示一行数组
-    NSMutableArray *picArray = [NSMutableArray array];
+    
     
     
     if (model.shouldShowMoreButton) {//如果文字超过三行
         if (model.isOpen) { //如果展开
-            _picContainerView.pictureStringArray = model.pictureArray;
             _contentLabel.sd_layout.maxHeightIs(MAXFLOAT);
-            [_moreBtn setBackgroundImage:[UIImage imageNamed:@"收起"] forState:UIControlStateNormal];
+            [_moreBtn setImage:[UIImage imageNamed:@"收起"] forState:UIControlStateNormal];
         }else{
             _contentLabel.sd_layout.maxHeightIs(__maxContentLabelHeight);
-            [_moreBtn setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
-            if (model.pictureArray.count > 3) {
-                for (NSInteger i =0; i<3; i++) {
-                    [picArray addObject:model.pictureArray[i]];
-                }
-                _picContainerView.pictureStringArray = picArray;
-                
-            }else{
-                _picContainerView.pictureStringArray = model.pictureArray;
-            }
-            
+            [_moreBtn setImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
         }
     }
-    
+    //默认显示一行数组
+    NSMutableArray *picArray = [NSMutableArray array];
+    if (!model.isOpen) {//未展开
+        
+        if (model.pictureArray.count > 3)
+        {
+            for (NSInteger i =0; i<3; i++)
+            {
+                [picArray addObject:model.pictureArray[i]];
+            }
+        }
+        _picContainerView.pictureStringArray = picArray;
+        
+    }else{
+        _picContainerView.pictureStringArray = model.pictureArray;
+    }
+
     CGFloat picContainerTopMargin = 0;
     if (model.pictureArray.count) {
         picContainerTopMargin = 12;

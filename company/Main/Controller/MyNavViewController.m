@@ -32,7 +32,7 @@
 +(void)initialize{
     
     //设置局部状态栏布局样式
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     //设置全局导航栏背景
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBJ"] forBarMetrics:UIBarMetricsDefault];
 

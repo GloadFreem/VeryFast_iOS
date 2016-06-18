@@ -13,18 +13,15 @@
 @interface ActivityDetailCommentCellModel : NSObject
 
 
-@property (nonatomic, strong) NSArray<ActivityDetailCellLikeItemModel*> *likeItemsArray;
-@property (nonatomic, strong) NSArray<ActivityDetailCellCommentItemModel*> *commentItemsArray;
+@property (nonatomic, strong) NSMutableArray<ActivityDetailCellLikeItemModel*> *likeItemsArray;
+@property (nonatomic, strong) NSMutableArray<ActivityDetailCellCommentItemModel*> *commentItemsArray;
 
 @end
-
-
 
 @interface ActivityDetailCellLikeItemModel: NSObject
 
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *userId;
-
 
 @end
 

@@ -86,6 +86,8 @@
     .heightIs(13);
     [_totalLabel setSingleLineAutoResizeWithMaxWidth:150];
     
+    [_topView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showAllAction:)]];
+    
     _partLine = [UIView new];
     _partLine.backgroundColor = colorGray;
     [_topView addSubview:_partLine];
@@ -157,20 +159,64 @@
     [self setupAutoHeightWithBottomView:_praiseBtn bottomMargin:38];
     
 }
+
+-(void)setIsShowTopView:(Boolean)isShowTopView
+{
+    _isShowTopView = isShowTopView;
+    if(!_isShowTopView)
+    {
+        [_topView removeFromSuperview];
+        
+        _partLine.sd_layout
+        .topEqualToView(self);
+        
+        _commentView.sd_layout
+        .topSpaceToView(_partLine,13);
+    }
+}
 -(void)totalBtnClick:(UIButton*)btn
 {
     NSLog(@"点击查看全部");
 }
 
+/**
+ *  点赞
+ *
+ *  @param btn button
+ */
 -(void)praiseBtnClick:(UIButton*)btn
 {
-    
+    if([_delegate respondsToSelector:@selector(didClickLikeButton)])
+    {
+        [_delegate didClickLikeButton];
+    }
 
 }
 
+/**
+ *  评论
+ *
+ *  @param btn button
+ */
 -(void)commentBtnClick:(UIButton*)btn
 {
-    
+    if([_delegate respondsToSelector:@selector(didClickCommentButton)])
+    {
+        [_delegate didClickCommentButton];
+    }
+}
+
+/**
+ *  查看全部
+ *
+ *  @param sender button
+ */
+-(void)showAllAction:(id)sender
+{
+    if([_delegate respondsToSelector:@selector(didClickShowAllButton)])
+    {
+        [_delegate didClickShowAllButton];
+    }
 }
 
 @end

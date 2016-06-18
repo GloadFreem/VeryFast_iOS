@@ -8,20 +8,56 @@
 
 #import <Foundation/Foundation.h>
 
+@class Extr,BannerRoadshows,BannerRoadshowplan,Body;
+
 @interface ProjectBannerModel : NSObject
 
 
-@property (nonatomic, copy) NSString *image;
 
-@property (nonatomic, copy) NSString *bannerType;
+@property (nonatomic, copy) NSString *type;
 
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, strong) Extr *extr;
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) Body *body;
 
-@property (nonatomic, copy) NSString *desc;
-
-@property (nonatomic, assign) NSInteger bannerId;
 
 
 @end
+@interface Extr : NSObject
+
+@property (nonatomic, strong) NSArray<BannerRoadshows *> *roadshows;
+
+@property (nonatomic, copy) NSString *industoryType;
+
+@property (nonatomic, assign) NSInteger projectId;
+
+@end
+
+@interface BannerRoadshows : NSObject
+
+@property (nonatomic, strong) BannerRoadshowplan *roadshowplan;
+
+@end
+
+@interface BannerRoadshowplan : NSObject
+
+@property (nonatomic, assign) NSInteger financedMount;
+
+@property (nonatomic, assign) NSInteger financeTotal;
+
+@end
+
+@interface Body : NSObject
+
+@property (nonatomic, copy) NSString *name;
+
+@property (nonatomic, copy) NSString *url;
+
+@property (nonatomic, copy) NSString *desc;
+
+@property (nonatomic, copy) NSString *image;
+
+@property (nonatomic, assign) NSInteger bannerId;
+
+@end
+

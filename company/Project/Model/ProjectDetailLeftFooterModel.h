@@ -10,7 +10,14 @@
 
 @interface ProjectDetailLeftFooterModel : NSObject
 
-@property (nonatomic, copy) NSString *btnStr;
-@property (nonatomic, copy) NSString *labelStr;
+
+@property (nonatomic, copy) NSString *content;
+
+@property (nonatomic, copy) NSString *icon;
+
+@property (nonatomic, copy) NSString *url;
+
+@property (nonatomic, assign) NSInteger buinessPlanId;
+
 
 @end

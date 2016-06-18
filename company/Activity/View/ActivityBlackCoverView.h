@@ -12,11 +12,12 @@
 
 @protocol ActivityBlackCoverViewDelegate <NSObject>
 
--(void)clickBtnInView:(ActivityBlackCoverView*)view andIndex:(NSInteger)index;
+-(void)clickBtnInView:(ActivityBlackCoverView*)view andIndex:(NSInteger)index content:(NSString*)content;
 
 @end
 
 @interface ActivityBlackCoverView : UIView
+@property (strong, nonatomic) IBOutlet UIView *backView;
 
 @property (nonatomic, weak) id<ActivityBlackCoverViewDelegate>delegate;
 

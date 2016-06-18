@@ -11,8 +11,11 @@
 
 
 #import <UIKit/UIKit.h>
+#import "ProjectListProModel.h"
 
 @interface ProjectNoRoadCell : UITableViewCell
+
+@property (nonatomic, strong) ProjectListProModel *model;
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
@@ -21,10 +24,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *personNumLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *middleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
+
 
 @end

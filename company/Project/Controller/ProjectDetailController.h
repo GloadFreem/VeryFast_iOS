@@ -16,8 +16,10 @@ typedef enum{
     
 }SelectType;
 
-@interface ProjectDetailController : UIViewController
+@interface ProjectDetailController : RootViewController
 
+
+@property (nonatomic, assign) NSInteger projectId;
 
 @property (nonatomic,strong) UIColor *lineColor;
 @property (nonatomic,assign) SelectType type;

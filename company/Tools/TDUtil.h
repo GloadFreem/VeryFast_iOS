@@ -152,6 +152,15 @@
 //返回个性化日
 +(NSString*)dateTimeWithOps:(int)dayAdd;
 /**
+ *  获取指定日期星期
+ *
+ *  @param dateStr 时间字符
+ *
+ *  @return 星期
+ */
++(NSString*)weekOfDate:(NSString * )dateStr;
+
+/**
  *	@brief	保存照相机图片
  *
  *	@param 	image  图片

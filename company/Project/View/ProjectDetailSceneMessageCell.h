@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ProjectDetailSceneCellModel.h"
 @interface ProjectDetailSceneMessageCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic, strong) ProjectDetailSceneCellModel *model;
 
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (strong, nonatomic)  UIImageView *iconImage;
 
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *nameLabel;
+
+@property (strong, nonatomic)  UILabel *contentLabel;
+
+@property (strong, nonatomic)  UILabel *timeLabel;
 
 
 @end

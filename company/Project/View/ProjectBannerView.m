@@ -13,7 +13,7 @@
 #import "ProjectBannerModel.h"
 #define kADcount 4
 #define kImageCount 4
-#define SCROLLVIEWHEIGHT SCREENWIDTH*0.75 - 45
+#define SCROLLVIEWHEIGHT SCREENWIDTH*0.5 + 45
 
 #define kPAGEWIDTH 40
 #define kPAGEHEIGHT 5
@@ -46,7 +46,7 @@
         make.left.mas_equalTo(self.mas_left);
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCROLLVIEWHEIGHT);
+        make.height.mas_equalTo(SCROLLVIEWHEIGHT - 45);
     }];
     
     //遮盖
@@ -87,7 +87,8 @@
     //firstLabel
     _firstLabel = [UILabel new];
     _firstLabel.font = [UIFont systemFontOfSize:17];
-    _firstLabel.text = @"逸景营地";
+//    _firstLabel.text = @"逸景营地";
+    [_firstLabel sizeToFit];
     _firstLabel.textColor = [UIColor whiteColor];
     _firstLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:_firstLabel];
@@ -100,7 +101,8 @@
     //第二个label
     _secondLabel = [UILabel new];
     _secondLabel.font =[UIFont systemFontOfSize:12];
-    _secondLabel.text = @"新三板VR企业在2015年下半年";
+//    _secondLabel.text = @"新三板VR企业在2015年下半年";
+    [_secondLabel sizeToFit];
     _secondLabel.textColor = color(217, 217, 217, 1);
     _secondLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:_secondLabel];
@@ -183,6 +185,7 @@
     _pageControl.numberOfPages =kImageCount;
     //    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     _pageControl.currentPageIndicatorTintColor = orangeColor;
+    
     [self addSubview:_pageControl];
     [_pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_coverView.mas_top).offset(5);
@@ -232,25 +235,48 @@
 -(void)relayoutWithModelArray:(NSArray *)array
 {
     NSInteger i =0;
-    for (; i<4; i++) {
-        //        ProjectBannerModel * model =(ProjectBannerModel*)array[i];
+    for (; i<array.count; i++) {
+        ProjectBannerListModel *model =(ProjectBannerListModel*)array[i];
         UIButton * btn = [[UIButton alloc]init];
-        
-//        [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        btn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
-        [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        btn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT - 45);
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.image]] forState:UIControlStateNormal placeholderImage:[UIImage new]];
+//        [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
         [_scrollView addSubview:btn];
         
         if (i==0) {
             UIButton * btn =[[UIButton alloc]init];
-            
-            btn.frame = CGRectMake(4*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
-            [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
+            btn.tag = i;
+            btn.frame = CGRectMake(4*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT - 45);
+            [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.image]] forState:UIControlStateNormal placeholderImage:[UIImage new]];
+//            [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
             [_scrollView addSubview:btn];
             
         }
     }
     _scrollView.contentSize = CGSizeMake(SCREENWIDTH * i, 0);
+    for (NSInteger i = 0; i < 1; i ++) {
+        ProjectBannerListModel *model =(ProjectBannerListModel*)array[i];
+        if ([model.type isEqualToString:@"Project"]) {
+            _coverView.hidden = NO;
+            _firstBottomImage.hidden = NO;
+            _pageControl.hidden = NO;
+            _firstLabel.hidden = NO;
+            _secondLabel.hidden = NO;
+            
+            _firstLabel.text = model.name;
+            _secondLabel.text = model.desc;
+            
+        }else{
+            _coverView.hidden = YES;
+            _firstBottomImage.hidden = YES;
+            _pageControl.hidden = YES;
+            _firstLabel.hidden = YES;
+            _secondLabel.hidden = YES;
+        }
+    }
+    [self layoutSubviews];
     [self createTimer];
     [_timer setFireDate:[NSDate distantPast]];
 }
@@ -259,7 +285,7 @@
 -(void)createTimer
 {
     if (_timer == nil) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(runTimer) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(runTimer) userInfo:nil repeats:YES];
     }else{
         [_timer setFireDate:[NSDate distantPast]];
     }
@@ -270,29 +296,61 @@
     int page = _scrollView.contentOffset.x/SCREENWIDTH;
     page++;
     _pageControl.currentPage = page;
+   
     [_scrollView setContentOffset:CGPointMake(page*SCREENWIDTH, 0) animated:YES];
+    
 }
 #pragma mark -scrollView 页面控制联动
+
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int page = scrollView.contentOffset.x/SCREENWIDTH;
-    if (page==4) {
+    if (page==_imageCount) {
         scrollView.contentOffset=CGPointZero;
         _pageControl.currentPage=0;
     }else{
         _pageControl.currentPage=page;
     }
+    
+    
 }
-
+//结束滚动
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     int page=_scrollView.contentOffset.x/SCREENWIDTH;
     
-    if (page==4) {
+    if (page==_imageCount) {
         _pageControl.currentPage=0;
         _scrollView.contentOffset=CGPointZero;
     }
+    
+    ProjectBannerListModel *model =(ProjectBannerListModel*)_modelArray[_pageControl.currentPage];
+    if ([model.type isEqualToString:@"Project"]) {
+        _coverView.hidden = NO;
+        _firstBottomImage.hidden = NO;
+        _pageControl.hidden = NO;
+        _firstLabel.hidden = NO;
+        _secondLabel.hidden = NO;
+        
+        _firstLabel.text = model.name;
+        _secondLabel.text = model.desc;
+        
+    }else{
+        _coverView.hidden = YES;
+        _firstBottomImage.hidden = YES;
+        _pageControl.hidden = YES;
+        _firstLabel.hidden = YES;
+        _secondLabel.hidden = YES;
+    }
+    [self layoutSubviews];
+    
 }
-
-
+#pragma mark -点击btn事件处理
+-(void)btnClick:(UIButton*)btn
+{
+    if ([self.delegate respondsToSelector:@selector(clickBannerImage:)]) {
+        [self.delegate clickBannerImage:_modelArray[btn.tag]];
+    }
+}
 @end

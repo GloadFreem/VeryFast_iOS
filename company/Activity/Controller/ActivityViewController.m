@@ -9,11 +9,15 @@
 #import "ActivityViewController.h"
 #import "ActivityCell.h"
 #import "ActivityDetailVC.h"
-@interface ActivityViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+#import "ActivityViewModel.h"
+#import "ActivityBlackCoverView.h"
+@interface ActivityViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,ActivityViewDelegate,ActivityBlackCoverViewDelegate>
 
+@property (nonatomic,assign)id attendInstance; //回复
+@property (nonatomic, assign) NSInteger page; 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSString * actionListPartner;
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;
-
 @end
 
 @implementation ActivityViewController
@@ -26,6 +30,62 @@
     //初始化搜索框
     [self createSearchView];
     
+    //生成请求partner
+    self.actionListPartner = [TDUtil encryKeyWithMD5:KEY action:ACTION_LIST];
+    
+    self.page = 0;
+    //加载数据
+    [self loadActionListData];
+    
+}
+
+/**
+ *  获取活动列表
+ */
+
+-(void)loadActionListData
+{
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.actionListPartner,@"partner",STRING(@"%ld", self.page),@"page", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:ACTION_LIST postParam:dic type:0 delegate:self sel:@selector(requestActionList:)];
+}
+
+-(void)requestActionList:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            
+            //解析
+            NSDictionary *dataDic;
+            ActivityViewModel * baseModel;
+            for (int i=0; i<dataArray.count; i++) {
+                dataDic = dataArray[0];
+                baseModel = [ActivityViewModel mj_objectWithKeyValues:dataDic];
+                [array addObject:baseModel];
+            }
+            
+            //设置数据模型
+            self.dataSourceArray = array;
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }
+}
+
+-(void)setDataSourceArray:(NSMutableArray *)dataSourceArray
+{
+    _dataSourceArray = dataSourceArray;
+    if(_dataSourceArray.count>0)
+    {
+        //刷新数据
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark -初始化 tableView
@@ -35,6 +95,15 @@
     _tableView.delegate =self;
     _tableView.dataSource =self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //设置刷新控件
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadActionListData)];
+    //自动改变透明度
+    _tableView.mj_header.automaticallyChangeAlpha = YES;
+    [self.tableView.mj_header beginRefreshing];
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadActionListData)];
+    
+    
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.mas_top);
@@ -74,7 +143,7 @@
 #pragma mark -tableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _dataSourceArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,8 +157,10 @@
     ActivityCell *cell =[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellID owner:nil options:nil] lastObject];
+        cell.delegate = self;
     }
-    [cell.expiredImage setHidden:YES];
+    cell.model = [_dataSourceArray objectAtIndex:indexPath.row];
+//    [cell.expiredImage setHidden:NO];
     return cell;
 }
 
@@ -98,6 +169,11 @@
     //反选
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ActivityDetailVC * vc = [ActivityDetailVC new];
+    
+    
+    ActivityViewModel * model = [_dataSourceArray objectAtIndex:indexPath.row];
+    vc.activityModel = model;
+    
     
     //隐藏tabbar
     AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -150,7 +226,6 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,14 +233,78 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma ActivityDelegate
+-(void)attendAction:(id)model
+{
+    self.attendInstance = model;
+    
+    ActivityBlackCoverView * attendView = [ActivityBlackCoverView instancetationActivityBlackCoverView];
+    attendView.delegate = self;
+    attendView.tag = 1000;
+    [self.view addSubview:attendView];
+    
 }
-*/
+
+#pragma ActivityBlackCoverViewDelegate
+-(void)clickBtnInView:(ActivityBlackCoverView *)view andIndex:(NSInteger)index content:(NSString *)content
+{
+    if (index==0) {
+        [view removeFromSuperview];
+    }else{
+        //确定
+        [self attendActionWithContent:content];
+    }
+}
+
+/**
+ *  报名
+ */
+
+-(void)attendActionWithContent:(NSString*)content
+{
+    NSString * parthner = [TDUtil encryKeyWithMD5:KEY action:ATTEND_ACTION];
+    
+    ActivityViewModel * modle = (ActivityViewModel*)self.attendInstance;
+    
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",parthner,@"partner",content,@"content",STRING(@"%ld", modle.actionId),@"contentId", nil];
+    //开始请求
+    [self.httpUtil getDataFromAPIWithOps:ATTEND_ACTION postParam:dic type:0 delegate:self sel:@selector(requestAttendAction:)];
+}
+
+-(void)requestAttendAction:(ASIHTTPRequest*)request
+{
+    NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
+    NSLog(@"返回:%@",jsonString);
+    NSMutableDictionary* jsonDic = [jsonString JSONValue];
+    if (jsonDic != nil) {
+        NSString *status = [jsonDic valueForKey:@"status"];
+        if ([status integerValue] == 200) {
+//            NSArray *dataArray = [NSArray arrayWithArray:jsonDic[@"data"]];
+//            NSMutableArray * array = [[NSMutableArray alloc] init];
+//            
+//            //解析
+//            NSDictionary *dataDic;
+//            ActivityViewModel * baseModel;
+//            for (int i=0; i<dataArray.count; i++) {
+//                dataDic = dataArray[0];
+//                baseModel = [ActivityViewModel mj_objectWithKeyValues:dataDic];
+//                [array addObject:baseModel];
+//            }
+//            
+//            //设置数据模型
+//            self.dataSourceArray = array;
+            
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+        }
+        UIView * view  = [self.view viewWithTag:1000];
+        if(view)
+        {
+            [view removeFromSuperview];
+        }
+        [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
+    }
+}
 
 @end

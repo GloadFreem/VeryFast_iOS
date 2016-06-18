@@ -12,12 +12,14 @@
 
 
 @property (nonatomic, copy) NSString *projectStr;
+
 @property (nonatomic, copy) NSString *goalStr;
 @property (nonatomic, copy) NSString *achieveStr;
 @property (nonatomic, copy) NSString *timeStr;
 @property (nonatomic, copy) NSString *addressStr;
 
 @property (nonatomic, copy) NSString *statusStr;
+
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, strong) NSArray *pictureArray;
 

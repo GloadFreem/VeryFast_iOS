@@ -152,7 +152,7 @@
 //服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8088/jinzht/"//服务器域名地址
 //#define SERVICE_URL @"http://www.jinzht.com:8080/jinzht/"//服务器域名地址
-#define SERVICE_URL @"http://192.168.5.122:8080/jinzht/"//本地
+#define SERVICE_URL @"http://192.168.5.129:8080/jinzht/"//本地
 #define KEY @"jinzht_server_security"
 #define PLATFORM @"1"
 #define REGIST_TYPE @"0"
@@ -245,6 +245,63 @@
 
 
 
+#pragma mark-------------------------项目------------------------------
+//项目列表
+#define REQUEST_PROJECT_LIST @"requestProjectList.action"
+//项目详情
+#define REQUEST_PROJECT_DETAIL @"requestProjectDetail.action"
+//财务状况
+#define REQUEST_PROJECT_FINANAL @"requestProjectFinance.action"
+//融资状况
+#define REQUEST_PROJECT_FINNAL_STATUS @"requestProjectFinanceStatus.action"
+//融资方案
+#define REQUEST_PROJECT_FINNAL_CASE @"requestProjectFinanceCase.action"
+//商业计划书
+#define REQUEST_PROJECT_FINNAL_PLAN @"requestProjectFinancePlan.action"
+//退出渠道
+#define REQUEST_PROJECT_FINNAL_EXIT @"requestProjectFinanceExit.action"
+//分控报告
+#define REQUEST_PROJECT_FINNAL_CONTROL @"requestProjectFinanceControl.action"
+//投资交易明细
+#define REQUEST_VERIFY_CODE @"requestVerifyCode.action"
+//关注
+#define REQUEST_PROJECT_COLLECT @"requestProjectCollect.action"
+
+
+//成员
+#define REQUEST_PROJECT_MEMBER @"requestProjectMember.action"
+
+
+
+//现场
+#define REQUEST_SCENE @"requestScene.action"
+//播放ppt
+#define REQUEST_RECORDATA @"requestRecorData.action"
+//评论
+#define REQUEST_PROJECT_COMMENT @"requestProjectComment.action"
+//关注
+#define REQUEST_PROJECT_COLLECT @"requestProjectCollect.action"
+
+
+/*
+***===================================================================================**
+*                                          活动接口定义
+*
+***===================================================================================**/
+//活动列表
+#define  ACTION_LIST @"requestActionList.action"
+//活动详情
+#define  ACTION_DETAIL @"requestDetailAction.action"
+//活动报名
+#define  ACTION_ATTEND @"requestAttendListAction.action"
+//活动评论列表
+#define  ACTION_COMMENT_LIST @"requestPriseListAction.action"
+//活动点赞
+#define ACTION_PRISE @"requestPriseAction.action"
+//活动评论
+#define ACTION_COMMENT @"requestCommentAction.action"
+//参加活动
+#define ATTEND_ACTION @"requestAttendAction.action"
 
 
 

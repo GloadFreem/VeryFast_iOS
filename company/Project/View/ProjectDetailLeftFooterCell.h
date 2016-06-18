@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ProjectDetailLeftFooterModel.h"
 
+#import "ProjectDetailBaseMOdel.h"
+
 @interface ProjectDetailLeftFooterCell : UITableViewCell<UIScrollViewDelegate>
 
-@property (nonatomic, strong) ProjectDetailLeftFooterModel *model;
+@property (nonatomic, strong) DetailExtr *model;
 
 @property (nonatomic, strong) NSArray *modelArray;
 
