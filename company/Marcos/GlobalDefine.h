@@ -275,6 +275,8 @@
 
 //现场
 #define REQUEST_SCENE @"requestScene.action"
+//现场评论列表
+#define REQUEST_SCENE_COMMENT_LIST @"requestProjectSceneCommentList.action"
 //播放ppt
 #define REQUEST_RECORDATA @"requestRecorData.action"
 //评论

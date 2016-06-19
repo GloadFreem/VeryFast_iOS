@@ -120,34 +120,43 @@
 #pragma mark -传输数据
 -(void)relayoutWithModelArr:(NSArray *)arr
 {
-//    if (arr.count >0) {
+    if (arr.count >0) {
         _imageNumber = arr.count;
         NSInteger i =0;
-        for (; i<4;i++ ) {
+        for (; i<arr.count;i++ ) {
             
             UIButton * imageBtn = [[UIButton alloc]init];
             [imageBtn setTag:100+i];
+            [imageBtn setHighlighted:NO];
 //            [imageBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
             //btn加载数据
             
-            imageBtn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
-            [imageBtn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
-            [_scrollView addSubview:imageBtn];
             
-            if (i==0) {
-                UIButton * btn =[[UIButton alloc]init];
-                //btn加载图片
+            imageBtn.frame = CGRectMake(0+i*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
+//            [imageBtn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
+            [imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",arr[i]]] forState:UIControlStateNormal placeholderImage:[UIImage new]];
+            
+            [_scrollView addSubview:imageBtn];
+            if (arr.count > 1) {
                 
-                [btn setTag:100+i];
-                btn.frame = CGRectMake(4*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
-                [btn setBackgroundImage:[UIImage imageNamed:@"c9d8be32534701.568974395e076"] forState:UIControlStateNormal];
-                [_scrollView addSubview:btn];
+                if (i==0) {
+                    UIButton * btn =[[UIButton alloc]init];
+                    //btn加载图片
+                    
+                    [btn setTag:100+i];
+                    btn.frame = CGRectMake(arr.count*SCREENWIDTH, 0, SCREENWIDTH, SCROLLVIEWHEIGHT);
+                    
+                    [imageBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",arr[i]]] forState:UIControlStateNormal placeholderImage:[UIImage new]];
+                    
+                    [_scrollView addSubview:btn];
+                }
             }
+            
         }
         _scrollView.contentSize = CGSizeMake(SCREENWIDTH*i, 0);
-        [self createTimer];
-        [_timer setFireDate:[NSDate distantPast]];
-//    }
+//        [self createTimer];
+//        [_timer setFireDate:[NSDate distantPast]];
+    }
 }
 
 #pragma mark -创建定时器
@@ -174,7 +183,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int page =scrollView.contentOffset.x/SCREENWIDTH;
-    if (page == 4) {
+    if (page == _imageNumber) {
         scrollView.contentOffset = CGPointZero;
         
     }
@@ -183,9 +192,17 @@
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     int page =scrollView.contentOffset.x/SCREENWIDTH;
-    if (page == 4) {
+    if (page == _imageNumber) {
         scrollView.contentOffset = CGPointZero;
         
     }
+}
+
+-(void)nextPage:(NSInteger)page
+{
+//    int page = _scrollView.contentOffset.x/SCREENWIDTH;
+//    page++;
+    [_scrollView setContentOffset:CGPointMake(page*SCREENWIDTH, 0)
+                         animated:YES];
 }
 @end

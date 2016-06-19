@@ -10,7 +10,8 @@
 
 @interface ProjectDetailSceneCellModel : NSObject
 
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, assign) BOOL flag;
+
 @property (nonatomic, copy) NSString *iconImage;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *content;

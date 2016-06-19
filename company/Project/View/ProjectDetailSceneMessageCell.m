@@ -55,7 +55,7 @@
 {
     _model = model;
     //如果不是自己  靠左布局
-    if (model.type) {
+    if (!model.flag) {
         _iconImage.sd_layout
         .leftSpaceToView(self.contentView,17)
         .topSpaceToView(self.contentView,20)
@@ -79,7 +79,7 @@
         .widthIs(50)
         .heightIs(18)
         .topSpaceToView(_contentLabel,25);
-        
+        [_timeLabel setSingleLineAutoResizeWithMaxWidth:150];
     }else{
         _iconImage.sd_layout
         .rightSpaceToView(self.contentView,17)
@@ -104,13 +104,17 @@
         .widthIs(50)
         .heightIs(18)
         .topSpaceToView(_contentLabel,25);
+        [_timeLabel setSingleLineAutoResizeWithMaxWidth:150];
     }
     
     //头像
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.iconImage]] placeholderImage:[UIImage new]];
     _nameLabel.text = model.name;
     _contentLabel.text = model.content;
-    _timeLabel.text = model.time;
+    NSArray *arr1 = [model.time componentsSeparatedByString:@" "];
+    NSString *str1 = arr1[1];
+    NSString *str2 = [str1 substringFromIndex:3];
+    _timeLabel.text = str2;
     
     [self setupAutoHeightWithBottomView:_timeLabel bottomMargin:10*HEIGHTCONFIG];
 }

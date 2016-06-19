@@ -34,10 +34,11 @@
 #define titleFont [UIFont systemFontOfSize:16]
 
 
-@interface ProjectDetailController ()<ProjectDetailBannerViewDelegate,UIScrollViewDelegate>
+@interface ProjectDetailController ()<ProjectDetailBannerViewDelegate,UIScrollViewDelegate,UITextViewDelegate>
 {
     ProjectDetailMemberView * member;
-    
+    ProjectDetailBannerView * bannerView;
+    ProjectDetailSceneView *scene;
     
     NSString *_recorDataPartner;
     BOOL memberLoadData;
@@ -70,7 +71,7 @@
     
     
     //下载详情数据
-//    [self startLoadData];
+    [self startLoadData];
     
     _heightArray = [NSMutableArray array];                  //子视图高度数组
     
@@ -78,12 +79,7 @@
     
     _scrollView.autoresizingMask = UIViewAutoresizingNone;
     
-    //广告栏视图
-    ProjectDetailBannerView * bannerView= [[ProjectDetailBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.6)];
-    NSArray * array = [NSArray array];
-    [bannerView relayoutWithModelArr:array];
-    
-    [_scrollView addSubview:bannerView];                     //添加广告栏
+                        //添加广告栏
     
     _titleArray = @[@"详情",@"成员",@"现场"];
     _lineColor = orangeColor;
@@ -95,7 +91,15 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(calcuateLeftViewHeightNotification:) name:@"calcauteHieght" object:nil];
     
 }
-
+-(void)createBannerView:(NSArray*)arr
+{
+    //广告栏视图
+    bannerView= [[ProjectDetailBannerView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENWIDTH*0.5)];
+    
+    [bannerView relayoutWithModelArr:arr];
+    
+    [_scrollView addSubview:bannerView];
+}
 -(void)startLoadData
 {
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",[NSString stringWithFormat:@"%ld",self.projectId],@"projectId", nil];
@@ -106,13 +110,18 @@
 -(void)requestProjectDetail:(ASIHTTPRequest *)request
 {
     NSString *jsonString = [TDUtil convertGBKDataToUTF8String:request.responseData];
-    NSLog(@"返回:%@",jsonString);
+//    NSLog(@"返回:%@",jsonString);
     NSMutableDictionary* jsonDic = [jsonString JSONValue];
     
     if (jsonDic != nil) {
         NSString *status = [jsonDic valueForKey:@"status"];
         if ([status integerValue] == 200) {
             ProjectDetailBaseMOdel *baseModel = [ProjectDetailBaseMOdel mj_objectWithKeyValues:jsonDic[@"data"]];
+            
+            NSArray *bannerArr = [NSArray arrayWithObject:baseModel.project.startPageImage];
+            [self createBannerView:bannerArr];
+            
+            scene.bannerView = bannerView;
             
             
         }else{
@@ -248,8 +257,45 @@
         [_subViewScrollView addSubview:member];
         
         
+        //实例化现场界面
+         scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 - 50)];
         
-        ProjectDetailSceneView *scene =[[ProjectDetailSceneView alloc]initWithFrame:CGRectMake(2*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64)];
+        //加底部回复框
+        UIView * footer =[[UIView alloc]init];
+        footer.frame = CGRectMake(2*SCREENWIDTH, CGRectGetMaxY(scene.frame), SCREENWIDTH, 50);
+        [_subViewScrollView addSubview:footer];
+        
+        UITextView * text = [[UITextView alloc]init];
+        text.layer.cornerRadius = 2;
+        text.layer.masksToBounds = YES;
+        text.layer.borderColor = [UIColor darkGrayColor].CGColor;
+        text.layer.borderWidth = 0.5;
+        text.delegate = self;
+        
+        [footer addSubview:text];
+        
+        UIButton * btn =[[UIButton alloc]init];
+        [btn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"发送" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setBackgroundColor:colorBlue];
+        btn.titleLabel.font = [UIFont systemFontOfSize:17];
+        [footer addSubview:btn];
+        
+        [text mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(5);
+            make.bottom.mas_equalTo(-5);
+            make.left.mas_equalTo(5);
+            make.right.mas_equalTo(btn.mas_left).offset(-5);
+        }];
+        
+        
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(footer.mas_top);
+            make.right.mas_equalTo(footer.mas_right);
+            make.bottom.mas_equalTo(footer.mas_bottom);
+            make.width.mas_equalTo(75);
+        }];
         scene.projectId = self.projectId;
         [_heightArray addObject:[NSNumber numberWithFloat: SCREENHEIGHT-CGRectGetMaxY(_titleScrollView.frame)-64 ]];
         [_subViewScrollView addSubview:scene];
@@ -259,6 +305,13 @@
     
     return _subViewScrollView;
 }
+
+#pragma mark -发送信息
+-(void)sendMessage:(UIButton*)btn
+{
+    
+}
+
 
 #pragma mark - 按钮数组
 - (NSMutableArray *)btArray{
@@ -430,6 +483,9 @@
     AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     
     [delegate.tabBar tabBarHidden:NO animated:NO];
+    
+    MP3Player *player = [[MP3Player alloc]init];
+    [player.player pause];
     
 }
 

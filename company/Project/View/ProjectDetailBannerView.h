@@ -45,4 +45,8 @@
 #pragma mark -计算View的高度
 //-(CGFloat)getViewHeight;
 
+
+#pragma mark --- 翻到下一页
+-(void)nextPage:(NSInteger)page;
+
 @end

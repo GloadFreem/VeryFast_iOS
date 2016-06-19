@@ -11,17 +11,9 @@
 @implementation ProjectSceneModel
 
 
-+ (NSDictionary *)objectClassInArray{
-    return @{@"audiorecords" : [Audiorecords class], @"scenecomments" : [Scenecomments class]};
-}
-@end
-@implementation Audiorecords
-
 @end
 
 
-@implementation Scenecomments
 
-@end
 
 

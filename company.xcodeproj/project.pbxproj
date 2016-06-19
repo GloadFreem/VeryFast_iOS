@@ -406,6 +406,8 @@
 		449354E31D0D560000B22F7E /* icon_share_msg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449354D81D0D560000B22F7E /* icon_share_msg@2x.png */; };
 		449354E41D0D560000B22F7E /* icon_share-msg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 449354D91D0D560000B22F7E /* icon_share-msg@3x.png */; };
 		449354E71D0D5CB200B22F7E /* CircleShareBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 449354E61D0D5CB200B22F7E /* CircleShareBottomView.m */; };
+		4496197E1D1649A4009E9472 /* ProjectSceneCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4496197D1D1649A4009E9472 /* ProjectSceneCommentModel.m */; };
+		449619811D16721D009E9472 /* ProjectPPTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 449619801D16721D009E9472 /* ProjectPPTModel.m */; };
 		44A6F1B71D0F9F5700A1FF73 /* InvestBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A6F1B61D0F9F5700A1FF73 /* InvestBaseModel.m */; };
 		44A940011D1280B4006E5F8B /* icon_commit1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A93FFF1D1280B4006E5F8B /* icon_commit1@2x.png */; };
 		44A940021D1280B4006E5F8B /* icon_commit1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44A940001D1280B4006E5F8B /* icon_commit1@3x.png */; };
@@ -1543,6 +1545,10 @@
 		449354D91D0D560000B22F7E /* icon_share-msg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share-msg@3x.png"; sourceTree = "<group>"; };
 		449354E51D0D5CB200B22F7E /* CircleShareBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleShareBottomView.h; sourceTree = "<group>"; };
 		449354E61D0D5CB200B22F7E /* CircleShareBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleShareBottomView.m; sourceTree = "<group>"; };
+		4496197C1D1649A4009E9472 /* ProjectSceneCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSceneCommentModel.h; sourceTree = "<group>"; };
+		4496197D1D1649A4009E9472 /* ProjectSceneCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectSceneCommentModel.m; sourceTree = "<group>"; };
+		4496197F1D16721D009E9472 /* ProjectPPTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPPTModel.h; sourceTree = "<group>"; };
+		449619801D16721D009E9472 /* ProjectPPTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectPPTModel.m; sourceTree = "<group>"; };
 		44A6F1B51D0F9F5700A1FF73 /* InvestBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestBaseModel.h; sourceTree = "<group>"; };
 		44A6F1B61D0F9F5700A1FF73 /* InvestBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestBaseModel.m; sourceTree = "<group>"; };
 		44A93FFF1D1280B4006E5F8B /* icon_commit1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_commit1@2x.png"; sourceTree = "<group>"; };
@@ -2631,6 +2637,10 @@
 				44B030831D1574FD00A288FB /* ProjectDetailMemberModel.m */,
 				44B030851D15921000A288FB /* ProjectSceneModel.h */,
 				44B030861D15921000A288FB /* ProjectSceneModel.m */,
+				4496197C1D1649A4009E9472 /* ProjectSceneCommentModel.h */,
+				4496197D1D1649A4009E9472 /* ProjectSceneCommentModel.m */,
+				4496197F1D16721D009E9472 /* ProjectPPTModel.h */,
+				449619801D16721D009E9472 /* ProjectPPTModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4959,6 +4969,7 @@
 				44E1C7681D10F30A00ACF9BA /* ProjectListProBaseModel.m in Sources */,
 				44871B7E1D02B37800020DD9 /* UIView+SDAutoLayout.m in Sources */,
 				44AE87B01D0EE8830067404F /* AuthenticInfoBaseModel.m in Sources */,
+				449619811D16721D009E9472 /* ProjectPPTModel.m in Sources */,
 				44871B741D02B37800020DD9 /* MASConstraint.m in Sources */,
 				44871A931D02B34400020DD9 /* ProjectDetailLeftFooterModel.m in Sources */,
 				4487194A1D02B28B00020DD9 /* Renzheng4ViewController.m in Sources */,
@@ -5036,6 +5047,7 @@
 				44871A4D1D02B31800020DD9 /* CircleDetailHeaderView.m in Sources */,
 				44871F611D14D1C000728B0C /* ActivityViewModel.m in Sources */,
 				44871F4C1D14D1C000728B0C /* ActivityViewController.m in Sources */,
+				4496197E1D1649A4009E9472 /* ProjectSceneCommentModel.m in Sources */,
 				44871F6A1D14D1C000728B0C /* ActivityCell.m in Sources */,
 				44871A991D02B34400020DD9 /* ProjectDetailLeftFooterCell.m in Sources */,
 				44871B7D1D02B37800020DD9 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,

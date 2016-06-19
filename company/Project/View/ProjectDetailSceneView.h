@@ -12,7 +12,12 @@
 #import "HttpUtils.h"
 #import "DialogUtil.h"
 
+#import "ProjectDetailBannerView.h"
+
+
 @interface ProjectDetailSceneView : UIView<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
+
+@property (nonatomic, strong) ProjectDetailBannerView *bannerView;
 
 @property(retain,nonatomic)HttpUtils* httpUtil; //网络请求对象
 
@@ -21,5 +26,7 @@
 @property (strong, nonatomic) UITableView * tableView;
 @property (strong, nonatomic) NSMutableArray *dataArray;
 @property (nonatomic ,copy) NSString *url;
+
+
 
 @end

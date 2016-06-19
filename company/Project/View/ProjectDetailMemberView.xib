@@ -145,12 +145,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="hYW-60-XA3"/>
                     <exclude reference="FbM-hF-lcO"/>
                     <exclude reference="HmC-eK-E6l"/>
                     <exclude reference="dJ6-ep-5Fo"/>
                     <exclude reference="rZZ-oK-oby"/>
                     <exclude reference="u71-nB-Szt"/>
+                    <exclude reference="hYW-60-XA3"/>
                     <exclude reference="45i-Dq-u80"/>
                     <exclude reference="0yH-kC-9SM"/>
                     <exclude reference="O1j-Jm-rLz"/>
