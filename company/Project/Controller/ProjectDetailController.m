@@ -21,6 +21,7 @@
 #import "ProjectDetailBaseMOdel.h"
 #import "ProjectDetailMemberModel.h"
 
+#import "ProjectDetailInvestVC.h"
 
 #define REQUESTDETAIL @"requestProjectDetail"
 
@@ -69,7 +70,6 @@
     self.partner = [TDUtil encryKeyWithMD5:KEY action:REQUESTDETAIL];
     
     
-    
     //下载详情数据
     [self startLoadData];
     
@@ -91,6 +91,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(calcuateLeftViewHeightNotification:) name:@"calcauteHieght" object:nil];
     
 }
+
+
+
+
 -(void)createBannerView:(NSArray*)arr
 {
     //广告栏视图
@@ -470,15 +474,35 @@
         NSLog(@"进入投资页面");
     }
 }
+- (IBAction)leftBack:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark -分享
+- (IBAction)shareBtn:(UIButton *)sender {
+    ProjectDetailInvestVC *vc = [ProjectDetailInvestVC new];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+#pragma mark -收藏
+- (IBAction)collectBtn:(UIButton *)sender {
+    
+}
+
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent=NO;
+//    self.navigationController.navigationBar.translucent=NO;
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
     
     AppDelegate * delegate =(AppDelegate*)[UIApplication sharedApplication].delegate;
     

@@ -11,10 +11,14 @@
 @interface ProjectDetailInvestVC ()<UITextFieldDelegate>
 {
     UITextField *_textField;
-    UIButton *_followBtn;
-    UIButton *_leadBtn;
+    UIView *_btnView;
+    UIButton *_firstBtn;
+    UIButton *_secondBtn;
     UIButton *_payBtn;
     UILabel *_textLabel;
+    NSMutableArray *_titleArray;
+    NSMutableArray *_flagArray;
+    NSInteger _flag;
 }
 @end
 
@@ -23,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _flag = 0;
     [self setNav];
     [self setup];
 }
@@ -31,11 +36,11 @@
 {
     self.navigationItem.title = @"认投项目";
     UIButton * leftback = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftback setBackgroundImage:[UIImage imageNamed:@"leftBack"] forState:UIControlStateNormal];
-    leftback.tag = 0;
-    leftback.size = leftback.currentBackgroundImage.size;
+    [leftback setImage:[UIImage imageNamed:@"leftBack"] forState:UIControlStateNormal];
+    [leftback addTarget:self action:@selector(leftback) forControlEvents:UIControlEventTouchUpInside];
+    leftback.size = CGSizeMake(32, 18);
     [leftback addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftback] ;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftback];
 }
 -(void)setup
 {
@@ -75,17 +80,48 @@
     .heightIs(44)
     .rightSpaceToView(self.view, 72);
     
-    _followBtn = [UIButton new];
-    _followBtn.backgroundColor = orangeColor;
-    [_followBtn setTitle:@"跟投" forState:UIControlStateNormal];
-    _followBtn.titleLabel.font = BGFont(15);
-    [_followBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:_followBtn];
-    _followBtn.sd_layout
-    .leftSpaceToView(_textField, 0)
-    .topSpaceToView(remindLabel, 9)
+    _btnView = [UIView new];
+    _btnView.backgroundColor = orangeColor;
+    [self.view addSubview:_btnView];
+    _btnView.sd_layout
+    .leftSpaceToView(_textField,0)
+    .topSpaceToView(remindLabel,9)
+    .widthIs(48)
+    .heightIs(44);
+    
+    
+    _titleArray = [NSMutableArray arrayWithObjects:@"领投",@"跟投", nil];
+    _flagArray = [NSMutableArray arrayWithObjects:@"0",@"1", nil];
+    _firstBtn = [UIButton new];
+    _firstBtn.backgroundColor = orangeColor;
+    _firstBtn.tag = 0;
+    [_firstBtn setTitle:_titleArray[0] forState:UIControlStateNormal];
+    _firstBtn.titleLabel.font = BGFont(15);
+    [_firstBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_firstBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnView addSubview:_firstBtn];
+    _firstBtn.sd_layout
+    .leftEqualToView(_btnView)
+    .topEqualToView(_btnView)
     .heightIs(44)
     .widthIs(48);
+    
+    _secondBtn = [UIButton new];
+    _secondBtn.tag = 1;
+    _secondBtn.backgroundColor = orangeColor;
+    [_secondBtn setTitle:_titleArray[1] forState:UIControlStateNormal];
+    _secondBtn.titleLabel.font = BGFont(15);
+    [_secondBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_secondBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //默认不显示
+    [_secondBtn setHidden:YES];
+    [_btnView addSubview:_secondBtn];
+    _secondBtn.sd_layout
+    .leftEqualToView(_firstBtn)
+    .topSpaceToView(_firstBtn,0)
+    .widthIs(48)
+    .heightIs(44);
+    
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:@"温馨提示：\n1、此处领投，跟投仅为用户意向，待项目达成后项目方会协同各方确定最为合适的领投方；\n2、特别注意：投资金额后面的单位为“万”"];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
@@ -93,7 +129,6 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
     
     _textLabel = [UILabel new];
-    _textLabel.numberOfLines = 4;
     _textLabel.font = BGFont(12);
     _textLabel.textAlignment = NSTextAlignmentLeft;
     _textLabel.textColor = color74;
@@ -101,9 +136,11 @@
     [self.view addSubview:_textLabel];
     _textLabel.sd_layout
     .leftEqualToView(_textField)
-    .rightEqualToView(_followBtn)
+    .rightEqualToView(_btnView)
     .topSpaceToView(_textField, 33)
     .autoHeightRatio(0);
+    
+    _textLabel.isAttributedContent = YES;
     
     _payBtn = [UIButton new];
     [_payBtn setTag:5];
@@ -125,14 +162,41 @@
 #pragma mark -textFieldDelegate
 
 
+
+-(void)leftback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 -(void)btnClick:(UIButton*)btn
 {
     if (btn.tag == 0) {
-        [self.navigationController popViewControllerAnimated:YES];
+        _secondBtn.hidden = _secondBtn.hidden;
+        
     }
+    
+    if (btn.tag == 1) {
+        NSString *title = _titleArray[0];
+        _titleArray[0] = _titleArray[1];
+        _titleArray[1] = title;
+        NSString *flag = _flagArray[0];
+        _flagArray[0] = _flagArray[1];
+        _flagArray[1] = flag;
+        
+        [_firstBtn setTitle:_titleArray[0] forState:UIControlStateNormal];
+        [_secondBtn setTitle:_titleArray[1] forState:UIControlStateNormal];
+        
+        
+        _secondBtn.hidden = YES;
+        
+    }
+    
+    
     
     if (btn.tag == 5) {
         NSLog(@"立即支付");
     }
+    
+    btn.selected = !btn.selected;
+    
 }
 @end

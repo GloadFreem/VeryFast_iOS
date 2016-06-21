@@ -71,8 +71,11 @@
     
     //加密
     password = [TDUtil encryptPhoneNumWithMD5:self.telephone passString:password];
+    //激光推送Id
+    NSString *regId = [JPUSHService registrationID];
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner, @"partner",self.telephone,@"telephone",password,@"password",self.certifyNum,@"verifyCode",self.ringCode,@"inviteCode",PLATFORM,@"platform",REGIST_TYPE,@"type",nil];
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:KEY,@"key",self.partner, @"partner",self.telephone,@"telephone",password,@"password",self.certifyNum,@"verifyCode",self.ringCode,@"inviteCode",PLATFORM,@"platform",REGIST_TYPE,@"type",regId,@"regId",nil];
     //加载动画
     //加载动画控件
     if (!activity) {

@@ -17,6 +17,7 @@
 #import "SetPassWordViewController.h"
 #import "MyNavViewController.h"
 
+#import "JPUSHService.h"
 #import "IQKeyboardManager.h"
 @interface AppDelegate ()
 
@@ -43,6 +44,25 @@
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = YES;
+    
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //       categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    }else {
+        //categories    nil
+        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                UIRemoteNotificationTypeSound |
+                                                UIRemoteNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    [JPUSHService setupWithOption:launchOptions appKey:@"cc3fdb255d49497c5fd3d402"
+                          channel:@"Publish channel"
+                 apsForProduction:@"0"];
     
     return YES;
 }
@@ -74,6 +94,25 @@
     MyNavViewController *navMine = [[MyNavViewController alloc]initWithRootViewController:[[MineViewController alloc]init]];
     self.tabBar.centerViewController = navMine;
     
+}
+
+#pragma mark -push
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    /// Required -    DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:
+(NSDictionary *)userInfo {
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:
+(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

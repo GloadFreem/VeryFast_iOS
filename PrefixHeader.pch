@@ -31,6 +31,10 @@
 
 #import "AppDelegate.h"
 
+#pragma mark -激光
+#import "JPUSHService.h"
+
+
 #pragma mark- 自定义类别
 #import "UIBarButtonItem+LYJ.h"
 #import "UIViewController+NavBarHidden.h"

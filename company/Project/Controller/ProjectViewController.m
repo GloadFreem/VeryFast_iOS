@@ -249,12 +249,7 @@
 {
 
     self.navigationItem.title = @"项目";
-//    UILabel * titleLabel =[[UILabel alloc]init];
-//    titleLabel.text = @"项目";
-//    [titleLabel sizeToFit];
-//    titleLabel.font = BGFont(18);
-//    [titleLabel setTextColor:[UIColor whiteColor]];
-//    self.navigationItem.titleView=titleLabel;
+
    
     UIButton * letterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     letterBtn.tag = 0;

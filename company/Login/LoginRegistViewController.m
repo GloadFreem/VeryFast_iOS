@@ -94,8 +94,12 @@
         
         //加密
         _password = [TDUtil encryptPhoneNumWithMD5:phoneNumber passString:_password];
+        //激光推送Id
+        NSString *regId = [JPUSHService registrationID];
         
-        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",phoneNumber,@"telephone",_password,@"password",PLATFORM,@"platform", nil];
+        
+        
+        NSDictionary *dic = [[NSDictionary alloc]initWithObjectsAndKeys:KEY,@"key",self.partner,@"partner",phoneNumber,@"telephone",_password,@"password",PLATFORM,@"platform", regId,@"regId",nil];
         
         //加载动画
         //加载动画控件

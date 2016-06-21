@@ -273,6 +273,9 @@
 
 
 
+//评论列表
+#define REQUEST_COMMENT_LIST @"requestProjectCommentList.action"
+
 //现场
 #define REQUEST_SCENE @"requestScene.action"
 //现场评论列表

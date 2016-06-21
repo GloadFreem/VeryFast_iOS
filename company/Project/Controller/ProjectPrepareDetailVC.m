@@ -20,9 +20,9 @@
 #import "ProjectDetailLeftFooterModel.h"
 
 #define PROJECTDETAIL @"requestProjectDetail"
-@interface ProjectPrepareDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ProjectPrepareDetailVC ()<UIScrollViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
@@ -42,7 +42,7 @@
     
     [self setupNav];
     
-    [self createTableView];
+    [self createScrollView];
     
     [self createBottomView];
     NSLog(@"projectId----%ld",self.projectId);
@@ -91,7 +91,7 @@
             [_dataArray addObject:extrArray];
             
 //            NSLog(@"打印最大数组---------%@",_dataArray);
-            [_tableView reloadData];
+            
             
         }else{
             [[DialogUtil sharedInstance]showDlg:self.view textOnly:[jsonDic valueForKey:@"message"]];
@@ -133,20 +133,19 @@
     }];
     
 }
--(void)createTableView
+
+-(void)createScrollView
 {
-    _tableView = [UITableView new];
-    _tableView.frame = CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT-64-50);
-    _tableView.backgroundColor = colorGray;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.delegate =self;
-    _tableView.dataSource = self;
-    [self.view addSubview:_tableView];
-//    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.mas_equalTo(0);
-//        make.top.mas_equalTo(64);
-//        make.bottom.mas_equalTo(50);
-//    }];
+    _scrollView = [UIScrollView new];
+    _scrollView.delegate = self;
+    _scrollView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_scrollView];
+    _scrollView.sd_layout
+    .leftEqualToView(self.view)
+    .topEqualToView(self.view)
+    .rightEqualToView(self.view)
+    .bottomEqualToView(self.view);
+    
 }
 
 -(void)createBottomView
@@ -185,198 +184,72 @@
     
 }
 
-#pragma mark ------------tableViewDatasource------------------
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return 4;
-    }
-    return 0;
-}
 
 #pragma mark ------在线交流段头
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [UIView new];
-    view.frame = CGRectMake(0, 0, SCREENWIDTH, 50);
-    
-    UIImageView *image = [UIImageView new];
-    image.image = [UIImage imageNamed:@"comments"];
-    image.size = image.image.size;
-    [view addSubview:image];
-    [image mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(view.mas_centerY);
-        make.left.mas_equalTo(16);
-    }];
-    
-    UILabel *textLabel = [UILabel new];
-    textLabel.text = @"在线交流";
-    textLabel.textColor = [UIColor blackColor];
-    textLabel.font = BGFont(18);
-    textLabel.textAlignment = NSTextAlignmentLeft;
-    [view addSubview:textLabel];
-    [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(view.mas_centerY);
-        make.height.mas_equalTo(18);
-        make.left.mas_equalTo(image.mas_right).offset(8);
-    }];
-    
-    UILabel *numLabel = [UILabel new];
-    numLabel.textAlignment  = NSTextAlignmentLeft;
-    numLabel.textColor = color47;
-    numLabel.font = BGFont(14);
-    //设置文字信息
-    
-    [view addSubview:numLabel];
-    [numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(textLabel.mas_bottom);
-        make.left.mas_equalTo(textLabel.mas_right);
-        make.height.mas_equalTo(14);
-    }];
-    
-    UIImageView *moreImage = [UIImageView new];
-    moreImage.image = [UIImage imageNamed:@"youjinatou"];
-    moreImage.size = moreImage.image.size;
-    [view addSubview:moreImage];
-    [moreImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(view.mas_centerY);
-        make.right.mas_equalTo(view.mas_right).offset(-8);
-    }];
-    
-    UIButton *moreBtn =[UIButton new];
-    [moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
-    [moreBtn setTitleColor:orangeColor forState:UIControlStateNormal];
-    [moreBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    moreBtn.titleLabel.font = BGFont(14);
-    [view addSubview:moreBtn];
-    [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(15);
-        make.width.mas_equalTo(64);
-        make.centerY.mas_equalTo(view.mas_centerY);
-        make.right.mas_equalTo(moreImage.mas_left).offset(-5);
-    }];
-    
-    return view;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return 50;
-    }
-    return 0;
-}
+//-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *view = [UIView new];
+//    view.frame = CGRectMake(0, 0, SCREENWIDTH, 50);
+//    
+//    UIImageView *image = [UIImageView new];
+//    image.image = [UIImage imageNamed:@"comments"];
+//    image.size = image.image.size;
+//    [view addSubview:image];
+//    [image mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(view.mas_centerY);
+//        make.left.mas_equalTo(16);
+//    }];
+//    
+//    UILabel *textLabel = [UILabel new];
+//    textLabel.text = @"在线交流";
+//    textLabel.textColor = [UIColor blackColor];
+//    textLabel.font = BGFont(18);
+//    textLabel.textAlignment = NSTextAlignmentLeft;
+//    [view addSubview:textLabel];
+//    [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(view.mas_centerY);
+//        make.height.mas_equalTo(18);
+//        make.left.mas_equalTo(image.mas_right).offset(8);
+//    }];
+//    
+//    UILabel *numLabel = [UILabel new];
+//    numLabel.textAlignment  = NSTextAlignmentLeft;
+//    numLabel.textColor = color47;
+//    numLabel.font = BGFont(14);
+//    //设置文字信息
+//    
+//    [view addSubview:numLabel];
+//    [numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(textLabel.mas_bottom);
+//        make.left.mas_equalTo(textLabel.mas_right);
+//        make.height.mas_equalTo(14);
+//    }];
+//    
+//    UIImageView *moreImage = [UIImageView new];
+//    moreImage.image = [UIImage imageNamed:@"youjinatou"];
+//    moreImage.size = moreImage.image.size;
+//    [view addSubview:moreImage];
+//    [moreImage mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(view.mas_centerY);
+//        make.right.mas_equalTo(view.mas_right).offset(-8);
+//    }];
+//    
+//    UIButton *moreBtn =[UIButton new];
+//    [moreBtn setTitle:@"查看更多" forState:UIControlStateNormal];
+//    [moreBtn setTitleColor:orangeColor forState:UIControlStateNormal];
+//    [moreBtn addTarget:self action:@selector(moreBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    moreBtn.titleLabel.font = BGFont(14);
+//    [view addSubview:moreBtn];
+//    [moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.mas_equalTo(15);
+//        make.width.mas_equalTo(64);
+//        make.centerY.mas_equalTo(view.mas_centerY);
+//        make.right.mas_equalTo(moreImage.mas_left).offset(-5);
+//    }];
+//    
+//    return view;
+//}
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (_dataArray.count) {
-        if (indexPath.section == 0) {
-            
-            
-            
-            if (indexPath.row == 0) {
-                return 200;
-            }
-            if (indexPath.row == 1) {
-                ProjectDetailLeftHeaderModel *model = _dataArray[indexPath.row];
-                return [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectPreparePhotoCell class] contentViewWidth:[self cellContentViewWith]];
-            }
-            if (indexPath.row == 2) {
-                if ([_dataArray[indexPath.row] count]) {
-                    return 187;
-                }
-                return 0.0000001f;
-//                DetailTeams *model = _dataArray[indexPath.row][0];
-//                return  [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectDetailLeftTeamCell class] contentViewWidth:[self cellContentViewWith]];
-            }
-            if (indexPath.row == 3) {
-                if ([_dataArray[indexPath.row] count]) {
-                    return 138;
-                }
-                return 0.0000001f;
-//                DetailExtr *model = _dataArray[indexPath.row][0];
-//                return [_tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ProjectDetailLeftFooterCell class] contentViewWidth:[self cellContentViewWith]];
-            }
-        }
-
-    }
-        return 175;
-}
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            static NSString *cellId = @"ProjectPrepareHeaderCell";
-            ProjectPrepareHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[[NSBundle mainBundle]loadNibNamed:cellId owner:nil options:nil] lastObject];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (_dataArray.count) {
-               cell.model = _dataArray[indexPath.row];
-            }
-            
-            return cell;
-        }
-        if (indexPath.row == 1) {
-            static NSString *cellId = @"ProjectPreparePhotoCell";
-            ProjectPreparePhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[ProjectPreparePhotoCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.indexPath = indexPath;
-            __weak typeof (self) weakSelf = self;
-            if (!cell.moreButtonClickedBlock) {
-                [cell setMoreButtonClickedBlock:^(NSIndexPath *indexPath) {
-                    ProjectDetailLeftHeaderModel *model =weakSelf.dataArray[indexPath.row];
-                    model.isOpen = !model.isOpen;
-                    [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                }];
-            }
-            if (_dataArray.count) {
-                cell.model = _dataArray[indexPath.row];
-            }
-            return cell;
-        }
-        if (indexPath.row == 2) {
-            static NSString *cellId = @"ProjectDetailLeftTeamCell";
-            ProjectDetailLeftTeamCell *cell =[tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[ProjectDetailLeftTeamCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (_dataArray.count) {
-                cell.modelArray = _dataArray[indexPath.row];
-            }
-            
-            return cell;
-        }
-        if (indexPath.row == 3) {
-            static NSString *cellId = @"ProjectDetailLeftFooterCell";
-            ProjectDetailLeftFooterCell *cell =[tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[ProjectDetailLeftFooterCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (_dataArray.count) {
-                cell.modelArray = _dataArray[indexPath.row];
-            }
-            
-            return cell;
-        }
-    }
-    return nil;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
 
 
 #pragma mark ---导航栏按钮点击事件
@@ -396,16 +269,7 @@
     }
 }
 
-- (CGFloat)cellContentViewWith
-{
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    
-    // 适配ios7
-    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
-        width = [UIScreen mainScreen].bounds.size.height;
-    }
-    return width;
-}
+
 #pragma mark -moreBtn点击事件 处理
 -(void)moreBtnClick:(UIButton*)btn
 {

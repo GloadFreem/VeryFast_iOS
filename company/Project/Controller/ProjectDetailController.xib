@@ -22,17 +22,87 @@
                         <outlet property="delegate" destination="-1" id="vtV-ZM-9B6"/>
                     </connections>
                 </scrollView>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppD-sO-4sr">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufs-jA-uT8">
+                            <rect key="frame" x="12" y="33" width="32" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="Q00-ZS-eMS"/>
+                                <constraint firstAttribute="height" constant="18" id="zJI-E8-Jy0"/>
+                            </constraints>
+                            <state key="normal" image="leftBack"/>
+                            <connections>
+                                <action selector="leftBack:" destination="-1" eventType="touchUpInside" id="vLd-84-WYy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfI-ra-t0h">
+                            <rect key="frame" x="331" y="32" width="21" height="20"/>
+                            <state key="normal" backgroundImage="write-share"/>
+                            <connections>
+                                <action selector="shareBtn:" destination="-1" eventType="touchUpInside" id="9XS-Tt-shH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Zr-05-2fh">
+                            <rect key="frame" x="270" y="32.5" width="20" height="19"/>
+                            <state key="normal" backgroundImage="icon_uncollect.png"/>
+                            <connections>
+                                <action selector="collectBtn:" destination="-1" eventType="touchUpInside" id="b3D-qL-muW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="3dQ-gw-NxS"/>
+                        <constraint firstItem="rfI-ra-t0h" firstAttribute="centerY" secondItem="Ufs-jA-uT8" secondAttribute="centerY" id="AE3-Sn-PJT"/>
+                        <constraint firstItem="Ufs-jA-uT8" firstAttribute="centerY" secondItem="ppD-sO-4sr" secondAttribute="centerY" constant="10" id="RKb-fZ-4mC"/>
+                        <constraint firstAttribute="trailing" secondItem="rfI-ra-t0h" secondAttribute="trailing" constant="23" id="UjC-id-j5V"/>
+                        <constraint firstItem="Ufs-jA-uT8" firstAttribute="top" secondItem="ppD-sO-4sr" secondAttribute="top" constant="37" id="aDY-us-TwV"/>
+                        <constraint firstItem="rfI-ra-t0h" firstAttribute="leading" secondItem="4Zr-05-2fh" secondAttribute="trailing" constant="41" id="aEB-yD-yaa"/>
+                        <constraint firstItem="Ufs-jA-uT8" firstAttribute="leading" secondItem="ppD-sO-4sr" secondAttribute="leading" constant="12" id="dEv-GT-XPd"/>
+                        <constraint firstItem="rfI-ra-t0h" firstAttribute="centerY" secondItem="4Zr-05-2fh" secondAttribute="centerY" id="rvf-jX-yul"/>
+                        <constraint firstAttribute="height" constant="64" id="vJy-gD-Nac"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3dQ-gw-NxS"/>
+                            <exclude reference="aDY-us-TwV"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ppD-sO-4sr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0Br-aF-zlr"/>
                 <constraint firstAttribute="trailing" secondItem="1i9-vl-qEA" secondAttribute="trailing" id="7eH-Yn-TR6"/>
+                <constraint firstAttribute="trailing" secondItem="ppD-sO-4sr" secondAttribute="trailing" id="8gj-TK-QVr"/>
+                <constraint firstItem="ppD-sO-4sr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IUx-fi-x4y"/>
+                <constraint firstAttribute="trailing" secondItem="ppD-sO-4sr" secondAttribute="trailing" id="Jb9-zm-DH9"/>
+                <constraint firstAttribute="trailing" secondItem="ppD-sO-4sr" secondAttribute="trailing" id="Nk0-mV-LTW"/>
                 <constraint firstItem="1i9-vl-qEA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="U5y-2Y-dXU"/>
                 <constraint firstItem="1i9-vl-qEA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UoJ-ed-UMe"/>
+                <constraint firstItem="ppD-sO-4sr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hsj-Gi-8Ei"/>
+                <constraint firstItem="ppD-sO-4sr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i1L-y7-hGC"/>
                 <constraint firstAttribute="bottom" secondItem="1i9-vl-qEA" secondAttribute="bottom" id="kMu-Eq-loh"/>
+                <constraint firstItem="1i9-vl-qEA" firstAttribute="top" secondItem="ppD-sO-4sr" secondAttribute="bottom" id="xEO-d3-c6G"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="279.5" y="189.5"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8gj-TK-QVr"/>
+                    <exclude reference="IUx-fi-x4y"/>
+                    <exclude reference="Jb9-zm-DH9"/>
+                    <exclude reference="i1L-y7-hGC"/>
+                    <exclude reference="xEO-d3-c6G"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="219.5" y="128.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_uncollect.png" width="20" height="19"/>
+        <image name="leftBack" width="12" height="20"/>
+        <image name="write-share" width="21" height="20"/>
+    </resources>
 </document>
